@@ -1,0 +1,27 @@
+# Build artifacts
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+
+# Logs
+logs/
+*.log
+
+# GDS and chip design artifacts
+*.gds
+*.gds2
+
+# Auto-generated
+build/
+*.d
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Editor artifacts
+*.swp
+*.swo
+.vscode/
