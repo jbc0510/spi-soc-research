@@ -73,3 +73,21 @@ compared to direct bare-metal hardware execution on a Zynq-7000 SoC?
 - Month 4: OS tuning + jitter analysis
 - Month 5: Minimal appliance + secure boot
 - Month 6: Final report + documentation
+
+## Key Hypotheses to Prove
+
+### Hypothesis 1 - OS Overhead
+Linux 4-layer stack introduces measurable latency
+vs bare-metal 2-layer direct register access.
+Expected: bare-metal faster by significant margin.
+
+### Hypothesis 2 - PIO vs DMA Crossover
+PIO outperforms DMA below a certain payload threshold.
+DMA outperforms PIO above that threshold.
+Research goal: find exact crossover point in bytes
+for Zynq ZC702 SPI controller.
+
+### Hypothesis 3 - Jitter
+Linux introduces non-deterministic jitter due to
+kernel scheduling, interrupts, and context switching.
+Bare-metal execution produces consistent, repeatable timing.
