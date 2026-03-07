@@ -100,3 +100,18 @@ performance from boot to operation.
 
 HSM verifies integrity → SPI communicates securely
 Hardware root of trust + optimized secure channel
+
+## Security Considerations for Task D
+
+### JTAG Attack Surface
+- JTAG must be disabled in production builds
+- Debug ports provide full system access
+- Connects to BASE v3.0 tamper monitor design
+- Research will document JTAG disable procedure
+  for Zynq ZC702 production configuration
+
+### Protocol Security Hierarchy
+- SPI → primary research focus
+- UART → secondary comparison target  
+- JTAG → security hardening requirement
+- AXI → internal PS/PL communication
