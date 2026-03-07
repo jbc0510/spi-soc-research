@@ -1,0 +1,62 @@
+{
+    "DESIGN_NAME": "user_project_wrapper",
+    "DESIGN_IS_CORE": false,
+
+    "VERILOG_FILES": [
+        "dir::../../verilog/rtl/defines.v",
+        "dir::../../verilog/rtl/user_project_wrapper.v"
+    ],
+
+    "CLOCK_PORT": "wb_clk_i",
+    "CLOCK_PERIOD": 25,
+
+    "SYNTH_ELABORATE_ONLY": true,
+
+    "ERROR_ON_NL_ASSIGN_STATEMENTS": false,
+
+    "LVS_INCLUDE_MARCO_NETLISTS": true,
+
+    "MAGIC_EXT_USE_GDS": false,
+
+    "LVS_FLATTEN_CELLS": ["secure_boot_control_plane"],
+
+    "MACROS": {
+        "secure_boot_control_plane": {
+            "gds": ["dir::../../gds/secure_boot_control_plane.gds"],
+            "lef": ["dir::../../lef/secure_boot_control_plane.lef"],
+            "instances": {
+                "u_secure_boot_cp": {
+                    "location": [200, 400],
+                    "orientation": "N"
+                }
+            },
+            "nl": ["dir::../../verilog/gl/secure_boot_control_plane.v"],
+            "spef": {
+                "min_*": ["dir::../../spef/multicorner/secure_boot_control_plane.min.spef"],
+                "nom_*": ["dir::../../spef/multicorner/secure_boot_control_plane.nom.spef"],
+                "max_*": ["dir::../../spef/multicorner/secure_boot_control_plane.max.spef"]
+            },
+            "lib": {
+                "*": "dir::../../lib/secure_boot_control_plane.lib"
+            }
+        }
+    },
+
+    "PDN_MACRO_CONNECTIONS": ["u_secure_boot_cp vccd1 vssd1 vccd1 vssd1"],
+
+    "RUN_POST_CTS_RESIZER_TIMING": true,
+    "RUN_POST_GRT_RESIZER_TIMING": true,
+
+    "ERROR_ON_LVS_ERROR": false,
+
+    "RUN_CVC": false,
+    "RUN_KLAYOUT_DRC": false,
+
+    "ROUTING_CORES": 4,
+
+    "_COMMENT_Y_PLACEMENT": "Macro Y increased from 200 to 400 µm to give wrapper bottom tap rows clearance from macro nwell boundary. This should eliminate the nwell.4/LU.3/nwell.2a DRC violations at y≈13-15µm seen in prior runs.",
+    "_COMMENT_ELABORATE_ONLY": "SYNTH_ELABORATE_ONLY=true treats the macro as a black box during synthesis. Prevents Yosys from re-flattening.",
+    "_COMMENT_ASSIGN_CHECKER": "ERROR_ON_NL_ASSIGN_STATEMENTS=false suppresses the assign-statement checker. Required because Yosys generates assign for bus concatenations in elaborate-only mode.",
+    "_COMMENT_MARCO_TYPO": "LVS_INCLUDE_MARCO_NETLISTS — 'MARCO' is a typo in LibreLane 2.4.6 source. Must match exactly.",
+    "_COMMENT_RESIZER": "RUN_POST_CTS/GRT_RESIZER_TIMING=true — required for hold timing. Without these, hold violations abort the flow (runs 1-12 failure root cause)."
+}
