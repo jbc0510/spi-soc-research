@@ -9,15 +9,11 @@ Last Updated: March 2026
 - Personal account (jbc0510): ~/.ssh/id_ed25519_personal
 
 ### Generate Personal Key
-```
 ssh-keygen -t ed25519 -C "jecon1@morgan.edu" -f ~/.ssh/id_ed25519_personal
-```
 
 ### Verify Correct Account
-```
 ssh -i ~/.ssh/id_ed25519_personal -o IdentitiesOnly=yes -T git@github.com
 Expected: Hi jbc0510!
-```
 
 ## Operational Rules (Learned the Hard Way)
 
@@ -44,3 +40,22 @@ Before setting up a new machine:
 - BEFORE sitting down → git pull
 - BEFORE walking away → git push
 - Never leave uncommitted work overnight
+
+## Lab Server Tool Setup (capc-cl1-2)
+
+### Source these before working:
+source /tools/scripts/ee463-env.sh
+source /tools/Xilinx/Vivado/2024.2/settings64.sh
+source /tools/Xilinx/Vitis/2024.2/settings64.sh
+
+### Cross Compiler (ARM Cortex-A9)
+export PATH=/tools/Xilinx/Vitis/2024.2/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:$PATH
+Verify: arm-linux-gnueabihf-gcc --version
+
+### Available Tools
+Vivado  2024.2 → /tools/Xilinx/Vivado/2024.2/
+Vitis   2024.2 → /tools/Xilinx/Vitis/2024.2/
+PetaLinux      → NOT INSTALLED
+
+### Quick Setup Script
+source ~/setup_spi_env.sh
