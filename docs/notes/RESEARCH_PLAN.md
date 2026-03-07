@@ -65,3 +65,11 @@ compared to direct bare-metal hardware execution on a Zynq-7000 SoC?
 - Month 4: OS tuning + jitter analysis
 - Month 5: Minimal appliance + secure boot
 - Month 6: Final report + documentation
+
+## Monthly Milestones
+- Month 1: Environment setup + repo structure ← YOU ARE HERE
+- Month 2: Basic SPI benchmarks on both targets
+- Month 3: DMA implementation + comparative data
+- Month 4: OS tuning + jitter analysis
+- Month 5: Minimal appliance + secure boot
+- Month 6: Final report + documentation
