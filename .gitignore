@@ -1,1 +1,3 @@
 docs/notes/*.pdf
+linux/src/spi_benchmark
+bare_metal/src/spi_benchmark_bare
