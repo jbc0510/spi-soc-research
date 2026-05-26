@@ -1,0 +1,33 @@
+/include/ "system-conf.dtsi"
+/ {
+};
+
+/* PS SPI0 via MIO — spidev */
+&spi0 {
+	status = "okay";
+	spidev@0 {
+		compatible = "rohm,dh2228fv";
+		reg = <0>;
+		spi-max-frequency = <50000000>;
+	};
+};
+
+/* PS SPI1 via EMIO — spidev */
+&spi1 {
+	status = "okay";
+	spidev@0 {
+		compatible = "rohm,dh2228fv";
+		reg = <0>;
+		spi-max-frequency = <50000000>;
+	};
+};
+
+/* AXI Quad SPI in PL — spidev */
+&axi_quad_spi_0 {
+	status = "okay";
+	spidev@0 {
+		compatible = "rohm,dh2228fv";
+		reg = <0>;
+		spi-max-frequency = <50000000>;
+	};
+};
