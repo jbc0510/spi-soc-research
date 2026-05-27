@@ -25,10 +25,12 @@
 #define SPI_DEVICE      "/dev/spidev0.0"
 #define SPI_SPEED_HZ    1000000          /* 1MHz clock */
 #define SPI_BITS        8                /* bits per word */
+#define NUM_TRIALS_LARGE 10
+#define NUM_TRIALS_MED   100
 #define NUM_TRIALS      1000             /* iterations per test */
 
 /* Payload sizes to test (Task B) */
-static const int payload_sizes[] = {1, 8, 16, 64, 128, 256};
+static const int payload_sizes[] = {1, 8, 16, 64, 128, 256, 512, 1024, 4096, 16384, 65536};
 #define NUM_PAYLOADS (sizeof(payload_sizes) / sizeof(payload_sizes[0]))
 
 /* ─────────────────────────────────────────
@@ -71,8 +73,8 @@ static int spi_transfer(int fd, uint8_t *tx, uint8_t *rx, int len)
  * ───────────────────────────────────────── */
 static benchmark_result_t run_benchmark(int fd, int payload_size)
 {
-    uint8_t tx[256] = {0};
-    uint8_t rx[256] = {0};
+    uint8_t *tx = calloc(payload_size, 1);
+    uint8_t *rx = calloc(payload_size, 1);
     double latencies[NUM_TRIALS];
     double sum = 0.0;
     benchmark_result_t result = {0};
