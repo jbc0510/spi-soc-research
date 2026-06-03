@@ -52,7 +52,8 @@
 
 /* Payload sweep, 1 B to 64 KiB (commit said "1B-65KB"). */
 static const int payload_sizes[] = {
-    1, 4, 16, 64, 256, 1024, 4096, 16384, 65536
+    1, 4, 16, 64, 256, 1024, 4096, 16384, 65536,
+    262144, 1048576, 4194304, 16777216
 };
 #define NUM_PAYLOADS (int)(sizeof(payload_sizes)/sizeof(payload_sizes[0]))
 
