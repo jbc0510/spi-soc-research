@@ -92,3 +92,4 @@ The board has no 100 MHz PL oscillator (UG1182): `pl_clk0` is PS-synthesized fro
 33.33 MHz `PS_REF_CLK`. The measured ~11 MHz SCK is consistent with a real
 `pl_clk0` of ~176 MHz ÷ 16, not the assumed 100 MHz ÷ 16 = 6.25 MHz. Confirm the
 actual `pl_clk0` in the Vivado PS clock config (or by ILA) to close the issue.
+## ILA verdict (Jun 3): SCK = 16 samples @100 MHz = 6.25 MHz exactly. Benchmark ~11 MHz implied = timing artifact in spi_benchmark_clean.c
