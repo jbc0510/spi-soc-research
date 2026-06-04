@@ -1,0 +1,16 @@
+# IN-SPEC sweep rung 4, 2026-06-04. PL0 = 50 MHz (0x01020F00, verified). Bitstream:
+# ratio-2 build, md5 70b831e791b29c0a99b4f2c90844ba3b verified. True SCK = 25 MHz,
+# in-spec (SCK <= 50 rated, ext_spi_clk = 50 <= 100 rated). Internal loopback.
+# 64KB = 74,322 us vs 74,330 predicted (0.01%); c = 208.4 us; util 28%.
+# Cross-PL0 model: c(PL0) ~= 18.9 us + ~9,480 PL0-cycles per 256-B chunk
+# (fits c = 56.8 @ PL0=250, 208.4 @ PL0=50, 617 @ PL0=16 within ~1%).
+device,requested_hz,driver_reported_hz,size_bytes,trials,min_ns,median_ns,max_ns,throughput_Mbps_1lane
+/dev/spidev0.0,1000000,1000000,1,1000,24772,31873,66346,0.251
+/dev/spidev0.0,1000000,1000000,4,1000,27272,33183,45024,0.964
+/dev/spidev0.0,1000000,1000000,16,1000,40944,43564,62667,2.938
+/dev/spidev0.0,1000000,1000000,64,1000,94909,97429,113231,5.255
+/dev/spidev0.0,1000000,1000000,256,1000,309831,312441,328963,6.555
+/dev/spidev0.0,1000000,1000000,1024,1000,1181418,1184138,1323612,6.918
+/dev/spidev0.0,1000000,1000000,4096,1000,4664566,4667466,4830553,7.021
+/dev/spidev0.0,1000000,1000000,16384,1000,18596088,18599079,18616461,7.047
+/dev/spidev0.0,1000000,1000000,65536,1000,74317505,74322406,74348959,7.054
