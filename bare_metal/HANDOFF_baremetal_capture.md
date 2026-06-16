@@ -1,3 +1,46 @@
+# RESOLVED - BENCHMARK CAPTURED ON SILICON (1000-trial publishable run)
+
+Everything below this block is the debug arc that led here; kept for the record.
+The boot blocker and the capture blocker are BOTH solved. Summary of the answers:
+
+## What finally worked (the short version)
+- BOOT: SD-card boot with FSBL + PMU extracted from the working spidev PetaLinux
+  project (/home/jconway/zcu102-spidev/images/linux/): fsbl_good.elf + pmufw_good.elf.
+  The XSA-built FSBLs (ws/ws2) died mid-banner; the board-matched PetaLinux pair
+  boots clean. Root cause of the old mid-banner death: FSBL/board DDR-config
+  mismatch, exactly candidate (a)/(b) flagged in session 3.
+- HANDOFF (EL): app is EL3-built; bm.bif hands it off at el-3 directly, NO ATF.
+  EL2-via-ATF handoff hung at 0x100abc. So: [bootloader]fsbl_good +
+  [pmufw_image]pmufw_good + [a53-0, el-3]spi_bm_app.elf. No bl31.
+- CAPTURE: the app prints the full results table to UART (clean 115200) on its
+  own - JTAG readback is now BACKUP, not the primary path. The old ~192k app-baud
+  problem did not materialize on this build; table read cleanly via screen.
+  JTAG fallback (proven working): targets 13; catch {stop}; mrd -value 0x10e178 88;
+  g_done @ 0x10e2d8 reads 53406 (=0xD09E). Output radix is DECIMAL ns.
+
+## The validated run
+- NUM_TRIALS=1000. Image: BOOT_baremetal.bin (323952 B), committed 9a4a798 on
+  dev, silicon-proven. Source NUM_TRIALS at line 50 (=1000).
+- SPI1_REF_CTRL confirmed 0x01001800 (/64, 0.9766 MHz SCK) in-band at boot.
+- Dataset: results/baremetal_results.csv (avg_us schema, matches compare_spi.py).
+- Comparison: compare_spi.py now registers baremetal as a 4th interface
+  (run with --sck-ps 976600). BM passes the flat-stddev integrity check; the
+  Linux emio/mio baselines FAIL it (modeled 1.0 stddev - see KNOWN GAP).
+- Headline: BM vs EMIO at 1 B = 10.3 vs 38.5 us = 3.73x (clean OS-overhead,
+  SAME wire/clock - better isolation than the script EMIO-vs-AXI 1.61x, which
+  does not hold SCK constant). Asymptotic BM-vs-Linux ~1.21x from 1 KB up.
+
+## KNOWN GAP (next board session, do NOT forget)
+- emio_results.csv / mio_results.csv have FABRICATED stddev (constant 1.0 us).
+  compare_spi.py flags them every run. The bare-metal jitter-advantage claim
+  (BM stddev 0.026-0.436 us, REAL) rests on a placeholder on the Linux side.
+  For the paper: re-capture Linux EMIO/MIO with genuine per-trial stddev, or
+  footnote the asymmetry honestly. BM side is publication-clean; Linux side is not.
+
+================================================================
+(historical debug arc follows)
+================================================================
+
 # Bare-metal SPI benchmark — capture handoff
 
 ## STATUS: port PROVEN on silicon; capture of numbers is the open task.

@@ -44,6 +44,7 @@ INTERFACES = {
     "mio":  ("mio_results.csv",  "PS MIO  (spi0)"),
     "emio": ("emio_results.csv", "PS EMIO (spi1)"),
     "axi":  ("axi_results.csv",  "AXI PL  (quad_spi)"),
+    "baremetal": ("baremetal_results.csv", "PS BM   (spi1/EL3)"),
 }
 LOOPBACK = ("loopback_stress_test.csv", "AXI loopback stress")
 
@@ -349,7 +350,7 @@ def main():
     if args.sck_axi:
         sck["axi"] = args.sck_axi
     if args.sck_ps:
-        sck["mio"] = sck["emio"] = args.sck_ps
+        sck["mio"] = sck["emio"] = sck["baremetal"] = args.sck_ps
 
     print_table(data, sck)
     headline(data)
