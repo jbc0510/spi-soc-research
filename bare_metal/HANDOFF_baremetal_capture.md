@@ -120,3 +120,55 @@ Also: reading results over JTAG WORKS (only dow-LOAD failed). Once the app boots
 ## Capture addresses (0x100000 relink build): results@0x10e178 g_done@0x10e2d8
 ## NUM_TRIALS=20 (line 50) for fast test; restore 1000 for publishable run.
 ## Board: SW6 all-ON = JTAG halt; OFF,OFF,OFF,ON = SD boot. Restore as needed.
+
+
+================================================================
+UPDATE (session 3 cont.) — Hello World ISOLATION TEST: it is the FSBL/image
+================================================================
+
+## DECISIVE RESULT: stock Hello World fails IDENTICALLY to our app.
+Built BOOT_hello.bin = ws FSBL + ws PMU + stock hello_world.elf (linked at 0x0,
+unmodified). SD-booted it. Serial @115200 shows the SAME failure as our app:
+prints partial banner "Zynq MP First Stage" then dies (stall/loop), never
+finishes the banner line. => The boot failure is NOT our app, NOT the 0x100000
+relink, NOT the benchmark code. It is the FSBL or the bootgen image construction.
+
+## Ruled out this session:
+- Our app as cause (Hello World fails same -> not us).
+- App link address (Hello is at 0x0, still fails).
+- Quick FSBL sources: Vitis tools ship NO zcu102 FSBL/PMU (only zcu104 base,
+  wrong board). No PetaLinux project / loose zynqmp_fsbl.elf found on stile.
+- bootgen extraction of the working Linux BOOT.BIN: -dump_dir only prints
+  headers (no file out); -split tries to parse .bin as .bif (fails). Could not
+  cleanly extract the Linux image's FSBL/PMU via bootgen on 2025.1.
+
+## Serial: FSBL prints at clean 115200 (confirmed). Dies mid-banner -> failure is
+   in FSBL's own early startup, before it finishes printing, before DDR/partition
+   load. No error code visible (dies before printing one).
+
+## Working reference: sd-images/BOOT.BIN (Linux, 1775880 B) BOOTS this board.
+   Chain: zynqmp_fsbl.elf -> bl31.elf (ATF, el-3) -> system.dtb -> u-boot.elf(el-2).
+   Note: Linux hands off FSBL->ATF(el3)->uboot(el2). Our bm.bif puts our app
+   directly at el-3 with NO ATF. Possible the FSBL expects an ATF handoff, but
+   that would fault AFTER banner, not mid-banner -- so probably not the cause.
+
+## OPEN QUESTION (next session): why does a ZCU102-XSA-built FSBL die mid-banner?
+   Candidates: (a) bootgen image attrs/structure subtly wrong; (b) FSBL build
+   issue; (c) something about the ws/ws2 platform FSBL specifically.
+
+## NEXT-SESSION PLAN (fresh approach needed -- not more blind swaps):
+1. Get a genuinely board-matched FSBL+PMU. Best sources, in order:
+   a. The PetaLinux project that built the working Linux BOOT.BIN (on another
+      machine? jerry0510? ask Jerry). images/linux/zynqmp_fsbl.elf + pmufw.elf.
+   b. Rebuild FSBL fresh from spi_benchmark_wrapper.xsa via the zynqmp_fsbl
+      template, verifying the ZCU102 board preset / DDR config is selected.
+   c. Extract from Linux BOOT.BIN with a proper tool (python bincopy, or
+      bootgen with correct dump syntax for 2025.1 -- research the flag).
+2. Consider adding ATF (bl31.elf) to the bif before our app, mirroring the
+   Linux chain: [bootloader] fsbl + [pmufw_image] pmu + bl31(el-3) + app(el-2 or
+   el-1). The stock standalone app may expect to run below EL3 after ATF.
+3. Capture full FSBL serial (115200) for any error code if it ever prints past
+   the banner.
+
+## REMINDER: reading results over JTAG WORKS once an app actually runs. Only the
+   dow-LOAD and now the SD-boot are blocked. App code remains unblamed throughout.
