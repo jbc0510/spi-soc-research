@@ -1,5 +1,6 @@
 the_ROM_image:
 {
   [bootloader, destination_cpu=a53-0] fsbl.elf
+  [pmufw_image] pmufw.elf
   [destination_cpu=a53-0, exception_level=el-3] spi_bm_app.elf
 }
