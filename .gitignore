@@ -1,6 +1,12 @@
 docs/notes/*.pdf
+<<<<<<< Updated upstream
 
 vivado*.jou
 vivado*.log
 vivado*.backup.*
 .Xil/
+=======
+vivado*.jou
+vivado*.log
+vivado_pid*.str
+>>>>>>> Stashed changes
