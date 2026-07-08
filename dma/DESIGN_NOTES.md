@@ -107,3 +107,100 @@ DMA comparison adds:
 # Results:
 # (paste here)
 ```
+
+---
+
+## Step 1.2 — Kernel config audit (2026-07-08, board: newQspi, PetaLinux 2025.1)
+cat >> dma/DESIGN_NOTES.md << 'EOF'
+
+---
+
+## Step 1.2 — Kernel config audit (2026-07-08, board: newQspi, PetaLinux 2025.1)
+Kernel: $(uname -r) — PetaLinux 2025.1+release-S05180137
+DMA drivers — all BUILT IN (=y):
+CONFIG_XILINX_DMA=y
+CONFIG_XILINX_ZYNQMP_DMA=y        ← ZynqMP GDMA driver present
+CONFIG_XILINX_ZYNQMP_DPDMA=y
+CONFIG_HAS_DMA=y
+CONFIG_DMA_ENGINE=y  (implied by above)
+CONFIG_DMA_CMA=y
+CONFIG_IOMMU_DMA=y
+CONFIG_NEED_SG_DMA_FLAGS=y
+CONFIG_DMA_OPS_HELPERS=y
+DMA test modules (=m, loadable):
+CONFIG_XILINX_DMATEST=m
+CONFIG_XILINX_VDMATEST=m
+DMA devices at runtime:
+/sys/bus/dma/devices/ — EMPTY (none registered)
+Reason: no device tree node binds a GDMA channel to SPI1
+SPI driver:
+CONFIG_SPI_CADENCE=y              ← built in
+CONFIG_SPI_CADENCE_QUADSPI=y
+ZYNQMP platform:
+CONFIG_XILINX_ZYNQMP_DMA=y
+CONFIG_COMMON_CLK_ZYNQMP=y
+CONFIG_RESET_ZYNQMP=y
+
+## Step 1.3 — Device tree SPI1 DMA binding (2026-07-08)
+/proc/device-tree/amba/spi@ff0b0000/ — node DOES NOT EXIST in base tree
+/proc/device-tree/amba/spi@ff0b0000/dmas — NO dmas property
+FINDING: DMA is not bound. The current overlay (spi_benchmark_pl.dts)
+does not include a dmas property on the SPI1 node. The GDMA driver is
+present and capable; the device tree is the only gap.
+NEXT STEP (Phase 2, Step 2.1): Add dmas binding to the SPI1 node in
+spi_benchmark_pl.dts and identify the correct GDMA channel for SPI1 RX/TX.
+ZynqMP GDMA channels for SPI: LPD-DMA channels 0-7 (base 0xFFA80000).
+SPI1 TX request line: confirm from ZynqMP TRM Table 13-2 (DMA request signals).
+
+---
+
+## Step 1.2 — Kernel config audit (2026-07-08, board: newQspi, PetaLinux 2025.1)
+
+Kernel: 6.6.x (PetaLinux 2025.1+release-S05180137)
+
+DMA drivers — all BUILT IN (=y):
+  CONFIG_XILINX_DMA=y
+  CONFIG_XILINX_ZYNQMP_DMA=y        (ZynqMP GDMA driver present)
+  CONFIG_XILINX_ZYNQMP_DPDMA=y
+  CONFIG_HAS_DMA=y
+  CONFIG_DMA_ENGINE=y               (implied by above)
+  CONFIG_DMA_CMA=y
+  CONFIG_IOMMU_DMA=y
+  CONFIG_NEED_SG_DMA_FLAGS=y
+  CONFIG_DMA_OPS_HELPERS=y
+
+DMA test modules (=m, loadable):
+  CONFIG_XILINX_DMATEST=m
+  CONFIG_XILINX_VDMATEST=m
+
+DMA devices at runtime:
+  /sys/bus/dma/devices/ — EMPTY (none registered)
+  Reason: no device tree node binds a GDMA channel to SPI1
+
+SPI driver:
+  CONFIG_SPI_CADENCE=y              (built in)
+  CONFIG_SPI_CADENCE_QUADSPI=y
+
+ZynqMP platform:
+  CONFIG_XILINX_ZYNQMP_DMA=y
+  CONFIG_COMMON_CLK_ZYNQMP=y
+  CONFIG_RESET_ZYNQMP=y
+
+CONCLUSION: Kernel is fully capable. No rebuild needed.
+
+---
+
+## Step 1.3 — Device tree SPI1 DMA binding (2026-07-08)
+
+  /proc/device-tree/amba/spi@ff0b0000/       — node DOES NOT EXIST in base tree
+  /proc/device-tree/amba/spi@ff0b0000/dmas   — NO dmas property
+
+FINDING: DMA is not bound. The current overlay (spi_benchmark_pl.dts)
+does not include a dmas property on the SPI1 node. The GDMA driver is
+present and capable in the kernel; the device tree binding is the only gap.
+
+NEXT STEP (Phase 2, Step 2.1):
+  Add dmas binding to the SPI1 node in spi_benchmark_pl.dts.
+  Identify the correct GDMA channel for SPI1 RX/TX from ZynqMP TRM Table 13-2.
+  ZynqMP LPD-DMA base: 0xFFA80000 (channels 0-7)
+  SPI1 TX DMA request line: to be confirmed from TRM.
