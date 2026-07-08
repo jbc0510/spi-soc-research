@@ -1,27 +1,12 @@
-# Build artifacts
-*.o
-*.elf
-*.bin
-*.hex
-*.map
+docs/notes/*.pdf
+<<<<<<< Updated upstream
 
-# Logs
-logs/
-*.log
-
-# GDS and chip design artifacts
-*.gds
-*.gds2
-
-# Auto-generated
-build/
-*.d
-
-# OS clutter
-.DS_Store
-Thumbs.db
-
-# Editor artifacts
-*.swp
-*.swo
-.vscode/
+vivado*.jou
+vivado*.log
+vivado*.backup.*
+.Xil/
+=======
+vivado*.jou
+vivado*.log
+vivado_pid*.str
+>>>>>>> Stashed changes

@@ -1,0 +1,17 @@
+# IN-SPEC sweep rung 1, 2026-06-04. PL0 = 50 MHz via runtime devmem write to CRL_APB
+# PL0_REF_CTRL (0xff5e00c0 = 0x01020F00, DIV1=2 DIV0=15, hot write), verified before and
+# after the run. Bitstream: baseline ratio-16 (625mhz-bak). True SCK = 50/16 = 3.125 MHz.
+# ext_spi_clk = 50 MHz <= 100 rated; SCK in-spec. Internal loopback. 64KB above wire
+# floor (167,772 us): c = 208.5 us per 256-B FIFO chunk; util 76%.
+# NOTE: FSBL reprograms CRL_APB at every boot; divisor must be re-applied and re-verified
+# after any reboot. Fabric must be configured before any 0xa000_0000 access.
+device,requested_hz,driver_reported_hz,size_bytes,trials,min_ns,median_ns,max_ns,throughput_Mbps_1lane
+/dev/spidev0.0,1000000,1000000,1,1000,23392,26022,98390,0.307
+/dev/spidev0.0,1000000,1000000,4,1000,36394,38804,51545,0.825
+/dev/spidev0.0,1000000,1000000,16,1000,76737,79258,95110,1.615
+/dev/spidev0.0,1000000,1000000,64,1000,238013,240494,253625,2.129
+/dev/spidev0.0,1000000,1000000,256,1000,883188,886739,907671,2.310
+/dev/spidev0.0,1000000,1000000,1024,1000,3475447,3479318,3497659,2.354
+/dev/spidev0.0,1000000,1000000,4096,1000,13843563,13846084,13862925,2.367
+/dev/spidev0.0,1000000,1000000,16384,1000,55302515,55309656,55362902,2.370
+/dev/spidev0.0,1000000,1000000,65536,1000,221147367,221155007,221192911,2.371

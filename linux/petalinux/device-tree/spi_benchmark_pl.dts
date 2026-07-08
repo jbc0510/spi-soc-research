@@ -1,0 +1,58 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	fragment@0 {
+		target = <&fpga_full>;
+		__overlay__ {
+			firmware-name = "spi_benchmark_wrapper.bit.bin";
+			resets = <&zynqmp_reset 0x74>;
+
+			clocking0 {
+				#clock-cells = <0>;
+				assigned-clock-rates = <250000000>;
+				assigned-clocks = <&zynqmp_clk 71>;
+				clock-output-names = "fabric_clk";
+				clocks = <&zynqmp_clk 71>;
+				compatible = "xlnx,fclk";
+			};
+
+			afi0 {
+				compatible = "xlnx,afi-fpga";
+				config-afi = <0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 0 8 0 9 0 10 0 11 0 12 0 13 0 14 0xa00 15 0>;
+				resets = <&zynqmp_reset 0x74 &zynqmp_reset 0x75 &zynqmp_reset 0x76 &zynqmp_reset 0x77>;
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&amba>;
+		__overlay__ {
+			#address-cells = <2>;
+			#size-cells = <2>;
+
+			axi_quad_spi@a0000000 {
+				bits-per-word = <8>;
+				clock-names = "ext_spi_clk\0s_axi_aclk";
+				clocks = <&zynqmp_clk 71>, <&zynqmp_clk 71>;
+				compatible = "xlnx,axi-quad-spi-3.2\0xlnx,xps-spi-2.00.a";
+				fifo-size = <256>;
+				interrupt-names = "ip2intc_irpt";
+				interrupt-parent = <&gic>;
+				interrupts = <0 89 1>;
+				num-cs = <1>;
+				reg = <0x0 0xa0000000 0x0 0x10000>;
+				xlnx,num-ss-bits = <1>;
+				xlnx,spi-mode = <0>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				spidev@0 {
+					compatible = "rohm,dh2228fv";
+					reg = <0>;
+					spi-max-frequency = <50000000>;
+				};
+			};
+		};
+	};
+};
