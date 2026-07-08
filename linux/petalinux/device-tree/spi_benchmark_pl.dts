@@ -55,4 +55,12 @@
 			};
 		};
 	};
+
+	fragment@2 {
+		target = <&spi1>;
+		__overlay__ {
+			dmas = <&lpd_dma_chan1 0>, <&lpd_dma_chan2 0>;
+			dma-names = "tx", "rx";
+		};
+	};
 };
