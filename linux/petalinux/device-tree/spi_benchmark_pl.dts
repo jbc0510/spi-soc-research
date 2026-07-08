@@ -60,6 +60,7 @@
 		target = <&spi1>;
 		__overlay__ {
 			status = "okay";
+			power-domains = <&zynqmp_firmware 0x24>;
 			dmas = <&lpd_dma_chan1 0>, <&lpd_dma_chan2 0>;
 			dma-names = "tx", "rx";
 		};
