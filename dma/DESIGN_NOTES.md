@@ -204,3 +204,37 @@ NEXT STEP (Phase 2, Step 2.1):
   Identify the correct GDMA channel for SPI1 RX/TX from ZynqMP TRM Table 13-2.
   ZynqMP LPD-DMA base: 0xFFA80000 (channels 0-7)
   SPI1 TX DMA request line: to be confirmed from TRM.
+
+---
+
+## Step 2.1 findings — overlay DMA binding investigation (2026-07-08)
+
+FINDING 1: spidev1.0 = AXI Quad SPI (a0000000), not PS SPI1
+  The Linux SPI bus numbering assigned bus 1 to the AXI controller.
+  All prior Linux benchmarks (emio_results.csv) ran through AXI Quad SPI.
+  This must be documented in the paper methodology section.
+
+FINDING 2: PS SPI1 (ff050000) is disabled in the running image.ub base DTB
+  fdtget confirms: /axi/spi@ff050000 status = "disabled"
+  system-user.dtsi has &spi1 { status = "okay" } but image.ub predates that edit.
+  ff050000.spi never registers as a platform device — PM domain never activated.
+
+FINDING 3: Overlay cannot fix PM domain post-boot
+  Adding status/power-domains via overlay after genpd has disabled domain19
+  results in -EACCES. The fix requires SPI1 enabled in the base DTB at boot.
+
+FINDING 4: AXI Quad SPI has no DMA engine connection
+  C_SCK_RATIO is fixed at synthesis time. No dmas property possible on AXI node.
+  Linux DMA path requires PS SPI1 (cadence_spi driver with GDMA).
+
+REQUIRED ACTION: Rebuild image.ub via PetaLinux with system-user.dtsi
+  &spi1 { status = "okay" } compiled into base DTB.
+  After rebuild, PS SPI1 probes at boot, PM domain stays active,
+  overlay fragment@2 (dmas only, no status/power-domains) will work.
+
+KERNEL CONFIRMED READY:
+  CONFIG_XILINX_ZYNQMP_DMA=y — GDMA driver built in
+  CONFIG_SPI_CADENCE=y — cadence_spi driver built in
+  lpd_dma_chan1 (ffa80000) phandle 0x48 — TX
+  lpd_dma_chan2 (ffa90000) phandle 0x49 — RX
+  #dma-cells = 1, format: <&channel 0>
