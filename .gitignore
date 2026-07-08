@@ -1,12 +1,24 @@
-docs/notes/*.pdf
-<<<<<<< Updated upstream
-
+# Vivado artifacts
 vivado*.jou
 vivado*.log
 vivado*.backup.*
-.Xil/
-=======
-vivado*.jou
-vivado*.log
 vivado_pid*.str
->>>>>>> Stashed changes
+.Xil/
+
+# Docs
+docs/notes/*.pdf
+
+# Build artifacts and working files
+bare_metal/vitis/
+hardware/xsa_review/
+results/compare_spi.py.bak-preBM
+results/spi_benchmark_clean.c.bak
+sd-images/baremetal/bl31_good.elf
+sd-images/baremetal/bootgen*.log
+sd-images/baremetal/fsbl.elf
+sd-images/baremetal/fsbl_ws.elf
+sd-images/baremetal/hello_test.elf
+sd-images/baremetal/linux_extract/
+sd-images/baremetal/pmufw.elf
+sd-images/baremetal/pmufw_ws.elf
+spi_loopback_test
