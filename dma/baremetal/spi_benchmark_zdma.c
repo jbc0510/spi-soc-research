@@ -96,6 +96,8 @@ typedef struct {
 
 benchmark_result_t results[NUM_PAYLOADS];
 volatile u32 g_done = 0;
+volatile u32 g_physics_fail = 0;   /* payloads with avg below wire floor */
+volatile u32 g_rx_mismatch  = 0;   /* payloads whose RX != TX pattern    */
 
 /* ─────────────────────────────────────────
  * Timing helpers — same as PIO benchmark
@@ -247,10 +249,23 @@ static void zdma_spi_transfer(const u8 *src, u8 *dst, int len)
         xfer.DstCoherent = 0;
         xfer.Pause    = 0;
 
+        /* Clear sticky W1C TXOW/TXFULL before TX — SR is interrupt-status,
+         * write-1-to-clear; polling without clearing reads a stale 1 and
+         * the drain-wait is a no-op (root cause of bus-speed anchor run). */
+        Xil_Out32(SPI1_BASEADDR + XSPIPS_SR_OFFSET,
+                  XSPIPS_IXR_TXOW_MASK | XSPIPS_IXR_TXFULL_MASK);
+
         XZDma_Start(&ZDmaTx, &xfer, 1);
 
         /* Poll TX DMA done */
         while (XZDma_ChannelState(&ZDmaTx) == XZDMA_BUSY) { /* spin */ }
+
+        /* Drain-wait: TXOW (cleared above) re-asserts only when FIFO
+         * occupancy < TXWR threshold (reset default 1 = empty). Wire
+         * time is spent HERE. RX DMA must run only after this drain —
+         * chunk <= FIFO depth, so RX FIFO then holds all chunk bytes. */
+        while (!(Xil_In32(SPI1_BASEADDR + XSPIPS_SR_OFFSET) &
+                 XSPIPS_IXR_TXOW_MASK)) { /* spin */ }
 
         /* RX: SPI1 RX FIFO -> DDR */
         xfer.SrcAddr  = SPI1_BASEADDR + XSPIPS_RXD_OFFSET;
@@ -262,14 +277,6 @@ static void zdma_spi_transfer(const u8 *src, u8 *dst, int len)
         /* Poll RX DMA done */
         while (XZDma_ChannelState(&ZDmaRx) == XZDMA_BUSY) { /* spin */ }
 
-        /* Wait for SPI TX FIFO to drain before next burst:
-         * 1) Wait until not full (space available)
-         * 2) Wait until overwater flag set (below threshold = draining)
-         * No TXEMPTY bit on Cadence SPI — this is the correct idiom. */
-        while (Xil_In32(SPI1_BASEADDR + XSPIPS_SR_OFFSET) &
-               XSPIPS_IXR_TXFULL_MASK) { /* spin */ }
-        while (!(Xil_In32(SPI1_BASEADDR + XSPIPS_SR_OFFSET) &
-                 XSPIPS_IXR_TXOW_MASK)) { /* spin */ }
 
         src_ptr   += chunk;
         dst_ptr   += chunk;
@@ -321,6 +328,35 @@ static void run_benchmark(int payload_size, benchmark_result_t *result)
     result->max_ns    = max_t;
     result->avg_ns    = avg;
     result->stddev_ns = stddev;
+
+    /* ── Physics gate ──────────────────────────────────────────
+     * At 0.9766 MHz SCK, one bit = 1024 ns exactly (62.5MHz/64),
+     * so wire floor = payload * 8 * 1024 ns. Any average below
+     * this is measuring the bus, not the wire (the failure mode
+     * of the first anchor run). Machine-caught, not eyeballed. */
+    {
+        u64 wire_floor_ns = (u64)payload_size * 8192ULL;
+        if (avg < wire_floor_ns) {
+            xil_printf("  PHYSICS FAIL: %d B avg below wire floor\r\n",
+                       payload_size);
+            g_physics_fail++;
+        }
+    }
+
+    /* ── Loopback data check (once per payload, untimed) ──────
+     * rx_buf holds the last timed trial. Mismatch => wire did
+     * not carry the data (or loopback path differs) — flagged,
+     * not fatal, pending loopback wiring confirmation. */
+    {
+        int mism = 0;
+        for (i = 0; i < payload_size; i++)
+            if (rx_buf[i] != tx_buf[i]) { mism++; }
+        if (mism) {
+            xil_printf("  RX MISMATCH: %d B payload, %d bytes differ\r\n",
+                       payload_size, mism);
+            g_rx_mismatch++;
+        }
+    }
 }
 
 /* ─────────────────────────────────────────
@@ -370,6 +406,14 @@ int main(void)
     }
 
     /* Sentinel — marks results[] fully populated for JTAG reader */
+    /* ── Anchor verdict — the one line jeremiahc looks for ── */
+    if (g_physics_fail == 0 && g_rx_mismatch == 0) {
+        xil_printf("\r\nANCHOR VERDICT: PASS (all payloads >= wire floor, RX == TX)\r\n");
+    } else {
+        xil_printf("\r\nANCHOR VERDICT: FAIL — physics_fail=%u rx_mismatch=%u\r\n",
+                   (unsigned)g_physics_fail, (unsigned)g_rx_mismatch);
+    }
+
     g_done = 0xDEADBEEF;
     xil_printf("\r\nDone. g_done=0x%08X\r\n", (unsigned)g_done);
 
