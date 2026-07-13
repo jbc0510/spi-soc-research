@@ -238,3 +238,34 @@ KERNEL CONFIRMED READY:
   lpd_dma_chan1 (ffa80000) phandle 0x48 — TX
   lpd_dma_chan2 (ffa90000) phandle 0x49 — RX
   #dma-cells = 1, format: <&channel 0>
+
+---
+
+## Linux DMA Investigation — Final Findings (2026-07-13)
+
+### Root cause of PS SPI1 -EACCES failure
+The ZynqMP ATF (BL31, TrustZone) enforces PM node access control.
+Node 36 (SPI1, domain12) is not in the APU's allowed list in the
+current bl31.elf (md5: 98c810e2). This is independent of PMU firmware.
+
+Attempted fixes — all blocked by ATF:
+- Overlay with status=okay only: -EACCES
+- Overlay with status + power-domains: -EACCES  
+- Q_SPI pmufw.elf (1fb1c202): -EACCES
+- Vitis-built pmufw.elf with SPI0/SPI1 nodes: -EACCES
+- Patched image.ub from correct XSA: -EACCES
+
+The fix requires rebuilding BL31 with SPI nodes in APU allowed list.
+This is deferred — Linux PS SPI1 DMA blocked at ATF layer.
+
+### Key finding for paper methodology
+spidev1.0 = AXI Quad SPI (a0000000), NOT PS SPI1 (ff050000).
+All emio_results.csv and mio_results.csv data measured the AXI path.
+Bare-metal used PS SPI1 directly (XSpiPs). Comparison is AXI vs PS,
+not Linux-vs-bare-metal on the same controller. Must be documented.
+
+### Decision: Pivot to bare-metal ZDMA (Phase 3)
+- Bare-metal has no ATF/PM domain constraints
+- ZDMA can be configured directly to drive PS SPI1 TX FIFO
+- No Vivado rebuild needed
+- Fastest path to publishable DMA result per SOW Task 2
