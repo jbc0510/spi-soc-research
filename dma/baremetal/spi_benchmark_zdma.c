@@ -262,7 +262,12 @@ static void zdma_spi_transfer(const u8 *src, u8 *dst, int len)
         /* Poll RX DMA done */
         while (XZDma_ChannelState(&ZDmaRx) == XZDMA_BUSY) { /* spin */ }
 
-        /* Wait for SPI TX FIFO empty before next burst */
+        /* Wait for SPI TX FIFO to drain before next burst:
+         * 1) Wait until not full (space available)
+         * 2) Wait until overwater flag set (below threshold = draining)
+         * No TXEMPTY bit on Cadence SPI — this is the correct idiom. */
+        while (Xil_In32(SPI1_BASEADDR + XSPIPS_SR_OFFSET) &
+               XSPIPS_IXR_TXFULL_MASK) { /* spin */ }
         while (!(Xil_In32(SPI1_BASEADDR + XSPIPS_SR_OFFSET) &
                  XSPIPS_IXR_TXOW_MASK)) { /* spin */ }
 
