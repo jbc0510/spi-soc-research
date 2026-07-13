@@ -269,3 +269,27 @@ not Linux-vs-bare-metal on the same controller. Must be documented.
 - ZDMA can be configured directly to drive PS SPI1 TX FIFO
 - No Vivado rebuild needed
 - Fastest path to publishable DMA result per SOW Task 2
+
+---
+
+## Phase 3 — Bare-metal ZDMA (started 2026-07-13)
+
+### Status: source written, not yet compiled or tested
+
+File: dma/baremetal/spi_benchmark_zdma.c (commit 991f0e3)
+
+### Design
+- ZDMA TX: LPD-DMA ch0 (XPAR_XZDMA_8, 0xFFA80000), WRONLY mode
+- ZDMA RX: LPD-DMA ch1 (XPAR_XZDMA_9, 0xFFA90000), RDONLY mode
+- SPI1 TX FIFO: 0xFF05001C (base 0xFF050000 + TXD offset 0x1C)
+- Burst size: 128 bytes (SPI1 FIFO depth)
+- Drain-wait: poll TXFULL clear then TXOW set (no TXEMPTY on Cadence SPI)
+- Same payload ladder (11 sizes), 1000 trials, same result struct as PIO
+
+### Next steps
+1. Add spi_benchmark_zdma.c to Vitis project (or create new app)
+2. Compile — fix any errors
+3. Single 1-byte transfer anchor test on board before full sweep
+4. Full 1000-trial sweep, capture via UART or JTAG
+5. Commit results to dma/results/baremetal_zdma_results.csv
+6. Update compare_spi.py to include ZDMA column
