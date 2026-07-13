@@ -249,16 +249,16 @@ static void zdma_spi_transfer(const u8 *src, u8 *dst, int len)
         xfer.DstCoherent = 0;
         xfer.Pause    = 0;
 
-        /* Clear sticky W1C TXOW/TXFULL before TX — SR is interrupt-status,
-         * write-1-to-clear; polling without clearing reads a stale 1 and
-         * the drain-wait is a no-op (root cause of bus-speed anchor run). */
-        Xil_Out32(SPI1_BASEADDR + XSPIPS_SR_OFFSET,
-                  XSPIPS_IXR_TXOW_MASK | XSPIPS_IXR_TXFULL_MASK);
-
         XZDma_Start(&ZDmaTx, &xfer, 1);
 
         /* Poll TX DMA done */
         while (XZDma_ChannelState(&ZDmaTx) == XZDMA_BUSY) { /* spin */ }
+
+        /* Clear sticky W1C TXOW NOW — FIFO holds chunk bytes, so the
+         * below-threshold condition is FALSE and the clear sticks.
+         * Clearing before the fill (round 2 bug) re-latched instantly
+         * against an empty FIFO and the drain-wait was still a no-op. */
+        Xil_Out32(SPI1_BASEADDR + XSPIPS_SR_OFFSET, XSPIPS_IXR_TXOW_MASK);
 
         /* Drain-wait: TXOW (cleared above) re-asserts only when FIFO
          * occupancy < TXWR threshold (reset default 1 = empty). Wire
