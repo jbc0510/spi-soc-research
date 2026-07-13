@@ -1,0 +1,7 @@
+the_ROM_image:
+{
+  [bootloader, destination_cpu=a53-0] /home/jconway/spi-soc-research/sd-images/baremetal/fsbl_good.elf
+  [pmufw_image] /home/sqclash/PetaLinux/Q_SPI/QSPI_project/images/linux/pmufw.elf
+  [destination_cpu=a53-0, exception_level=el-3, trustzone] /home/jconway/zcu102-spidev/images/linux/bl31.elf
+  [destination_cpu=a53-0, exception_level=el-2] /home/jconway/boot-package-tmp/u-boot-dtb.elf
+}
