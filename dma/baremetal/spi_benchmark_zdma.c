@@ -62,8 +62,8 @@
 #define SPI1_TXFIFO_ADDR    (SPI1_BASEADDR + XSPIPS_TXD_OFFSET)  /* 0xFF05001C */
 #define SPI1_FIFO_DEPTH     128U                         /* TX FIFO depth in bytes */
 
-#define ZDMA_TX_DEVICE_ID   8U   /* XPAR_XZDMA_8, base 0xFFA80000, LPD-DMA ch0 */
-#define ZDMA_RX_DEVICE_ID   9U   /* XPAR_XZDMA_9, base 0xFFA90000, LPD-DMA ch1 */
+#define ZDMA_TX_BASEADDR    XPAR_XZDMA_8_BASEADDR   /* 0xFFA80000, LPD-DMA ch0 */
+#define ZDMA_RX_BASEADDR    XPAR_XZDMA_9_BASEADDR   /* 0xFFA90000, LPD-DMA ch1 */
 
 /* ─────────────────────────────────────────
  * Benchmark configuration
@@ -123,7 +123,7 @@ static int spi_init(void)
     XSpiPs_Config *cfg;
     int status;
 
-    cfg = XSpiPs_LookupConfig(XPAR_XSPIPS_1_DEVICE_ID);
+    cfg = XSpiPs_LookupConfig(SPI1_BASEADDR);
     if (!cfg) {
         xil_printf("SPI1 LookupConfig failed\r\n");
         return XST_FAILURE;
@@ -169,7 +169,7 @@ static int zdma_init(void)
     int status;
 
     /* TX channel (LPD-DMA ch0, 0xFFA80000) */
-    cfg = XZDma_LookupConfig(ZDMA_TX_DEVICE_ID);
+    cfg = XZDma_LookupConfig(ZDMA_TX_BASEADDR);
     if (!cfg) {
         xil_printf("ZDMA TX LookupConfig failed\r\n");
         return XST_FAILURE;
@@ -192,7 +192,7 @@ static int zdma_init(void)
     }
 
     /* RX channel (LPD-DMA ch1, 0xFFA90000) */
-    cfg = XZDma_LookupConfig(ZDMA_RX_DEVICE_ID);
+    cfg = XZDma_LookupConfig(ZDMA_RX_BASEADDR);
     if (!cfg) {
         xil_printf("ZDMA RX LookupConfig failed\r\n");
         return XST_FAILURE;
