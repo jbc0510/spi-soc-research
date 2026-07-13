@@ -1,3 +1,52 @@
+# RESUMING ON THE OPENTITAN MACHINE — READ THIS FIRST
+
+This work moved from `stile` to the OpenTitan machine at Morgan (has Xilinx
+tools + the ZCU102 board). Before touching the ZDMA bug, clear these four
+setup checks. Do them IN ORDER — a missing workspace is a bigger detour than
+the actual fix, so catch it first.
+
+## 0. Toolchain version + path
+Entire build/provenance chain assumes Xilinx **2025.1** (SDT-mode BSP,
+bootgen v2025.1). Confirm:
+
+    ls /tools/Xilinx/
+    /tools/Xilinx/2025.1/Vitis/bin/vitis -version 2>&1 | head -3
+
+If version/path differ: update paths in dma/baremetal/build_zdma_app.py and
+create_zdma_app.py, AND note a different Vitis version may regenerate the BSP
+differently (version skew caused the SDT lookup bug, commit 777e183). Verify
+BSP xparameters after any regen — don't assume.
+
+## 1. Repo + branch
+    cd spi-soc-research && git checkout feature/dma-benchmarking
+    git log --oneline -8      # expect 42d33c2 or later at top
+    md5sum sd-images/baremetal/BOOT_zdma.bin   # expect aba250eb... (round-3)
+
+## 2. Workspace regeneration (LIKELY NEEDED on a fresh machine)
+bare_metal/vitis/ws2/ is .gitignore'd by design. On a fresh clone it WON'T
+exist — including platform spi_bm_plat, also untracked. Check:
+
+    ls bare_metal/vitis/ws2/spi_bm_plat/export/spi_bm_plat/*.xpfm
+
+- Present: create_zdma_app.py rebuilds the app component directly.
+- MISSING: regenerate the platform FIRST (needs the .xsa/hardware handoff —
+  locate it before starting). This step can eat a whole session. Do it before
+  any DMA debugging.
+
+## 3. Board deploy path on THIS machine
+On stile: stile->GitHub->jeremiahc->SD->board (no net path to board). On the
+OpenTitan machine, if board + SD reader + build tools are one box, build and
+flash locally. Confirm which BEFORE setting up UART capture.
+  - UART: screen -L -Logfile ~/log /dev/ttyUSB0 115200 (check tty name — may
+    not be ttyUSB0 here).
+  - SD mount: lsblk -o NAME,SIZE,LABEL,MOUNTPOINT to find it (was mmcblk0p1).
+  - Linux restore point BOOT.BIN.linux-a25d6549 is on the card (md5 a25d6549).
+
+## 4. Only after 0–3 pass: resume the ZDMA bug
+Pick up at the "EXACT NEXT STEP" section below — the four diagnostic greps for
+the incrementing-destination-address hypothesis. No board trip for that step.
+
+---
 # Phase 3 (Bare-Metal ZDMA) — Session Handoff
 
 **Branch:** feature/dma-benchmarking
