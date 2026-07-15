@@ -39,3 +39,32 @@ Mirror the shipped example exactly rather than guessing arg names.
 1. vitis -s dma/baremetal/create_zdma_app.py   (builds spi_bm_zdma app)
 2. verify ELF, package BOOT_zdma.bin, deploy (board path on THIS machine TBD —
    see PHASE3_HANDOFF.md section
+## FINAL DIAGNOSIS (2026-07-15) — Vitis install broken, repo exonerated
+AMD's OWN shipped example fails identically:
+  vitis -s $XILINX_ROOT/Vitis/cli/examples/embedded/create_platform_add_domain_build.py
+  -> creates a fresh /tmp workspace, downloads a stock vck190 XSA, and STILL
+     fails with "Cannot create platform, StatusCode.UNKNOWN, Application error
+     processing RPC". Stock example, stock XSA, clean workspace = nothing of ours.
+
+Clean login shell (env -i, only 2025.1 sourced) did NOT help either.
+
+=> The Vitis 2025.1 platform-creation RPC is broken on this machine's install.
+   This is 100% environmental. Repo, .xsa, script, and shell config all ruled
+   out with evidence.
+
+## Fixes (system-level, not repo — do when convenient)
+1. rm -rf /tmp/.Xil ~/.Xilinx/Vitis  then REBOOT (clears wedged gRPC/IPC state).
+   Retry the shipped example FIRST after reboot — if AMD's example works, ours
+   will too.
+2. If still broken after reboot: check missing libs / locale:
+     ldd $XILINX_ROOT/Vitis/vitis-server/bin/*  | grep "not found"
+     locale
+   and check Vitis 2025.1 release notes / AMD forums for known RPC-on-Ubuntu22
+   platform-creation issues. May need install repair/reinstall.
+3. FALLBACK if this install stays broken: the platform build is the ONLY thing
+   blocked. The .xsa is tracked and the scripts are correct — regenerating the
+   platform on stile (where the workspace originally built fine) and committing
+   the resulting workspace, OR building on any machine with a working Vitis,
+   would unblock. The bare-metal ELF + BOOT_zdma.bin are already committed
+   (round-3, aba250eb) — the board can still be tested with the EXISTING image
+   while the platform-rebuild issue is sorted separately.
