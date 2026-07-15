@@ -68,3 +68,22 @@ Clean login shell (env -i, only 2025.1 sourced) did NOT help either.
    would unblock. The bare-metal ELF + BOOT_zdma.bin are already committed
    (round-3, aba250eb) — the board can still be tested with the EXISTING image
    while the platform-rebuild issue is sorted separately.
+
+## REBOOT DID NOT FIX (2026-07-15) — install defect confirmed
+After clean reboot, AMD's own shipped example STILL fails with identical RPC
+error. Not transient state — this Vitis 2025.1 INSTALL on the OpenTitan machine
+has a broken platform-creation backend. All env causes ruled out (libs, /tmp,
+locale, loopback, Vivado sourcing, wedged state/reboot).
+
+RESOLUTION — two paths:
+  A) Repair/reinstall Vitis 2025.1 on this machine (IT/provisioning task; check
+     AMD forums for "create_platform_component StatusCode.UNKNOWN" known issue).
+  B) BUILD ON STILE (recommended for progress): stile has working Vitis 2025.1
+     and built this platform originally. On stile: checkout feature/dma-benchmarking,
+     pull (gets FIXED-burst fix 52d4e01c), vitis -s create_zdma_app.py against the
+     existing spi_bm_plat, build image, deploy to board. The .xsa, scripts, and
+     fix are all committed — stile has everything.
+
+The FIXED-burst fix is the actual Phase-3 bug fix and is READY. Getting its
+ANCHOR VERDICT needs a build+board run, which stile can do now. This machine's
+Vitis install is flagged for repair separately — it does not block the science.
