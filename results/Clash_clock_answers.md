@@ -43,6 +43,13 @@ commits cb53535 and 77cd6e9. The 1 MHz build is the current live project.)
 
 ## The one open item
 
+> **RESOLVED (2026-07-15):** SCK = **6.25 MHz**, confirmed by PL0_actual 99.99 MHz
+> (block-design Tcl) × AXI SPI ratio 16 (ILA capture). The implied ~11 MHz was a
+> **2N full-duplex byte-accounting artifact** (counting tx+rx = 2×len instead of
+> len), now fixed in `results/spi_benchmark_clean.c` (header comment, fix #2). The
+> throughput table above is left unchanged; only the implied-SCK interpretation of
+> it was the artifact. See `results/CLOCK_DISCREPANCY_FINDINGS.md` resolution banner.
+
 The configuration gives a nominal SCK of **6.25 MHz** for the benchmark build, but
 the measured throughput (~10.9 Mbps) implies ~11 MHz, which is faster than 6.25 MHz
 single-lane SPI physically allows. No valid C_SCK_RATIO at PL0=100 MHz produces

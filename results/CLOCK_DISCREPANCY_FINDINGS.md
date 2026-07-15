@@ -1,3 +1,21 @@
+> ## ✅ RESOLUTION — Status: RESOLVED (2026-07-15)
+>
+> **SCK = 6.25 MHz.** Confirmed by `PL0_actual` = 99.99 MHz (block-design Tcl,
+> `hardware/spi_bm_bd.tcl`, `PSU__CRL_APB__PL0_REF_CTRL__ACT_FREQMHZ {99.990005}`)
+> ÷ AXI SPI ratio 16 (ILA cycle-count capture) = 6.25 MHz. Confirmed three
+> independent ways: BD Tcl `ACT_FREQMHZ`, ILA ratio, and the corrected benchmark
+> harness.
+>
+> The **~11 MHz** timing-implied figure was a **2N full-duplex byte-accounting
+> artifact** (counting tx+rx = 2×len instead of len), now fixed in
+> `results/spi_benchmark_clean.c` (see that file's header comment, fix #2).
+>
+> The **~176 MHz `pl_clk0`** lead reasoned out below is therefore **retracted** —
+> the fabric clock is 99.99 MHz, not 176 MHz. The investigation record below is
+> preserved for history.
+>
+> ---
+
 # Serial-Clock Discrepancy — Root-Cause Lead from UG1182
 
 **Project:** MSU-2 (ZCU102 SPI Benchmark) · Contract FA-8075-18-D-0004
@@ -38,6 +56,9 @@ the PL. Its frequency is set by the PS clock configuration in the design, not by
 any fixed board source.
 
 ## Why this explains the data
+
+**[RETRACTED — see resolution banner at top. `pl_clk0` is 99.99 MHz, not ~176 MHz;
+the ~11 MHz figure was a 2N byte-accounting artifact, not a higher fabric clock.]**
 
 If the real `pl_clk0` is not 100 MHz but higher, the divisor (÷16) yields a
 higher SCK:
