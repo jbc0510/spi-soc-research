@@ -192,6 +192,18 @@ static int zdma_init(void)
         xil_printf("ZDMA TX SetMode failed\r\n");
         return XST_FAILURE;
     }
+/* TX burst config: destination is the SPI1 TXD register (0xFF05001C), a
+     * SINGLE fixed address. Default DstBurstType is INCR -> DMA scatters bytes
+     * across 0xFF05001C,1D,1E... and only byte 0 reaches the FIFO. This was the
+     * root cause of anchor rounds 1-3 (bus-speed timing + first-byte-only RX).
+     * Set destination FIXED; source (DDR tx_buf) stays INCR. */
+    {
+        XZDma_DataConfig TxCfg;
+        XZDma_GetChDataConfig(&ZDmaTx, &TxCfg);
+        TxCfg.SrcBurstType = XZDMA_INCR_BURST;
+        TxCfg.DstBurstType = XZDMA_FIXED_BURST;
+        XZDma_SetChDataConfig(&ZDmaTx, &TxCfg);
+    }
 
     /* RX channel (LPD-DMA ch1, 0xFFA90000) */
     cfg = XZDma_LookupConfig(ZDMA_RX_BASEADDR);
@@ -213,6 +225,19 @@ static int zdma_init(void)
     xil_printf("ZDMA TX(ch8@0xFFA80000) RX(ch9@0xFFA90000) init OK\r\n");
     return XST_SUCCESS;
 }
+
+/* RX burst config: source is the SPI1 RXD register (0xFF050020), a SINGLE
+     * fixed address. Default SrcBurstType is INCR -> DMA reads 0xFF050020,21...
+     * instead of draining the one RXD register. Mirror of the TX fix:
+     * source FIXED, destination (DDR rx_buf) INCR. */
+    {
+        XZDma_DataConfig RxCfg;
+        XZDma_GetChDataConfig(&ZDmaRx, &RxCfg);
+        RxCfg.SrcBurstType = XZDMA_FIXED_BURST;
+        RxCfg.DstBurstType = XZDMA_INCR_BURST;
+        XZDma_SetChDataConfig(&ZDmaRx, &RxCfg);
+    }
+
 
 /* ─────────────────────────────────────────
  * DMA-assisted SPI transfer
