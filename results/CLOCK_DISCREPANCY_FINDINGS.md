@@ -1,18 +1,22 @@
-> ## ✅ RESOLUTION — Status: RESOLVED (2026-07-15)
+> ## ⚠ RESOLUTION CORRECTED — Status: RESOLVED (2026-07-15, corrected)
 >
-> **SCK = 6.25 MHz.** Confirmed by `PL0_actual` = 99.99 MHz (block-design Tcl,
-> `hardware/spi_bm_bd.tcl`, `PSU__CRL_APB__PL0_REF_CTRL__ACT_FREQMHZ {99.990005}`)
-> ÷ AXI SPI ratio 16 (ILA cycle-count capture) = 6.25 MHz. Confirmed three
-> independent ways: BD Tcl `ACT_FREQMHZ`, ILA ratio, and the corrected benchmark
-> harness.
+> **The 14.2× AXI-vs-PS speedup was entirely clock.** An earlier banner here said
+> "SCK = 6.25 MHz," derived from the block design's design-time PL0 = 100 MHz ÷ 16.
+> That design-time value never runs on silicon: hardware register reads (commit
+> `2123ae9`; `results/clock_sweep/`, `results/clock_sweep_inspec/PS_CLOCK_VERIFICATION.md`)
+> show the **FSBL overrides PL0 to 250 MHz** at boot (IOPLL 1500 MHz, CRL_APB
+> `0x01010600`).
 >
-> The **~11 MHz** timing-implied figure was a **2N full-duplex byte-accounting
-> artifact** (counting tx+rx = 2×len instead of len), now fixed in
-> `results/spi_benchmark_clean.c` (see that file's header comment, fix #2).
+> Hardware-validated resolution: matched-clock AXI@0.997 MHz vs PS-MIO@~1 MHz measured
+> **683.9 vs 673.3 ms at 64 KB (~1.02×, i.e. parity)** — the speedup was clock, not
+> architecture.
 >
-> The **~176 MHz `pl_clk0`** lead reasoned out below is therefore **retracted** —
-> the fabric clock is 99.99 MHz, not 176 MHz. The investigation record below is
-> preserved for history.
+> Separately, the PS SPI chain is register-verified at **SPI_REF = 62.5 MHz → SCK =
+> 62.5/64 = 0.9766 MHz** (`PS_CLOCK_VERIFICATION.md`). The ~11 MHz AXI figure was a
+> 2N full-duplex byte-accounting artifact (fixed in `results/spi_benchmark_clean.c`).
+>
+> Both the **6.25 MHz** and **~176 MHz** leads (this doc) are **retracted**. The
+> investigation record below is preserved for history.
 >
 > ---
 
