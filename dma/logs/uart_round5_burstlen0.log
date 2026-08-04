@@ -1,0 +1,217 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zynq MP First Stage Boot Loader
+Release 2025.1   May 14 2025  -  12:33:16
+
+=== MSU-2 Bare-Metal ZDMA SPI Benchmark ===
+Task 2: DMA vs PIO characterization
+Payloads: 11 sizes, 1000 trials each
+
+SPI1 init OK: SCK=0.9766 MHz, REF_CTRL=0x01001800
+ZDMA TX(ch8@0xFFA80000) RX(ch9@0xFFA90000) init OK
+Anchor: g_done=0x0000D09E (decimal 53406)
+
+Bytes           Min(us)      Max(us)      Avg(us)      Std(ns)
+-----           -------      -------      -------      -------
+  PHYSICS FAIL: 1 B avg below wire floor
+1                     2            2            2           21
+  PHYSICS FAIL: 8 B avg below wire floor
+  RX MISMATCH: 8 B payload, 7 bytes differ
+8                     2            2            2            1
+  PHYSICS FAIL: 16 B avg below wire floor
+  RX MISMATCH: 16 B payload, 15 bytes differ
+16                    2            2            2            5
+  PHYSICS FAIL: 64 B avg below wire floor
+  RX MISMATCH: 64 B payload, 63 bytes differ
+64                    2            2            2            1
+  PHYSICS FAIL: 128 B avg below wire floor
+  RX MISMATCH: 128 B payload, 127 bytes differ
+128                   2            2            2            1
+  PHYSICS FAIL: 256 B avg below wire floor
+  RX MISMATCH: 256 B payload, 255 bytes differ
+256                   3            3            3            6
+  PHYSICS FAIL: 512 B avg below wire floor
+  RX MISMATCH: 512 B payload, 510 bytes differ
+512                   4            5            4           10
+  PHYSICS FAIL: 1024 B avg below wire floor
+  RX MISMATCH: 1024 B payload, 1020 bytes differ
+1024                  8            8            8            9
+  PHYSICS FAIL: 4096 B avg below wire floor
+  RX MISMATCH: 4096 B payload, 4080 bytes differ
+4096                 30           30           30           10
+  PHYSICS FAIL: 16384 B avg below wire floor
+  RX MISMATCH: 16384 B payload, 16320 bytes differ
+16384               115          115          115           13
+  PHYSICS FAIL: 65536 B avg below wire floor
+  RX MISMATCH: 65536 B payload, 65280 bytes differ
+65536               459          459          459           13
+
+ANCHOR VERDICT: FAIL  physics_fail=11 rx_mismatch=10
+
+Done. g_done=0xDEADBEEF
+Zynq MP First Stage Boot Loader
+Release 2025.1   May 14 2025  -  12:33:16
+
+=== MSU-2 Bare-Metal ZDMA SPI Benchmark ===
+Task 2: DMA vs PIO characterization
+Payloads: 11 sizes, 1000 trials each
+
+SPI1 init OK: SCK=0.9766 MHz, REF_CTRL=0x01001800
+TX DATA_ATTR readback = 0x0483C200
+RX DATA_ATTR readback = 0x0080120F
+ZDMA TX(ch8@0xFFA80000) RX(ch9@0xFFA90000) init OK
+Anchor: g_done=0x0000D09E (decimal 53406)
+
+Bytes           Min(us)      Max(us)      Avg(us)      Std(ns)
+-----           -------      -------      -------      -------
+  PHYSICS FAIL: 1 B avg below wire floor
+1                     2            2            2           25
+  PHYSICS FAIL: 8 B avg below wire floor
+  RX MISMATCH: 8 B payload, 7 bytes differ
+8                     2            2            2            8
+  PHYSICS FAIL: 16 B avg below wire floor
+  RX MISMATCH: 16 B payload, 15 bytes differ
+16                    2            2            2            7
+  PHYSICS FAIL: 64 B avg below wire floor
+  RX MISMATCH: 64 B payload, 63 bytes differ
+64                    2            2            2            7
+  PHYSICS FAIL: 128 B avg below wire floor
+  RX MISMATCH: 128 B payload, 127 bytes differ
+128                   2            2            2            4
+  PHYSICS FAIL: 256 B avg below wire floor
+  RX MISMATCH: 256 B payload, 255 bytes differ
+256                   3            3            3            8
+  PHYSICS FAIL: 512 B avg below wire floor
+  RX MISMATCH: 512 B payload, 510 bytes differ
+512                   4            5            4            4
+  PHYSICS FAIL: 1024 B avg below wire floor
+  RX MISMATCH: 1024 B payload, 1020 bytes differ
+1024                  8            8            8           11
+  PHYSICS FAIL: 4096 B avg below wire floor
+  RX MISMATCH: 4096 B payload, 4080 bytes differ
+4096                 29           30           30           11
+  PHYSICS FAIL: 16384 B avg below wire floor
+  RX MISMATCH: 16384 B payload, 16320 bytes differ
+16384               115          116          115           18
+  PHYSICS FAIL: 65536 B avg below wire floor
+  RX MISMATCH: 65536 B payload, 65280 bytes differ
+65536               459          459          459           33
+
+ANCHOR VERDICT: FAIL  physics_fail=11 rx_mismatch=10
+
+Done. g_done=0xDEADBEEF
+Zynq MP First Stage Boot Loader
+Release 2025.1   May 14 2025  -  12:33:16
+
+=== MSU-2 Bare-Metal ZDMA SPI Benchmark ===
+Task 2: DMA vs PIO characterization
+Payloads: 11 sizes, 1000 trials each
+
+SPI1 init OK: SCK=0.9766 MHz, REF_CTRL=0x01001800
+TX DATA_ATTR readback = 0x0483C200
+RX DATA_ATTR readback = 0x0080120F
+ZDMA TX(ch8@0xFFA80000) RX(ch9@0xFFA90000) init OK
+Anchor: g_done=0x0000D09E (decimal 53406)
+
+Bytes           Min(us)      Max(us)      Avg(us)      Std(ns)
+-----           -------      -------      -------      -------
+  PHYSICS FAIL: 1 B avg below wire floor
+1                     2            2            2           28
+  PHYSICS FAIL: 8 B avg below wire floor
+  RX MISMATCH: 8 B payload, 7 bytes differ
+8                     2            2            2            5
+  PHYSICS FAIL: 16 B avg below wire floor
+  RX MISMATCH: 16 B payload, 15 bytes differ
+16                    2            2            2            5
+  PHYSICS FAIL: 64 B avg below wire floor
+  RX MISMATCH: 64 B payload, 63 bytes differ
+64                    2            2            2            5
+  PHYSICS FAIL: 128 B avg below wire floor
+  RX MISMATCH: 128 B payload, 127 bytes differ
+128                   2            2            2            5
+  PHYSICS FAIL: 256 B avg below wire floor
+  RX MISMATCH: 256 B payload, 255 bytes differ
+256                   3            3            3           17
+  PHYSICS FAIL: 512 B avg below wire floor
+  RX MISMATCH: 512 B payload, 510 bytes differ
+512                   4            5            4            2
+  PHYSICS FAIL: 1024 B avg below wire floor
+  RX MISMATCH: 1024 B payload, 1020 bytes differ
+1024                  8            8            8            2
+  PHYSICS FAIL: 4096 B avg below wire floor
+  RX MISMATCH: 4096 B payload, 4080 bytes differ
+4096                 30           30           30           10
+  PHYSICS FAIL: 16384 B avg below wire floor
+  RX MISMATCH: 16384 B payload, 16320 bytes differ
+16384               117          117          117           11
+  PHYSICS FAIL: 65536 B avg below wire floor
+  RX MISMATCH: 65536 B payload, 65280 bytes differ
+65536               464          464          464            9
+
+ANCHOR VERDICT: FAIL  physics_fail=11 rx_mismatch=10
+
+Done. g_done=0xDEADBEEF
+Zynq MP First Stage Boot Loader
+Release 2025.1   May 14 2025  -  12:33:16
+
+=== MSU-2 Bare-Metal ZDMA SPI Benchmark ===
+Task 2: DMA vs PIO characterization
+Payloads: 11 sizes, 1000 trials each
+
+SPI1 init OK: SCK=0.9766 MHz, REF_CTRL=0x01001800
+TX DATA_ATTR readback = 0x0483C200
+RX DATA_ATTR readback = 0x0080120F
+ZDMA TX(ch8@0xFFA80000) RX(ch9@0xFFA90000) init OK
+Anchor: g_done=0x0000D09E (decimal 53406)
+
+Bytes           Min(us)      Max(us)      Avg(us)      Std(ns)
+-----           -------      -------      -------      -------
+  PHYSICS FAIL: 1 B avg below wire floor
+1                     2            2            2           74
+  PHYSICS FAIL: 8 B avg below wire floor
+  RX MISMATCH: 8 B payload, 7 bytes differ
+8                     2            2            2            1
+  PHYSICS FAIL: 16 B avg below wire floor
+  RX MISMATCH: 16 B payload, 15 bytes differ
+16                    2            2            2            1
+  PHYSICS FAIL: 64 B avg below wire floor
+  RX MISMATCH: 64 B payload, 63 bytes differ
+64                    2            2            2            1
+  PHYSICS FAIL: 128 B avg below wire floor
+  RX MISMATCH: 128 B payload, 127 bytes differ
+128                   2            2            2            1
+  PHYSICS FAIL: 256 B avg below wire floor
+  RX MISMATCH: 256 B payload, 255 bytes differ
+256                   3            3            3            9
+  PHYSICS FAIL: 512 B avg below wire floor
+  RX MISMATCH: 512 B payload, 510 bytes differ
+512                   5            5            5           12
+  PHYSICS FAIL: 1024 B avg below wire floor
+  RX MISMATCH: 1024 B payload, 1020 bytes differ
+1024                  8            8            8            6
+  PHYSICS FAIL: 4096 B avg below wire floor
+  RX MISMATCH: 4096 B payload, 4080 bytes differ
+4096                 30           30           30           17
+  PHYSICS FAIL: 16384 B avg below wire floor
+  RX MISMATCH: 16384 B payload, 16320 bytes differ
+16384               119          119          119           12
+  PHYSICS FAIL: 65536 B avg below wire floor
+  RX MISMATCH: 65536 B payload, 65280 bytes differ
+65536               474          474          474           27
+
+ANCHOR VERDICT: FAIL  physics_fail=11 rx_mismatch=10
+
+Done. g_done=0xDEADBEEF
+
