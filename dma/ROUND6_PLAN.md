@@ -36,4 +36,4 @@ Status as of 2026-08-04, after round-5 close (see ANCHOR_RESULT_round5.md).
 ## Process reminders
 - Paste blocks < 3 KB (cat > / cat >>). Start screen with
   `screen -L -Logfile <path>` BEFORE powering the board.
-- Open item carried: round-4 log physics_fail count (was it 11?).
+- Round-4 physics_fail check: RESOLVED (=11, per ANCHOR_RESULT_round4.md line 9).

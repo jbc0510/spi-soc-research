@@ -34,7 +34,7 @@ register to freeze that counter.
 writes never backpressure, so the engine firehoses a 128 B FIFO and reports
 done. Even with perfect fixed addressing this pairing cannot work — there is
 no flow control between ZDMA and the SPI FIFO.
-OPEN CHECK: compare round-4 log for physics_fail count (was it also 11?).
+RESOLVED: round-4 anchor doc (line 9) confirms physics_fail=11 there too — the no-pacing behavior is an invariant of the ZDMA<->SPI pairing, present before the BurstLen=0 change, not introduced by it.
 
 ## External confirmation (AMD documentation, retrieved 2026-08-04)
 - ZynqMP DMA Standalone driver wiki (xilinx-wiki.atlassian.net, page 18841725):
