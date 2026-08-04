@@ -222,10 +222,6 @@ static int zdma_init(void)
         return XST_FAILURE;
     }
 
-    xil_printf("ZDMA TX(ch8@0xFFA80000) RX(ch9@0xFFA90000) init OK\r\n");
-    return XST_SUCCESS;
-}
-
 /* RX burst config: source is the SPI1 RXD register (0xFF050020), a SINGLE
      * fixed address. Default SrcBurstType is INCR -> DMA reads 0xFF050020,21...
      * instead of draining the one RXD register. Mirror of the TX fix:
@@ -237,6 +233,10 @@ static int zdma_init(void)
         RxCfg.DstBurstType = XZDMA_INCR_BURST;
         XZDma_SetChDataConfig(&ZDmaRx, &RxCfg);
     }
+    xil_printf("ZDMA TX(ch8@0xFFA80000) RX(ch9@0xFFA90000) init OK\r\n");
+    return XST_SUCCESS;
+}
+
 
 
 /* ─────────────────────────────────────────
