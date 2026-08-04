@@ -202,7 +202,9 @@ static int zdma_init(void)
         XZDma_GetChDataConfig(&ZDmaTx, &TxCfg);
         TxCfg.SrcBurstType = XZDMA_INCR_BURST;
         TxCfg.DstBurstType = XZDMA_FIXED_BURST;
+        TxCfg.DstBurstLen = 0U;  /* candidate #1: AWLEN=0 -> single-beat write bursts */
         XZDma_SetChDataConfig(&ZDmaTx, &TxCfg);
+        xil_printf("TX DATA_ATTR readback = 0x%08x\r\n", XZDma_ReadReg(ZDmaTx.Config.BaseAddress, XZDMA_CH_DATA_ATTR_OFFSET));
     }
 
     /* RX channel (LPD-DMA ch1, 0xFFA90000) */
@@ -230,8 +232,10 @@ static int zdma_init(void)
         XZDma_DataConfig RxCfg;
         XZDma_GetChDataConfig(&ZDmaRx, &RxCfg);
         RxCfg.SrcBurstType = XZDMA_FIXED_BURST;
+        RxCfg.SrcBurstLen = 0U;  /* candidate #1: ARLEN=0 -> single-beat read bursts */
         RxCfg.DstBurstType = XZDMA_INCR_BURST;
         XZDma_SetChDataConfig(&ZDmaRx, &RxCfg);
+        xil_printf("RX DATA_ATTR readback = 0x%08x\r\n", XZDma_ReadReg(ZDmaRx.Config.BaseAddress, XZDMA_CH_DATA_ATTR_OFFSET));
     }
     xil_printf("ZDMA TX(ch8@0xFFA80000) RX(ch9@0xFFA90000) init OK\r\n");
     return XST_SUCCESS;
