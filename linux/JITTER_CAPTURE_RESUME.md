@@ -1,3 +1,47 @@
+# SUPERSEDED — read this header before the plan below
+
+**Status (2026-08-10):** the capture described below was executed on
+2026-07-08 and its result was RETRACTED on 2026-08-10. See commit 0dc3d8f
+and `results/LINUX_JITTER_PROVENANCE.md`.
+
+**What happened.** Step 4 of the resume plan below says: *"verify which node
+is EMIO (SPI1). Harness has spidev0.0; EMIO is likely spidev1.0. If so, edit
+SPI_DEVICE, recompile."* That verification step was never completed. The
+source still read `/dev/spidev0.0`; the commit message (86bd14c) reported
+`spidev1.0`. Measured throughput (10.88 Mbps, i.e. PL0/16 ≈ 15.6 MHz, not
+the requested 1 MHz) proves the capture landed on the AXI Quad SPI
+controller, not a PS path.
+
+**The plan's own decision was then violated.** Below, under "Why we need
+this," the stated decision was to write a NEW file and *"do NOT overwrite
+the original external-loopback averages."* Commit e3aaeca copied the stddev
+column from that new file into both PS baseline files anyway, across a 14x
+clock difference.
+
+**Current state.** The capture is retained as
+`results/axi_internal_results.csv` (Linux AXI path — a valid result under
+its correct label). `emio_results.csv` / `mio_results.csv` are back to the
+not-measured sentinel. Linux PS SPI1 jitter is STRUCTURALLY UNOBTAINABLE
+via the ATF/TrustZone wall — do not re-attempt this plan expecting to fill
+that column.
+
+**Harness usage has changed** (commit 5429d33). Device is now `argv[1]` and
+the CSV path is derived from it:
+
+```bash
+aarch64-linux-gnu-gcc -O2 -Wall -Wextra -o spi_benchmark_jitter_aarch64 \
+  linux/src/spi_benchmark_jitter.c -lm
+./spi_benchmark_jitter_aarch64 /dev/spidev1.0   # -> /tmp/jitter_spidev1.0.csv
+```
+
+
+`-lm` is required. The harness now prints requested vs readback speed and
+the achieved Mbps; **trust the achieved Mbps, not the request.**
+
+---
+
+_Original plan preserved below for the record._
+
 # Jitter Capture - Blocked at BL31, Resume Here
 
 ## Status: harness DONE + committed; board capture PENDING (boot hang)
