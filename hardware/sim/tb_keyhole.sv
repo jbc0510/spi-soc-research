@@ -71,6 +71,7 @@ module tb_keyhole;
     end else
       $display("KEYHOLE_SIM: control (INCR) OCY=%0d TxEmpty=%0d CDMASR=0x%08x",
                ocy, spisr[2], sr);
+    $display("%s: OBS aw=%0d w=%0d wready_low=%0d addr_held=%0d", tag, m00_aw_beats, m00_w_beats, wready_low_cnt, addr_held);
   endtask
 
   initial begin
@@ -97,6 +98,23 @@ module tb_keyhole;
 
   // ---- bus-truth monitors (netlist wires, names from sim_keyhole.v) ----
   `define SK dut.sim_keyhole_i
+
+  // ---- flow-control + FIXED-hold observers (1d; printed, not yet asserted) ----
+  int wready_low_cnt = 0, m00_w_beats = 0, m00_aw_beats = 0;
+  bit addr_held = 1;
+  task automatic obs_reset();
+    wready_low_cnt=0; m00_w_beats=0; m00_aw_beats=0; addr_held=1;
+  endtask
+  always @(posedge aclk) if (aresetn) begin
+    if (`SK.axi_ic_0_M00_AXI_WVALID && !`SK.axi_ic_0_M00_AXI_WREADY)
+      wready_low_cnt++;
+    if (`SK.axi_ic_0_M00_AXI_WVALID && `SK.axi_ic_0_M00_AXI_WREADY)
+      m00_w_beats++;
+    if (`SK.axi_ic_0_M00_AXI_AWVALID && `SK.axi_ic_0_M00_AXI_AWREADY) begin
+      m00_aw_beats++;
+      if (`SK.axi_ic_0_M00_AXI_AWADDR != (QSPI + 32'h68)) addr_held = 0;
+    end
+  end
   always @(posedge aclk) begin
     // CDMA lite port (axi_ic_0 M01, post-auto_pc Lite-shaped): every AR/R/AW/W/B handshake
     if (`SK.axi_ic_0_M01_AXI_ARVALID && `SK.axi_ic_0_M01_AXI_ARREADY)
