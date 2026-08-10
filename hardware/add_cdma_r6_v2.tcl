@@ -9,6 +9,20 @@
 #   addr segment       = aximm/MEM0  (memory seg, not Reg)
 #   C_S_AXI4_ID_WIDTH  = 4 (enabled only in enhanced mode)
 
+# set-and-verify: set_property emits only a CRITICAL WARNING on read-only
+# params, so catch{} reports false success. Always read back and compare.
+proc setv {obj param want} {
+  catch { set_property $param $want $obj }
+  set got "<unreadable>"
+  catch { set got [get_property $param $obj] }
+  if {$got ne $want} {
+    puts "R6V2:   FAILED $param -> wanted $want, got $got"
+    return 0
+  }
+  puts "R6V2:   OK $param = $got"
+  return 1
+}
+
 puts "R6V2: === STEP 1 — tear down SmartConnect and QSPI AXI nets ==="
 # QSPI's AXI_LITE intf + s_axi_aclk/aresetn pins VANISH on mode change,
 # so every net touching them must go first or set_property will error.
@@ -46,11 +60,24 @@ foreach {p want} {CONFIG.C_TYPE_OF_AXI4_INTERFACE 1 CONFIG.C_XIP_MODE 0 \
 puts "R6V2: QSPI intf now: [get_bd_intf_pins -of_objects \
   [get_bd_cells axi_quad_spi_0]]"
 
-puts "R6V2: === STEP 3 — PS HP0 for CDMA->DDR, 32-bit to avoid couplers ==="
+puts "R6V2: === STEP 3 — PS ports 32-bit to avoid ALL width couplers ==="
 set_property CONFIG.PSU__USE__S_AXI_GP2 {1} [get_bd_cells zynq_ultra_ps_e_0]
-# 32-bit HP0 matches CDMA M_AXI width -> no width converter anywhere.
-catch { set_property CONFIG.PSU__SAXIGP2__DATA_WIDTH {32} \
-          [get_bd_cells zynq_ultra_ps_e_0] }
+# CRITICAL: M_AXI_HPM0_FPD defaults to 128-bit (probe 2026-08-10). The xbar
+# sizes to the widest SI, so a 128-bit PS master forces auto_us on the CDMA
+# SI and auto_ds into the QSPI MI. PG059: upsizing PACKS data when the addr
+# channel permits -> packing a FIXED burst destroys held-address semantics.
+# Narrowing the PS master to 32 removes every width converter. Costs PS->PL
+# control bandwidth only (register writes), which is irrelevant here.
+set_property CONFIG.PSU__MAXIGP0__DATA_WIDTH {32} \
+  [get_bd_cells zynq_ultra_ps_e_0]
+set_property CONFIG.PSU__SAXIGP2__DATA_WIDTH {32} \
+  [get_bd_cells zynq_ultra_ps_e_0]
+foreach {ip want} {zynq_ultra_ps_e_0/M_AXI_HPM0_FPD 32 \
+                   zynq_ultra_ps_e_0/S_AXI_HP0_FPD 32} {
+  set got [get_property CONFIG.DATA_WIDTH [get_bd_intf_pins $ip]]
+  if {$got ne $want} { error "R6V2 ABORT: $ip DATA_WIDTH=$got, want $want" }
+  puts "R6V2:   OK $ip DATA_WIDTH = $got"
+}
 
 puts "R6V2: === STEP 4 — CDMA: simple mode, 32-bit, max burst 16 ==="
 create_bd_cell -type ip -vlnv xilinx.com:ip:axi_cdma axi_cdma_0
@@ -58,10 +85,32 @@ set_property -dict [list CONFIG.C_INCLUDE_SG {0} \
   CONFIG.C_M_AXI_MAX_BURST_LEN {16} \
   CONFIG.C_M_AXI_DATA_WIDTH {32}] [get_bd_cells axi_cdma_0]
 
+puts "R6V2: === STEP 4b — QSPI ID width 0 (single-thread reg slave) ==="
+# C_S_AXI4_ID_WIDTH becomes ENABLED in enhanced mode (was disabled in legacy;
+# that was the BD 41-721 warning). Default 4 makes the xbar compute
+# ID_WIDTH=17, which overflows S_AXI_HP0_FPD's 6-bit limit (BD 41-237 ERROR).
+# PG153: only one read or one write outstanding at a time on the AXI4 intf ->
+# the QSPI has no use for thread IDs. Pin it to 0.
+catch { set_property CONFIG.C_S_AXI4_ID_WIDTH {0} \
+          [get_bd_cells axi_quad_spi_0] }
+puts "R6V2:   C_S_AXI4_ID_WIDTH = [get_property CONFIG.C_S_AXI4_ID_WIDTH \
+  [get_bd_cells axi_quad_spi_0]]"
+
 puts "R6V2: === STEP 5 — AXI Interconnect (FIXED-tolerant) 2 SI / 3 MI ==="
 create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect axi_ic_0
 set_property -dict [list CONFIG.NUM_SI {2} CONFIG.NUM_MI {3}] \
   [get_bd_cells axi_ic_0]
+# Constrain xbar ID growth: PG059 prefixes a master ID per SI slot, so
+# ID_WIDTH = ceil_log2(NUM_SI) + max(THREAD_ID_WIDTH). With 2 SI that is
+# 1 + max_thread. S_AXI_HP0_FPD accepts 6 -> keep thread widths small.
+foreach {p v} {CONFIG.S00_THREAD_ID_WIDTH 0 CONFIG.S01_THREAD_ID_WIDTH 0 \
+               CONFIG.M00_ISSUANCE 1 CONFIG.STRATEGY 0} {
+  if {[catch { set_property $p $v [get_bd_cells axi_ic_0] } e]} {
+    puts "R6V2:   NOTE could not set $p: $e"
+  } else {
+    puts "R6V2:   set $p = $v"
+  }
+}
 # Discovery: we do not yet know the param name for per-MI issuing limit
 # (PG153: QSPI accepts only ONE write outstanding). Dump candidates.
 puts "R6V2: --- interconnect issuing/acceptance candidate params ---"
@@ -70,6 +119,28 @@ foreach p [list_property [get_bd_cells axi_ic_0]] {
     puts [format "R6V2:   %-42s = %s" $p \
       [get_property $p [get_bd_cells axi_ic_0]]]
   }
+}
+
+puts "R6V2: === STEP 5b — narrow xbar S00 thread ID (post-wire) ==="
+# M_AXI_HPM0_FPD advertises ID=16 (fixed silicon; PS has no ID knob, only
+# PSU__MAXIGP0__DATA_WIDTH -- probed 2026-08-10). The xbar inherits that as
+# S00_THREAD_ID_WIDTH=16, then PG059 adds ceil_log2(NUM_SI)=1 -> ID_WIDTH=17.
+# S_AXI_HP0_FPD accepts 6 -> BD 41-237 ERROR. PG059: the xbar samples only
+# the ID bits defined by THREAD_ID_WIDTH per SI slot, so narrowing discards
+# unused upper bits. The APU only writes control registers here; it does not
+# need 2^16 outstanding thread IDs.
+# NOTE: writing into the interconnect hierarchy is NOT the documented flow.
+# IP integrator may recompute this on validate. Verified below either way.
+proc r6v2_narrow_xbar {} {
+  set xb [get_bd_cells -quiet axi_ic_0/xbar]
+  if {$xb eq ""} { puts "R6V2:   xbar not present yet"; return 0 }
+  catch { set_property CONFIG.S00_THREAD_ID_WIDTH {1} $xb }
+  catch { set_property CONFIG.S00_SINGLE_THREAD {1} $xb }
+  set t "?" ; set w "?"
+  catch { set t [get_property CONFIG.S00_THREAD_ID_WIDTH $xb] }
+  catch { set w [get_property CONFIG.ID_WIDTH $xb] }
+  puts "R6V2:   xbar S00_THREAD_ID_WIDTH = $t ; ID_WIDTH = $w"
+  return [expr {$w ne "?" && $w <= 6}]
 }
 
 puts "R6V2: === STEP 6 — interface wiring ==="
@@ -83,6 +154,8 @@ connect_bd_intf_net [get_bd_intf_pins axi_ic_0/M01_AXI] \
   [get_bd_intf_pins axi_cdma_0/S_AXI_LITE]
 connect_bd_intf_net [get_bd_intf_pins axi_ic_0/M02_AXI] \
   [get_bd_intf_pins zynq_ultra_ps_e_0/S_AXI_HP0_FPD]
+
+r6v2_narrow_xbar
 
 puts "R6V2: === STEP 7 — clocks and resets ==="
 set clk [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
@@ -129,6 +202,23 @@ catch { exclude_bd_addr_seg \
   -target_address_space [get_bd_addr_spaces axi_cdma_0/Data] \
   [get_bd_addr_segs axi_cdma_0/S_AXI_LITE/Reg] }
 
+puts "R6V2: === pre-validate re-narrow (IPI may have recomputed) ==="
+r6v2_narrow_xbar
+
 validate_bd_design
+
+puts "R6V2: === GATE — no width converters allowed in the FIXED path ==="
+set bad {}
+foreach c [get_bd_cells -hierarchical -quiet -filter {NAME =~ "auto_*"}] {
+  puts "R6V2:   coupler present: $c"
+  if {[regexp {auto_(us|ds)$} $c]} { lappend bad $c }
+}
+if {[llength $bad]} {
+  error "R6V2 ABORT: width converters present: $bad -- FIXED burst would be\
+ packed/repacked (PG059). Fix port widths before proceeding."
+}
+puts "R6V2:   GATE PASS — no auto_us/auto_ds (auto_pc on m01 is expected:\
+ AXI4->Lite for CDMA regs, not in the FIXED path)"
+
 save_bd_design
 puts "R6V2: delta applied and validated"
