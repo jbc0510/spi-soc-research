@@ -22,3 +22,31 @@
   revise add_cdma_r6.tcl accordingly, re-run this sim as the gate.
 - Fix TB verdict (monitor-based) + VIP read API.
 Files: sim_keyhole_bd.tcl, tb_keyhole.sv (v4), run_keyhole_sim.tcl.
+
+## CORRECTION (2026-08-10) — blocker is broader than stated in item 2
+Item 2 above attributes the DECERR to SmartConnect failing to CONVERT
+multi-beat FIXED bursts to AXI4-Lite. The real limitation is unconditional:
+per UG1037 (Vivado AXI Reference Guide, AXI SmartConnect Core Limitations),
+SmartConnect does NOT support FIXED type bursts at all. Any FIXED burst
+received at the SmartConnect SI is blocked and DECERR is returned to the
+master. The downstream slave protocol is irrelevant — the block happens at
+the SI, before conversion is attempted.
+
+CONSEQUENCE: the "candidate fix" in Next Session (QSPI full-AXI4 slave) is
+NECESSARY BUT NOT SUFFICIENT. With SmartConnect still in the CDMA M_AXI
+path, CDMASR=0x5042 would reproduce identically. SmartConnect must be
+removed from that path.
+
+REVISED FIX (three coupled changes, all pre-silicon, sim-gated):
+1. AXI Quad SPI -> AXI4 interface mode, Performance Mode ON, XIP OFF
+   (PG153: enhanced/non-XIP supports fixed-burst transfer at DTR/DRR only;
+   XIP mode is read-only, no writes). Standard SPI mode + 256 FIFO retained
+   per PG153 feature summary, so benchmark comparability is preserved.
+2. Replace SmartConnect with AXI Interconnect v2.1 on CDMA M_AXI.
+   PG059 "AXI Interconnect Core Limitations" does NOT list FIXED; crossbar
+   propagates m_axi_awburst. Supported on UltraScale+ (xczu9eg). NOTE:
+   absence from a limitations list is weaker than positive support -> sim
+   remains the gate, docs do not.
+3. No couplers on the QSPI path: match CDMA M_AXI width to QSPI AXI4 slave
+   (32-bit) to avoid a width converter (PG059 packing would defeat FIXED);
+   set QSPI MI write-issuing limit = 1 (PG153: one write outstanding max).
