@@ -40,7 +40,7 @@ module tb_keyhole;
     end while (n < 2000);
   endtask
 
-  task automatic run_phase(input bit keyhole, input string tag);
+  task automatic run_phase(input bit keyhole, input string tag, input int btt = 64);
     bit ok; bit[31:0] sr, ocy, spisr, cr;
     wr32(QSPI + 32'h40, 32'h0000000A);      // QSPI soft reset
     wr32(CDMA + 32'h00, 32'h00000004);      // CDMA soft reset
@@ -55,7 +55,8 @@ module tb_keyhole;
     $display("%s: SA probe wrote 5A5A1234 read 0x%08x", tag, cr);
     wr32(CDMA + 32'h18, 32'h00000000);      // SA
     wr32(CDMA + 32'h20, QSPI + 32'h68);     // DA = DTR
-    wr32(CDMA + 32'h28, 32'd64);            // BTT -> go
+    obs_reset();
+    wr32(CDMA + 32'h28, btt);                // BTT -> go
     rd32(CDMA + 32'h04, sr);
     $display("%s: CDMASR just after kick = 0x%08x", tag, sr);
     wait_done(ok, sr);
@@ -88,6 +89,7 @@ module tb_keyhole;
       $display("KEYHOLE_SIM: READPATH FAIL — anchor mismatch, results untrustworthy");
     run_phase(1, "PHASE_A");
     run_phase(0, "PHASE_B");
+    run_phase(1, "PHASE_C", 2048);   // 512 SPI bytes into a 256B FIFO
     $display("KEYHOLE_SIM: DONE");
     $finish;
   end
