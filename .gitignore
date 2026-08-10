@@ -22,3 +22,7 @@ sd-images/baremetal/linux_extract/
 sd-images/baremetal/pmufw.elf
 sd-images/baremetal/pmufw_ws.elf
 spi_loopback_test
+
+# Vivado in-tree generated dirs (tool spill, never source)
+.gen/
+.srcs/
