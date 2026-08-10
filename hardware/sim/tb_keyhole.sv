@@ -98,20 +98,20 @@ module tb_keyhole;
   // ---- bus-truth monitors (netlist wires, names from sim_keyhole.v) ----
   `define SK dut.sim_keyhole_i
   always @(posedge aclk) begin
-    // CDMA lite port (SmartConnect M01): every AR/R/AW/W/B handshake
-    if (`SK.smartconnect_0_M01_AXI_ARVALID && `SK.smartconnect_0_M01_AXI_ARREADY)
+    // CDMA lite port (axi_ic_0 M01, post-auto_pc Lite-shaped): every AR/R/AW/W/B handshake
+    if (`SK.axi_ic_0_M01_AXI_ARVALID && `SK.axi_ic_0_M01_AXI_ARREADY)
       $display("MON M01.AR  addr=0x%02x            t=%0t",
-               `SK.smartconnect_0_M01_AXI_ARADDR, $time);
-    if (`SK.smartconnect_0_M01_AXI_RVALID && `SK.smartconnect_0_M01_AXI_RREADY)
+               `SK.axi_ic_0_M01_AXI_ARADDR, $time);
+    if (`SK.axi_ic_0_M01_AXI_RVALID && `SK.axi_ic_0_M01_AXI_RREADY)
       $display("MON M01.R   data=0x%08x resp=%0d t=%0t",
-               `SK.smartconnect_0_M01_AXI_RDATA,
-               `SK.smartconnect_0_M01_AXI_RRESP, $time);
-    if (`SK.smartconnect_0_M01_AXI_AWVALID && `SK.smartconnect_0_M01_AXI_AWREADY)
+               `SK.axi_ic_0_M01_AXI_RDATA,
+               `SK.axi_ic_0_M01_AXI_RRESP, $time);
+    if (`SK.axi_ic_0_M01_AXI_AWVALID && `SK.axi_ic_0_M01_AXI_AWREADY)
       $display("MON M01.AW  addr=0x%02x            t=%0t",
-               `SK.smartconnect_0_M01_AXI_AWADDR, $time);
-    if (`SK.smartconnect_0_M01_AXI_WVALID && `SK.smartconnect_0_M01_AXI_WREADY)
+               `SK.axi_ic_0_M01_AXI_AWADDR, $time);
+    if (`SK.axi_ic_0_M01_AXI_WVALID && `SK.axi_ic_0_M01_AXI_WREADY)
       $display("MON M01.W   data=0x%08x          t=%0t",
-               `SK.smartconnect_0_M01_AXI_WDATA, $time);
+               `SK.axi_ic_0_M01_AXI_WDATA, $time);
     // CDMA data master: the keyhole evidence itself
     if (`SK.axi_cdma_0_M_AXI_AWVALID && `SK.axi_cdma_0_M_AXI_AWREADY)
       $display("MON CDMA.AW addr=0x%08x len=%0d burst=%0d t=%0t",
@@ -121,15 +121,15 @@ module tb_keyhole;
       $display("MON CDMA.AR addr=0x%08x len=%0d burst=%0d t=%0t",
                `SK.axi_cdma_0_M_AXI_ARADDR, `SK.axi_cdma_0_M_AXI_ARLEN,
                `SK.axi_cdma_0_M_AXI_ARBURST, $time);
-    // QSPI side of SmartConnect (M00): what actually arrives
-    if (`SK.smartconnect_0_M00_AXI_AWVALID && `SK.smartconnect_0_M00_AXI_AWREADY)
+    // QSPI side of axi_ic_0 (M00): what actually arrives
+    if (`SK.axi_ic_0_M00_AXI_AWVALID && `SK.axi_ic_0_M00_AXI_AWREADY)
       $display("MON M00.AW  addr=0x%02x            t=%0t",
-               `SK.smartconnect_0_M00_AXI_AWADDR, $time);
-    if (`SK.smartconnect_0_M00_AXI_WVALID && `SK.smartconnect_0_M00_AXI_WREADY)
+               `SK.axi_ic_0_M00_AXI_AWADDR, $time);
+    if (`SK.axi_ic_0_M00_AXI_WVALID && `SK.axi_ic_0_M00_AXI_WREADY)
       $display("MON M00.W   data=0x%08x          t=%0t",
-               `SK.smartconnect_0_M00_AXI_WDATA, $time);
-    if (`SK.smartconnect_0_M00_AXI_BVALID && `SK.smartconnect_0_M00_AXI_BREADY)
+               `SK.axi_ic_0_M00_AXI_WDATA, $time);
+    if (`SK.axi_ic_0_M00_AXI_BVALID && `SK.axi_ic_0_M00_AXI_BREADY)
       $display("MON M00.B   resp=%0d               t=%0t",
-               `SK.smartconnect_0_M00_AXI_BRESP, $time);
+               `SK.axi_ic_0_M00_AXI_BRESP, $time);
   end
 endmodule

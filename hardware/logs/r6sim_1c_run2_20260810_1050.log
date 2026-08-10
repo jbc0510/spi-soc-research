@@ -1,0 +1,567 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Aug 10 10:50:46 2026
+# Process ID         : 665645
+# Current directory  : /tmp
+# Command line       : vivado -mode batch -notrace -source /home/jconway/spi-soc-research/hardware/sim/run_keyhole_sim.tcl -log /home/jconway/spi-soc-research/hardware/logs/r6sim_1c_run2_20260810_1050.log -journal /tmp/r6_1c2.jou
+# Log file           : /home/jconway/spi-soc-research/hardware/logs/r6sim_1c_run2_20260810_1050.log
+# Journal file       : /tmp/r6_1c2.jou
+# Running On         : stile.lps.umd.edu
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : Intel(R) Core(TM) i9-9900X CPU @ 3.50GHz
+# CPU Frequency      : 3289.077 MHz
+# CPU Physical cores : 10
+# CPU Logical cores  : 20
+# Host memory        : 50263 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 58853 MB
+# Available Virtual  : 52853 MB
+#-----------------------------------------------------------
+source /home/jconway/spi-soc-research/hardware/sim/run_keyhole_sim.tcl -notrace
+Wrote  : </tmp/r6_keyhole_sim/r6sim.srcs/sources_1/bd/sim_keyhole/sim_keyhole.bd> 
+WARNING: [BD 41-721] Attempt to set value '0' on disabled parameter 'C_S_AXI4_ID_WIDTH' of cell '/axi_quad_spi_0' is ignored
+R6_SIMBD: setv CONFIG.C_TYPE_OF_AXI4_INTERFACE = 1
+R6_SIMBD: setv CONFIG.C_XIP_MODE = 0
+R6_SIMBD: setv CONFIG.C_SPI_MODE = 0
+R6_SIMBD: setv CONFIG.C_FIFO_DEPTH = 256
+R6_SIMBD: setv CONFIG.C_SCK_RATIO = 16
+R6_SIMBD: setv CONFIG.C_NUM_SS_BITS = 1
+R6_SIMBD: setv CONFIG.NUM_SI = 2
+R6_SIMBD: setv CONFIG.NUM_MI = 3
+R6_SIMBD: setv CONFIG.M00_ISSUANCE = 1
+Slave segment '/axi_quad_spi_0/aximm/MEM0' is being assigned into address space '/axi_vip_0/Master_AXI' at <0xA000_0000 [ 64K ]>.
+Slave segment '/axi_cdma_0/S_AXI_LITE/Reg' is being assigned into address space '/axi_vip_0/Master_AXI' at <0xA001_0000 [ 64K ]>.
+Slave segment '/axi_vip_1/S_AXI/Reg' is being assigned into address space '/axi_vip_0/Master_AXI' at <0x0000_0000 [ 64K ]>.
+Slave segment '/axi_quad_spi_0/aximm/MEM0' is being assigned into address space '/axi_cdma_0/Data' at <0xA000_0000 [ 64K ]>.
+Slave segment '/axi_vip_1/S_AXI/Reg' is being assigned into address space '/axi_cdma_0/Data' at <0x0000_0000 [ 64K ]>.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+INFO: [xilinx.com:ip:axi_quad_spi:3.2-1] /axi_quad_spi_0 
+			#################################################################################################
+			INFO: AXI Quad SPI core's AXI4 Memory Mapped Clock and EXT SPI CLK are synchronous to each other.
+			#################################################################################################
+Wrote  : </tmp/r6_keyhole_sim/r6sim.srcs/sources_1/bd/sim_keyhole/sim_keyhole.bd> 
+R6_SIMBD: sim_keyhole BD validated
+INFO: [BD 41-1662] The design 'sim_keyhole.bd' is already validated. Therefore parameter propagation will not be re-run.
+Verilog Output written to : /tmp/r6_keyhole_sim/r6sim.gen/sources_1/bd/sim_keyhole/synth/sim_keyhole.v
+Verilog Output written to : /tmp/r6_keyhole_sim/r6sim.gen/sources_1/bd/sim_keyhole/sim/sim_keyhole.v
+Verilog Output written to : /tmp/r6_keyhole_sim/r6sim.gen/sources_1/bd/sim_keyhole/hdl/sim_keyhole_wrapper.v
+update_compile_order: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1881.863 ; gain = 56.027 ; free physical = 26705 ; free virtual = 49763
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'tb_keyhole'
+INFO: [BD 41-1662] The design 'sim_keyhole.bd' is already validated. Therefore parameter propagation will not be re-run.
+Verilog Output written to : /tmp/r6_keyhole_sim/r6sim.gen/sources_1/bd/sim_keyhole/synth/sim_keyhole.v
+Verilog Output written to : /tmp/r6_keyhole_sim/r6sim.gen/sources_1/bd/sim_keyhole/sim/sim_keyhole.v
+Verilog Output written to : /tmp/r6_keyhole_sim/r6sim.gen/sources_1/bd/sim_keyhole/hdl/sim_keyhole_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_vip_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_vip_1 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_cdma_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_quad_spi_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_0/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_0/s00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_0/m01_couplers/auto_pc .
+Exporting to file /tmp/r6_keyhole_sim/r6sim.gen/sources_1/bd/sim_keyhole/hw_handoff/sim_keyhole.hwh
+Generated Hardware Definition File /tmp/r6_keyhole_sim/r6sim.gen/sources_1/bd/sim_keyhole/synth/sim_keyhole.hwdef
+INFO: [Vivado 12-5682] Launching behavioral simulation in '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-13660] Precompiled IP simulation library mode is enabled (default). The design IP libraries will be referenced from the compiled library path. Please note that if the precompiled version of the library is not found from the path or the IP is in locked state, then the library source files for these IPs will be compiled locally as part of the compile order.
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from '/tools/Xilinx/2025.1/Vivado/tps/boost_1_72_0'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File '/tools/Xilinx/2025.1/data/xsim/xsim.ini' copied to run dir:'/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_keyhole' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_0_mixed.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_1_wb.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_2_nm.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_4_mx.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_0_mixed.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_1_wb.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_2_nm.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_4_mx.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_3_sp.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_3_sp.mif'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_0_mixed.mem'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_1_wb.mem'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_2_nm.mem'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_4_mx.mem'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_0_mixed.mem'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_1_wb.mem'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_2_nm.mem'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_4_mx.mem'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_2_memory_3_sp.mem'
+INFO: [SIM-utils-43] Exported '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/mode_1_memory_3_sp.mem'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim'
+xvlog --incr --relax -L uvm -L axi_vip_v1_1_21 -L xilinx_vip -prj tb_keyhole_vlog.prj
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_vip_0_0/sim/sim_keyhole_axi_vip_0_0_pkg.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_vip_0_0/sim/sim_keyhole_axi_vip_0_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sim_keyhole_axi_vip_0_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_vip_1_0/sim/sim_keyhole_axi_vip_1_0_pkg.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_vip_1_0/sim/sim_keyhole_axi_vip_1_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sim_keyhole_axi_vip_1_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_ic_0_imp_xbar_0/sim/sim_keyhole_axi_ic_0_imp_xbar_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sim_keyhole_axi_ic_0_imp_xbar_0
+WARNING: [VRFC 10-8772] attribute 'X_INTERFACE_MODE' is already specified; last one will take precedence [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_ic_0_imp_xbar_0/sim/sim_keyhole_axi_ic_0_imp_xbar_0.v:149]
+WARNING: [VRFC 10-8772] attribute 'X_INTERFACE_PARAMETER' is already specified; last one will take precedence [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_ic_0_imp_xbar_0/sim/sim_keyhole_axi_ic_0_imp_xbar_0.v:150]
+WARNING: [VRFC 10-8772] attribute 'X_INTERFACE_MODE' is already specified; last one will take precedence [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_ic_0_imp_xbar_0/sim/sim_keyhole_axi_ic_0_imp_xbar_0.v:229]
+WARNING: [VRFC 10-8772] attribute 'X_INTERFACE_PARAMETER' is already specified; last one will take precedence [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_ic_0_imp_xbar_0/sim/sim_keyhole_axi_ic_0_imp_xbar_0.v:230]
+WARNING: [VRFC 10-8772] attribute 'X_INTERFACE_MODE' is already specified; last one will take precedence [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_ic_0_imp_xbar_0/sim/sim_keyhole_axi_ic_0_imp_xbar_0.v:232]
+WARNING: [VRFC 10-8772] attribute 'X_INTERFACE_PARAMETER' is already specified; last one will take precedence [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_ic_0_imp_xbar_0/sim/sim_keyhole_axi_ic_0_imp_xbar_0.v:233]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_ic_0_imp_auto_pc_1/sim/sim_keyhole_axi_ic_0_imp_auto_pc_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sim_keyhole_axi_ic_0_imp_auto_pc_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_ic_0_imp_auto_pc_0/sim/sim_keyhole_axi_ic_0_imp_auto_pc_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sim_keyhole_axi_ic_0_imp_auto_pc_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/sim/sim_keyhole.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module m00_couplers_imp_1DSNBO5
+INFO: [VRFC 10-311] analyzing module m01_couplers_imp_CE9A2Z
+INFO: [VRFC 10-311] analyzing module m02_couplers_imp_OC0YP4
+INFO: [VRFC 10-311] analyzing module s00_couplers_imp_QHJFET
+INFO: [VRFC 10-311] analyzing module s01_couplers_imp_1HGKLLN
+INFO: [VRFC 10-311] analyzing module sim_keyhole
+INFO: [VRFC 10-311] analyzing module sim_keyhole_axi_ic_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/tmp/r6_keyhole_sim/r6sim.gen/sources_1/bd/sim_keyhole/hdl/sim_keyhole_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sim_keyhole_wrapper
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jconway/spi-soc-research/hardware/sim/tb_keyhole.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_keyhole
+INFO: [VRFC 10-2263] Analyzing Verilog file "/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+xvhdl --incr --relax -prj tb_keyhole_vhdl.prj
+INFO: [VRFC 10-163] Analyzing VHDL file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_cdma_0_0/sim/sim_keyhole_axi_cdma_0_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'sim_keyhole_axi_cdma_0_0'
+INFO: [VRFC 10-163] Analyzing VHDL file "/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/ip/sim_keyhole_axi_quad_spi_0_0/sim/sim_keyhole_axi_quad_spi_0_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'sim_keyhole_axi_quad_spi_0_0'
+Waiting for jobs to finish...
+No pending jobs, compilation finished.
+INFO: [USF-XSim-69] 'compile' step finished in '5' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim'
+xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L axi_infrastructure_v1_1_0 -L axi_vip_v1_1_21 -L axi_datamover_v5_1_37 -L axi_sg_v4_1_21 -L axi_cdma_v4_1_35 -L dist_mem_gen_v8_0_17 -L axi_lite_ipif_v3_0_4 -L interrupt_control_v3_1_5 -L axi_quad_spi_v3_2_34 -L generic_baseblocks_v2_1_2 -L axi_register_slice_v2_1_35 -L fifo_generator_v13_2_13 -L axi_data_fifo_v2_1_35 -L axi_crossbar_v2_1_37 -L axi_protocol_converter_v2_1_36 -L uvm -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_keyhole_behav xil_defaultlib.tb_keyhole xil_defaultlib.glbl -log elaborate.log
+Vivado Simulator v2025.1.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /tools/Xilinx/2025.1/Vivado/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L axi_infrastructure_v1_1_0 -L axi_vip_v1_1_21 -L axi_datamover_v5_1_37 -L axi_sg_v4_1_21 -L axi_cdma_v4_1_35 -L dist_mem_gen_v8_0_17 -L axi_lite_ipif_v3_0_4 -L interrupt_control_v3_1_5 -L axi_quad_spi_v3_2_34 -L generic_baseblocks_v2_1_2 -L axi_register_slice_v2_1_35 -L fifo_generator_v13_2_13 -L axi_data_fifo_v2_1_35 -L axi_crossbar_v2_1_37 -L axi_protocol_converter_v2_1_36 -L uvm -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_keyhole_behav xil_defaultlib.tb_keyhole xil_defaultlib.glbl -log elaborate.log 
+Using 8 slave threads.
+WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by AMD, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running xelab with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
+    LIBRARY_PATH
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 8 differs from formal bit length 12 for port 'm_axi_arregion' [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/sim/sim_keyhole.v:2503]
+WARNING: [VRFC 10-3091] actual bit length 6 differs from formal bit length 9 for port 'm_axi_arsize' [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/sim/sim_keyhole.v:2504]
+WARNING: [VRFC 10-3091] actual bit length 8 differs from formal bit length 12 for port 'm_axi_awregion' [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/sim/sim_keyhole.v:2515]
+WARNING: [VRFC 10-3091] actual bit length 6 differs from formal bit length 9 for port 'm_axi_awsize' [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/sim/sim_keyhole.v:2516]
+WARNING: [VRFC 10-5021] port 'cdma_introut' is not connected on this instance [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/sim/sim_keyhole.v:1254]
+WARNING: [VRFC 10-5021] port 'io0_o' is not connected on this instance [/tmp/r6_keyhole_sim/r6sim.ip_user_files/bd/sim_keyhole/sim/sim_keyhole.v:1450]
+WARNING: [VRFC 10-5021] port 'aclk2x' is not connected on this instance [/wrk/ci/prod/2025.1/sw/continuous/3882/output/customer/vivado/data/ip/xilinx/axi_protocol_converter_v2_1/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4855]
+WARNING: [VRFC 10-5021] port 'aclk2x' is not connected on this instance [/wrk/ci/prod/2025.1/sw/continuous/3882/output/customer/vivado/data/ip/xilinx/axi_protocol_converter_v2_1/hdl/axi_protocol_converter_v2_1_vl_rfs.v:5110]
+WARNING: [VRFC 10-5021] port 'aclk2x' is not connected on this instance [/wrk/ci/prod/2025.1/sw/continuous/3882/output/customer/vivado/data/ip/xilinx/axi_crossbar_v2_1/hdl/axi_crossbar_v2_1_vl_rfs.v:3097]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package axi_cdma_v4_1_35.axi_cdma_pkg
+Compiling package xpm.vcomponents
+Compiling package unisim.vcomponents
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling package axi_datamover_v5_1_37.axi_datamover_pkg
+Compiling package ieee.std_logic_signed
+Compiling package axi_lite_ipif_v3_0_4.ipif_pkg
+Compiling package ieee.vital_timing
+Compiling package ieee.vital_primitives
+Compiling package unisim.vpkg
+Compiling package xil_defaultlib.sim_keyhole_axi_vip_0_0_pkg
+Compiling package xilinx_vip.axi_vip_pkg
+Compiling package xilinx_vip.xil_common_vip_pkg
+Compiling package std.std
+Compiling package xil_defaultlib.sim_keyhole_axi_vip_1_0_pkg
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_reset [axi_datamover_reset_default]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=8,c...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=71,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_cmd_status [\axi_datamover_cmd_status(c_stsc...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_rd_status_cntl [axi_datamover_rd_status_cntl_def...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_strb_gen2 [\axi_datamover_strb_gen2(c_strb_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_strb_gen2 [\axi_datamover_strb_gen2(c_op_mo...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_pcc [\axi_datamover_pcc(c_is_mm2s=1,c...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=59,c_depth=4)...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=59,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_addr_cntl [\axi_datamover_addr_cntl(c_famil...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=29,c_depth=4)...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=29,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_rdmux [\axi_datamover_rdmux(c_sel_addr_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_rddata_cntl [\axi_datamover_rddata_cntl(c_ali...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_mm2s_full_wrap [\axi_datamover_mm2s_full_wrap(c_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_pcc [\axi_datamover_pcc(c_dre_align_w...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=7,c_depth=6)\]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=7,c...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=2,c_depth=6)\]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=2,c...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_wr_status_cntl [\axi_datamover_wr_status_cntl(c_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_addr_cntl [\axi_datamover_addr_cntl(c_addr_...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=27,c_depth=4)...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=27,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_wrdata_cntl [\axi_datamover_wrdata_cntl(c_sf_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_wr_demux [\axi_datamover_wr_demux(c_sel_ad...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_skid2mm_buf [\axi_datamover_skid2mm_buf(c_add...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_s2mm_full_wrap [\axi_datamover_s2mm_full_wrap(c_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover [\axi_datamover(c_include_mm2s=1,...]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma_pulse_gen [\axi_cdma_pulse_gen(c_pulse_widt...]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma_pulse_gen [\axi_cdma_pulse_gen(c_pos_edge_t...]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma_pulse_gen [\axi_cdma_pulse_gen(c_pulse_widt...]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma_reset [axi_cdma_reset_default]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma_lite_if [\axi_cdma_lite_if(c_num_ce=16,c_...]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma_register [\axi_cdma_register(c_num_registe...]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma_reg_module [axi_cdma_reg_module_default]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma_simple_cntlr [\axi_cdma_simple_cntlr(c_dm_cmd_...]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma_simple_wrap [\axi_cdma_simple_wrap(c_include_...]
+Compiling architecture implementation of entity axi_cdma_v4_1_35.axi_cdma [\axi_cdma(c_include_sf=0,c_dlytm...]
+Compiling architecture sim_keyhole_axi_cdma_0_0_arch of entity xil_defaultlib.sim_keyhole_axi_cdma_0_0 [sim_keyhole_axi_cdma_0_0_default]
+Compiling module xil_defaultlib.m00_couplers_imp_1DSNBO5
+Compiling module axi_infrastructure_v1_1_0.axi_infrastructure_v1_1_0_axi2ve...
+Compiling module axi_infrastructure_v1_1_0.axi_infrastructure_v1_1_0_vector...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axi_r...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_infrastructure_v1_1_0.axi_infrastructure_v1_1_0_axi2ve...
+Compiling module axi_infrastructure_v1_1_0.axi_infrastructure_v1_1_0_vector...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axi_r...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_b...
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_a...
+Compiling module xil_defaultlib.sim_keyhole_axi_ic_0_imp_auto_pc...
+Compiling module xil_defaultlib.m01_couplers_imp_CE9A2Z
+Compiling module xil_defaultlib.m02_couplers_imp_OC0YP4
+Compiling module axi_protocol_converter_v2_1_36.axi_protocol_converter_v2_1_36_a...
+Compiling module xil_defaultlib.sim_keyhole_axi_ic_0_imp_auto_pc...
+Compiling module xil_defaultlib.s00_couplers_imp_QHJFET
+Compiling module xil_defaultlib.s01_couplers_imp_1HGKLLN
+Compiling module generic_baseblocks_v2_1_2.generic_baseblocks_v2_1_2_carry_...
+Compiling module generic_baseblocks_v2_1_2.generic_baseblocks_v2_1_2_compar...
+Compiling module generic_baseblocks_v2_1_2.generic_baseblocks_v2_1_2_compar...
+Compiling module generic_baseblocks_v2_1_2.generic_baseblocks_v2_1_2_compar...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_addr_decode...
+Compiling module generic_baseblocks_v2_1_2.generic_baseblocks_v2_1_2_mux_en...
+Compiling module axi_data_fifo_v2_1_35.axi_data_fifo_v2_1_35_ndeep_srl(...
+Compiling module axi_data_fifo_v2_1_35.axi_data_fifo_v2_1_35_axic_srl_f...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_si_transact...
+Compiling module generic_baseblocks_v2_1_2.generic_baseblocks_v2_1_2_mux_en...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_si_transact...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_splitter
+Compiling module axi_data_fifo_v2_1_35.axi_data_fifo_v2_1_35_axic_reg_s...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_wdata_route...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_addr_decode...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_si_transact...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_si_transact...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_addr_decode...
+Compiling module axi_data_fifo_v2_1_35.axi_data_fifo_v2_1_35_axic_reg_s...
+Compiling module generic_baseblocks_v2_1_2.generic_baseblocks_v2_1_2_mux_en...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_wdata_mux(C...
+Compiling module axi_data_fifo_v2_1_35.axi_data_fifo_v2_1_35_axic_srl_f...
+Compiling module axi_infrastructure_v1_1_0.axi_infrastructure_v1_1_0_axi2ve...
+Compiling module axi_infrastructure_v1_1_0.axi_infrastructure_v1_1_0_vector...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axic_...
+Compiling module axi_register_slice_v2_1_35.axi_register_slice_v2_1_35_axi_r...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_addr_decode...
+Compiling module axi_data_fifo_v2_1_35.axi_data_fifo_v2_1_35_axic_reg_s...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_wdata_mux(C...
+Compiling module axi_data_fifo_v2_1_35.axi_data_fifo_v2_1_35_axic_srl_f...
+Compiling module generic_baseblocks_v2_1_2.generic_baseblocks_v2_1_2_mux_en...
+Compiling module generic_baseblocks_v2_1_2.generic_baseblocks_v2_1_2_mux_en...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_addr_arbite...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_decerr_slav...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_crossbar(C_...
+Compiling module axi_crossbar_v2_1_37.axi_crossbar_v2_1_37_axi_crossba...
+Compiling module xil_defaultlib.sim_keyhole_axi_ic_0_imp_xbar_0
+Compiling module xil_defaultlib.sim_keyhole_axi_ic_0_0
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=1,c_aw=7,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=4,c_aw=4,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=2,c_aw=7,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=3,c_aw=3,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=3,c_aw=3,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=3,c_aw=3,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=3,c_aw=3,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=3,c_aw=3,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=3,c_aw=3,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=3,c_aw=3,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=3,c_aw=3,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.pselect_f [\pselect_f(c_ab=2,c_aw=7,c_bar="...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.qspi_address_decoder [\qspi_address_decoder(c_bus_awid...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.axi_qspi_enhanced_mode [\axi_qspi_enhanced_mode(c_family...]
+Compiling architecture fdre_v of entity unisim.FDRE [\FDRE(init='1')\]
+Compiling architecture fdr_v of entity unisim.FDR [\FDR(init='1')\]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.cross_clk_sync_fifo_1 [\cross_clk_sync_fifo_1(c_family=...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.counter_f [\counter_f(c_num_bits=8)(1,8)\]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.qspi_fifo_ifmodule [\qspi_fifo_ifmodule(c_num_transf...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.qspi_occupancy_reg [\qspi_occupancy_reg(c_occupancy_...]
+Compiling architecture fd_v of entity unisim.FD [\FD(init='1')\]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.qspi_mode_0_module [\qspi_mode_0_module(c_sck_ratio=...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.qspi_status_slave_sel_reg [\qspi_status_slave_sel_reg(c_spi...]
+Compiling architecture fdr_v of entity unisim.FDR [fdr_default]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.reset_sync_module [reset_sync_module_default]
+Compiling module xpm.xpm_cdc_sync_rst(DEST_SYNC_FF=2,...
+Compiling module xpm.xpm_fifo_rst(COMMON_CLOCK=0)
+Compiling module xpm.xpm_fifo_reg_bit
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=9...
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=8...
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=8...
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=8...
+Compiling module xpm.xpm_memory_base(MEMORY_TYPE=1,CL...
+Compiling module xpm.xpm_cdc_gray(DEST_SYNC_FF=2,INIT...
+Compiling module xpm.xpm_fifo_reg_vec(REG_WIDTH=8)
+Compiling module xpm.xpm_cdc_gray(INIT_SYNC_FF=1,WIDT...
+Compiling module xpm.xpm_fifo_reg_vec(REG_WIDTH=9)
+Compiling module xpm.xpm_cdc_gray(DEST_SYNC_FF=2,INIT...
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=2...
+Compiling module xpm.xpm_fifo_base(COMMON_CLOCK=0,FIF...
+Compiling module xpm.xpm_fifo_async(FIFO_MEMORY_TYPE=...
+Compiling module xpm.xpm_cdc_single(DEST_SYNC_FF=2,IN...
+Compiling module xpm.xpm_fifo_base(COMMON_CLOCK=0,FIF...
+Compiling module xpm.xpm_fifo_async(FIFO_MEMORY_TYPE=...
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.qspi_cntrl_reg [\qspi_cntrl_reg(c_s_axi_data_wid...]
+Compiling architecture lut4_v of entity unisim.LUT4 [\LUT4(init="1111111111001010")(0...]
+Compiling architecture fdrse_v of entity unisim.FDRSE [fdrse_default]
+Compiling architecture implementation of entity axi_quad_spi_v3_2_34.soft_reset [\soft_reset(c_reset_width=16)\]
+Compiling architecture implementation of entity interrupt_control_v3_1_5.interrupt_control [\interrupt_control(c_num_ce=16,c...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.qspi_core_interface [\qspi_core_interface(c_family="z...]
+Compiling architecture fdre_v of entity unisim.FDRE [fdre_default]
+Compiling architecture fd_v of entity unisim.FD [fd_default]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.axi_quad_spi_top [\axi_quad_spi_top(c_family="zynq...]
+Compiling architecture imp of entity axi_quad_spi_v3_2_34.axi_quad_spi [\axi_quad_spi(c_family="zynquplu...]
+Compiling architecture sim_keyhole_axi_quad_spi_0_0_arch of entity xil_defaultlib.sim_keyhole_axi_quad_spi_0_0 [sim_keyhole_axi_quad_spi_0_0_def...]
+Compiling module xilinx_vip.axi_vip_axi4pc(WDATA_WIDTH=32,RD...
+Compiling module xilinx_vip.cb
+Compiling module xilinx_vip.axi_vip_if(C_AXI_PROTOCOL=2,C_AX...
+Compiling module axi_vip_v1_1_21.axi_vip_v1_1_21_top(C_AXI_PROTOC...
+Compiling module xil_defaultlib.sim_keyhole_axi_vip_0_0
+Compiling module xilinx_vip.axi_vip_axi4pc(WDATA_WIDTH=32,RD...
+Compiling module xilinx_vip.cb
+Compiling module xilinx_vip.axi_vip_if(C_AXI_WID_WIDTH=1,C_A...
+Compiling module axi_vip_v1_1_21.axi_vip_v1_1_21_top(C_AXI_WID_WI...
+Compiling module xil_defaultlib.sim_keyhole_axi_vip_1_0
+Compiling module xil_defaultlib.sim_keyhole
+Compiling module xil_defaultlib.sim_keyhole_wrapper
+Compiling module xil_defaultlib.tb_keyhole
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_keyhole_behav
+execute_script: Time (s): cpu = 00:00:46 ; elapsed = 00:00:14 . Memory (MB): peak = 1916.848 ; gain = 0.000 ; free physical = 26653 ; free virtual = 49739
+INFO: [USF-XSim-69] 'elaborate' step finished in '13' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/tmp/r6_keyhole_sim/r6sim.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_keyhole_behav -key {Behavioral:sim_1:Functional:tb_keyhole} -tclbatch {tb_keyhole.tcl} -protoinst "protoinst_files/sim_keyhole.protoinst" -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/sim_keyhole.protoinst
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_cdma_0/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_cdma_0/S_AXI_LITE
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/M02_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/S01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/m00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/m00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/m01_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/m01_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/m01_couplers/auto_pc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/m01_couplers/auto_pc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/m02_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/m02_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/s00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/s00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/s00_couplers/auto_pc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/s00_couplers/auto_pc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/s01_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/s01_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/xbar/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/xbar/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/xbar/M02_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/xbar/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_ic_0/xbar/S01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_quad_spi_0/AXI_FULL
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_vip_0/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_keyhole/dut/sim_keyhole_i//axi_vip_1/S_AXI
+Time resolution is 1 ps
+source tb_keyhole.tcl
+XilinxAXIVIP: Found at Path: tb_keyhole.dut.sim_keyhole_i.axi_vip_0.inst
+XilinxAXIVIP: Found at Path: tb_keyhole.dut.sim_keyhole_i.axi_vip_1.inst
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_keyhole.dut.sim_keyhole_i.axi_quad_spi_0.U0.no_dual_quad_mode.QSPI_NORMAL.qspi_enhanced_md_gen.QSPI_CORE_INTERFACE_I.fifo_exists.RX_FIFO_II.gnuram_async_fifo.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_keyhole/dut/sim_keyhole_i/axi_quad_spi_0/U0/no_dual_quad_mode/QSPI_NORMAL/qspi_enhanced_md_gen/QSPI_CORE_INTERFACE_I/fifo_exists/RX_FIFO_II/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/Initial310_618  Scope: tb_keyhole.dut.sim_keyhole_i.axi_quad_spi_0.U0.no_dual_quad_mode.QSPI_NORMAL.qspi_enhanced_md_gen.QSPI_CORE_INTERFACE_I.fifo_exists.RX_FIFO_II.gnuram_async_fifo.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc  File: /tools/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 522
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_keyhole.dut.sim_keyhole_i.axi_quad_spi_0.U0.no_dual_quad_mode.QSPI_NORMAL.qspi_enhanced_md_gen.QSPI_CORE_INTERFACE_I.fifo_exists.TX_FIFO_II.gnuram_async_fifo.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_keyhole/dut/sim_keyhole_i/axi_quad_spi_0/U0/no_dual_quad_mode/QSPI_NORMAL/qspi_enhanced_md_gen/QSPI_CORE_INTERFACE_I/fifo_exists/TX_FIFO_II/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/Initial310_618  Scope: tb_keyhole.dut.sim_keyhole_i.axi_quad_spi_0.U0.no_dual_quad_mode.QSPI_NORMAL.qspi_enhanced_md_gen.QSPI_CORE_INTERFACE_I.fifo_exists.TX_FIFO_II.gnuram_async_fifo.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc  File: /tools/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 522
+ANCHOR: QSPI SPICR = 0x00000180 (expect 0x00000180)
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_keyhole_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:57 ; elapsed = 00:00:27 . Memory (MB): peak = 1916.848 ; gain = 34.984 ; free physical = 26648 ; free virtual = 49736
+MON M00.AW  addr=0xa0000040            t=1105 ns
+MON M00.W   data=0x0000000a          t=1105 ns
+MON M00.B   resp=0               t=1115 ns
+MON M01.AW  addr=0xa0010000            t=1235 ns
+MON M01.W   data=0x00000004          t=1235 ns
+MON M01.AR  addr=0xa0010000            t=2365 ns
+MON M01.R   data=0x00000000 resp=0 t=2385 ns
+PHASE_A: post-reset CDMACR = 0x00000000 (rst bit2=0)
+MON M01.AW  addr=0xa0010000            t=2525 ns
+MON M01.W   data=0x00000020          t=2525 ns
+MON M01.AR  addr=0xa0010000            t=2665 ns
+MON M01.R   data=0x00000020 resp=0 t=2685 ns
+PHASE_A: CDMACR readback = 0x00000020 (keyhole bit5=1)
+MON M01.AW  addr=0xa0010018            t=2825 ns
+MON M01.W   data=0x5a5a1234          t=2825 ns
+MON M01.AR  addr=0xa0010018            t=2965 ns
+MON M01.R   data=0x5a5a1234 resp=0 t=2985 ns
+PHASE_A: SA probe wrote 5A5A1234 read 0x5a5a1234
+MON M01.AW  addr=0xa0010018            t=3125 ns
+MON M01.W   data=0x00000000          t=3125 ns
+MON M01.AW  addr=0xa0010020            t=3295 ns
+MON M01.W   data=0xa0000068          t=3295 ns
+MON M01.AW  addr=0xa0010028            t=3465 ns
+MON M01.W   data=0x00000040          t=3465 ns
+MON CDMA.AW addr=0xa0000068 len=5 burst=0 t=3585 ns
+MON CDMA.AR addr=0x00000000 len=15 burst=1 t=3595 ns
+MON M01.AR  addr=0xa0010004            t=3605 ns
+MON M01.R   data=0x00000000 resp=0 t=3625 ns
+PHASE_A: CDMASR just after kick = 0x00000000
+MON M00.AW  addr=0xa0000068            t=3685 ns
+MON M00.W   data=0xa5b00000          t=3685 ns
+MON M00.W   data=0xa5b00001          t=3695 ns
+MON M00.W   data=0xa5b00002          t=3705 ns
+MON CDMA.AW addr=0xa0000068 len=9 burst=0 t=3715 ns
+MON M00.W   data=0xa5b00003          t=3715 ns
+MON M00.W   data=0xa5b00004          t=3725 ns
+MON M01.AR  addr=0xa0010004            t=3735 ns
+MON M00.W   data=0xa5b00005          t=3735 ns
+MON M01.R   data=0x00000000 resp=0 t=3755 ns
+MON M00.B   resp=0               t=3755 ns
+MON M00.AW  addr=0xa0000068            t=3775 ns
+MON M00.W   data=0xa5b00006          t=3775 ns
+MON M00.W   data=0xa5b00007          t=3785 ns
+MON M00.W   data=0xa5b00008          t=3795 ns
+MON M00.W   data=0xa5b00009          t=3805 ns
+MON M00.W   data=0xa5b0000a          t=3815 ns
+MON M00.W   data=0xa5b0000b          t=3825 ns
+MON M00.W   data=0xa5b0000c          t=3835 ns
+MON M00.W   data=0xa5b0000d          t=3845 ns
+MON M00.W   data=0xa5b0000e          t=3855 ns
+MON M00.W   data=0xa5b0000f          t=3865 ns
+MON M00.B   resp=0               t=3885 ns
+MON M01.AR  addr=0xa0010004            t=4055 ns
+MON M01.R   data=0x00001002 resp=0 t=4075 ns
+PHASE_A: done=1 CDMASR=0x00001002 OCY=15 SPISR=0x00000021 TxEmpty=0
+KEYHOLE_SIM: PASS — 16/16 words held at DTR
+MON M00.AW  addr=0xa0000040            t=4655 ns
+MON M00.W   data=0x0000000a          t=4655 ns
+MON M00.B   resp=0               t=4665 ns
+MON M01.AW  addr=0xa0010000            t=4785 ns
+MON M01.W   data=0x00000004          t=4785 ns
+MON M01.AR  addr=0xa0010000            t=5915 ns
+MON M01.R   data=0x00000000 resp=0 t=5935 ns
+PHASE_B: post-reset CDMACR = 0x00000000 (rst bit2=0)
+MON M01.AW  addr=0xa0010000            t=6075 ns
+MON M01.W   data=0x00000000          t=6075 ns
+MON M01.AR  addr=0xa0010000            t=6215 ns
+MON M01.R   data=0x00000000 resp=0 t=6235 ns
+PHASE_B: CDMACR readback = 0x00000000 (keyhole bit5=0)
+MON M01.AW  addr=0xa0010018            t=6375 ns
+MON M01.W   data=0x5a5a1234          t=6375 ns
+MON M01.AR  addr=0xa0010018            t=6515 ns
+MON M01.R   data=0x5a5a1234 resp=0 t=6535 ns
+PHASE_B: SA probe wrote 5A5A1234 read 0x5a5a1234
+MON M01.AW  addr=0xa0010018            t=6675 ns
+MON M01.W   data=0x00000000          t=6675 ns
+MON M01.AW  addr=0xa0010020            t=6845 ns
+MON M01.W   data=0xa0000068          t=6845 ns
+MON M01.AW  addr=0xa0010028            t=7015 ns
+MON M01.W   data=0x00000040          t=7015 ns
+MON CDMA.AW addr=0xa0000068 len=5 burst=1 t=7135 ns
+MON CDMA.AR addr=0x00000000 len=15 burst=1 t=7145 ns
+MON M01.AR  addr=0xa0010004            t=7155 ns
+MON M01.R   data=0x00000000 resp=0 t=7175 ns
+PHASE_B: CDMASR just after kick = 0x00000000
+MON M00.AW  addr=0xa0000068            t=7235 ns
+MON M00.W   data=0xa5b00000          t=7235 ns
+MON M00.W   data=0xa5b00001          t=7245 ns
+MON M00.W   data=0xa5b00002          t=7255 ns
+MON CDMA.AW addr=0xa0000080 len=9 burst=1 t=7265 ns
+MON M00.W   data=0xa5b00003          t=7265 ns
+MON M00.W   data=0xa5b00004          t=7275 ns
+MON M01.AR  addr=0xa0010004            t=7285 ns
+MON M00.W   data=0xa5b00005          t=7285 ns
+MON M01.R   data=0x00000000 resp=0 t=7305 ns
+MON M00.B   resp=0               t=7305 ns
+MON M00.AW  addr=0xa0000080            t=7325 ns
+MON M00.W   data=0xa5b00006          t=7325 ns
+MON M00.W   data=0xa5b00007          t=7335 ns
+MON M00.W   data=0xa5b00008          t=7345 ns
+MON M00.W   data=0xa5b00009          t=7355 ns
+MON M00.W   data=0xa5b0000a          t=7365 ns
+MON M00.W   data=0xa5b0000b          t=7375 ns
+MON M00.W   data=0xa5b0000c          t=7385 ns
+MON M00.W   data=0xa5b0000d          t=7395 ns
+MON M00.W   data=0xa5b0000e          t=7405 ns
+MON M00.W   data=0xa5b0000f          t=7415 ns
+MON M00.B   resp=0               t=7435 ns
+MON M01.AR  addr=0xa0010004            t=7605 ns
+MON M01.R   data=0x00001002 resp=0 t=7625 ns
+PHASE_B: done=1 CDMASR=0x00001002 OCY=5 SPISR=0x00000021 TxEmpty=0
+KEYHOLE_SIM: control (INCR) OCY=5 TxEmpty=0 CDMASR=0x00001002
+KEYHOLE_SIM: DONE
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+$finish called at time : 7935 ns : File "/home/jconway/spi-soc-research/hardware/sim/tb_keyhole.sv" Line 91
+R6_SIMRUN: launch complete
+INFO: [Common 17-206] Exiting Vivado at Mon Aug 10 10:51:27 2026...
