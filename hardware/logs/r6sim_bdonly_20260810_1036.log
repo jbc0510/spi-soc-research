@@ -1,0 +1,71 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Aug 10 10:36:50 2026
+# Process ID         : 661432
+# Current directory  : /tmp
+# Command line       : vivado -mode batch -notrace -source /tmp/r6_bdonly.tcl -log /home/jconway/spi-soc-research/hardware/logs/r6sim_bdonly_20260810_1036.log -journal /tmp/r6_bdonly.jou
+# Log file           : /home/jconway/spi-soc-research/hardware/logs/r6sim_bdonly_20260810_1036.log
+# Journal file       : /tmp/r6_bdonly.jou
+# Running On         : stile.lps.umd.edu
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : Intel(R) Core(TM) i9-9900X CPU @ 3.50GHz
+# CPU Frequency      : 3501.891 MHz
+# CPU Physical cores : 10
+# CPU Logical cores  : 20
+# Host memory        : 50263 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 58853 MB
+# Available Virtual  : 52937 MB
+#-----------------------------------------------------------
+source /tmp/r6_bdonly.tcl -notrace
+Wrote  : </tmp/r6_bdonly/r6bd.srcs/sources_1/bd/sim_keyhole/sim_keyhole.bd> 
+WARNING: [BD 41-721] Attempt to set value '0' on disabled parameter 'C_S_AXI4_ID_WIDTH' of cell '/axi_quad_spi_0' is ignored
+R6_SIMBD: setv CONFIG.C_TYPE_OF_AXI4_INTERFACE = 1
+R6_SIMBD: setv CONFIG.C_XIP_MODE = 0
+R6_SIMBD: setv CONFIG.C_SPI_MODE = 0
+R6_SIMBD: setv CONFIG.C_FIFO_DEPTH = 256
+R6_SIMBD: setv CONFIG.C_SCK_RATIO = 16
+R6_SIMBD: setv CONFIG.C_NUM_SS_BITS = 1
+R6_SIMBD: setv CONFIG.NUM_SI = 2
+R6_SIMBD: setv CONFIG.NUM_MI = 3
+R6_SIMBD: setv CONFIG.M00_ISSUANCE = 1
+Slave segment '/axi_quad_spi_0/aximm/MEM0' is being assigned into address space '/axi_vip_0/Master_AXI' at <0xA000_0000 [ 64K ]>.
+Slave segment '/axi_cdma_0/S_AXI_LITE/Reg' is being assigned into address space '/axi_vip_0/Master_AXI' at <0xA001_0000 [ 64K ]>.
+Slave segment '/axi_vip_1/S_AXI/Reg' is being assigned into address space '/axi_vip_0/Master_AXI' at <0x0000_0000 [ 64K ]>.
+Slave segment '/axi_quad_spi_0/aximm/MEM0' is being assigned into address space '/axi_cdma_0/Data' at <0xA000_0000 [ 64K ]>.
+Slave segment '/axi_vip_1/S_AXI/Reg' is being assigned into address space '/axi_cdma_0/Data' at <0x0000_0000 [ 64K ]>.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+Excluding slave segment /axi_cdma_0/S_AXI_LITE/Reg from address space /axi_cdma_0/Data.
+INFO: [xilinx.com:ip:axi_quad_spi:3.2-1] /axi_quad_spi_0 
+			#################################################################################################
+			INFO: AXI Quad SPI core's AXI4 Memory Mapped Clock and EXT SPI CLK are synchronous to each other.
+			#################################################################################################
+Wrote  : </tmp/r6_bdonly/r6bd.srcs/sources_1/bd/sim_keyhole/sim_keyhole.bd> 
+R6_SIMBD: sim_keyhole BD validated
+R6_BDONLY: --- post-validate readback ---
+R6_BDONLY: qspi CONFIG.C_TYPE_OF_AXI4_INTERFACE = 1
+R6_BDONLY: qspi CONFIG.C_XIP_MODE = 0
+R6_BDONLY: qspi CONFIG.C_SPI_MODE = 0
+R6_BDONLY: qspi CONFIG.C_FIFO_DEPTH = 256
+R6_BDONLY: qspi CONFIG.C_SCK_RATIO = 16
+R6_BDONLY: qspi CONFIG.C_NUM_SS_BITS = 1
+R6_BDONLY: ic   CONFIG.NUM_SI = 2
+R6_BDONLY: ic   CONFIG.NUM_MI = 3
+R6_BDONLY: ic   CONFIG.M00_ISSUANCE = 1
+R6_BDONLY: cells = /axi_cdma_0 /axi_ic_0 /axi_quad_spi_0 /axi_vip_0 /axi_vip_1
+R6_BDONLY: couplers = /axi_ic_0/m00_couplers /axi_ic_0/m01_couplers /axi_ic_0/m02_couplers /axi_ic_0/s00_couplers /axi_ic_0/s01_couplers
+R6_BDONLY: auto_pc/us/ds = /axi_ic_0/m01_couplers/auto_pc /axi_ic_0/s00_couplers/auto_pc
+R6_BDONLY: DONE
+INFO: [Common 17-206] Exiting Vivado at Mon Aug 10 10:36:58 2026...
