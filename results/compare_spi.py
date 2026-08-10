@@ -208,8 +208,13 @@ def integrity_checks(data):
     for k, d in data.items():
         stds = [r["std_us"] for r in d.values() if r["std_us"] == r["std_us"]]  # drop nan
         if len(stds) >= 3 and len(set(round(x, 6) for x in stds)) == 1:
-            print(f"  !! {INTERFACES[k][1]}: stddev is constant ({stds[0]}) across all "
-                  f"payloads — implausible for real capture (looks modeled).")
+            print(f"  !! {INTERFACES[k][1]}: stddev is a NOT-MEASURED sentinel ({stds[0]}) across all "
+                  f"payloads — this column was NEVER MEASURED.")
+            print(f"     Linux PS SPI1 jitter is STRUCTURALLY UNOBTAINABLE: ATF/TrustZone")
+            print(f"     denies APU access to Node 36/domain12 (-EACCES, six attempts).")
+            print(f"     DO NOT attempt to fill this column, and DO NOT copy stddev from")
+            print(f"     another path — that was done once (see commit 0dc3d8f) and the")
+            print(f"     donor capture was a different controller at a 14x different clock.")
             flags += 1
 
     # Near-identical files (not plausibly independent).

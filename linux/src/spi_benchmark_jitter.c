@@ -22,16 +22,21 @@
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
 
-#define CSV_PATH "/tmp/emio_internal_results.csv"
+/* CSV path is DERIVED FROM THE DEVICE at runtime -- see main().
+ * It was previously hardcoded to "emio_internal_results.csv", which asserted
+ * a controller the code never verified. That literal is the root cause of the
+ * retraction in commit 0dc3d8f: an AXI-path capture was labeled EMIO. */
+static char csv_path[256];
 
 /* ─────────────────────────────────────────
  * Configuration
  * ───────────────────────────────────────── */
-#define SPI_DEVICE      "/dev/spidev0.0"
+#define SPI_DEVICE_DEFAULT "/dev/spidev0.0"   /* override with argv[1] */
 #define SPI_SPEED_HZ    1000000          /* 1MHz clock */
 #define SPI_BITS        8                /* bits per word */
-#define NUM_TRIALS_LARGE 10
-#define NUM_TRIALS_MED   100
+/* NUM_TRIALS_LARGE/MED removed: declared but never referenced.
+ * run_benchmark uses NUM_TRIALS (1000) for the loop, the mean, AND the
+ * variance divisor, so all stddevs are over the same n. */
 #define NUM_TRIALS      1000             /* iterations per test */
 
 /* Payload sizes to test (Task B) */
@@ -118,9 +123,13 @@ static benchmark_result_t run_benchmark(int fd, int payload_size)
 /* ─────────────────────────────────────────
  * Main
  * ───────────────────────────────────────── */
-int main(void)
+int main(int argc, char **argv)
 {
     int fd;
+    const char *dev = (argc > 1) ? argv[1] : SPI_DEVICE_DEFAULT;
+    const char *base = strrchr(dev, '/');
+    snprintf(csv_path, sizeof(csv_path), "/tmp/jitter_%s.csv",
+             base ? base + 1 : dev);
 
     /* Pin to CPU 0, real-time priority, lock memory: suppress scheduling jitter
        so the measured stddev reflects driver/PIO service, not preemption noise. */
@@ -134,7 +143,7 @@ int main(void)
         perror("warning: mlockall failed (continuing)");
 
     /* Open SPI device */
-    fd = open(SPI_DEVICE, O_RDWR);
+    fd = open(dev, O_RDWR);
     if (fd < 0) {
         perror("Failed to open SPI device");
         return 1;
@@ -147,25 +156,51 @@ int main(void)
         if (ioctl(fd, SPI_IOC_WR_MODE, &mode) != 0)
             perror("warning: could not set SPI_LOOP (continuing)");
     }
-    uint32_t spd = SPI_SPEED_HZ;
-    if (ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &spd) != 0)
+    /* REQUEST, THEN READ BACK. The xilinx_spi driver ACKNOWLEDGES and IGNORES
+     * speed requests (C_SCK_RATIO fixed at synthesis). Printing the request as
+     * if it were the achieved rate is what produced the false "SCK: 1 MHz" in
+     * commit 86bd14c while the wire actually ran near 15.6 MHz. */
+    uint32_t spd_req = SPI_SPEED_HZ, spd_rb = 0;
+    if (ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &spd_req) != 0)
         perror("warning: could not set max speed (continuing)");
+    if (ioctl(fd, SPI_IOC_RD_MAX_SPEED_HZ, &spd_rb) != 0)
+        perror("warning: could not read back max speed (continuing)");
+    uint8_t mode_rb = 0;
+    if (ioctl(fd, SPI_IOC_RD_MODE, &mode_rb) != 0)
+        perror("warning: could not read back mode (continuing)");
 
     printf("SPI Linux Benchmark Results\n");
     printf("============================\n");
-    printf("Device: %s\n", SPI_DEVICE);
-    printf("Speed:  %d Hz\n", SPI_SPEED_HZ);
+    printf("Device: %s\n", dev);
+    printf("Speed requested: %u Hz\n", (unsigned)SPI_SPEED_HZ);
+    printf("Speed readback:  %u Hz%s\n", (unsigned)spd_rb,
+           (spd_rb != (uint32_t)SPI_SPEED_HZ) ? "   <-- DIFFERS FROM REQUEST" : "");
+    printf("Mode readback:   0x%02x (SPI_LOOP %s)\n", mode_rb,
+           (mode_rb & SPI_LOOP) ? "SET" : "NOT SET -- loopback must be in hardware");
+    printf("NOTE: the authoritative rate is the achieved Mbps printed at the end,\n");
+    printf("      NOT the request and NOT the ioctl readback.\n");
     printf("Trials: %d per payload size\n\n", NUM_TRIALS);
     printf("%-10s %-12s %-12s %-12s %-12s\n",
            "Bytes", "Min(us)", "Max(us)", "Avg(us)", "Stddev(us)");
     printf("──────────────────────────────────────────────────────\n");
 
-    FILE *csv = fopen(CSV_PATH, "w");
-    if (csv) fprintf(csv, "bytes,min_us,max_us,avg_us,stddev_us\n");
+    FILE *csv = fopen(csv_path, "w");
+    if (csv) {
+        fprintf(csv, "# device=%s\n", dev);
+        fprintf(csv, "# speed_requested_hz=%u\n", (unsigned)SPI_SPEED_HZ);
+        fprintf(csv, "# speed_readback_hz=%u\n", (unsigned)spd_rb);
+        fprintf(csv, "# mode_readback=0x%02x spi_loop=%d\n",
+                mode_rb, (mode_rb & SPI_LOOP) ? 1 : 0);
+        fprintf(csv, "# CONTROLLER NOT ASSERTED BY THIS FILE. Verify which\n");
+        fprintf(csv, "# controller this spidev node maps to before labeling.\n");
+        fprintf(csv, "bytes,min_us,max_us,avg_us,stddev_us\n");
+    }
     else perror("warning: could not open CSV (stdout only)");
 
+    double big_avg_us = 0.0;   /* captured in the sweep for the achieved-rate check */
+
     /* Run benchmark for each payload size */
-    for (int p = 0; p < NUM_PAYLOADS; p++) {
+    for (size_t p = 0; p < NUM_PAYLOADS; p++) {
         int size = payload_sizes[p];
         benchmark_result_t r = run_benchmark(fd, size);
 
@@ -176,8 +211,30 @@ int main(void)
                     size, r.min_us, r.max_us, r.avg_us, r.stddev_us);
             fflush(csv);
         }
+        if (p == NUM_PAYLOADS - 1) big_avg_us = r.avg_us;
     }
 
+    /* Achieved rate from the largest payload: measured wire time cannot lie,
+     * unlike the request or the ioctl readback. This is the check that would
+     * have caught the July mislabeling on the day it happened. */
+    {
+        int big = payload_sizes[NUM_PAYLOADS - 1];
+        if (big_avg_us <= 0.0) {
+            printf("\nACHIEVED: unavailable (sweep did not complete)\n");
+        } else {
+        double mbps = (big * 8.0) / big_avg_us;
+        printf("\nACHIEVED: %d B in %.2f us = %.2f Mbps\n", big, big_avg_us, mbps);
+        printf("  (Mbps is payload throughput, NOT SCK. Per-word framing and\n");
+        printf("   driver overhead make the ratio non-obvious -- e.g. 10.88 Mbps\n");
+        printf("   was measured on a 15.6 MHz SCK. Compare Mbps between captures;\n");
+        printf("   read SCK from CRL_APB or a scope if you need the clock.)\n");
+        if (csv) fprintf(csv, "# achieved_mbps_at_%dB=%.2f\n", big, mbps);
+        if (mbps > (SPI_SPEED_HZ / 1e6) * 1.5)
+            printf("WARNING: achieved rate FAR EXCEEDS request -- the driver ignored\n"
+                   "         the speed request. Do NOT label this capture with the\n"
+                   "         requested rate.\n");
+        }
+    }
     if (csv) fclose(csv);
     close(fd);
     return 0;
