@@ -121,9 +121,33 @@ static benchmark_result_t run_benchmark(int fd, int payload_size)
     double sum = 0.0;
     benchmark_result_t result = {0};
 
+    /* D2: allocation can fail at 65536 B, more readily with mlockall
+     * active. Unchecked, the fill loop below would write through NULL.
+     * Emit a visibly NOT-MEASURED row rather than a plausible one. */
+    if (!tx || !rx) {
+        free(tx); free(rx);        /* free(NULL) is defined */
+        result.avg_us = result.min_us = result.max_us = result.stddev_us = -1.0;
+        result.cpu_pct = -1.0;
+        result.nvcsw = result.nivcsw = -1;
+        result.first_errno = ENOMEM;
+        return result;
+    }
+
     /* Fill tx buffer with test pattern */
     for (int i = 0; i < payload_size; i++)
         tx[i] = (uint8_t)(i & 0xFF);
+
+    /* D2: PRE-FAULT rx. tx is faulted in by the fill loop above; rx's
+     * first write would otherwise be inside trial 0 -- 16 pages at 64 KB,
+     * charged to ru_stime and inflating max_us, a published jitter stat.
+     * mlockall(MCL_FUTURE) may cover this, but it perror()s and continues
+     * on failure and fails outright when not run as root, which would
+     * make the jitter numbers depend on privilege level.
+     * DELIBERATE MEASUREMENT CHOICE: first-touch faulting is a real cost
+     * a naive Linux program pays, but the comparison target is bare-metal,
+     * which has no demand paging at all. SOW 2.a asks for the KERNEL SPI
+     * STACK overhead, not the allocator's. Faults are excluded on purpose. */
+    memset(rx, 0, payload_size);
 
     /* ── Run trials ── */
     struct rusage ru0, ru1;
@@ -186,6 +210,8 @@ static benchmark_result_t run_benchmark(int fd, int payload_size)
         result.avg_us = result.min_us = result.max_us = result.stddev_us = -1.0;
     }
 
+    free(tx);
+    free(rx);
     return result;
 }
 
