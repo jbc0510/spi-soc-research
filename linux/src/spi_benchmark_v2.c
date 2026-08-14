@@ -36,6 +36,7 @@
 #include <sys/resource.h>
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
+#include <sys/utsname.h>
 
 /* CSV path is DERIVED FROM THE DEVICE at runtime -- see main().
  * It was previously hardcoded to "emio_internal_results.csv", which asserted
@@ -251,6 +252,34 @@ int main(int argc, char **argv)
     snprintf(csv_path, sizeof(csv_path), "/tmp/spi_bench_%s_%s.csv",
              base ? base + 1 : dev, stamp);
 
+    /* D4: capture-environment provenance. Step 4 varies the kernel
+     * preemption model; uts.version carries the PREEMPT / PREEMPT_RT
+     * string, so WITHOUT IT a step-2 capture cannot be attributed to a
+     * kernel configuration after the fact. That is exactly the position
+     * emio_results.csv left us in. uid records whether SCHED_FIFO and
+     * mlockall COULD have succeeded -- both perror() and continue. */
+    struct utsname uts;
+    char host[64] = "unknown";
+    if (uname(&uts) != 0) {
+        snprintf(uts.release, sizeof(uts.release), "unknown");
+        snprintf(uts.version, sizeof(uts.version), "unknown");
+    }
+    if (gethostname(host, sizeof(host)) != 0)
+        snprintf(host, sizeof(host), "unknown");
+    host[sizeof(host) - 1] = '\0';   /* gethostname may not NUL-terminate */
+
+    /* Live read. Two committed docs disagree about this value
+     * (docs/notes/block_design_review.md says 65536; results/
+     * PAYLOAD_CEILING_FINDINGS.md says boot.scr hardcodes 1048576).
+     * Neither is authoritative -- the running kernel is. Same principle
+     * as reading CRL_APB rather than trusting psu_init.tcl. */
+    long bufsiz = -1;
+    FILE *bf = fopen("/sys/module/spidev/parameters/bufsiz", "r");
+    if (bf) {
+        if (fscanf(bf, "%ld", &bufsiz) != 1) bufsiz = -1;
+        fclose(bf);
+    }
+
     /* Pin to CPU 0, real-time priority, lock memory: suppress scheduling jitter
        so the measured stddev reflects driver/PIO service, not preemption noise. */
     cpu_set_t set; CPU_ZERO(&set); CPU_SET(0, &set);
@@ -299,6 +328,21 @@ int main(int argc, char **argv)
            (mode_rb & SPI_LOOP) ? "SET" : "NOT SET -- loopback must be in hardware");
     printf("NOTE: the authoritative rate is the achieved Mbps printed at the end,\n");
     printf("      NOT the request and NOT the ioctl readback.\n");
+    printf("Kernel: %s / %s\n", uts.release, uts.version);
+    printf("Host: %s   uid=%u\n", host, (unsigned)getuid());
+    if (bufsiz > 0)
+        printf("spidev bufsiz: %ld B\n", bufsiz);
+    else
+        printf("spidev bufsiz: UNKNOWN (could not read sysfs)\n");
+    /* PREDICTIVE: fires BEFORE the sweep. After it, the warning would
+     * cost the ~18 minutes it exists to save. Suppressed when bufsiz is
+     * unknown -- warning on a value we do not have is the error this
+     * project keeps correcting. */
+    if (bufsiz > 0 && payload_sizes[NUM_PAYLOADS - 1] > bufsiz)
+        printf("WARNING: largest payload %d B EXCEEDS spidev bufsiz %ld B.\n"
+               "         Those transfers will fail with EMSGSIZE. Raise\n"
+               "         spidev.bufsiz on the kernel command line first.\n",
+               payload_sizes[NUM_PAYLOADS - 1], bufsiz);
     printf("Trials: %d per payload size\n\n", NUM_TRIALS);
     printf("%-10s %-12s %-12s %-12s %-12s\n",
            "Bytes", "Min(us)", "Max(us)", "Avg(us)", "Stddev(us)");
@@ -307,6 +351,12 @@ int main(int argc, char **argv)
     FILE *csv = fopen(csv_path, "w");
     if (csv) {
         fprintf(csv, "# capture_utc=%s\n", stamp);
+        fprintf(csv, "# uname_r=%s\n", uts.release);
+        fprintf(csv, "# uname_v=%s\n", uts.version);
+        fprintf(csv, "# hostname=%s\n", host);
+        fprintf(csv, "# uid=%u\n", (unsigned)getuid());
+        if (bufsiz > 0) fprintf(csv, "# spidev_bufsiz=%ld\n", bufsiz);
+        else            fprintf(csv, "# spidev_bufsiz=UNKNOWN\n");
         fprintf(csv, "# device=%s\n", dev);
         fprintf(csv, "# speed_requested_hz=%u\n", (unsigned)SPI_SPEED_HZ);
         fprintf(csv, "# speed_readback_hz=%u\n", (unsigned)spd_rb);
