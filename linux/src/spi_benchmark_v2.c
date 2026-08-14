@@ -1,11 +1,19 @@
 /*
- * SPI Performance Benchmark - Linux OS Side (jitter re-capture build)
+ * SPI Performance Benchmark - Linux OS Side (v2, hardened harness)
  * Author: Jerry Conway (jbc0510)
  * Hardware: Xilinx ZCU102 (ZynqMP PS), spidev
  *
+ * THIS IS THE HARNESS. Renamed from spi_benchmark_jitter.c 2026-08-14 --
+ * the name understated it: this is the general Linux benchmark, not a
+ * jitter-only build. Supersedes spi_benchmark.c (hardcoded device, no
+ * speed readback, no achieved-rate check), which is retired.
+ *
  * Internal-loopback latency + REAL per-trial jitter (stddev) capture.
  * Matched to paper method: CLOCK_MONOTONIC_RAW, SCHED_FIFO, CPU0 pin, mlockall.
- * Writes a proper CSV (bytes,min_us,max_us,avg_us,stddev_us).
+ *
+ * CSV: bytes,min_us,max_us,avg_us,stddev_us
+ * Device selection is argv[1]; CSV path is derived from it. Neither
+ * asserts a controller -- verify the node mapping before labeling.
  */
 #define _GNU_SOURCE
 
