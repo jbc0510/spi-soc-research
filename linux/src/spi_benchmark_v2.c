@@ -12,7 +12,10 @@
  * Matched to paper method: CLOCK_MONOTONIC_RAW, SCHED_FIFO, CPU0 pin, mlockall.
  *
  * CSV: bytes,min_us,max_us,avg_us,stddev_us,
- *      cpu_us,wall_us,cpu_pct,nvcsw,nivcsw
+ *      cpu_us,wall_us,cpu_pct,nvcsw,nivcsw,err_count,first_errno
+ * err_count/first_errno added 2026-08-14 (D1). Failed ioctls are excluded
+ * from the timing stats; a row with err_count==NUM_TRIALS carries -1 in
+ * every timing column. first_errno 0 means no failure observed.
  * CPU columns added 2026-08-14 for SOW 2.e (never previously
  * measured). cpu_pct is PROCESS CPU over the trial loop only.
  * Device selection is argv[1]; CSV path is derived from it. Neither
@@ -73,6 +76,13 @@ typedef struct {
     double cpu_pct;     /* 100 * cpu_us / wall_us */
     long   nvcsw;       /* voluntary context switches */
     long   nivcsw;      /* involuntary -- the OS-jitter mechanism */
+    /* D1: ioctl outcome accounting. A failed SPI_IOC_MESSAGE returns fast
+     * and would otherwise be timed as a plausible short latency. Failed
+     * trials are EXCLUDED from min/max/avg/stddev. first_errno is the only
+     * column where 0 legitimately means "none observed" -- errno is never
+     * 0 on failure, so no sentinel is needed. */
+    int    err_count;   /* trials where ioctl returned < 0 */
+    int    first_errno; /* errno of the first failure; 0 = no failure */
 } benchmark_result_t;
 
 /* ─────────────────────────────────────────
@@ -119,13 +129,22 @@ static benchmark_result_t run_benchmark(int fd, int payload_size)
     struct rusage ru0, ru1;
     getrusage(RUSAGE_SELF, &ru0);
     double wall0 = get_time_us();
+    int n_ok = 0;
     for (int t = 0; t < NUM_TRIALS; t++) {
         double start = get_time_us();
-        spi_transfer(fd, tx, rx, payload_size);
+        int rc = spi_transfer(fd, tx, rx, payload_size);
         double end = get_time_us();
 
-        latencies[t] = end - start;
-        sum += latencies[t];
+        if (rc < 0) {
+            if (result.err_count == 0) result.first_errno = errno;
+            result.err_count++;
+            continue;   /* a failed ioctl's elapsed time is not a latency */
+        }
+        /* COMPACTED index: n_ok, not t. The stats loop below reads
+         * latencies[0 .. n_ok-1]; indexing by t would leave holes. */
+        latencies[n_ok] = end - start;
+        sum += latencies[n_ok];
+        n_ok++;
     }
     double wall1 = get_time_us();
     getrusage(RUSAGE_SELF, &ru1);
@@ -141,19 +160,31 @@ static benchmark_result_t run_benchmark(int fd, int payload_size)
     result.nvcsw  = ru1.ru_nvcsw  - ru0.ru_nvcsw;
     result.nivcsw = ru1.ru_nivcsw - ru0.ru_nivcsw;
 
-    /* ── Calculate statistics ── */
-    result.avg_us = sum / NUM_TRIALS;
-    result.min_us = latencies[0];
-    result.max_us = latencies[0];
+    /* ── Calculate statistics ──
+     * Divisor is n_ok, NOT NUM_TRIALS. On a clean run they are equal, so
+     * no previously published number moves; if any trial failed, dividing
+     * by NUM_TRIALS would average real values over a phantom count. */
+    if (n_ok > 0) {
+        result.avg_us = sum / n_ok;
+        result.min_us = latencies[0];
+        result.max_us = latencies[0];
 
-    double variance = 0.0;
-    for (int t = 0; t < NUM_TRIALS; t++) {
-        if (latencies[t] < result.min_us) result.min_us = latencies[t];
-        if (latencies[t] > result.max_us) result.max_us = latencies[t];
-        double diff = latencies[t] - result.avg_us;
-        variance += diff * diff;
+        double variance = 0.0;
+        for (int i = 0; i < n_ok; i++) {
+            if (latencies[i] < result.min_us) result.min_us = latencies[i];
+            if (latencies[i] > result.max_us) result.max_us = latencies[i];
+            double diff = latencies[i] - result.avg_us;
+            variance += diff * diff;
+        }
+        result.stddev_us = __builtin_sqrt(variance / n_ok);
+    } else {
+        /* Every trial failed. Timing columns get the -1 sentinel, per the
+         * nvcsw convention: -1 means NOT MEASURED, 0 would read as
+         * "measured, and it was zero". The CPU/rusage columns above are
+         * NOT sentinelled -- they are a true measurement of what the
+         * process did, even though every transfer failed. */
+        result.avg_us = result.min_us = result.max_us = result.stddev_us = -1.0;
     }
-    result.stddev_us = __builtin_sqrt(variance / NUM_TRIALS);
 
     return result;
 }
@@ -234,7 +265,12 @@ int main(int argc, char **argv)
         fprintf(csv, "# cpu_pct is PROCESS CPU over the trial loop only\n");
         fprintf(csv, "# (getrusage RUSAGE_SELF). Softirq and other-thread\n");
         fprintf(csv, "# kernel work do NOT appear -- it under-counts system cost.\n");
-        fprintf(csv, "bytes,min_us,max_us,avg_us,stddev_us,cpu_us,wall_us,cpu_pct,nvcsw,nivcsw\n");
+        fprintf(csv, "# err_count = trials whose ioctl returned < 0; those\n");
+        fprintf(csv, "# trials are EXCLUDED from min/max/avg/stddev. A row\n");
+        fprintf(csv, "# with -1 timing columns means every trial failed.\n");
+        fprintf(csv, "# first_errno: 0 means NO FAILURE (errno is never 0 on\n");
+        fprintf(csv, "# failure), so 0 needs no sentinel here.\n");
+        fprintf(csv, "bytes,min_us,max_us,avg_us,stddev_us,cpu_us,wall_us,cpu_pct,nvcsw,nivcsw,err_count,first_errno\n");
     }
     else perror("warning: could not open CSV (stdout only)");
 
