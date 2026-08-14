@@ -27,7 +27,7 @@ This version:
   * FAILS LOUDLY if a requested file is missing.  No synthetic fallback. Ever.
 
 Usage:
-  ./compare_spi.py [--dir results/] [--sck-axi 6250000] [--sck-ps 50000000]
+  ./compare_spi.py [--dir results/] --sck-axi 15625000 --sck-ps 976600
                    [--no-plot]
 
 Author: Jerry Conway (jbc0510) — corrected analysis pipeline
@@ -167,7 +167,7 @@ def print_table(data, sck):
                           f"or timing under-captures.")
 
 
-def headline(data):
+def headline(data, sck=None):
     print("\n" + "=" * 92)
     print("  HEADLINE METRICS (report these two separately — they answer different questions)")
     print("=" * 92)
@@ -181,7 +181,9 @@ def headline(data):
             r = ps["avg_us"] / ax["avg_us"]
             print(f"  [OS overhead, {small} B latency]  {INTERFACES[ps_key][1]} "
                   f"{ps['avg_us']:.2f} us  vs  AXI {ax['avg_us']:.2f} us  ->  {r:.2f}x")
-    print("    ^ wire time negligible at 1 B, so this isolates software/path cost.")
+    print("    ^ CLOCK-CONFOUNDED. At 1 B, PS wire time is 8.2 us and AXI 0.5 us")
+    print("      (PS 0.9766 MHz vs AXI 15.625 MHz), so 7.7 us of this gap is clock,")
+    print("      not software. See results/LINUX_JITTER_PROVENANCE.md.")
 
     # 2) Large-payload throughput ratio: confounded by per-interface SCK.
     sizes = sorted({s for d in data.values() for s in d})
@@ -191,11 +193,15 @@ def headline(data):
         psb = data.get(ps_key, {}).get(big)
         if psb and axb:
             tps, tax = mbps(big, psb["avg_us"]), mbps(big, axb["avg_us"])
-            if tps > 0:
+            if tps > 0 and not (sck and sck.get("axi") and sck.get(ps_key)):
+                print(f"  [throughput, {big} B]  SUPPRESSED: pass --sck-axi and")
+                print(f"    --sck-ps so the ratio can be normalised against clock.")
+            elif tps > 0:
+                cr = sck["axi"] / sck[ps_key]
                 print(f"  [throughput, {big} B]  {INTERFACES[ps_key][1]} {tps:.2f} Mbps "
                       f"vs AXI {tax:.2f} Mbps  ->  {tax/tps:.2f}x")
-    print("    ^ depends on each interface's actual SCK; NOT a controlled-clock result")
-    print("      until per-interface rates are confirmed (clean-harness readback + scope).")
+                print(f"    ^ clock ratio alone is {cr:.2f}x; measured {tax/tps:.2f}x is")
+                print(f"      {(tax/tps)/cr*100:.0f}% of it. NOT a software advantage.")
 
 
 def integrity_checks(data):
@@ -358,7 +364,7 @@ def main():
         sck["mio"] = sck["emio"] = sck["baremetal"] = args.sck_ps
 
     print_table(data, sck)
-    headline(data)
+    headline(data, sck)
     integrity_checks(data)
     write_csv(data, sck, os.path.join(d, args.csv_out))
 
