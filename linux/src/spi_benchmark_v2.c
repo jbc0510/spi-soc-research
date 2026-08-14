@@ -236,8 +236,20 @@ int main(int argc, char **argv)
     int fd;
     const char *dev = (argc > 1) ? argv[1] : SPI_DEVICE_DEFAULT;
     const char *base = strrchr(dev, '/');
-    snprintf(csv_path, sizeof(csv_path), "/tmp/jitter_%s.csv",
-             base ? base + 1 : dev);
+
+    /* D5: the old path was /tmp/jitter_<dev>.csv. Two problems: the name
+     * said "jitter" after the harness was renamed away from jitter-only
+     * (f4e8237), and a re-run SILENTLY DESTROYED the previous capture --
+     * no trace, no backup. The timestamp makes every run a distinct file
+     * and is ALSO written into the header, so a file that is later
+     * renamed by hand still carries its own origin. */
+    time_t now = time(NULL);
+    struct tm tm_utc;
+    char stamp[32] = "unknown";
+    if (gmtime_r(&now, &tm_utc))
+        strftime(stamp, sizeof(stamp), "%Y%m%d_%H%M%S", &tm_utc);
+    snprintf(csv_path, sizeof(csv_path), "/tmp/spi_bench_%s_%s.csv",
+             base ? base + 1 : dev, stamp);
 
     /* Pin to CPU 0, real-time priority, lock memory: suppress scheduling jitter
        so the measured stddev reflects driver/PIO service, not preemption noise. */
@@ -294,6 +306,7 @@ int main(int argc, char **argv)
 
     FILE *csv = fopen(csv_path, "w");
     if (csv) {
+        fprintf(csv, "# capture_utc=%s\n", stamp);
         fprintf(csv, "# device=%s\n", dev);
         fprintf(csv, "# speed_requested_hz=%u\n", (unsigned)SPI_SPEED_HZ);
         fprintf(csv, "# speed_readback_hz=%u\n", (unsigned)spd_rb);
