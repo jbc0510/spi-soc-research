@@ -95,9 +95,28 @@ Unsupported Features: "Narrow bursts in enhanced mode (only the last
 ### A5. NEW CONSTRAINT — INCR>1 and WRAP unsupported in enhanced mode
 Sim finding #3 (INCR walked 0x68..0x7c then WRAPPED into 0x00,04,08,
 clobbering control regs) was captured against a LEGACY/Lite QSPI. In
-enhanced mode INCR>1 faults at the slave instead. The finding stays valid
-as a Lite-path result but the mechanism differs in the new topology ->
-RE-CAPTURE the negative control; do not cite the old waveform for it.
+enhanced mode PG153 implies INCR>1 faults at the slave. IT DOES NOT.
+
+RE-CAPTURED 2026-08-10 on the v3 (axi_interconnect) topology.
+Source: hardware/logs/r6sim_1e_20260810_1106.log
+
+  PHASE_A (keyhole bit5=1): done=1 OCY=15 addr_held=1  (L505, L507)
+  PHASE_B (keyhole bit5=0): done=1 OCY=5  addr_held=0  (L562-L564)
+  Both phases: aw=2, w=16 beats issued, MON M00.B resp=0 (OKAY),
+  CDMASR=0x00001002 (done, no error bit).
+
+The master sees SUCCESS in both cases. Under INCR only 5 of 16 beats
+reached the TX FIFO and NOTHING at the AXI level reports the loss --
+no fault, no error response, no status flag. Where the other 11 beats
+went is NOT determinable from this log; the count is measured, the
+mechanism is not. Do not assert a mechanism without a waveform.
+
+This is a documentation-vs-silicon discrepancy of the same class as the
+SmartConnect FIXED-burst block and the PL0 clock: the authoritative
+document was wrong and only measurement caught it.
+
+The original Lite-path finding stays valid as a Lite-path result.
+RE-CAPTURE directive DISCHARGED.
 
 ### A6. NEW CONSTRAINT — no simultaneous read+write in enhanced mode
 "Simultaneous read and write transactions in enhanced mode" unsupported;
