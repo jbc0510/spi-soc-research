@@ -197,7 +197,10 @@ named `axi_internal_results.csv` -- it reached the same node and is the same
 path. Plausible; not proven. No waveform, no header, no log.
 
 **Disposition.** Contents left byte-for-byte unmodified (md5
-`178e9e7e0afcb12cdd6e28c553475fa0`); it is evidence. Renamed in a following
-commit so the filename stops asserting a disproven controller, per the
-precedent of `0dc3d8f`. It was also a graft donor (`d109780`), retracted by
+`178e9e7e0afcb12cdd6e28c553475fa0`); it is evidence. Renamed to
+`results/unidentified_internal_results_20260708_1319.csv` in `e89bb63` so
+the filename stops asserting a disproven controller, per the precedent of
+`0dc3d8f`. Every reference to `mio_internal_results.csv` in this section
+names the file AS IT WAS THEN; the data is unchanged and the md5 above
+still matches. It was also a graft donor (`d109780`), retracted by
 `0dc3d8f` along with the emio graft.
