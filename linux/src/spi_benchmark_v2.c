@@ -17,7 +17,7 @@
  * from the timing stats; a row with err_count==NUM_TRIALS carries -1 in
  * every timing column. first_errno 0 means no failure observed.
  * CPU columns added 2026-08-14 for SOW 2.e (never previously
- * measured). cpu_pct is PROCESS CPU over the trial loop only.
+ * measured). cpu_pct is THREAD CPU over the trial loop only.
  * Device selection is argv[1]; CSV path is derived from it. Neither
  * asserts a controller -- verify the node mapping before labeling.
  */
@@ -68,10 +68,14 @@ typedef struct {
     double stddev_us;   /* jitter measurement */
     /* SOW 2.e CPU utilisation. Measured across the TRIAL LOOP ONLY --
      * not the calloc/fill/variance work, which is not part of what
-     * avg_us measures. cpu_pct is PROCESS CPU (getrusage RUSAGE_SELF):
-     * softirq and other-thread kernel work do NOT appear. It therefore
-     * UNDER-COUNTS true system cost. Label accordingly. */
-    double cpu_us;      /* ru_utime + ru_stime delta, microseconds */
+     * avg_us measures. cpu_pct is THREAD CPU (CLOCK_THREAD_CPUTIME_ID),
+     * NOT process CPU -- a change of meaning, not just resolution. The
+     * harness is single-threaded so the two are identical today, but a
+     * future thread's work will not leak into this column.
+     * Hardirq and softirq time are never charged to the task by either
+     * interface, so this still UNDER-COUNTS true system cost. Label
+     * accordingly. */
+    double cpu_us;      /* CLOCK_THREAD_CPUTIME_ID delta, microseconds */
     double wall_us;     /* CLOCK_MONOTONIC_RAW delta over same interval */
     double cpu_pct;     /* 100 * cpu_us / wall_us */
     long   nvcsw;       /* voluntary context switches */
@@ -151,7 +155,17 @@ static benchmark_result_t run_benchmark(int fd, int payload_size)
 
     /* ── Run trials ── */
     struct rusage ru0, ru1;
+    struct timespec c0, c1;
+    /* D3: getrusage's ru_utime/ru_stime are TICK-QUANTIZED unless the
+     * kernel has CONFIG_VIRT_CPU_ACCOUNTING_GEN. At 250 Hz that is a 4 ms
+     * floor; the 1 B payload runs ~38.5 ms of loop, about 10 ticks, so
+     * +/-10% quantization on the smallest and most interesting payload.
+     * CLOCK_THREAD_CPUTIME_ID reads task_sched_runtime at ns resolution.
+     * getrusage is RETAINED for nvcsw/nivcsw -- no other API supplies
+     * them. Read order is rusage-outermost so its own cost falls outside
+     * the CPU interval, not inside it. */
     getrusage(RUSAGE_SELF, &ru0);
+    clock_gettime(CLOCK_THREAD_CPUTIME_ID, &c0);
     double wall0 = get_time_us();
     int n_ok = 0;
     for (int t = 0; t < NUM_TRIALS; t++) {
@@ -171,14 +185,13 @@ static benchmark_result_t run_benchmark(int fd, int payload_size)
         n_ok++;
     }
     double wall1 = get_time_us();
+    clock_gettime(CLOCK_THREAD_CPUTIME_ID, &c1);
     getrusage(RUSAGE_SELF, &ru1);
 
     result.wall_us = wall1 - wall0;
     result.cpu_us =
-        ((double)(ru1.ru_utime.tv_sec - ru0.ru_utime.tv_sec) * 1e6) +
-        ((double)(ru1.ru_utime.tv_usec - ru0.ru_utime.tv_usec)) +
-        ((double)(ru1.ru_stime.tv_sec - ru0.ru_stime.tv_sec) * 1e6) +
-        ((double)(ru1.ru_stime.tv_usec - ru0.ru_stime.tv_usec));
+        ((double)(c1.tv_sec - c0.tv_sec) * 1e6) +
+        ((double)(c1.tv_nsec - c0.tv_nsec) / 1e3);
     result.cpu_pct = (result.wall_us > 0.0)
                    ? (100.0 * result.cpu_us / result.wall_us) : -1.0;
     result.nvcsw  = ru1.ru_nvcsw  - ru0.ru_nvcsw;
@@ -288,9 +301,11 @@ int main(int argc, char **argv)
                 mode_rb, (mode_rb & SPI_LOOP) ? 1 : 0);
         fprintf(csv, "# CONTROLLER NOT ASSERTED BY THIS FILE. Verify which\n");
         fprintf(csv, "# controller this spidev node maps to before labeling.\n");
-        fprintf(csv, "# cpu_pct is PROCESS CPU over the trial loop only\n");
-        fprintf(csv, "# (getrusage RUSAGE_SELF). Softirq and other-thread\n");
-        fprintf(csv, "# kernel work do NOT appear -- it under-counts system cost.\n");
+        fprintf(csv, "# cpu_pct is THREAD CPU over the trial loop only\n");
+        fprintf(csv, "# (CLOCK_THREAD_CPUTIME_ID, ns resolution -- NOT the\n");
+        fprintf(csv, "# tick-quantized getrusage utime/stime). Hardirq and\n");
+        fprintf(csv, "# softirq time are never charged to the task, so this\n");
+        fprintf(csv, "# under-counts true system cost.\n");
         fprintf(csv, "# err_count = trials whose ioctl returned < 0; those\n");
         fprintf(csv, "# trials are EXCLUDED from min/max/avg/stddev. A row\n");
         fprintf(csv, "# with -1 timing columns means every trial failed.\n");
