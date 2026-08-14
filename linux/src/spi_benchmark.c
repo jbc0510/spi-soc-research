@@ -1,12 +1,33 @@
 /*
- * SPI Performance Benchmark - Linux OS Side
+ * ===================================================================
+ * RETIRED 2026-08-14 -- DO NOT USE FOR NEW CAPTURES.
+ * Superseded by spi_benchmark_v2.c.
+ * ===================================================================
+ *
+ * SPI Performance Benchmark - Linux OS Side (v1)
  * Author: Jerry Conway (jbc0510)
- * Hardware: Xilinx ZC702 (Zynq-7000 PS)
- * 
- * Measures SPI transaction latency across varying
- * payload sizes using Linux spidev driver interface.
- * 
- * Research Tasks: A, B, C, E
+ *
+ * RETAINED AS EVIDENCE, NOT FOR REUSE. This is the generating source
+ * for results/emio_results.csv and results/mio_results.csv (July 2026).
+ * Those datasets have UNVERIFIED CONTROLLER PROVENANCE and this file is
+ * why:
+ *   - hardcoded device node; no argv selection
+ *   - no SPI_IOC_RD_MAX_SPEED_HZ / RD_MODE readback
+ *   - prints its own speed REQUEST as if it were a measurement
+ *   - no achieved-Mbps check against measured wire time
+ *   - header below originally claimed "Xilinx ZC702 (Zynq-7000 PS)".
+ *     That is the PREDECESSOR board. All captures in this campaign are
+ *     ZCU102 / Zynq UltraScale+ MPSoC. The header asserted hardware the
+ *     code never verified -- the same failure class as the device-node
+ *     literal.
+ *
+ * See results/LINUX_JITTER_PROVENANCE.md for the full correction record.
+ *
+ * Original description:
+ *   Measures SPI transaction latency across varying payload sizes using
+ *   the Linux spidev driver interface.
+ *   Research Tasks: A, B, C, E  (pre-dates the SOW 2.a/2.b/2.c/2.e
+ *   lettering; the mapping is direct.)
  */
 
 #include <stdio.h>
