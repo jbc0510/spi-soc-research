@@ -140,3 +140,56 @@ NOT documented in PG153 -> discover them with probe_qspi_enhanced.tcl
 before writing the delta. Docs answered the functional questions; they do
 not tell us Vivado's naming.
 
+
+---
+
+## MEASURED (2026-08-10) — PHASE_C backpressure, and the SPE=1 requirement
+
+Sections A1-A8 above are PG153-derived. This section is measured.
+Source: hardware/logs/r6sim_1e_20260810_1106.log (the final and only
+complete v3 simulation run). Testbench: hardware/sim/tb_keyhole.sv.
+
+### M1. Backpressure is real and hard, at exactly C_FIFO_DEPTH
+tb_keyhole.sv:92 -- run_phase(1, "PHASE_C", 2048), commented
+"512 SPI bytes into a 256B FIFO". BTT=2048 AXI bytes / 4 bytes per beat
+= 512 W beats intended.
+
+MEASURED: exactly 256 W beats accepted (count over L594-L4062), then the
+CDMA stalls. 256 == C_FIFO_DEPTH exactly.
+
+What the log SHOWS: the master issues 256 W beats and then issues no
+more. What FOLLOWS from AXI backpressure semantics (inference, one step
+from the log): nothing is dropped -- WREADY deasserts and the beats are
+withheld rather than lost. The loss-free claim has not been separately
+measured; a DRR/occupancy readback after re-enabling SPE would confirm it.
+
+### M2. The stall is a DEADLOCK, not slow progress
+The run terminates on a VIP watchdog Fatal, NOT a clean $finish:
+
+  L4062  Forward progress timeout, 513905 ns, 2 pending AR commands,
+         no RDATA+RLAST in 50000 cycles.
+
+Mechanism, readable end to end in the log: the write side is blocked on
+a full TX FIFO with SPE=0, so no drain occurs; the CDMA therefore cannot
+retire its outstanding BRAM reads; the read-side VIP times out. The last
+~3400 lines are the testbench polling CDMASR at 0xa0010004 every 320 ns
+and reading 0x00000000 -- the done bit never sets.
+
+READ THIS BEFORE JUDGING THE LOG: PHASE_A and PHASE_B completed normally
+and printed their results (L505-L564) BEFORE PHASE_C deadlocked. The
+Fatal does not invalidate them. PHASE_C deadlocking IS the result.
+
+### M3. HARD REQUIREMENT — SPICR.SPE=1 before kicking the CDMA
+Any payload exceeding C_FIFO_DEPTH hangs SILENTLY with SPE=0: no error,
+no fault, no status bit, just a stall until something times out. The
+benchmark MUST enable SPE before starting the DMA.
+
+Consequence for SOW 2.b: with SPE=1 the CDMA self-throttles to SCK, so
+DMA throughput will be SCK-bound and roughly equal to PIO. DMA's
+contribution is CPU OFFLOAD and DETERMINISM, not throughput.
+
+### M4. Burst directions confirmed on the wire
+PHASE_C monitor output shows the intended asymmetry:
+  MON CDMA.AW addr=0xa0000068 len=15 burst=0   (FIXED, into DTR)
+  MON CDMA.AR addr=0x00000080 len=15 burst=1   (INCR, out of BRAM)
+This is the keyhole topology working as designed.
