@@ -11,7 +11,10 @@
  * Internal-loopback latency + REAL per-trial jitter (stddev) capture.
  * Matched to paper method: CLOCK_MONOTONIC_RAW, SCHED_FIFO, CPU0 pin, mlockall.
  *
- * CSV: bytes,min_us,max_us,avg_us,stddev_us
+ * CSV: bytes,min_us,max_us,avg_us,stddev_us,
+ *      cpu_us,wall_us,cpu_pct,nvcsw,nivcsw
+ * CPU columns added 2026-08-14 for SOW 2.e (never previously
+ * measured). cpu_pct is PROCESS CPU over the trial loop only.
  * Device selection is argv[1]; CSV path is derived from it. Neither
  * asserts a controller -- verify the node mapping before labeling.
  */
@@ -27,6 +30,7 @@
 #include <errno.h>
 #include <sched.h>
 #include <sys/mman.h>
+#include <sys/resource.h>
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
 
@@ -59,6 +63,16 @@ typedef struct {
     double max_us;      /* maximum latency microseconds */
     double avg_us;      /* average latency microseconds */
     double stddev_us;   /* jitter measurement */
+    /* SOW 2.e CPU utilisation. Measured across the TRIAL LOOP ONLY --
+     * not the calloc/fill/variance work, which is not part of what
+     * avg_us measures. cpu_pct is PROCESS CPU (getrusage RUSAGE_SELF):
+     * softirq and other-thread kernel work do NOT appear. It therefore
+     * UNDER-COUNTS true system cost. Label accordingly. */
+    double cpu_us;      /* ru_utime + ru_stime delta, microseconds */
+    double wall_us;     /* CLOCK_MONOTONIC_RAW delta over same interval */
+    double cpu_pct;     /* 100 * cpu_us / wall_us */
+    long   nvcsw;       /* voluntary context switches */
+    long   nivcsw;      /* involuntary -- the OS-jitter mechanism */
 } benchmark_result_t;
 
 /* ─────────────────────────────────────────
@@ -102,6 +116,9 @@ static benchmark_result_t run_benchmark(int fd, int payload_size)
         tx[i] = (uint8_t)(i & 0xFF);
 
     /* ── Run trials ── */
+    struct rusage ru0, ru1;
+    getrusage(RUSAGE_SELF, &ru0);
+    double wall0 = get_time_us();
     for (int t = 0; t < NUM_TRIALS; t++) {
         double start = get_time_us();
         spi_transfer(fd, tx, rx, payload_size);
@@ -110,6 +127,19 @@ static benchmark_result_t run_benchmark(int fd, int payload_size)
         latencies[t] = end - start;
         sum += latencies[t];
     }
+    double wall1 = get_time_us();
+    getrusage(RUSAGE_SELF, &ru1);
+
+    result.wall_us = wall1 - wall0;
+    result.cpu_us =
+        ((double)(ru1.ru_utime.tv_sec - ru0.ru_utime.tv_sec) * 1e6) +
+        ((double)(ru1.ru_utime.tv_usec - ru0.ru_utime.tv_usec)) +
+        ((double)(ru1.ru_stime.tv_sec - ru0.ru_stime.tv_sec) * 1e6) +
+        ((double)(ru1.ru_stime.tv_usec - ru0.ru_stime.tv_usec));
+    result.cpu_pct = (result.wall_us > 0.0)
+                   ? (100.0 * result.cpu_us / result.wall_us) : -1.0;
+    result.nvcsw  = ru1.ru_nvcsw  - ru0.ru_nvcsw;
+    result.nivcsw = ru1.ru_nivcsw - ru0.ru_nivcsw;
 
     /* ── Calculate statistics ── */
     result.avg_us = sum / NUM_TRIALS;
@@ -201,7 +231,10 @@ int main(int argc, char **argv)
                 mode_rb, (mode_rb & SPI_LOOP) ? 1 : 0);
         fprintf(csv, "# CONTROLLER NOT ASSERTED BY THIS FILE. Verify which\n");
         fprintf(csv, "# controller this spidev node maps to before labeling.\n");
-        fprintf(csv, "bytes,min_us,max_us,avg_us,stddev_us\n");
+        fprintf(csv, "# cpu_pct is PROCESS CPU over the trial loop only\n");
+        fprintf(csv, "# (getrusage RUSAGE_SELF). Softirq and other-thread\n");
+        fprintf(csv, "# kernel work do NOT appear -- it under-counts system cost.\n");
+        fprintf(csv, "bytes,min_us,max_us,avg_us,stddev_us,cpu_us,wall_us,cpu_pct,nvcsw,nivcsw\n");
     }
     else perror("warning: could not open CSV (stdout only)");
 
@@ -212,11 +245,13 @@ int main(int argc, char **argv)
         int size = payload_sizes[p];
         benchmark_result_t r = run_benchmark(fd, size);
 
-        printf("%-10d %-12.2f %-12.2f %-12.2f %-12.2f\n",
-               size, r.min_us, r.max_us, r.avg_us, r.stddev_us);
+        printf("%-10d %-12.2f %-12.2f %-12.2f %-12.2f  cpu=%6.2f%% ivcsw=%ld\n",
+               size, r.min_us, r.max_us, r.avg_us, r.stddev_us,
+               r.cpu_pct, r.nivcsw);
         if (csv) {
-            fprintf(csv, "%d,%.3f,%.3f,%.3f,%.3f\n",
-                    size, r.min_us, r.max_us, r.avg_us, r.stddev_us);
+            fprintf(csv, "%d,%.3f,%.3f,%.3f,%.3f,%.1f,%.1f,%.2f,%ld,%ld\n",
+                    size, r.min_us, r.max_us, r.avg_us, r.stddev_us,
+                    r.cpu_us, r.wall_us, r.cpu_pct, r.nvcsw, r.nivcsw);
             fflush(csv);
         }
         if (p == NUM_PAYLOADS - 1) big_avg_us = r.avg_us;
