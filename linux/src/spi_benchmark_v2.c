@@ -275,19 +275,25 @@ int main(int argc, char **argv)
     else perror("warning: could not open CSV (stdout only)");
 
     double big_avg_us = 0.0;   /* captured in the sweep for the achieved-rate check */
+    int total_errs = 0;        /* summed err_count across the whole sweep */
+    int first_errno_seen = 0;  /* 0 = no failure anywhere; errno is never 0 */
 
     /* Run benchmark for each payload size */
     for (size_t p = 0; p < NUM_PAYLOADS; p++) {
         int size = payload_sizes[p];
         benchmark_result_t r = run_benchmark(fd, size);
 
-        printf("%-10d %-12.2f %-12.2f %-12.2f %-12.2f  cpu=%6.2f%% ivcsw=%ld\n",
+        printf("%-10d %-12.2f %-12.2f %-12.2f %-12.2f  cpu=%6.2f%% ivcsw=%ld err=%d\n",
                size, r.min_us, r.max_us, r.avg_us, r.stddev_us,
-               r.cpu_pct, r.nivcsw);
+               r.cpu_pct, r.nivcsw, r.err_count);
+        total_errs += r.err_count;
+        if (first_errno_seen == 0 && r.first_errno != 0)
+            first_errno_seen = r.first_errno;
         if (csv) {
-            fprintf(csv, "%d,%.3f,%.3f,%.3f,%.3f,%.1f,%.1f,%.2f,%ld,%ld\n",
+            fprintf(csv, "%d,%.3f,%.3f,%.3f,%.3f,%.1f,%.1f,%.2f,%ld,%ld,%d,%d\n",
                     size, r.min_us, r.max_us, r.avg_us, r.stddev_us,
-                    r.cpu_us, r.wall_us, r.cpu_pct, r.nvcsw, r.nivcsw);
+                    r.cpu_us, r.wall_us, r.cpu_pct, r.nvcsw, r.nivcsw,
+                    r.err_count, r.first_errno);
             fflush(csv);
         }
         if (p == NUM_PAYLOADS - 1) big_avg_us = r.avg_us;
@@ -314,6 +320,19 @@ int main(int argc, char **argv)
                    "         requested rate.\n");
         }
     }
+    /* D1: ioctl failures are invisible in the timing columns by design --
+     * failed trials are excluded from them. Surface the count here so a
+     * partial-failure sweep is not mistaken for a clean one. */
+    if (total_errs > 0)
+        printf("\nWARNING: %d ioctl failure(s) across the sweep"
+               " (first errno %d: %s).\n"
+               "         Failed trials were EXCLUDED from the timing"
+               " statistics.\n"
+               "         Per-payload counts are in the err_count column"
+               " of %s.\n",
+               total_errs, first_errno_seen, strerror(first_errno_seen),
+               csv_path);
+
     if (csv) fclose(csv);
     close(fd);
     return 0;
