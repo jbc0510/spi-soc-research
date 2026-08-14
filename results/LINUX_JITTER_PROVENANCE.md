@@ -128,7 +128,7 @@ tracked interface files; the donor was not among them.
 
 | path | status |
 |---|---|
-| Linux AXI Quad SPI | **MEASURED** — twice, agreeing within 2%. Retained as `results/axi_internal_results.csv`. Valid result. |
+| Linux AXI Quad SPI | **MEASURED** — three captures at this clock: 10.880 / 10.884 / 11.093 Mbps @ 65536 B (`axi_internal_results.csv`, `mio_internal_results.csv` (§8), `axi_results.csv`). The first two agree to 0.04% but may be one configuration measured twice (§8) — treat the third as the independent check. Valid result. |
 | Linux PS EMIO / MIO | **NEVER MEASURED.** Not-measured sentinel restored in both files. |
 | Bare-metal PS SPI1 | **MEASURED**, sub-0.5 µs. Unaffected by any of this. |
 
