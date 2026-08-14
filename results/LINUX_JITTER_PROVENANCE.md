@@ -160,3 +160,44 @@ before trusting design-time assumptions. That rule had been applied to the
 bare-metal harness, which forces `SPI1_REF_CTRL` and re-reads to verify, but
 never to the Linux harness, which requested and trusted. That asymmetry was
 the bug.
+
+---
+
+## 8. Second unretracted twin — `mio_internal_results.csv`
+
+Commit `1f5348e` added `results/mio_internal_results.csv` described as a
+"second PS Cadence jitter capture". The arithmetic does not support that
+label. Slope fitted 4096 -> 65536 B:
+
+| File | slope (us/B) | Mbps @ 65536 B |
+| --- | --- | --- |
+| `axi_internal_results.csv` (proven AXI, sec. 2) | 0.735011 | 10.880 |
+| `mio_internal_results.csv` | 0.734713 | 10.884 |
+| `mio_results.csv` (PS-labelled) | 10.2734 | 0.7787 |
+
+`mio_internal` tracks the proven-AXI file to **0.04%** at every one of the
+eleven payloads, and diverges from the PS-labelled file of near-identical
+name by **13.98x**.
+
+**Ceiling argument.** PS SCK is 0.9766 MHz, so a PS capture cannot exceed
+0.9766 Mbps of payload throughput. This file shows 10.884 Mbps. It is
+therefore NOT the PS controller at the documented prescale, and the commit
+message asserting "PS Cadence" is wrong.
+
+**NOT CLAIMED: that this file is the AXI controller.** PS SPI at prescale /4
+is 62.5/4 = 15.625 MHz, numerically identical to PL0/16. Timing alone cannot
+separate the two. The file predates the v2 provenance header and carries no
+`# device=` line, so controller identity is not recoverable from it -- the
+same status as the emio/mio pair in section 6.
+
+**Inference, flagged as inference.** Section 3 records that the retired
+harness hardcoded both its output filename and `/dev/spidev0.0`. If this
+capture came from that binary -- same day, 84 minutes after the file now
+named `axi_internal_results.csv` -- it reached the same node and is the same
+path. Plausible; not proven. No waveform, no header, no log.
+
+**Disposition.** Contents left byte-for-byte unmodified (md5
+`178e9e7e0afcb12cdd6e28c553475fa0`); it is evidence. Renamed in a following
+commit so the filename stops asserting a disproven controller, per the
+precedent of `0dc3d8f`. It was also a graft donor (`d109780`), retracted by
+`0dc3d8f` along with the emio graft.
