@@ -1,0 +1,152 @@
+================================================================
+ MSU-2 HOST RECON
+================================================================
+
+-- OPERATOR MUST FILL IN ------------------------------------------
+SITE:                              LPS
+  (if UNSET above, the output is still valid but must be labelled
+   by hand before committing)
+
+-- IDENTITY -------------------------------------------------------
+hostname:                          stile.lps.umd.edu
+kernel:                            Linux 6.17.0-29-generic
+arch:                              x86_64
+date_reported:                     Mon Aug 17 10:23:10 EDT 2026
+  NOTE: verify this against a known-good clock. RTC was unset on
+  ZCU102 #1; do not assume a host clock is correct either.
+os_release_PRETTY:                 Ubuntu 24.04.4 LTS
+
+-- GIT AND REPO STATE ---------------------------------------------
+git_version:                       git version 2.43.0
+repo_cwd:                          /home/jconway/spi-soc-research
+branch:                            feature/dma-benchmarking
+head_commit:                       f7b73ee2c06d8a9e0c2cfb2737a99fc1e2910e26
+head_subject:                      linux: exact-string compiler gate and verify-before-move in build.sh
+dirty_paths:                       2
+  DIRTY -- a recon run from a dirty tree cannot establish
+  reproducibility. Listing:
+    ?? docs/sessions/
+    ?? tools/
+remotes:                           origin	git@github-personal:jbc0510/spi-soc-research.git (fetch) origin	git@github-personal:jbc0510/spi-soc-research.git (push) 
+
+-- TOOLCHAIN: XILINX ----------------------------------------------
+xilinx_root:                       DIR /tools/Xilinx/2025.1
+vitis_bin:                         DIR /tools/Xilinx/2025.1/Vitis/bin
+xsct:                              EXEC /tools/Xilinx/2025.1/Vitis/bin/xsct (8588 bytes)
+cross_gcc:                         EXEC /tools/Xilinx/2025.1/Vitis/gnu/aarch64/lin/aarch64-linux/bin/aarch64-linux-gnu-gcc (189 bytes)
+cross_gcc_version:                 aarch64-amd-linux-gcc.real (GCC) 13.3.0
+  EXPECTED at LPS: aarch64-amd-linux-gcc.real (GCC) 13.3.0
+  build.sh asserts this EXACT whole line.
+cross_readelf:                     EXEC /tools/Xilinx/2025.1/Vitis/gnu/aarch64/lin/aarch64-linux/bin/aarch64-linux-gnu-readelf (117 bytes)
+  NOTE: on stile this is a 117-byte WRAPPER SCRIPT, not a binary.
+  build.sh's .comment gate depends on that shim resolving.
+
+-- TOOLCHAIN: HOST ------------------------------------------------
+host_gcc:                          gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+  NOTE: Ubuntu host gcc reports 13.3.0 too. build.sh must REJECT it.
+host_readelf:                      GNU readelf (GNU Binutils for Ubuntu) 2.42
+host_objdump:                      GNU objdump (GNU Binutils for Ubuntu) 2.42
+python3:                           Python 3.12.3
+make:                              GNU Make 4.3
+dtc:                               Version: DTC 1.7.0
+  dtc is REQUIRED for Step 1.1 (decompiling spi_pl_dma.dtbo).
+mkimage:                           mkimage version 2025.10
+  mkimage is REQUIRED for SOW 2.g V1 (signing image.ub).
+openssl:                           OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)
+  openssl is REQUIRED for 2.g V1 keypair generation.
+md5sum:                            md5sum (GNU coreutils) 9.4
+unzip:                             UnZip 6.00 of 20 April 2009, by Debian. Original by Info-ZIP.
+  unzip is REQUIRED for Step 1.2 (.hwh extraction from the .xsa).
+
+-- PETALINUX ------------------------------------------------------
+petalinux_project:                 DIR /home/jconway/zcu102-spidev
+petalinux_config:                  FILE /home/jconway/zcu102-spidev/project-spec/configs/config
+uboot_dotconfig:                   FILE /home/jconway/zcu102-spidev/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build/.config
+  U-Boot symbols relevant to SOW 2.g (expected values from LPS in
+  Section F of the continuation prompt):
+    CONFIG_FIT                             CONFIG_FIT=y
+    CONFIG_FIT_SIGNATURE                   # CONFIG_FIT_SIGNATURE is not set
+    CONFIG_RSA                             # CONFIG_RSA is not set
+    CONFIG_LEGACY_IMAGE_FORMAT             CONFIG_LEGACY_IMAGE_FORMAT=y
+    CONFIG_ENV_IS_IN_FAT                   CONFIG_ENV_IS_IN_FAT=y
+    CONFIG_SYS_REDUNDAND_ENVIRONMENT       CONFIG_SYS_REDUNDAND_ENVIRONMENT=y
+    CONFIG_BOOTCOUNT_LIMIT                 # CONFIG_BOOTCOUNT_LIMIT is not set
+    CONFIG_WDT                             # CONFIG_WDT is not set
+    CONFIG_WATCHDOG                        # CONFIG_WATCHDOG is not set
+    CONFIG_WATCHDOG_TIMEOUT_MSECS          CONFIG_WATCHDOG_TIMEOUT_MSECS=60000
+
+-- TRACKED ARTIFACT HASHES ----------------------------------------
+  Expected (from commit f7b73ee):
+    8b4be15e270dad88db03fc95a7731ab3  linux/src/spi_benchmark_v2.c
+    ff194b3828edc13d06ba26ef816c8616  linux/src/spi_benchmark_v2_aarch64
+    221d58effa7e4bdf3fecbb6f9bf88d98  linux/src/build.sh
+  Measured here:
+    8b4be15e270dad88db03fc95a7731ab3  linux/src/spi_benchmark_v2.c
+    ff194b3828edc13d06ba26ef816c8616  linux/src/spi_benchmark_v2_aarch64
+    221d58effa7e4bdf3fecbb6f9bf88d98  linux/src/build.sh
+    61f2c33f6ce6138eee81a862a466ae4e  sd-images/spi_benchmark_wrapper.bit.bin
+    8e4c6859f502499a3fc26b9278af92ac  sd-images/spi_pl_dma.dtbo
+    e2ac032b171f3669e177103ef9681729  sd-images/boot.scr
+    ffe0c75b60f043a48e585377fce44202  sd-images/image.ub
+    a698a18521c106272480b8ab260e886a  hardware/xsa/spi_benchmark_wrapper.xsa
+
+-- BUILD ARTIFACT FINGERPRINT (if the binary is present) ----------
+comment:                           GCC: (GNU) 13.3.0
+  EXPECTED: GCC: (GNU) 13.3.0
+      [13] .text             PROGBITS        0000000000000f40 000f40 000ed8 00  AX  0   0 64
+      [15] .rodata           PROGBITS        0000000000001e30 001e30 000d7c 00   A  0   0 16
+  EXPECTED .text 0xed8 @ 0xf40 ; .rodata 0xd7c @ 0x1e30
+strtol_symbol:                     __isoc23_strtol@GLIBC_2.38
+  EXPECTED: __isoc23_strtol@GLIBC_2.38
+file_type:                         linux/src/spi_benchmark_v2_aarch64: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=77e00aefea51384d655b0481d467c4c53c2a6a00, for GNU/Linux 5.15.0, with debug_info, not stripped
+
+-- BOARD ACCESS ---------------------------------------------------
+ttyUSB0:                           ABSENT /dev/ttyUSB0
+ttyUSB1:                           ABSENT /dev/ttyUSB1
+serial_tool_picocom:               ABSENT
+serial_tool_minicom:               minicom version 2.9
+serial_tool_screen:                Screen version 4.09.01 (GNU) 20-Aug-23
+  block devices (look for an SD reader):
+    major minor  #blocks  name
+    
+       7        0          4 loop0
+       7        2      68452 loop2
+       7        3      68408 loop3
+       7        4      12092 loop4
+       7        5     263748 loop5
+       7        6      16896 loop6
+       7        7      75756 loop7
+     259        0 1000204632 nvme0n1
+     259        1    1100800 nvme0n1p1
+     259        2    2097152 nvme0n1p2
+     259        3  997004288 nvme0n1p3
+       8        0  976762584 sda
+       8        1     524288 sda1
+       8        2          1 sda2
+       8        5  976235520 sda5
+       8       16  976762584 sdb
+       8       17  976761560 sdb1
+      11        0    1048575 sr0
+     252        0  997003264 dm-0
+       7       11     544248 loop11
+       7       10     544128 loop10
+       7       12     620624 loop12
+       7        8      16844 loop8
+       7        9     629280 loop9
+       7       14     404460 loop14
+       7       13      93888 loop13
+       7       15     411628 loop15
+       7       16      51304 loop16
+       7       17      16064 loop17
+       7       18      75768 loop18
+       7       21        828 loop21
+       7       19      51304 loop19
+       7       20        828 loop20
+       7       22     215856 loop22
+       7       23     225136 loop23
+       7       24     263904 loop24
+
+================================================================
+ END. Commit this output under docs/environment/ with the SITE
+ label filled in. Then diff LPS against MORGAN.
+================================================================
