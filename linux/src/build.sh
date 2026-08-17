@@ -22,11 +22,24 @@
 # the optimisation level, and says NOTHING about how the July binary was
 # built. Do not read it as evidence of anything.
 #
-# NOT A REPRODUCTION OF THE JULY BUILD. The July flags were never
-# recorded and cannot be recovered; .comment carries the compiler, not
-# the flags. What is matched is the observable property set: GCC 13.3.0,
-# dynamically linked, debug info retained, not stripped, same DT_NEEDED.
-# Flag equivalence is NOT claimed.
+# NOT A REPRODUCTION OF THE JULY BUILD -- but not for the reason this
+# header used to give. It claimed the July flags "were never recorded
+# and cannot be recovered." They ARE recorded, at
+# linux/JITTER_CAPTURE_RESUME.md:32-33:
+#     aarch64-linux-gnu-gcc -O2 -Wall -Wextra \
+#       -o spi_benchmark_jitter_aarch64 linux/src/spi_benchmark_jitter.c -lm
+# Same flags as below minus -g. That file independently documents the
+# -lm requirement. Commit fc52555 carries the same false statement and
+# is SUPERSEDED on this point.
+#
+# THE RECORD MAY BE ABRIDGED, and that is the accurate claim. Two
+# discrepancies: it shows no -g, yet the July binary carries debug
+# info; and it names a bare aarch64-linux-gnu-gcc, which does not
+# exist on stile (no /usr/bin/aarch64-linux-gnu-gcc, not on PATH --
+# checked 2026-08-17). So the recorded line was not run as written on
+# this host. Flag equivalence is still NOT claimed. What is matched is
+# the observable property set: GCC 13.3.0, dynamically linked, debug
+# info retained, not stripped, same DT_NEEDED.
 #
 # WHY -O2: so the trial loop is not unoptimised on the measured path.
 # The loop body is get_time_us(); ioctl(); get_time_us(), and at -O0 the
