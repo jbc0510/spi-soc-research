@@ -276,9 +276,35 @@ int main(int argc, char **argv)
     long bufsiz = -1;
     FILE *bf = fopen("/sys/module/spidev/parameters/bufsiz", "r");
     if (bf) {
-        if (fscanf(bf, "%ld", &bufsiz) != 1) bufsiz = -1;
+        char bline[64];
+        if (fgets(bline, sizeof(bline), bf)) {
+            char *endp = NULL;
+            errno = 0;
+            long v = strtol(bline, &endp, 10);
+            /* Accept only a complete, in-range integer. endp must have
+             * advanced past at least one digit and must land on the end
+             * of the line, not mid-token. */
+            if (errno == 0 && endp != bline && v > 0 &&
+                (*endp == '\0' || *endp == '\n'))
+                bufsiz = v;
+        }
         fclose(bf);
     }
+    /* NOT fscanf -- but the reason originally recorded here was wrong.
+     * Both replacement facts were MEASURED on 2026-08-17, not inferred:
+     *   - Board rootfs glibc is 2.39, with GLIBC_2.36/2.38/2.39 all
+     *     defined (live root shell on newQspi over UART). A 2.38 floor
+     *     was never a load risk on this board.
+     *   - This binary imports __isoc23_strtol@GLIBC_2.38: strtol is
+     *     itself C2x-redirected, so fgets+strtol does not lower the
+     *     floor an fscanf would have set. It is the only GLIBC_2.38
+     *     symbol in the binary (readelf -W --dyn-syms).
+     * The superseded text claimed this change held the floor at 2.34
+     * and that objdump -T verified it; the binary contradicts that.
+     * What was correct: both July binaries do cap at GLIBC_2.34.
+     * The change is KEPT for the reasons that are true -- a bounded
+     * read, and a real distinction between "no value", "garbage" and
+     * "out of range". */
 
     /* Pin to CPU 0, real-time priority, lock memory: suppress scheduling jitter
        so the measured stddev reflects driver/PIO service, not preemption noise. */
