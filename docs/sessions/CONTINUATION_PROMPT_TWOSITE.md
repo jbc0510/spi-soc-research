@@ -113,10 +113,11 @@ SOW status, honestly stated:
   2.d Comparative benchmarking framework ... hardened, NEVER RUN
   2.e CPU utilisation metrics .............. Linux written, never run; BM not written
   2.f OS tuning / determinism analysis ..... NOT STARTED
-  2.g Minimal appliance + security ......... DESIGNED, not implemented
+  2.g Minimal appliance + security ......... DESIGN LOST -- see correction at the md5 manifest
 
-The December 9-month deliverable is 2.f and 2.g. 2.g is now designed
-(`docs/design/SOW_2G_APPLIANCE_DESIGN.md`). 2.f has not been started at all.
+The December 9-month deliverable is 2.f and 2.g. 2.g was recorded here as designed, but that design document does not
+exist -- see the CORRECTION 2026-08-19 at the md5 manifest below.
+2.f has not been started at all.
 
 Rules:
 
@@ -222,6 +223,23 @@ their md5s before committing:
 
   docs/design/SOW_2G_APPLIANCE_DESIGN.md   599e04044ba73ef22d1318f2a7ad3f5f
   docs/sessions/SESSION_RECAP_20260817.md  475a53a058c85c204e84ccce13b4db4d
+
+CORRECTION 2026-08-19 -- THE TWO LINES ABOVE ARE FALSE. They are preserved
+verbatim so the error stays legible. Neither file has ever existed.
+Searched on stile 2026-08-19, all four negative:
+  - absent from the working tree; docs/design/ exists and is EMPTY
+  - absent from every branch's history (git log --all --diff-filter=A)
+  - absent from stash (git stash list empty)
+  - no file anywhere under ~ hashes to 599e0404 or 475a53a0, searched by
+    CONTENT not by name (find ~ -name '*.md' -exec md5sum)
+The md5s were recorded from artifacts that existed only in a chat session
+and were never written to disk. docs/design/ was created 2026-08-17 10:22
+and left empty. This is the exact failure Section A warns about: the record
+asserted something that was never committed.
+CONSEQUENCE: the SOW 2.g design record does not exist. The 2.g status line
+in Section B is changed to DESIGN LOST. What survives of 2.g is the
+paragraph in Section G naming design-doc sections 6 and 7, plus the measured
+facts in Section F. Reconstruction is reconstruction, never recovery.
 
 `build.sh` now reproduces `ff194b38` byte-for-byte (BuildID
 `77e00aefea51384d655b0481d467c4c53c2a6a00`), confirmed three times. This is the
@@ -413,6 +431,11 @@ Items 1-7 there need no working SPI. Same two-site cycle. Before starting item 1
 close the cheap unknowns from design doc §7: is `fw_setenv` on the rootfs, is
 FAT redundant env initialised on the card, is mbedTLS enabled, does a ZynqMP
 watchdog driver exist in U-Boot 2025.01.
+
+[CORRECTED 2026-08-19: the design doc referenced in this paragraph does not
+exist; sections 6 and 7 cannot be opened. See CORRECTION 2026-08-19 at the
+md5 manifest. The four unknowns named just above remain valid work items and
+are recoverable from this paragraph alone.]
 
 ================================================================================
 SECTION H — BACKLOG. Record, do not fix on sight.
