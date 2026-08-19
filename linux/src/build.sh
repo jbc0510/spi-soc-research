@@ -67,7 +67,18 @@
 # being measured.
 set -eu
 
-CC="${CC:-/tools/Xilinx/2025.1/Vitis/gnu/aarch64/lin/aarch64-linux/bin/aarch64-linux-gnu-gcc}"
+# SITE PORTABILITY: XILINX_ROOT is the ONLY site-varying value. The path
+# tail below is fixed and MUST stay fixed -- it is what guarantees both
+# sites invoke the same 189-byte wrapper script, which supplies
+# --sysroot and -mbranch-protection=none. Those flags come from the
+# WRAPPER, not from this file. Verify site exports:
+#   XILINX_ROOT=/home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1
+# Do NOT search $PATH. /usr/bin/aarch64-linux-gnu-gcc is absent on stile
+# but PRESENT at 11.4.0 on bxqp8b3-ub22 -- a PATH search would build
+# successfully there with different bytes, which is worse than refusing.
+# $CC still overrides everything, for a toolchain outside this layout.
+XILINX_ROOT="${XILINX_ROOT:-/tools/Xilinx/2025.1}"
+CC="${CC:-$XILINX_ROOT/Vitis/gnu/aarch64/lin/aarch64-linux/bin/aarch64-linux-gnu-gcc}"
 # Two INDEPENDENT literal strings are asserted, both measured on stile
 # 2026-08-17. They are different strings and neither implies the other:
 #   --version first line : aarch64-amd-linux-gcc.real (GCC) 13.3.0
