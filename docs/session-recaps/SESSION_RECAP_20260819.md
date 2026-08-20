@@ -155,6 +155,23 @@ Both open items need Morgan. Do them in this order.
 
 ### 5.1 Step 0.5 — cross-site artifact reproducibility
 
+**EXECUTED 2026-08-20 at Morgan. Outcome: BUILDS BUT DIFFERS** -- the third
+outcome listed below, not reclassified after the fact. Result and full
+evidence: `docs/environment/STEP_0_5_CROSSSITE_20260820.md`
+(md5 `ab75ca9ec1a1fb0ba1c9911cb2f01e01`, commit `cfb2ffd`).
+
+Stripped of DWARF debug info and the BuildID note, both binaries are
+byte-identical at `cd32416b2baf7eb38939214d85a142a6` (71720 bytes). The
+divergence is confined to `.debug_line_str` and the two sections holding
+offsets into it; the mechanism is the differing build path. The glibc
+sysroot strings are identical at both sites, so changing `XILINX_ROOT` did
+NOT resolve a different sysroot -- the specific unknown flagged at the end
+of this section.
+
+The procedure below is retained as the reproduce steps. The three-outcome
+list is retained UNEDITED: that it named this outcome in advance is part of
+what makes the result credible.
+
 From `~/msu2-verify/spi-soc-research`, after `git pull`:
 
 ```
