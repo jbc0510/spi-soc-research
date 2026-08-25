@@ -1,0 +1,36 @@
+warning: could not set SPI_LOOP (continuing): Invalid argument
+SPI Linux Benchmark Results
+============================
+Device: /dev/spidev1.0
+Speed requested: 1000000 Hz
+Speed readback:  1000000 Hz
+Mode readback:   0x00 (SPI_LOOP NOT SET -- loopback must be in hardware)
+NOTE: the authoritative rate is the achieved Mbps printed at the end,
+      NOT the request and NOT the ioctl readback.
+Kernel: 6.12.10-xilinx-g0a0f70e531c7 / #1 SMP Sat May 17 14:01:06 UTC 2025
+Host: newQspi   uid=0
+spidev bufsiz: 1048576 B
+Trials: 1000 per payload size
+
+Bytes      Min(us)      Max(us)      Avg(us)      Stddev(us)  
+──────────────────────────────────────────────────────
+1          10.24        52.80        14.82        3.87          cpu= 82.20% ivcsw=0 err=0
+8          19.35        41.67        24.20        2.36          cpu= 61.98% ivcsw=0 err=0
+16         25.20        37.72        27.55        1.17          cpu= 55.53% ivcsw=0 err=0
+64         60.17        79.23        62.67        1.52          cpu= 28.64% ivcsw=0 err=0
+128        106.87       120.66       109.49       1.29          cpu= 19.66% ivcsw=0 err=0
+256        200.01       213.42       202.73       1.42          cpu= 13.93% ivcsw=0 err=0
+512        388.33       401.09       391.06       1.38          cpu=  7.28% ivcsw=0 err=0
+1024       764.56       776.26       767.54       1.25          cpu=  3.77% ivcsw=0 err=0
+4096       3022.21      3040.45      3026.35      1.49          cpu=  1.04% ivcsw=0 err=0
+16384      12054.11     12067.61     12057.82     1.17          cpu=  0.31% ivcsw=0 err=0
+65536      48172.22     48321.01     48178.19     6.27          cpu=  0.12% ivcsw=0 err=0
+
+ACHIEVED: 65536 B in 48178.19 us = 10.88 Mbps
+  (Mbps is payload throughput, NOT SCK. Per-word framing and
+   driver overhead make the ratio non-obvious -- e.g. 10.88 Mbps
+   was measured on a 15.6 MHz SCK. Compare Mbps between captures;
+   read SCK from CRL_APB or a scope if you need the clock.)
+WARNING: achieved rate FAR EXCEEDS request -- the driver ignored
+         the speed request. Do NOT label this capture with the
+         requested rate.
