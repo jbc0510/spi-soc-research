@@ -17,7 +17,7 @@ A rigorous, silicon-validated characterization of SPI communication performance 
 | AXI PL | Soft AXI Quad SPI v3.2 | Linux (xilinx_spi driver) |
 | PS BM | Hard PS SPI1 (Cadence) | Bare-metal (no OS, XSpiPs) |
 
-All PS paths run at a matched clock of **~0.9766 MHz SCK** for a controlled comparison. AXI runs at its synthesis-time rate (~6.25 MHz effective SCK at PL0=250 MHz / C_SCK_RATIO=16).
+All PS paths run at a matched clock of **~0.9766 MHz SCK** for a controlled comparison. AXI runs at its synthesis-time rate: **~15.625 MHz** effective SCK, from a live-register PL0 of 250 MHz ÷ `C_SCK_RATIO=16`. (This line previously read "~6.25 MHz at PL0=250 MHz / C_SCK_RATIO=16", which is internally inconsistent — 250/16 is 15.625, not 6.25. The 6.25 figure came from the retracted design-time assumption of PL0 = 100 MHz, and contradicted §"The Clock Artifact" further down this same file. Note that 15.625 MHz is *derived* from registers and the synthesis-frozen ratio; the AXI serial clock has never been observed on the wire.)
 
 ---
 
