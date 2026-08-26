@@ -7,8 +7,8 @@
 #   for xczu9eg is provisioned on stile.
 #
 # PREREQ
-#   - Vivado 2025.1 environment sourced:
-#       source /tools/Xilinx/2025.1/Vivado/settings64.sh
+#   - Vivado 2025.1 environment sourced (this machine's install root):
+#       source /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vivado/settings64.sh
 #   - Valid synthesis license for xczu9eg reachable (XILINXD_LICENSE_FILE set).
 #   - Patched block-design TCL committed at:
 #       ~/spi-soc-research/hardware/spi_bm_bd_2025p1.tcl

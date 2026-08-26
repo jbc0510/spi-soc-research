@@ -1,3 +1,25 @@
+> ## ⚠ RESOLUTION CORRECTED — Status: RESOLVED (2026-07-15, corrected)
+>
+> **The 14.2× AXI-vs-PS speedup was entirely clock.** An earlier banner here said
+> "SCK = 6.25 MHz," derived from the block design's design-time PL0 = 100 MHz ÷ 16.
+> That design-time value never runs on silicon: hardware register reads (commit
+> `2123ae9`; `results/clock_sweep/`, `results/clock_sweep_inspec/PS_CLOCK_VERIFICATION.md`)
+> show the **FSBL overrides PL0 to 250 MHz** at boot (IOPLL 1500 MHz, CRL_APB
+> `0x01010600`).
+>
+> Hardware-validated resolution: matched-clock AXI@0.997 MHz vs PS-MIO@~1 MHz measured
+> **683.9 vs 673.3 ms at 64 KB (~1.02×, i.e. parity)** — the speedup was clock, not
+> architecture.
+>
+> Separately, the PS SPI chain is register-verified at **SPI_REF = 62.5 MHz → SCK =
+> 62.5/64 = 0.9766 MHz** (`PS_CLOCK_VERIFICATION.md`). The ~11 MHz AXI figure was a
+> 2N full-duplex byte-accounting artifact (fixed in `results/spi_benchmark_clean.c`).
+>
+> Both the **6.25 MHz** and **~176 MHz** leads (this doc) are **retracted**. The
+> investigation record below is preserved for history.
+>
+> ---
+
 # Serial-Clock Discrepancy — Root-Cause Lead from UG1182
 
 **Project:** MSU-2 (ZCU102 SPI Benchmark) · Contract FA-8075-18-D-0004
@@ -38,6 +60,9 @@ the PL. Its frequency is set by the PS clock configuration in the design, not by
 any fixed board source.
 
 ## Why this explains the data
+
+**[RETRACTED — see resolution banner at top. `pl_clk0` is 99.99 MHz, not ~176 MHz;
+the ~11 MHz figure was a 2N byte-accounting artifact, not a higher fabric clock.]**
 
 If the real `pl_clk0` is not 100 MHz but higher, the divisor (÷16) yields a
 higher SCK:

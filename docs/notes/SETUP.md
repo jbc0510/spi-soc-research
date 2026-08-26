@@ -44,17 +44,21 @@ Before setting up a new machine:
 ## Lab Server Tool Setup (capc-cl1-2)
 
 ### Source these before working:
+# Set XILINX_ROOT to your local AMD/Xilinx install root, then source the tools.
+# Example (this machine): Vivado/Vitis 2025.1 at
+#   /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1
+export XILINX_ROOT=/home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1
 source /tools/scripts/ee463-env.sh
-source /tools/Xilinx/Vivado/2024.2/settings64.sh
-source /tools/Xilinx/Vitis/2024.2/settings64.sh
+source $XILINX_ROOT/Vivado/settings64.sh
+source $XILINX_ROOT/Vitis/settings64.sh
 
 ### Cross Compiler (ARM Cortex-A9)
-export PATH=/tools/Xilinx/Vitis/2024.2/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:$PATH
+export PATH=$XILINX_ROOT/Vitis/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:$PATH
 Verify: arm-linux-gnueabihf-gcc --version
 
 ### Available Tools
-Vivado  2024.2 → /tools/Xilinx/Vivado/2024.2/
-Vitis   2024.2 → /tools/Xilinx/Vitis/2024.2/
+Vivado  2025.1 → $XILINX_ROOT/Vivado/   (e.g. /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vivado/)
+Vitis   2025.1 → $XILINX_ROOT/Vitis/    (e.g. /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vitis/)
 PetaLinux      → NOT INSTALLED
 
 ### Quick Setup Script

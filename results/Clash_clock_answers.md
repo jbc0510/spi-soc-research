@@ -42,6 +42,14 @@ Two builds exist:
 commits cb53535 and 77cd6e9. The 1 MHz build is the current live project.)
 
 ## The one open item
+> **RESOLVED (2026-07-15, corrected):** The 14.2× AXI-vs-PS speedup was **entirely
+> clock**. The FSBL overrides PL0 to **250 MHz** at boot (register-verified, commit
+> `2123ae9`), so the design-time 6.25 MHz never runs on silicon. Matched-clock
+> AXI@0.997 MHz vs PS-MIO@~1 MHz measured 683.9 vs 673.3 ms at 64 KB (~1.02×, parity).
+> PS chain register-verified: SPI_REF 62.5 MHz → SCK 0.9766 MHz. The implied ~11 MHz
+> was a 2N byte-accounting artifact (fixed in `results/spi_benchmark_clean.c`). The
+> throughput table above is unchanged. See `CLOCK_DISCREPANCY_FINDINGS.md` banner.
+
 
 The configuration gives a nominal SCK of **6.25 MHz** for the benchmark build, but
 the measured throughput (~10.9 Mbps) implies ~11 MHz, which is faster than 6.25 MHz
