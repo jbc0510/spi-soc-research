@@ -1,0 +1,35 @@
+# capture_utc=20260827_125526
+# uname_r=6.12.10-xilinx-g0a0f70e531c7
+# uname_v=#1 SMP Sat May 17 14:01:06 UTC 2025
+# hostname=newQspi
+# uid=0
+# spidev_bufsiz=1048576
+# device=/dev/spidev1.0
+# speed_requested_hz=1000000
+# speed_readback_hz=1000000
+# mode_readback=0x00 spi_loop=0
+# CONTROLLER NOT ASSERTED BY THIS FILE. Verify which
+# controller this spidev node maps to before labeling.
+# cpu_pct is THREAD CPU over the trial loop only
+# (CLOCK_THREAD_CPUTIME_ID, ns resolution -- NOT the
+# tick-quantized getrusage utime/stime). Hardirq and
+# softirq time are never charged to the task, so this
+# under-counts true system cost.
+# err_count = trials whose ioctl returned < 0; those
+# trials are EXCLUDED from min/max/avg/stddev. A row
+# with -1 timing columns means every trial failed.
+# first_errno: 0 means NO FAILURE (errno is never 0 on
+# failure), so 0 needs no sentinel here.
+bytes,min_us,max_us,avg_us,stddev_us,cpu_us,wall_us,cpu_pct,nvcsw,nivcsw,err_count,first_errno
+1,10.291,41.935,14.344,2.903,11945.4,14464.0,82.59,582,0,0,0
+8,19.982,38.114,20.822,1.144,14504.4,20943.3,69.26,1000,0,0,0
+16,25.172,66.096,27.539,2.634,15257.2,27677.4,55.13,999,0,0,0
+64,57.815,136.694,62.361,4.070,17573.7,62495.3,28.12,999,0,0,0
+128,106.891,126.233,109.315,1.241,21330.5,109452.9,19.49,1000,0,0,0
+256,200.200,218.512,202.853,1.320,28292.0,202992.6,13.94,1000,0,0,0
+512,388.269,403.981,391.099,1.426,28448.9,391239.3,7.27,1000,0,0,0
+1024,764.306,777.957,767.780,1.429,28935.6,767920.5,3.77,1000,0,0,0
+4096,3022.542,3037.734,3026.911,1.400,31388.5,3027052.7,1.04,1000,0,0,0
+16384,12057.465,12080.487,12059.789,1.414,37894.9,12059934.8,0.31,1000,0,0,0
+65536,48176.904,48327.348,48185.999,5.413,59518.0,48186152.6,0.12,1000,0,0,0
+# achieved_mbps_at_65536B=10.88
