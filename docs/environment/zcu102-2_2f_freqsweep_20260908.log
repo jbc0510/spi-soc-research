@@ -1,0 +1,332 @@
+Script started on 2026-09-08 10:07:59-04:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="204" LINES="53"]
+picocom v3.1
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-a
+local echo is  : no
+noinit is      : no
+noreset is     : yes
+hangup is      : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv -E
+imap is        : 
+omap is        : 
+emap is        : crcrlf,delbs,
+logfile is     : none
+initstring     : none
+exit_after is  : not set
+exit is        : no
+
+Type [C-a] [C-h] to see available commands
+Terminal ready
+
+newQspi:/home/petalinux# date
+Tue Sep  8 14:14:41 UTC 2026
+newQspi:/home/petalinux# cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governoor
+userspace
+newQspi:/home/petalinux# cat /sys/class/fpga_manager/fpga0/state
+unknown
+newQspi:/home/petalinux# mkdir -p /usr/lib/firmware
+newQspi:/home/petalinux# cp /run/media/BOOT-mmcblk0p1/spi_benchmark_wrapper.bit.bbin /usr/lib/firmware/
+/usr/lib/firmware/spi_benchmark_wrapper.bit.binnewQspi:/home/petalinux# md5sum /usr/lib/firmware/spi_benchmark_wrapper.bit.bin
+61f2c33f6ce6138eee81a862a466ae4e  /usr/lib/firmware/spi_benchmark_wrapper.bit.bin
+newQspi:/home/petalinux# echo spi_benchmark_wrapper.bit.bin > /sys/class/fpga_mannager/fpga0/firmware
+[  412.843539] fpga_manager fpga0: writing spi_benchmark_wrapper.bit.bin to Xilinx ZynqMP FPGA Manager
+atenewQspi:/home/petalinux# cat /sys/class/fpga_manager/fpga0/state
+operating
+newQspi:/home/petalinux# dumpimage -T flat_dt -p 2 -o /tmp/spi_pl.dtbo /run/mediaa/BOOT-mmcblk0p1/image.ub
+ice-tree/overlays/spi-benchmark
+cat /tmp/spi_pl.dtbo > /sys/kernel/config/device-tree/overlays/spi-benchmark/dtbExtracted:
+ Image 2 (fdt-pl.dtbo)
+  Description:  SPI benchmark PL overlay
+  Created:      Thu May 28 15:53:39 2026[  425.801061] fpga_manager fpga0: writing spi_benchmark_wrapper.bit.bin to Xilinx ZynqMP FPGA Manager
+
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    2009 Bytes = 1.96 KiB = 0.00 MiB
+  Architecture: AArch64
+  Hash algo:    sha256
+  Hash value:   2912ee463b2f60652dd64fc8009d1836e8a5c7824008eb26940a753eeb09dfcd
+o
+cat /sys/kernel/config/device-tree/overlays/spi-benchmnewQspi:/home/petalinux# mkdir -p /sys/kernel/config/device-tree/overlays/spi-bennchmark
+ark/statusnewQspi:/home/petalinux# cat /tmp/spi_pl.dtbo > /sys/kernel/config/device-tree/ovverlays/spi-benchmark/dtbo
+[  425.998685] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /fpga-region/firmware-name
+[  426.008979] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /fpga-region/resets
+newQspi:/home/petalinux# cat /sys/kernel/config/device-tree/overlays/spi-benchmarrk/status
+applied
+newQspi:/home/petalinux# cat /sys/kernel/config/device-tree/overlays/spi-benchmarrk/status[Ahome/petalinux# [K
+[K[AnewQspi:/home/petalinux# readlink -f /sys/class/spidev/spidev1.0
+/sys/devices/platform/axi/a0000000.axi_quad_spi/spi_master/spi1/spi1.0/spidev/spidev1.0
+newQspi:/home/petalinux# cp /run/media/BOOT-mmcblk0p1/spi_benchmark_v2_aarch64 /ttmp/
+pi_benchmark_v2_aarch64newQspi:/home/petalinux# md5sum /tmp/spi_benchmark_v2_aarch64
+ff194b3828edc13d06ba26ef816c8616  /tmp/spi_benchmark_v2_aarch64
+newQspi:/home/petalinux# chmod +x /tmp/spi_benchmark_v2_aarch64
+newQspi:/home/petalinux# grep -i spi /proc/interrupts
+ 48:          0          0          0          0     GICv2  47 Level     ff0f0000.spi
+ 60:          0          0          0          0     GICv2 121 Edge      a0000000.axi_quad_spi
+newQspi:/home/petalinux# cd /tmp
+newQspi:/tmp# echo 1200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeeed
+newQspi:/tmp# cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+pidev1.01200000
+newQspi:/tmp# ./spi_benchmark_v2_aarch64 /dev/spidev1.0
+[  573.193676] spidev spi1.0: setup: unsupported mode bits 20
+warning: could not set SPI_LOOP (continuing): Invalid argument
+SPI Linux Benchmark Results
+============================
+Device: /dev/spidev1.0
+Speed requested: 1000000 Hz
+Speed readback:  1000000 Hz
+Mode readback:   0x00 (SPI_LOOP NOT SET -- loopback must be in hardware)
+NOTE: the authoritative rate is the achieved Mbps printed at the end,
+      NOT the request and NOT the ioctl readback.
+Kernel: 6.12.10-xilinx-g0a0f70e531c7 / #1 SMP Sat May 17 14:01:06 UTC 2025
+Host: newQspi   uid=0
+spidev bufsiz: 1048576 B
+Trials: 1000 per payload size
+
+Bytes      Min(us)      Max(us)      Avg(us)      Stddev(us)  
+──────────────────────────────────────────────────────
+1          10.29        28.85        14.34        2.77          cpu= 82.56% ivcsw=0 err=0
+8          19.25        56.82        22.64        3.11          cpu= 63.05% ivcsw=0 err=0
+16         25.13        62.20        27.46        2.55          cpu= 55.26% ivcsw=0 err=0
+64         60.09        95.39        62.54        2.30          cpu= 28.56% ivcsw=0 err=0
+128        106.80       123.82       109.21       1.30          cpu= 19.52% ivcsw=0 err=0
+256        200.06       212.20       202.56       1.30          cpu= 13.89% ivcsw=0 err=0
+512        388.07       399.90       390.84       1.31          cpu=  7.28% ivcsw=0 err=0
+1024       764.20       778.08       767.30       1.43          cpu=  3.78% ivcsw=0 err=0
+4096       3020.78      3041.28      3024.89      1.44          cpu=  1.04% ivcsw=0 err=0
+16384      12047.19     12084.24     12052.13     2.02          cpu=  0.32% ivcsw=0 err=0
+65536      48147.49     48211.04     48155.45     3.87          cpu=  0.12% ivcsw=0 err=0
+
+ACHIEVED: 65536 B in 48155.45 us = 10.89 Mbps
+  (Mbps is payload throughput, NOT SCK. Per-word framing and
+   driver overhead make the ratio non-obvious -- e.g. 10.88 Mbps
+   was measured on a 15.6 MHz SCK. Compare Mbps between captures;
+   read SCK from CRL_APB or a scope if you need the clock.)
+WARNING: achieved rate FAR EXCEEDS request -- the driver ignored
+         the speed request. Do NOT label this capture with the
+         requested rate.
+newQspi:/tmp# echo 600000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeedd
+newQspi:/tmp# cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+600000
+newQspi:/tmp# ./spi_benchmark_v2_aarch64 /dev/spidev1.0
+[  754.746745] spidev spi1.0: setup: unsupported mode bits 20
+warning: could not set SPI_LOOP (continuing): Invalid argument
+SPI Linux Benchmark Results
+============================
+Device: /dev/spidev1.0
+Speed requested: 1000000 Hz
+Speed readback:  1000000 Hz
+Mode readback:   0x00 (SPI_LOOP NOT SET -- loopback must be in hardware)
+NOTE: the authoritative rate is the achieved Mbps printed at the end,
+      NOT the request and NOT the ioctl readback.
+Kernel: 6.12.10-xilinx-g0a0f70e531c7 / #1 SMP Sat May 17 14:01:06 UTC 2025
+Host: newQspi   uid=0
+spidev bufsiz: 1048576 B
+Trials: 1000 per payload size
+
+Bytes      Min(us)      Max(us)      Avg(us)      Stddev(us)  
+──────────────────────────────────────────────────────
+1          17.25        51.35        17.84        1.69          cpu=100.03% ivcsw=0 err=0
+8          32.20        57.51        33.17        1.64          cpu= 72.85% ivcsw=0 err=0
+16         35.06        65.74        40.30        2.00          cpu= 68.81% ivcsw=0 err=0
+64         68.44        114.18       78.43        4.37          cpu= 40.20% ivcsw=0 err=0
+128        120.59       165.25       125.88       3.83          cpu= 27.73% ivcsw=0 err=0
+256        216.08       256.43       221.73       2.96          cpu= 18.96% ivcsw=0 err=0
+512        409.64       442.95       415.62       3.74          cpu= 10.29% ivcsw=0 err=0
+1024       795.94       824.87       802.26       3.06          cpu=  5.39% ivcsw=0 err=0
+4096       3115.54      3156.29      3123.94      3.05          cpu=  1.55% ivcsw=0 err=0
+16384      12393.64     12428.44     12402.29     2.93          cpu=  0.50% ivcsw=0 err=0
+65536      49479.00     49560.35     49505.62     5.17          cpu=  0.21% ivcsw=0 err=0
+
+ACHIEVED: 65536 B in 49505.62 us = 10.59 Mbps
+  (Mbps is payload throughput, NOT SCK. Per-word framing and
+   driver overhead make the ratio non-obvious -- e.g. 10.88 Mbps
+   was measured on a 15.6 MHz SCK. Compare Mbps between captures;
+   read SCK from CRL_APB or a scope if you need the clock.)
+WARNING: achieved rate FAR EXCEEDS request -- the driver ignored
+         the speed request. Do NOT label this capture with the
+         requested rate.
+newQspi:/tmp# echo 400000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeedd
+newQspi:/tmp# cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+400000
+newQspi:/tmp# ./spi_benchmark_v2_aarch64 /dev/spidev1.0
+[  999.827478] spidev spi1.0: setup: unsupported mode bits 20
+warning: could not set SPI_LOOP (continuing): Invalid argument
+SPI Linux Benchmark Results
+============================
+Device: /dev/spidev1.0
+Speed requested: 1000000 Hz
+Speed readback:  1000000 Hz
+Mode readback:   0x00 (SPI_LOOP NOT SET -- loopback must be in hardware)
+NOTE: the authoritative rate is the achieved Mbps printed at the end,
+      NOT the request and NOT the ioctl readback.
+Kernel: 6.12.10-xilinx-g0a0f70e531c7 / #1 SMP Sat May 17 14:01:06 UTC 2025
+Host: newQspi   uid=0
+spidev bufsiz: 1048576 B
+Trials: 1000 per payload size
+
+Bytes      Min(us)      Max(us)      Avg(us)      Stddev(us)  
+──────────────────────────────────────────────────────
+1          25.47        87.60        26.63        3.92          cpu=100.03% ivcsw=0 err=0
+8          48.47        119.87       50.65        5.05          cpu= 73.28% ivcsw=0 err=0
+16         50.78        96.28        52.38        3.29          cpu= 71.36% ivcsw=0 err=0
+64         86.44        144.36       94.28        4.44          cpu= 48.09% ivcsw=0 err=0
+128        135.17       197.63       143.45       5.23          cpu= 34.08% ivcsw=0 err=0
+256        233.46       281.11       241.83       5.15          cpu= 23.16% ivcsw=0 err=0
+512        433.18       487.67       442.05       5.06          cpu= 12.91% ivcsw=0 err=0
+1024       831.58       886.74       840.86       4.43          cpu=  6.87% ivcsw=0 err=0
+4096       3224.84      3271.59      3237.70      4.97          cpu=  2.03% ivcsw=0 err=0
+16384      12791.51     12878.28     12810.83     5.60          cpu=  0.67% ivcsw=0 err=0
+65536      51062.70     51176.71     51088.12     8.65          cpu=  0.29% ivcsw=0 err=0
+
+ACHIEVED: 65536 B in 51088.12 us = 10.26 Mbps
+  (Mbps is payload throughput, NOT SCK. Per-word framing and
+   driver overhead make the ratio non-obvious -- e.g. 10.88 Mbps
+   was measured on a 15.6 MHz SCK. Compare Mbps between captures;
+   read SCK from CRL_APB or a scope if you need the clock.)
+WARNING: achieved rate FAR EXCEEDS request -- the driver ignored
+         the speed request. Do NOT label this capture with the
+         requested rate.
+newQspi:/tmp# echo 300000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeedd
+newQspi:/tmp# cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+300000
+newQspi:/tmp# ./spi_benchmark_v2_aarch64 /dev/spidev1.0
+[ 1226.388539] spidev spi1.0: setup: unsupported mode bits 20
+warning: could not set SPI_LOOP (continuing): Invalid argument
+SPI Linux Benchmark Results
+============================
+Device: /dev/spidev1.0
+Speed requested: 1000000 Hz
+Speed readback:  1000000 Hz
+Mode readback:   0x00 (SPI_LOOP NOT SET -- loopback must be in hardware)
+NOTE: the authoritative rate is the achieved Mbps printed at the end,
+      NOT the request and NOT the ioctl readback.
+Kernel: 6.12.10-xilinx-g0a0f70e531c7 / #1 SMP Sat May 17 14:01:06 UTC 2025
+Host: newQspi   uid=0
+spidev bufsiz: 1048576 B
+Trials: 1000 per payload size
+
+Bytes      Min(us)      Max(us)      Avg(us)      Stddev(us)  
+──────────────────────────────────────────────────────
+1          33.06        92.51        34.33        3.24          cpu=100.03% ivcsw=0 err=0
+8          61.50        127.53       64.26        5.48          cpu= 74.17% ivcsw=0 err=0
+16         62.58        171.77       66.32        7.01          cpu= 72.46% ivcsw=0 err=0
+64         96.13        191.08       108.56       5.73          cpu= 52.94% ivcsw=0 err=0
+128        149.74       220.09       159.70       6.30          cpu= 38.65% ivcsw=0 err=0
+256        250.49       311.34       261.34       7.17          cpu= 26.74% ivcsw=0 err=0
+512        455.53       511.53       467.84       7.21          cpu= 15.26% ivcsw=0 err=0
+1024       865.61       928.11       878.42       7.07          cpu=  8.21% ivcsw=0 err=0
+4096       3327.67      3393.84      3345.46      6.50          cpu=  2.46% ivcsw=0 err=0
+16384      13185.01     13256.68     13199.44     9.17          cpu=  0.83% ivcsw=0 err=0
+65536      52563.33     52724.40     52587.99     14.23         cpu=  0.37% ivcsw=0 err=0
+
+ACHIEVED: 65536 B in 52587.99 us = 9.97 Mbps
+  (Mbps is payload throughput, NOT SCK. Per-word framing and
+   driver overhead make the ratio non-obvious -- e.g. 10.88 Mbps
+   was measured on a 15.6 MHz SCK. Compare Mbps between captures;
+   read SCK from CRL_APB or a scope if you need the clock.)
+WARNING: achieved rate FAR EXCEEDS request -- the driver ignored
+         the speed request. Do NOT label this capture with the
+         requested rate.
+newQspi:/tmp# ls -l /tmp/spi_bench_*
+pi_bench_*.csv /run/media/BOOT-mmcblk0p1/
+sync
+md5sum /run/media/BOOT-mmcblk0p1/spi_bench_*.csv-rw-r--r--    1 root     root          1755 Sep  8 14:19 /tmp/spi_bench_spidev1.0_20260908_141830.csv
+-rw-r--r--    1 root     root          1754 Sep  8 14:22 /tmp/spi_bench_spidev1.0_20260908_142131.csv
+-rw-r--r--    1 root     root          1756 Sep  8 14:26 /tmp/spi_bench_spidev1.0_20260908_142536.csv
+-rw-r--r--    1 root     root          1759 Sep  8 14:30 /tmp/spi_bench_spidev1.0_20260908_142923.csv
+newQspi:/tmp# md5sum /tmp/spi_bench_*
+fc0677853b86a34bdc62f7fba7a7d17b  /tmp/spi_bench_spidev1.0_20260908_141830.csv
+597789e3330c122f3fe2f903293b6f50  /tmp/spi_bench_spidev1.0_20260908_142131.csv
+d8f8e7ce81b15e418ab92b7125bd0225  /tmp/spi_bench_spidev1.0_20260908_142536.csv
+15c87618a7f538dab6612a8560b94948  /tmp/spi_bench_spidev1.0_20260908_142923.csv
+newQspi:/tmp# cp /tmp/spi_bench_*.csv /run/media/BOOT-mmcblk0p1/
+newQspi:/tmp# sync
+newQspi:/tmp# md5sum /run/media/BOOT-mmcblk0p1/spi_bench_*.csv
+c666c299daa53ebc2858a8e23ea107aa  /run/media/BOOT-mmcblk0p1/spi_bench_spidev1.0_20260825_190101.csv
+fbf53662982ef10d1aaaca45a5d57361  /run/media/BOOT-mmcblk0p1/spi_bench_spidev1.0_20260827_125526.csv
+fc0677853b86a34bdc62f7fba7a7d17b  /run/media/BOOT-mmcblk0p1/spi_bench_spidev1.0_20260908_141830.csv
+597789e3330c122f3fe2f903293b6f50  /run/media/BOOT-mmcblk0p1/spi_bench_spidev1.0_20260908_142131.csv
+d8f8e7ce81b15e418ab92b7125bd0225  /run/media/BOOT-mmcblk0p1/spi_bench_spidev1.0_20260908_142536.csv
+15c87618a7f538dab6612a8560b94948  /run/media/BOOT-mmcblk0p1/spi_bench_spidev1.0_20260908_142923.csv
+newQspi:/tmp# md5sum ~/msu2-verify/spi-soc-research/results/spi_bench_spidev1.0_220260825_190101.csv
+md5sum: can't open '/root/msu2-verify/spi-soc-research/results/spi_bench_spidev1.0_20260825_190101.csv': No such file or directory
+newQspi:/tmp# md5sum ~/msu2-verify/spi-soc-research/results/spi_bench_spidev1.0_220260825_190101.csv
+md5sum: can't open '/root/msu2-verify/spi-soc-research/results/spi_bench_spidev1.0_20260825_190101.csv': No such file or directory
+newQspi:/tmp# echo 1200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeeed
+newQspi:/tmp# cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+1
+poweroff1200000
+newQspi:/tmp# cd /
+newQspi:/# sync
+newQspi:/# umount /run/media/BOOT-mmcblk0p1
+newQspi:/# poweroff
+newQspi:/#          Stopping [0;1;39mSession c1 of User petalinux[0m...
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/modprobe[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mMulti-User System[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mLogin Prompts[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mHost and Network Name Lookups[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mRPC Port Mapper[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSystem Time Set[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mHardware activated USB gadget[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mLoad/Save RF Kill Switch Status /dev/rfkill Watch[0m.
+         Stopping [0;1;39mKernel Logging Service[0m...
+         Stopping [0;1;39mSystem Logging Service[0m...
+         Stopping [0;1;39mGetty on tty1[0m...
+         Stopping [0;1;39mSerial Getty on ttyPS0[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mFile System Check on /dev/mmcblk0p1[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/systemd-fsck[0m.
+         Stopping [0;1;39mLoad/Save OS Random Seed[0m...
+         Stopping [0;1;39mTarget Communication Framework agent[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mOpenSSH Key Generation[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mKernel Logging Service[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mSystem Logging Service[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mTarget Communication Framework agent[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mGetty on tty1[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mSerial Getty on ttyPS0[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mLoad/Save OS Random Seed[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mSession c1 of User petalinux[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/getty[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/serial-getty[0m.
+         Stopping [0;1;39mUser Login Management[0m...
+         Stopping [0;1;39mUser Manager for UID 1000[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mUser Login Management[0m.
+[ 1594.202326] audit: type=1334 audit(1788878131.211:14): prog-id=14 op=UNLOAD
+[[0;32m  OK  [0m] Stopped [0;1;39mUser Manager for UID 1000[0m.
+         Stopping [0;1;39mPermit User Sessions[0m...
+         Stopping [0;1;39mUser Runtime Directory /run/user/1000[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Unmounted [0;1;39m/run/user/1000[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mUser Runtime Directory /run/user/1000[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mUser Slice of UID 1000[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mRemote File Systems[0m.
+         Stopping [0;1;39mD-Bus System Message Bus[0m...
+         Stopping [0;1;39mNetwork Configuration[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mD-Bus System Message Bus[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mBasic System[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mPath Units[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mDispatch Password Requests to Console Directory Watch[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mForward Password Requests to Wall Directory Watch[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSlice Units[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mUser and Session Slice[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSocket Units[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mD-Bus System Message Bus Socket[0m.
+[[0;32m  OK  [0m] Closed [0;1;39msshd.socket[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mSyslog Socket[0m.
+         Stopping [0;1;39mNetwork Name Resolution[0m...
+         Stopping [0;1;39mNetwork Time Synchronization[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mUpdate is Completed[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mRebuild Dynamic Linker Cache[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mRebuild Journal Catalog[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mNetwork Configuration[0
