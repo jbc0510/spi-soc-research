@@ -2,8 +2,35 @@
 
 **Project:** MSU-2 (ZCU102 SPI Benchmark) · Contract FA-8075-18-D-0004
 **Date:** 2026-06-03
-**Platform:** ZCU102 (xczu9eg), PetaLinux 2025.1, AXI Quad SPI v3.2 @ 6.25 MHz (C_SCK_RATIO=16, 100 MHz fabric clock)
+**Platform:** ZCU102 (xczu9eg), PetaLinux 2025.1, AXI Quad SPI v3.2 @ **15.625 MHz** SCK (C_SCK_RATIO=16, PL0 250 MHz from live CRL_APB). *Originally written "@ 6.25 MHz (C_SCK_RATIO=16, 100 MHz fabric clock)" — superseded, see CORRECTION below.*
 **Author:** J. Conway
+
+> ## CORRECTION — 2026-09-09
+>
+> **The 6.25 MHz SCK originally stated in the Platform line is wrong.** It came
+> from the design-time assumption PL0 = 100 MHz ÷ C_SCK_RATIO 16. Live CRL_APB
+> reads establish IOPLL 1500 MHz → PL0 250 MHz (÷6) → **AXI SCK 15.625 MHz**.
+>
+> This file refutes its own header twice:
+>
+> 1. Line ~31 calls ~10.9 Mbps "consistent with the 6.25 MHz native SCK".
+>    Single-lane standard SPI (`C_SPI_MODE=0`) carries one bit per clock, so
+>    6.25 MHz caps throughput at 6.25 Mbps. 10.9 > 6.25.
+> 2. The timings near the end (4 MB ~ 3 s/trial, 16 MB ~ 12 s/trial) match
+>    10.9 Mbps to within a few percent. At 6.25 Mbps they would be 5.4 s and
+>    21.5 s — roughly 1.75x slower than observed.
+>
+> **The bufsiz / EMSGSIZE / ENOMEM findings are unaffected.** They concern Linux
+> driver and allocator limits, not the wire rate, and stand as written.
+>
+> Original wording is retained throughout rather than rewritten. Triage:
+> `results/CLOCK_TRIAGE_20260909.md`, commit `a23f32b`.
+>
+> **Not claimed:** that ~10.9 Mbps is itself correct. It is an unverified figure
+> from the 2026-06-03 capture. Established here only that it is inconsistent
+> with 6.25 MHz and consistent with 15.625 MHz. 15.625 MHz is DERIVED from
+> register reads and the synthesis-frozen ratio; the AXI serial clock has never
+> been observed on the wire.
 
 ## Question
 
@@ -30,6 +57,15 @@ Across every payload that the driver accepted (1 byte through the active bufsiz
 limit), the AXI hardware completed with **zero data errors** and stable
 throughput of ~10.9 Mbps (consistent with the 6.25 MHz native SCK and FIFO
 burst overlap).
+
+> **[2026-09-09]** The parenthetical is wrong and was self-refuting when
+> written: single-lane standard SPI carries one bit per clock, so a 6.25 MHz
+> SCK caps throughput at 6.25 Mbps and cannot produce 10.9 Mbps.
+> `results/CLOCK_DISCREPANCY_FINDINGS.md` lines 41-42 caught the same
+> impossibility independently. At the established **15.625 MHz** SCK,
+> 10.9 Mbps is ~70% wire efficiency, which is plausible for a FIFO-serviced
+> path. The measured throughput is not disputed here — only its stated
+> cause. See CORRECTION at the top of this file.
 
 ### Interpretation
 
@@ -116,3 +152,8 @@ method was sufficient for the investigation.)
 > Note: at 6.25 MHz, large payloads are slow (4 MB ~ 3 s/trial; 16 MB ~ 12 s/trial).
 > A few trials suffice to confirm pass/fail; full 1000-trial rows at MB scale take
 > tens of minutes to hours.
+>
+> **[2026-09-09]** Read "15.625 MHz" for "6.25 MHz". The per-trial times are
+> correct as observed and are themselves evidence against the 6.25 figure:
+> 4 MiB at 10.9 Mbps is 3.08 s and 16 MiB is 12.3 s, both matching what was
+> seen. At a 6.25 Mbps ceiling they would have been 5.4 s and 21.5 s.
