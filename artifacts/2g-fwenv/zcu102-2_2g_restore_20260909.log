@@ -1,0 +1,70 @@
+Script started on 2026-09-09 09:09:50-04:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="101" LINES="53"]
+picocom v3.1
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-a
+local echo is  : no
+noinit is      : no
+noreset is     : yes
+hangup is      : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv -E
+imap is        : 
+omap is        : 
+emap is        : crcrlf,delbs,
+logfile is     : none
+initstring     : none
+exit_after is  : not set
+exit is        : no
+
+Type [C-a] [C-h] to see available commands
+Terminal ready
+Zynq MP First Stage Boot Loader 
+Release 2025.1   May 14 2025  -  12:33:16
+
+
+U-Boot 2025.01-ga09d2660433d (May 16 2025 - 14:46:32 +0000)
+
+CPU:   ZynqMP
+Silicon: v3
+Chip:  zu9eg
+Board: Xilinx ZynqMP
+DRAM:  2 GiB (effective 4 GiB)
+EL Level:	EL2
+Secure Boot:	not authenticated, not encrypted
+Core:  39 devices, 23 uclasses, devicetree: board
+NAND:  0 MiB
+MMC:   mmc@ff170000: 0
+Loading Environment from FAT... OK
+In:    serial
+Out:   serial,vidconsole
+Err:   serial,vidconsole
+Net:   No ethernet found.
+
+[?25h
+scanning bus for devices...
+SATA link 0 timeout.
+SATA link 1 timeout.
+AHCI 0001.0301 32 slots 2 ports 6 Gbps 0x3 impl SATA mode
+flags: 64bit ncq pm clo only pmp fbss pio slum part ccc apst 
+starting USB...
+No USB controllers found
+Hit any key to stop autoboot:  5  0
+ZynqMP>     printenv msu2_probe
+msu2_probe=probe_20260909
+ZynqMP> printenv msu2_marker
+msu2_marker=uboot_20260908
+ZynqMP> printenv bootdelay
+bootdelay=5
+ZynqMP> 
+Terminating...
+Skipping tty reset...
+Thanks for using picocom
+
+Script done on 2026-09-09 09:11:10-04:00 [COMMAND_EXIT_CODE="0"]
