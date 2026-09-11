@@ -1,0 +1,1849 @@
+Script started on 2026-09-11 10:49:14-04:00 [COMMAND="picocom -b 115200 --noreset --flow n --lower-rts --lower-dtr /dev/ttyUSB0" TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="80" LINES="24"]
+picocom v3.1
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-a
+local echo is  : no
+noinit is      : no
+noreset is     : yes
+hangup is      : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv -E
+imap is        : 
+omap is        : 
+emap is        : crcrlf,delbs,
+logfile is     : none
+initstring     : none
+exit_after is  : not set
+exit is        : no
+
+Type [C-a] [C-h] to see available commands
+Terminal ready
+Zynq MP First Stage Boot Loader 
+Release 2025.1   May 14 2025  -  12:33:16
+
+
+U-Boot 2025.01-ga09d2660433d (May 16 2025 - 14:46:32 +0000)
+
+CPU:   ZynqMP
+Silicon: v3
+Chip:  zu9eg
+Board: Xilinx ZynqMP
+DRAM:  2 GiB (effective 4 GiB)
+EL Level:	EL2
+Secure Boot:	not authenticated, not encrypted
+Core:  39 devices, 23 uclasses, devicetree: board
+NAND:  0 MiB
+MMC:   mmc@ff170000: 0
+Loading Environment from FAT... OK
+In:    serial
+Out:   serial,vidconsole
+Err:   serial,vidconsole
+Net:   No ethernet found.
+
+[?25h
+scanning bus for devices...
+SATA link 0 timeout.
+SATA link 1 timeout.
+AHCI 0001.0301 32 slots 2 ports 6 Gbps 0x3 impl SATA mode
+flags: 64bit ncq pm clo only pmp fbss pio slum part ccc apst 
+starting USB...
+No USB controllers found
+Hit any key to stop autoboot:  5  4  3  2  1  0 
+switch to partitions #0, OK
+mmc0 is current device
+Scanning mmc 0:1...
+Found U-Boot script /boot.scr
+3833 bytes read in 18 ms (207 KiB/s)
+## Executing script at 20000000
+Trying to load boot images from mmc0
+55510056 bytes read in 3683 ms (14.4 MiB/s)
+## Loading kernel from FIT Image at 10000000 ...
+   Using 'conf-system-top.dtb' configuration
+   Trying 'kernel-1' kernel subimage
+     Description:  Linux kernel with spidev
+     Created:      2026-05-28  15:53:39 UTC
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Start:   0x100000e4
+     Data Size:    11660781 Bytes = 11.1 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: 0x00200000
+     Entry Point:  0x00200000
+     Hash algo:    sha256
+     Hash value:   023ae2aa3f608f115f466d150383ea50d40a727cb79e4c1ec7c42b4f637dcb99
+   Verifying Hash Integrity ... sha256+ OK
+## Loading ramdisk from FIT Image at 10000000 ...
+   Using 'conf-system-top.dtb' configuration
+   Trying 'ramdisk-1' ramdisk subimage
+     Description:  petalinux-image-minimal
+     Created:      2026-05-28  15:53:39 UTC
+     Type:         RAMDisk Image
+     Compression:  uncompressed
+     Data Start:   0x10b28648
+     Data Size:    43809071 Bytes = 41.8 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: unavailable
+     Entry Point:  unavailable
+     Hash algo:    sha256
+     Hash value:   6eba38d56d5ab4fc5a5e359e07429269b25e94a2262f0a151cc806f817ba7fe0
+   Verifying Hash Integrity ... sha256+ OK
+## Loading fdt from FIT Image at 10000000 ...
+   Using 'conf-system-top.dtb' configuration
+   Trying 'fdt-system-top.dtb' fdt subimage
+     Description:  DTB with spidev.bufsiz=1MB
+     Created:      2026-05-28  15:53:39 UTC
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x10b1efe4
+     Data Size:    36067 Bytes = 35.2 KiB
+     Architecture: AArch64
+     Hash algo:    sha256
+     Hash value:   852b2591a8f1d095d2392f098fb547280a0e3cb71b6556e416aea1684a3d942e
+   Verifying Hash Integrity ... sha256+ OK
+   Booting using the fdt blob at 0x10b1efe4
+Working FDT set to 10b1efe4
+   Uncompressing Kernel Image to 200000
+   Loading Ramdisk to 7531b000, end 77ce292f ... OK
+   Loading Device Tree to 000000007530f000, end 000000007531ace2 ... OK
+Working FDT set to 7530f000
+No RNG device
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.12.10-xilinx-g0a0f70e531c7 (oe-user@oe-host) (aarch64-amd-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP Sat May 17 14:01:06 UTC 2025
+[    0.000000] KASLR disabled due to lack of seed
+[    0.000000] Machine model: xlnx,zynqmp
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff000000 (options '115200n8')
+[    0.000000] printk: legacy bootconsole [cdns0] enabled
+[    0.000000] efi: UEFI not found.
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000000000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   [mem 0x0000000100000000-0x000000087fffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x000000007fefffff]
+[    0.000000]   node   0: [mem 0x0000000800000000-0x000000087fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000087fffffff]
+[    0.000000] On node 0, zone Normal: 256 pages in unavailable ranges
+[    0.000000] cma: Reserved 256 MiB at 0x0000000065200000 on node -1
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.5
+[    0.000000] percpu: Embedded 22 pages/cpu s51992 r8192 d29928 u90112
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: ARM erratum 845719
+[    0.000000] alternatives: applying boot alternatives
+[    0.000000] Kernel command line: earlycon console=ttyPS0,115200 root=/dev/ram0 rw spidev.bufsiz=1048576
+[    0.000000] Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 1048320
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+[    0.000000] software IO TLB: area num 4.
+[    0.000000] software IO TLB: mapped [mem 0x000000007bf00000-0x000000007ff00000] (64MB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=4.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] RCU Tasks Trace: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GIC: Adjusting CPU interface base to 0x00000000f902f000
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GIC: Using split EOI/Deactivate mode
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000000] arch_timer: cp15 timer(s) running at 99.99MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0x1ffffffffffffff max_cycles: 0x170f8de2d3, max_idle_ns: 440795206112 ns
+[    0.000000] sched_clock: 57 bits at 100MHz, resolution 10ns, wraps every 4398046511101ns
+[    0.008319] Console: colour dummy device 80x25
+[    0.012561] Calibrating delay loop (skipped), value calculated using timer frequency.. 199.98 BogoMIPS (lpj=399960)
+[    0.022973] pid_max: default: 32768 minimum: 301
+[    0.027708] Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.034991] Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.067075] rcu: Hierarchical SRCU implementation.
+[    0.067121] rcu: 	Max phase no-delay instances is 1000.
+[    0.071627] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+[    0.079709] EFI services will not be available.
+[    0.084243] smp: Bringing up secondary CPUs ...
+[    0.089001] Detected VIPT I-cache on CPU1
+[    0.089068] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.089520] Detected VIPT I-cache on CPU2
+[    0.089564] CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.089992] Detected VIPT I-cache on CPU3
+[    0.090036] CPU3: Booted secondary processor 0x0000000003 [0x410fd034]
+[    0.090095] smp: Brought up 1 node, 4 CPUs
+[    0.124259] SMP: Total of 4 processors activated.
+[    0.128957] CPU: All CPU(s) started at EL2
+[    0.133047] CPU features: detected: 32-bit EL0 Support
+[    0.138182] CPU features: detected: CRC32 instructions
+[    0.143346] alternatives: applying system-wide alternatives
+[    0.149839] Memory: 3710944K/4193280K available (16960K kernel code, 1082K rwdata, 5084K rodata, 3200K init, 478K bss, 216612K reserved, 262144K cma-reserved)
+[    0.163810] devtmpfs: initialized
+[    0.171791] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.176134] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.188392] 26000 pages in range for non-PLT usage
+[    0.188412] 517520 pages in range for PLT usage
+[    0.188604] pinctrl core: initialized pinctrl subsystem
+[    0.197896] DMI not present or invalid.
+[    0.203209] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.207950] DMA: preallocated 512 KiB GFP_KERNEL pool for atomic allocations
+[    0.214414] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.222208] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.230000] audit: initializing netlink subsys (disabled)
+[    0.235490] audit: type=2000 audit(0.156:1): state=initialized audit_enabled=0 res=1
+[    0.236118] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.249971] ASID allocator initialised with 65536 entries
+[    0.255438] Serial: AMBA PL011 UART driver
+[    0.264122] /axi/interrupt-controller@f9010000: Fixed dependency cycle(s) with /axi/interrupt-controller@f9010000
+[    0.269748] /axi/pcie@fd0e0000: Fixed dependency cycle(s) with /axi/pcie@fd0e0000
+[    0.280977] /axi/pcie@fd0e0000: Fixed dependency cycle(s) with /axi/pcie@fd0e0000
+[    0.284672] /axi/pcie@fd0e0000: Fixed dependency cycle(s) with /axi/pcie@fd0e0000/legacy-interrupt-controller
+[    0.297347] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.301330] HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.307594] HugeTLB: registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.314374] HugeTLB: 0 KiB vmemmap can be freed for a 32.0 MiB page
+[    0.320641] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.327424] HugeTLB: 0 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.333691] HugeTLB: registered 64.0 KiB page size, pre-allocated 0 pages
+[    0.340475] HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+[    0.414818] raid6: neonx8   gen()  2270 MB/s
+[    0.482887] raid6: neonx4   gen()  2213 MB/s
+[    0.550953] raid6: neonx2   gen()  2110 MB/s
+[    0.619029] raid6: neonx1   gen()  1785 MB/s
+[    0.687099] raid6: int64x8  gen()  1415 MB/s
+[    0.755169] raid6: int64x4  gen()  1563 MB/s
+[    0.823230] raid6: int64x2  gen()  1401 MB/s
+[    0.891309] raid6: int64x1  gen()  1036 MB/s
+[    0.891349] raid6: using algorithm neonx8 gen() 2270 MB/s
+[    0.963390] raid6: .... xor() 1660 MB/s, rmw enabled
+[    0.963436] raid6: using neon recovery algorithm
+[    0.967844] iommu: Default domain type: Translated
+[    0.972113] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.978601] SCSI subsystem initialized
+[    0.982188] usbcore: registered new interface driver usbfs
+[    0.987533] usbcore: registered new interface driver hub
+[    0.992840] usbcore: registered new device driver usb
+[    0.997958] mc: Linux media interface: v0.10
+[    1.002154] videodev: Linux video capture interface: v2.00
+[    1.007638] pps_core: LinuxPPS API ver. 1 registered
+[    1.012567] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    1.021711] PTP clock support registered
+[    1.025642] EDAC MC: Ver: 3.0.0
+[    1.028966] scmi_core: SCMI protocol bus registered
+[    1.033763] zynqmp-ipi-mbox mailbox@ff9905c0: Registered ZynqMP IPI mbox with TX/RX channels.
+[    1.042593] FPGA manager framework
+[    1.045695] Advanced Linux Sound Architecture Driver Initialized.
+[    1.052089] Bluetooth: Core ver 2.22
+[    1.055212] NET: Registered PF_BLUETOOTH protocol family
+[    1.060512] Bluetooth: HCI device and connection manager initialized
+[    1.066864] Bluetooth: HCI socket layer initialized
+[    1.071735] Bluetooth: L2CAP socket layer initialized
+[    1.076786] Bluetooth: SCO socket layer initialized
+[    1.082026] clocksource: Switched to clocksource arch_sys_counter
+[    1.087928] VFS: Disk quotas dquot_6.6.0
+[    1.091674] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    1.104692] NET: Registered PF_INET protocol family
+[    1.104889] IP idents hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    1.114075] tcp_listen_portaddr_hash hash table entries: 2048 (order: 3, 32768 bytes, linear)
+[    1.119879] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.127601] TCP established hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    1.135723] TCP bind hash table entries: 32768 (order: 8, 1048576 bytes, linear)
+[    1.143708] TCP: Hash tables configured (established 32768 bind 32768)
+[    1.149506] UDP hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[    1.156207] UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[    1.163433] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.169334] RPC: Registered named UNIX socket transport module.
+[    1.174848] RPC: Registered udp transport module.
+[    1.179538] RPC: Registered tcp transport module.
+[    1.184235] RPC: Registered tcp-with-tls transport module.
+[    1.189717] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    1.196164] PCI: CLS 0 bytes, default 64
+[    1.200437] Trying to unpack rootfs image as initramfs...
+[    1.211386] Initialise system trusted keyrings
+[    1.211596] workingset: timestamp_bits=46 max_order=20 bucket_order=0
+[    1.217280] NFS: Registering the id_resolver key type
+[    1.221702] Key type id_resolver registered
+[    1.225853] Key type id_legacy registered
+[    1.229884] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    1.236569] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    1.244219] jffs2: version 2.2. (NAND) (SUMMARY)  © 2001-2006 Red Hat, Inc.
+[    1.306904] NET: Registered PF_ALG protocol family
+[    1.306977] xor: measuring software checksum speed
+[    1.312169]    8regs           :  2516 MB/sec
+[    1.316511]    32regs          :  2522 MB/sec
+[    1.320947]    arm64_neon      :  2367 MB/sec
+[    1.323910] xor: using function: 32regs (2522 MB/sec)
+[    1.328976] Key type asymmetric registered
+[    1.333051] Asymmetric key parser 'x509' registered
+[    1.338011] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 243)
+[    1.345317] io scheduler mq-deadline registered
+[    1.349841] io scheduler kyber registered
+[    1.353893] io scheduler bfq registered
+[    1.363067] ledtrig-cpu: registered to indicate activity on CPUs
+[    1.398664] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    1.400888] Serial: AMBA driver
+[    1.410813] brd: module loaded
+[    1.414509] loop: module loaded
+[    1.419320] CAN device driver interface
+[    1.420093] usbcore: registered new interface driver asix
+[    1.422940] usbcore: registered new interface driver ax88179_178a
+[    1.429028] usbcore: registered new interface driver cdc_ether
+[    1.434865] usbcore: registered new interface driver net1080
+[    1.440514] usbcore: registered new interface driver cdc_subset
+[    1.446430] usbcore: registered new interface driver zaurus
+[    1.452006] usbcore: registered new interface driver cdc_ncm
+[    1.457659] usbcore: registered new interface driver r8153_ecm
+[    1.463938] VFIO - User Level meta-driver version: 0.3
+[    1.469328] usbcore: registered new interface driver uas
+[    1.473933] usbcore: registered new interface driver usb-storage
+[    1.479926] usbcore: registered new device driver onboard-usb-dev
+[    1.487331] rtc_zynqmp ffa60000.rtc: registered as rtc0
+[    1.491239] rtc_zynqmp ffa60000.rtc: setting system clock to 2026-09-11T14:49:22 UTC (1789138162)
+[    1.500200] i2c_dev: i2c /dev entries driver
+[    1.505976] usbcore: registered new interface driver uvcvideo
+[    1.510106] Driver for 1-wire Dallas network protocol.
+[    1.515993] Bluetooth: HCI UART driver ver 2.3
+[    1.519678] Bluetooth: HCI UART protocol H4 registered
+[    1.524807] Bluetooth: HCI UART protocol BCSP registered
+[    1.530153] Bluetooth: HCI UART protocol LL registered
+[    1.535247] Bluetooth: HCI UART protocol ATH3K registered
+[    1.540670] Bluetooth: HCI UART protocol Three-wire (H5) registered
+[    1.547013] Bluetooth: HCI UART protocol Intel registered
+[    1.552320] Bluetooth: HCI UART protocol QCA registered
+[    1.557552] usbcore: registered new interface driver bcm203x
+[    1.563198] usbcore: registered new interface driver bpa10x
+[    1.568765] usbcore: registered new interface driver bfusb
+[    1.574253] usbcore: registered new interface driver btusb
+[    1.579744] usbcore: registered new interface driver ath3k
+[    1.585424] EDAC MC: ECC not enabled
+[    1.589176] EDAC DEVICE0: Giving out device to module zynqmp-ocm-edac controller zynqmp_ocm: DEV ff960000.memory-controller (INTERRUPT)
+[    1.601563] sdhci: Secure Digital Host Controller Interface driver
+[    1.607128] sdhci: Copyright(c) Pierre Ossman
+[    1.611472] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.617857] SMCCC: SOC_ID: ID = jep106:0049:0000 Revision = 0x24738093
+[    1.623755] zynqmp_firmware_probe Platform Management API v1.1
+[    1.629512] zynqmp_firmware_probe Trustzone version v1.0
+[    1.663631] securefw securefw: securefw probed
+[    1.663848] xilinx_ecdsa xilinx_ecdsa.0: ECDSA is not supported on the platform
+[    1.670204] zynqmp-aes zynqmp-aes.0: will run requests pump with realtime priority
+[    1.677927] zynqmp-sha3-384 zynqmp-sha3-384.0: will run requests pump with realtime priority
+[    1.686066] usbcore: registered new interface driver usbhid
+[    1.691427] usbhid: USB HID core driver
+[    1.698441] ARM CCI_400_r1 PMU driver probed
+[    1.699090] hw perfevents: enabled with armv8_cortex_a53 PMU driver, 7 (0,8000003f) counters available
+[    1.710465] fpga_manager fpga0: Xilinx ZynqMP FPGA Manager registered
+[    1.715853] usbcore: registered new interface driver snd-usb-audio
+[    1.722313] pktgen: Packet Generator for packet performance testing. Version: 2.75
+[    1.730186] Initializing XFRM netlink socket
+[    1.733315] NET: Registered PF_INET6 protocol family
+[    1.738897] Segment Routing with IPv6
+[    1.741911] In-situ OAM (IOAM) with IPv6
+[    1.745907] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.752178] NET: Registered PF_PACKET protocol family
+[    1.756780] NET: Registered PF_KEY protocol family
+[    1.761578] can: controller area network core
+[    1.765934] NET: Registered PF_CAN protocol family
+[    1.770686] can: raw protocol
+[    1.773642] can: broadcast manager protocol
+[    1.777827] can: netlink gateway - max_hops=1
+[    1.782385] Bluetooth: RFCOMM TTY layer initialized
+[    1.787052] Bluetooth: RFCOMM socket layer initialized
+[    1.792186] Bluetooth: RFCOMM ver 1.11
+[    1.795925] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    1.801224] Bluetooth: BNEP filters: protocol multicast
+[    1.806452] Bluetooth: BNEP socket layer initialized
+[    1.811406] Bluetooth: HIDP (Human Interface Emulation) ver 1.2
+[    1.817334] Bluetooth: HIDP socket layer initialized
+[    1.822329] 8021q: 802.1Q VLAN Support v1.8
+[    1.826782] 9pnet: Installing 9P2000 support
+[    1.830796] Key type dns_resolver registered
+[    1.835182] NET: Registered PF_VSOCK protocol family
+[    1.849046] registered taskstats version 1
+[    1.849220] Loading compiled-in X.509 certificates
+[    1.862049] Btrfs loaded, zoned=no, fsverity=no
+[    1.878134] ff000000.serial: ttyPS0 at MMIO 0xff000000 (irq = 24, base_baud = 6249375) is a xuartps
+[    1.887219] printk: legacy console [ttyPS0] enabled
+[    1.887219] printk: legacy console [ttyPS0] enabled
+[    1.892152] printk: legacy bootconsole [cdns0] disabled
+[    1.892152] printk: legacy bootconsole [cdns0] disabled
+[    2.002369] ff010000.serial: ttyPS2 at MMIO 0xff010000 (irq = 25, base_baud = 6249375) is a xuartps
+[    2.012094] of-fpga-region fpga-region: FPGA Region probed
+[    2.019744] nwl-pcie fd0e0000.pcie: host bridge /axi/pcie@fd0e0000 ranges:
+[    2.026679] nwl-pcie fd0e0000.pcie:      MEM 0x00e0000000..0x00efffffff -> 0x00e0000000
+[    2.034704] nwl-pcie fd0e0000.pcie:      MEM 0x0600000000..0x07ffffffff -> 0x0600000000
+[    2.042939] nwl-pcie fd0e0000.pcie: Link is DOWN
+[    2.048075] nwl-pcie fd0e0000.pcie: PCI host bridge to bus 0000:00
+[    2.054281] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    2.059789] pci_bus 0000:00: root bus resource [mem 0xe0000000-0xefffffff]
+[    2.066677] pci_bus 0000:00: root bus resource [mem 0x600000000-0x7ffffffff pref]
+[    2.074205] pci 0000:00:00.0: [10ee:d021] type 01 class 0x060400 PCIe Root Port
+[    2.081544] pci 0000:00:00.0: PCI bridge to [bus 00]
+[    2.086519] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
+[    2.093316] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[    2.101113] pci 0000:00:00.0: PME# supported from D0 D1 D2 D3hot
+[    2.108492] pci 0000:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    2.116673] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+[    2.123328] pci 0000:00:00.0: PCI bridge to [bus 01]
+[    2.128304] pci_bus 0000:00: resource 4 [mem 0xe0000000-0xefffffff]
+[    2.134571] pci_bus 0000:00: resource 5 [mem 0x600000000-0x7ffffffff pref]
+[    2.145868] xilinx-zynqmp-dpdma fd4c0000.dma-controller: Xilinx DPDMA engine is probed
+[    2.154158] zynqmp-dpsub fd4a0000.display: DP output port not connected
+[    2.160786] zynqmp-dpsub fd4a0000.display: probe with driver zynqmp-dpsub failed with error -22
+[    2.170115] ahci-ceva fd0c0000.ahci: supply ahci not found, using dummy regulator
+[    2.177740] ahci-ceva fd0c0000.ahci: supply phy not found, using dummy regulator
+[    2.185186] ahci-ceva fd0c0000.ahci: supply target not found, using dummy regulator
+[    2.193017] ahci-ceva fd0c0000.ahci: ceva,p0-cominit-params property not defined
+[    2.200538] ahci-ceva fd0c0000.ahci: probe with driver ahci-ceva failed with error -22
+[    2.209628] spi_master spi0: cannot find modalias for /axi/spi@ff0f0000/flash@0
+[    2.216978] spi_master spi0: Failed to create SPI device for /axi/spi@ff0f0000/flash@0
+[    2.226450] macb ff0e0000.ethernet: invalid hw address, using random
+[    3.123636] Freeing initrd memory: 42780K
+[    3.291524] macb ff0e0000.ethernet eth0: Cadence GEM rev 0x50070106 at 0xff0e0000 irq 50 (6a:bc:7e:99:98:49)
+[    3.302121] xilinx-axipmon ffa00000.perf-monitor: Probed Xilinx APM
+[    3.308805] xilinx-axipmon fd0b0000.perf-monitor: Probed Xilinx APM
+[    3.315450] xilinx-axipmon fd490000.perf-monitor: Probed Xilinx APM
+[    3.322087] xilinx-axipmon ffa10000.perf-monitor: Probed Xilinx APM
+[    3.352246] cdns-i2c ff020000.i2c: can't get pinctrl, bus recovery not supported
+[    3.360701] cdns-i2c ff020000.i2c: 400 kHz mmio ff020000 irq 53
+[    3.366930] cdns-i2c ff030000.i2c: can't get pinctrl, bus recovery not supported
+[    3.374638] cdns-i2c ff030000.i2c: 400 kHz mmio ff030000 irq 56
+[    3.381058] cdns-wdt fd4d0000.watchdog: Xilinx Watchdog Timer with timeout 60s
+[    3.388609] cdns-wdt ff150000.watchdog: Xilinx Watchdog Timer with timeout 10s
+[    3.396271] cpufreq: cpufreq_online: CPU0: Running at unlisted initial frequency: 1199880 KHz, changing to: 1200000 KHz
+[    3.408886] of_cfs_init
+[    3.411412] of_cfs_init: OK
+[    3.414361] clk: Disabling unused clocks
+[    3.419251] PM: genpd: Disabling unused power domains
+[    3.424641] ALSA device list:
+[    3.427603]   No soundcards found.
+[    3.461902] mmc0: SDHCI controller on ff170000.mmc [ff170000.mmc] using ADMA 64-bit
+[    3.470936] Freeing unused kernel memory: 3200K
+[    3.475521] Run /init as init process
+[    3.504791] systemd[1]: systemd 255.17^ running in system mode (+PAM -AUDIT -SELINUX -APPARMOR +IMA -SMACK +SECCOMP -GCRYPT -GNUTLS +OPENSSL +ACL +BLKID -CURL -ELFUTILS -FIDO2 -IDN2 -IDN -IPTC +KMOD -LIBCRYPTSETUP +LIBFDISK -PCRE2 -PWQUALITY -P11KIT -QRENCODE -TPM2 -BZIP2 -LZ4 -XZ -ZLIB +ZSTD -BPF_FRAMEWORK +XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    3.536709] systemd[1]: Detected architecture arm64.
+
+Welcome to [1mPetaLinux 2025.1+release-S05180137 (scarthgap)[0m!
+
+[    3.554182] systemd[1]: Hostname set to <newQspi>.
+[    3.559099] systemd[1]: Initializing machine ID from random generator.
+[    3.570553] mmc0: new ultra high speed SDR104 SDXC card at address 0001
+[    3.577662] mmcblk0: mmc0:0001 SD64G 58.2 GiB
+[    3.583224]  mmcblk0: p1
+[    3.890508] systemd[1]: Queued start job for default target Multi-User System.
+[    3.933038] systemd[1]: Created slice Slice /system/getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/getty[0m.
+[    3.951293] systemd[1]: Created slice Slice /system/modprobe.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/modprobe[0m.
+[    3.971311] systemd[1]: Created slice Slice /system/serial-getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/serial-getty[0m.
+[    3.990947] systemd[1]: Created slice User and Session Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mUser and Session Slice[0m.
+[    4.010280] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39mDispatch Password Requests to Console Directory Watch[0m.
+[    4.030238] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password Requests to Wall Directory Watch[0m.
+[    4.050218] systemd[1]: Reached target Path Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mPath Units[0m.
+[    4.062129] systemd[1]: Reached target Remote File Systems.
+[[0;32m  OK  [0m] Reached target [0;1;39mRemote File Systems[0m.
+[    4.078129] systemd[1]: Reached target Slice Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mSlice Units[0m.
+[    4.090126] systemd[1]: Reached target Swaps.
+[[0;32m  OK  [0m] Reached target [0;1;39mSwaps[0m.
+[    4.134499] systemd[1]: Listening on RPCbind Server Activation Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mRPCbind Server Activation Socket[0m.
+[    4.154255] systemd[1]: Reached target RPC Port Mapper.
+[[0;32m  OK  [0m] Reached target [0;1;39mRPC Port Mapper[0m.
+[    4.170674] systemd[1]: Listening on Syslog Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mSyslog Socket[0m.
+[    4.182322] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[[0;32m  OK  [0m] Listening on [0;1;39minitctl Compatibility Named Pipe[0m.
+[    4.202838] systemd[1]: Listening on Journal Audit Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Audit Socket[0m.
+[    4.222421] systemd[1]: Listening on Journal Socket (/dev/log).
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket (/dev/log)[0m.
+[    4.242552] systemd[1]: Listening on Journal Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket[0m.
+[    4.254629] systemd[1]: Listening on Network Service Netlink Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mNetwork Service Netlink Socket[0m.
+[    4.274532] systemd[1]: Listening on udev Control Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Control Socket[0m.
+[    4.290407] systemd[1]: Listening on udev Kernel Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Kernel Socket[0m.
+[    4.306432] systemd[1]: Listening on User Database Manager Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mUser Database Manager Socket[0m.
+[    4.350284] systemd[1]: Mounting Huge Pages File System...
+         Mounting [0;1;39mHuge Pages File System[0m...
+[    4.364805] systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting [0;1;39mPOSIX Message Queue File System[0m...
+[    4.385019] systemd[1]: Mounting Kernel Debug File System...
+         Mounting [0;1;39mKernel Debug File System[0m...
+[    4.398633] systemd[1]: Kernel Trace File System was skipped because of an unmet condition check (ConditionPathExists=/sys/kernel/tracing).
+[    4.414146] systemd[1]: Mounting Temporary Directory /tmp...
+         Mounting [0;1;39mTemporary Directory /tmp[0m...
+[    4.429713] systemd[1]: Starting Create List of Static Device Nodes...
+         Starting [0;1;39mCreate List of Static Device Nodes[0m...
+[    4.453429] systemd[1]: Starting Load Kernel Module configfs...
+         Starting [0;1;39mLoad Kernel Module configfs[0m...
+[    4.469584] systemd[1]: Starting Load Kernel Module dm_mod...
+         Starting [0;1;39mLoad Kernel Module dm_mod[0m...
+[    4.485584] systemd[1]: Starting Load Kernel Module drm...
+         Starting [0;1;39mLoad Kernel Module drm[0m...
+[    4.501573] systemd[1]: Starting Load Kernel Module fuse...
+         Starting [0;1;39mLoad Kernel Module fuse[0m...
+[    4.517606] systemd[1]: Starting Load Kernel Module loop...
+         Starting [0;1;39mLoad Kernel Module loop[0m...
+[    4.533460] systemd[1]: Starting RPC Bind...
+         Starting [0;1;39mRPC Bind[0m...
+[    4.546403] systemd[1]: File System Check on Root Device was skipped because of an unmet condition check (ConditionPathIsReadWrite=!/).
+[    4.565005] systemd[1]: Starting Journal Service...
+         Starting [0;1;39mJournal Service[0m...
+[    4.581779] systemd[1]: Starting Load Kernel Modules...
+         Starting [0;1;39mLoad Kernel Modules[0m...
+[    4.597293] systemd[1]: Starting Generate network units from Kernel command line...
+         Starting [0;1;39mGenerate network units from Kernel command line[0m...
+[    4.614873] openvswitch: Open vSwitch switching datapath
+[    4.629339] systemd[1]: Starting Remount Root and Kernel File Systems...
+         Starting [0;1;39mRemount Root and Kernel File Systems[0m...
+[    4.650830] systemd-journald[227]: Collecting audit messages is enabled.
+[    4.654652] systemd[1]: Starting Coldplug All udev Devices...
+         Starting [0;1;39mColdplug All udev Devices[0m...
+[    4.679444] systemd[1]: Started RPC Bind.
+[[0;32m  OK  [0m] Started [0;1;39mRPC Bind[0m.
+[    4.690869] systemd[1]: Mounted Huge Pages File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mHuge Pages File System[0m.
+[    4.714521] systemd[1]: Started Journal Service.
+[[0;32m  OK  [0m] Started [0;1;39mJournal Service[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mPOSIX Message Queue File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Debug File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mTemporary Directory /tmp[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate List of Static Device Nodes[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module configfs[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module dm_mod[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module drm[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module fuse[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module loop[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Modules[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mGenerate network units from Kernel command line[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRemount Root and Kernel File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Network[0m.
+         Mounting [0;1;39mNFSD configuration filesystem[0m...
+         Mounting [0;1;39mKernel Configuration File System[0m...
+         Starting [0;1;39mFlush Journal to Persistent Storage[0m...
+         Starting [0;1;39mApply Kernel Variables[0m...
+[    4.998742] systemd-journald[227]: Received client request to flush runtime journal.
+         Starting [0;1;39mCreate Static Device Nodes in /dev gracefully[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mNFSD configuration filesystem[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Configuration File System[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mFlush Journal to Persistent Storage[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mApply Kernel Variables[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev gracefully[0m.
+         Starting [0;1;39mCreate System Users[0m...
+[    5.158244] audit: type=1334 audit(1789138166.163:2): prog-id=6 op=LOAD
+[    5.164909] audit: type=1334 audit(1789138166.171:3): prog-id=7 op=LOAD
+[    5.171551] audit: type=1334 audit(1789138166.179:4): prog-id=8 op=LOAD
+         Starting [0;1;39mUser Database Manager[0m...
+[[0;32m  OK  [0m] Started [0;1;39mUser Database Manager[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate System Users[0m.
+         Starting [0;1;39mCreate Static Device Nodes in /dev[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Local File Systems[0m.
+         Mounting [0;1;39m/var/volatile[0m...
+[    5.500054] audit: type=1334 audit(1789138166.503:5): prog-id=9 op=LOAD
+[    5.506765] audit: type=1334 audit(1789138166.511:6): prog-id=10 op=LOAD
+         Starting [0;1;39mRule-based Manager for Device Events and Files[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mColdplug All udev Devices[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39m/var/volatile[0m.
+         Starting [0;1;39mLoad/Save OS Random Seed[0m...
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal File Systems[0m.
+         Starting [0;1;39mRebuild Dynamic Linker Cache[0m...
+         Starting [0;1;39mCreate System Files and Directories[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRebuild Dynamic Linker Cache[0m.
+[[0;32m  OK  [0m] Started [0;1;39mRule-based Manager for Device Events and Files[0m.
+[    5.690668] audit: type=1334 audit(1789138166.691:7): prog-id=11 op=LOAD
+         Starting [0;1;39mNetwork Configuration[0m...
+[    5.929576] macb ff0e0000.ethernet end0: renamed from eth0
+[[0;32m  OK  [0m] Finished [0;1;39mCreate System Files and Directories[0m.
+[    6.444776] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    6.555632] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    6.569489] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[    6.579785] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    6.588495] cfg80211: failed to load regulatory.db
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Configuration[0m.
+[    6.706075] random: crng init done
+[[0;32m  OK  [0m] Finished [0;1;39mLoad/Save OS Random Seed[0m.
+[    7.178001] macb ff0e0000.ethernet end0: PHY [ff0e0000.ethernet-ffffffff:0c] driver [Generic PHY] (irq=POLL)
+[    7.187947] macb ff0e0000.ethernet end0: configuring for phy/rgmii-id link mode
+[    7.196152] pps pps0: new PPS source ptp0
+[    7.200424] macb ff0e0000.ethernet: gem-ptp-timer ptp clock registered.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/systemd-fsck[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mHardware activated USB gadget[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLoad/Save RF Kill Switch Status /dev/rfkill Watch[0m.
+         Starting [0;1;39mFile System Check on /dev/mmcblk0p1[0m...
+         Starting [0;1;39mRebuild Journal Catalog[0m...
+[    7.958627] audit: type=1334 audit(1789138168.963:8): prog-id=12 op=LOAD
+         Starting [0;1;39mNetwork Name Resolution[0m...
+[    7.970541] audit: type=1334 audit(1789138168.975:9): prog-id=13 op=LOAD
+         Starting [0;1;39mNetwork Time Synchronization[0m...
+         Starting [0;1;39mRecord System Boot/Shutdown in UTMP[0m...
+         Starting [0;1;39mVirtual Console Setup[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRecord System Boot/Shutdown in UTMP[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRebuild Journal Catalog[0m.
+         Starting [0;1;39mUpdate is Completed[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mVirtual Console Setup[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mUpdate is Completed[0m.
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Time Synchronization[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Time Set[0m.
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Name Resolution[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mHost and Network Name Lookups[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mD-Bus System Message Bus Socket[0m.
+         Starting [0;1;39msshd.socket[0m...
+[[0;32m  OK  [0m] Listening on [0;1;39msshd.socket[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSocket Units[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mBasic System[0m.
+[[0;32m  OK  [0m] Started [0;1;39mKernel Logging Service[0m.
+[[0;32m  OK  [0m] Started [0;1;39mSys[    8.280632] audit: type=1334 audit(1789138169.283:10): prog-id=14 op=LOAD
+tem Logging Service[0m.
+         Starting [0;1;39mD-Bus Syst[    8.292010] audit: type=1334 audit(1789138169.283:11): prog-id=15 op=LOAD
+em Message Bus[0m...
+[    8.304325] audit: type=1334 audit(1789138169.283:12): prog-id=16 op=LOAD
+         Starting [0;1;39mUser Login Management[0m...
+         Starting [0;1;39mPermit User Sessions[0m...
+         Starting [0;1;39mTarget Communication Framework agent[0m...
+         Starting [0;1;39mOpenSSH Key Generation[0m...
+[[0;32m  OK  [0m] Started [0;1;39mD-Bus System Message Bus[0m.
+[[0;32m  OK  [0m] Started [0;1;39mTarget Communication Framework agent[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Started [0;1;39mGetty on tty1[0m.
+[[0;32m  OK  [0m] Started [0;1;39mSerial Getty on ttyPS0[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLogin Prompts[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUser Login Management[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mMulti-User System[0m.
+         Starting [0;1;39mRecord Runlevel Change in UTMP[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mFile System Check on /dev/mmcblk0p1[0m.
+         Mounting [0;1;39m/run/media/BOOT-mmcblk0p1[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRecord Runlevel Change in UTMP[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39m/run/media/BOOT-mmcblk0p1[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mOpenSSH Key Generation[0m.
+
+********************************************************************************************
+The PetaLinux source code and images provided/generated are for demonstration purposes only.
+Please refer to https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2741928025/Moving+from+PetaLinux+to+Production+Deployment
+for more details.
+********************************************************************************************
+PetaLinux 2025.1+release-S05180137 newQspi ttyPS0
+
+newQspi login: petalinux
+You are required to change your password immediately (administrator enforced).
+New password: 
+Retype new password: 
+[   20.317358] audit: type=1006 audit(1789138181.319:13): pid=660 uid=0 old-auid=4294967295 auid=1000 tty=(none) old-ses=4294967295 ses=1 res=1
+[   20.330003] audit: type=1300 audit(1789138181.319:13): arch=c00000b7 syscall=64 success=yes exit=4 a0=8 a1=fffff79f4380 a2=4 a3=1 items=0 ppid=1 pid=660 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=1 comm="(systemd)" exe="/usr/lib/systemd/systemd-executor" key=(null)
+[   20.356816] audit: type=1327 audit(1789138181.319:13): proctitle="(systemd)"
+7[r[999;999H[6n8newQspi:~$ sudo su
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+For security reasons, the password you type will not be visible.
+
+Password: 
+newQspi:/home/petalinux# date -u -s "2026-09-11 HH:MM:00"
+date: invalid date '2026-09-11 HH:MM:00'
+newQspi:/home/petalinux# date -u -s "2026-09-11 HH:MM:00"[1P[1P[1@1[1@0:MM[1P[1P[1@5[1@1
+Fri Sep 11 10:51:00 UTC 2026
+newQspi:/home/petalinux# [   53.601997] systemd-journald[227]: Time jumped backwards, rotating.
+date -u -s "2026-09-11 10:51:00"newQspi:/home/petalinux# [Kdate -u -s "2026-09-11 10:51:00"newQspi:/home/petalinux# [Kdate
+Fri Sep 11 10:51:23 UTC 2026
+newQspi:/home/petalinux# ls -l /sys/class/spi_master/
+total 0
+lrwxrwxrwx    1 root     root             0 Sep 11  2026 spi0 -> ../../devices/platform/axi/ff0f0000.spi/spi_master/spi0
+newQspi:/home/petalinux# ls /dev/mtd* /dev/spidev* 2>&1
+ls: /dev/mtd*: No such file or directory
+ls: /dev/spidev*: No such file or directory
+newQspi:/home/petalinux# dmesg | grep -iE 'qspi|ff0f0000|spi_master|mtd|jedec'
+[    2.209628] spi_master spi0: cannot find modalias for /axi/spi@ff0f0000/flash@0
+[    2.216978] spi_master spi0: Failed to create SPI device for /axi/spi@ff0f0000/flash@0
+[    3.554182] systemd[1]: Hostname set to <newQspi>.
+newQspi:/home/petalinux# grep -iE 'qspi' /sys/kernel/debug/clk/clk_summary 2>&1 || head -20
+                   qspi_ref_mux      0       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      qspi_ref_div1  0       1        1        249975000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         qspi_ref_div2 0       1        1        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            qspi_ref 0       1        1        249975000   0          0     50000      N                              ff0f0000.spi                    ref_clk                  
+newQspi:/home/petalinux# ls /proc/device-tree/axi/spi@ff0f0000/flash@0/ 2>&1
+name              partition@1       phandle           spi-tx-bus-width
+partition@0       partition@2       spi-rx-bus-width
+newQspi:/home/petalinux# cat /proc/device-tree/axi/spi@ff0f0000/flash@0/compatiblle 2>&1 | tr '\0' '\n'
+cat: can't open '/proc/device-tree/axi/spi@ff0f0000/flash@0/compatible': No such file or directory
+newQspi:/home/petalinux# cat /proc/device-tree/axi/spi@ff0f0000/status 2>&1 | tr  '\0' '\n'
+okay
+newQspi:/home/petalinux# zcat /proc/config.gz 2>/dev/null | grep -iE 'MTD_SPI_NORR|SPI_ZYNQMP_GQSPI|MTD_CMDLINE|SPI_SPIDEV' || echo "no /proc/config.gz"
+CONFIG_MTD_CMDLINE_PARTS=y
+CONFIG_MTD_SPI_NOR=y
+# CONFIG_MTD_SPI_NOR_USE_4K_SECTORS is not set
+# CONFIG_MTD_SPI_NOR_SWP_DISABLE is not set
+CONFIG_MTD_SPI_NOR_SWP_DISABLE_ON_VOLATILE=y
+# CONFIG_MTD_SPI_NOR_SWP_KEEP is not set
+CONFIG_SPI_ZYNQMP_GQSPI=y
+CONFIG_SPI_SPIDEV=y
+newQspi:/home/petalinux# ls -la /proc/device-tree/axi/spi@ff0f0000/
+total 0
+-r--r--r--    1 root     root             4 Sep 11 10:54 #address-cells
+-r--r--r--    1 root     root             4 Sep 11 10:54 #size-cells
+drwxr-xr-x    3 root     root             0 Sep 11 10:52 .
+drwxr-xr-x   64 root     root             0 Sep 11  2026 ..
+-r--r--r--    1 root     root             0 Sep 11 10:54 bootph-all
+-r--r--r--    1 root     root            13 Sep 11 10:54 clock-names
+-r--r--r--    1 root     root            16 Sep 11 10:54 clocks
+-r--r--r--    1 root     root            21 Sep 11 10:54 compatible
+drwxr-xr-x    5 root     root             0 Sep 11 10:52 flash@0
+-r--r--r--    1 root     root             4 Sep 11 10:54 interrupt-parent
+-r--r--r--    1 root     root            12 Sep 11 10:54 interrupts
+-r--r--r--    1 root     root             4 Sep 11 10:54 is-dual
+-r--r--r--    1 root     root             4 Sep 11 10:54 name
+-r--r--r--    1 root     root             4 Sep 11 10:54 num-cs
+-r--r--r--    1 root     root             4 Sep 11 10:54 phandle
+-r--r--r--    1 root     root             8 Sep 11 10:54 power-domains
+-r--r--r--    1 root     root            32 Sep 11 10:54 reg
+-r--r--r--    1 root     root             4 Sep 11 10:54 spi-rx-bus-width
+-r--r--r--    1 root     root             4 Sep 11 10:54 spi-tx-bus-width
+-r--r--r--    1 root     root             5 Sep 11 10:52 status
+newQspi:/home/petalinux# for p in compatible reg spi-max-frequency num-cs is-duall; do printf "%s: " "$p"; cat /proc/device-tree/axi/spi@ff0f0000/flash@0/$p 2>&1  | tr '\0' '\n'; echo; done
+compatible: cat: can't open '/proc/device-tree/axi/spi@ff0f0000/flash@0/compatible': No such file or directory
+
+reg: cat: can't open '/proc/device-tree/axi/spi@ff0f0000/flash@0/reg': No such file or directory
+
+spi-max-frequency: cat: can't open '/proc/device-tree/axi/spi@ff0f0000/flash@0/spi-max-frequency': No such file or directory
+
+num-cs: cat: can't open '/proc/device-tree/axi/spi@ff0f0000/flash@0/num-cs': No such file or directory
+
+is-dual: cat: can't open '/proc/device-tree/axi/spi@ff0f0000/flash@0/is-dual': No such file or directory
+
+newQspi:/home/petalinux# for n in 0 1 2; do echo "== partition@$n"; cat /proc/devvice-tree/axi/spi@ff0f0000/flash@0/partition@$n/label 2>&1 | tr '\0' '\n'; od -Ann -tx4 /proc/device-tree/axi/spi@ff0f0000/flash@0/partition@$n/reg 2>&1; done
+== partition@0
+qspi-boot
+ 00000000 00001000
+== partition@1
+qspi-kernel
+ 00001000 00006001
+== partition@2
+qspi-bootenv
+ 00007001 00000400
+newQspi:/home/petalinux# for n in 0 1 2; do echo "== partition@$n"; od -An -tx1 //proc/device-tree/axi/spi@ff0f0000/flash@0/partition@$n/reg; done
+== partition@0
+ 00 00 00 00 00 10 00 00
+== partition@1
+ 00 10 00 00 01 60 00 00
+== partition@2
+ 01 70 00 00 00 04 00 00
+newQspi:/home/petalinux# cd /
+newQspi:/# sync
+newQspi:/# poweroff
+newQspi:/#          Stopping [0;1;39mSession c1 of User petalinux[0m...
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/modprobe[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mMulti-User System[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mLogin Prompts[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mHost and Network Name Lookups[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mRPC Port Mapper[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSystem Time Set[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mHardware activated USB gadget[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mLoad/Save RF Kill Switch Status /dev/rfkill Watch[0m.
+         Stopping [0;1;39mKernel Logging Service[0m...
+         Stopping [0;1;39mSystem Logging Service[0m...
+         Stopping [0;1;39mGetty on tty1[0m...
+         Stopping [0;1;39mSerial Getty on ttyPS0[0m...
+         Stopping [0;1;39mLoad/Save OS Random Seed[0m...
+         Stopping [0;1;39mTarget Communication Framework agent[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mOpenSSH Key Generation[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mKernel Logging Service[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mSystem Logging Service[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mTarget Communication Framework agent[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mGetty on tty1[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mSerial Getty on ttyPS0[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mLoad/Save OS Random Seed[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mSession c1 of User petalinux[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/getty[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/serial-getty[0m.
+         Stopping [0;1;39mUser Login Management[0m...
+         Stopping [0;1;39mUser Manager for UID 1000[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mUser Login Management[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mUser Manager for UID 1000[[  435.846351] audit: type=1334 audit(1789124242.243:14): prog-id=14 op=UNLOAD
+0m.
+         Stopping [0;1;39mPermit User Sessions[0m...
+         Stopping [0;1;39mUser Runtime Directory /run/user/1000[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Unmounted [0;1;39m/run/user/1000[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mUser Runtime Directory /run/user/1000[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mUser Slice of UID 1000[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mRemote File Systems[0m.
+         Stopping [0;1;39mD-Bus System Message Bus[0m...
+         Stopping [0;1;39mNetwork Configuration[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mNetwork Configuration[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mD-Bus System Message Bus[0m.
+[  436.173146] audit: type=1334 audit(1789124242.567:15): prog-id=11 op=UNLOAD
+[[0;32m  OK  [0m] Stopped target [0;1;39mBasic System[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mPreparation for Network[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mPath Units[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mDispatch Password Requests to Console Directory Watch[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mForward Password Requests to Wall Directory Watch[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSlice Units[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mUser and Session Slice[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSocket Units[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mD-Bus System Message Bus Socket[0m.
+[[0;32m  OK  [0m] Closed [0;1;39msshd.socket[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mSyslog Socket[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mNetwork Service Netlink Socket[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mGenerate network units from Kernel command line[0m.
+         Stopping [0;1;39mNetwork Name Resolution[0m...
+         Stopping [0;1;39mNetwork Time Synchronization[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mUpdate is Completed[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mRebuild Dynamic Linker Cache[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mRebuild Journal Catalog[0m.
+         Stopping [0;1;39mRecord System Boot/Shutdown in UTMP[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mNetwork Name Resolution[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mNetwork Time Synchronization[0m.
+[  436.455182] audit: type=1334 audit(1789124242.851:16): prog-id=12 op=UNLOAD
+[[0;32m  OK  [0m] Stopped [0;1;39mApply Kernel Variables[0m.[  436.466292] audit: type=1334 audit(1789124242.863:17): prog-id=13 op=UNLOAD
+
+[[0;32m  OK  [0m] Stopped [0;1;39mLoad Kernel Modules[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mRecord System Boot/Shutdown in UTMP[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mCreate System Files and Directories[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mLocal File Systems[0m.
+         Unmounting [0;1;39m/run/media/BOOT-mmcblk0p1[0m...
+         Unmounting [0;1;39mTemporary Directory /tmp[0m...
+         Unmounting [0;1;39m/var/volatile[0m...
+[[0;32m  OK  [0m] Unmounted [0;1;39m/run/media/BOOT-mmcblk0p1[0m.
+[[0;32m  OK  [0m] Unmounted [0;1;39mTemporary Directory /tmp[0m.
+[[0;32m  OK  [0m] Unmounted [0;1;39m/var/volatile[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSwaps[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mUnmount All Filesystems[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mFile System Check on /dev/mmcblk0p1[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/systemd-fsck[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mPreparation for Local File Systems[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mCreate Static Device Nodes in /dev[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mCreate System Users[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mRemount Root and Kernel File Systems[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mCreate Static Device Nodes in /dev gracefully[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Shutdown[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLate Shutdown Services[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mSystem Power Off[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Power Off[0m.
+[  436.812083] audit: type=1334 audit(1789124243.207:18): prog-id=5 op=UNLOAD
+[  436.818997] audit: type=1334 audit(1789124243.207:19): prog-id=4 op=UNLOAD
+[  436.825903] audit: type=1334 audit(1789124243.207:20): prog-id=3 op=UNLOAD
+[  436.832799] audit: type=1334 audit(1789124243.211:21): prog-id=16 op=UNLOAD
+[  436.839769] audit: type=1334 audit(1789124243.211:22): prog-id=15 op=UNLOAD
+[  436.846740] audit: type=1334 audit(1789124243.223:23): prog-id=10 op=UNLOAD
+[  436.898009] systemd-shutdown[1]: Syncing filesystems and block devices.
+[  436.905001] systemd-shutdown[1]: Sending SIGTERM to remaining processes...
+[  436.929278] systemd-journald[227]: Received SIGTERM from PID 1 (systemd-shutdow).
+[  436.946076] systemd-shutdown[1]: Sending SIGKILL to remaining processes...
+[  436.966974] systemd-shutdown[1]: Unmounting file systems.
+[  436.974178] (sd-remount)[774]: Remounting '/' read-only with options ''.
+[  436.981636] systemd-shutdown[1]: All filesystems unmounted.
+[  436.987217] systemd-shutdown[1]: Deactivating swaps.
+[  436.992448] systemd-shutdown[1]: All swaps deactivated.
+[  436.997680] systemd-shutdown[1]: Detaching loop devices.
+[  437.005950] systemd-shutdown[1]: All loop devices detached.
+[  437.011532] systemd-shutdown[1]: Stopping MD devices.
+[  437.016883] systemd-shutdown[1]: All MD devices stopped.
+[  437.022195] systemd-shutdown[1]: Detaching DM devices.
+[  437.027608] systemd-shutdown[1]: All DM devices detached.
+[  437.033012] systemd-shutdown[1]: All filesystems, swaps, loop devices, MD devices and DM devices detached.
+[  437.043342] systemd-shutdown[1]: Syncing filesystems and block devices.
+[  437.050004] systemd-shutdown[1]: Powering off.
+[  437.057193] reboot: Power down
+Zynq MP First Stage Boot Loader 
+Release 2025.1   May 14 2025  -  12:33:16
+
+
+U-Boot 2025.01-ga09d2660433d (May 16 2025 - 14:46:32 +0000)
+
+CPU:   ZynqMP
+Silicon: v3
+Chip:  zu9eg
+Board: Xilinx ZynqMP
+DRAM:  2 GiB (effective 4 GiB)
+EL Level:	EL2
+Secure Boot:	not authenticated, not encrypted
+Core:  39 devices, 23 uclasses, devicetree: board
+NAND:  0 MiB
+MMC:   mmc@ff170000: 0
+Loading Environment from FAT... OK
+In:    serial
+Out:   serial,vidconsole
+Err:   serial,vidconsole
+Net:   No ethernet found.
+
+[?25h
+scanning bus for devices...
+SATA link 0 timeout.
+SATA link 1 timeout.
+AHCI 0001.0301 32 slots 2 ports 6 Gbps 0x3 impl SATA mode
+flags: 64bit ncq pm clo only pmp fbss pio slum part ccc apst 
+starting USB...
+No USB controllers found
+Hit any key to stop autoboot:  5  0
+ZynqMP>    sf probe
+zynqmp_qspi spi@ff0f0000: Invalid chip select 0:0 (err=-19)
+Failed to initialize SPI flash at 0:0 (error -19)
+ZynqMP> version
+U-Boot 2025.01-ga09d2660433d (May 16 2025 - 14:46:32 +0000)
+
+aarch64-amd-linux-gcc (GCC) 13.3.0
+GNU ld (GNU Binutils) 2.42.0.20240723
+ZynqMP> printenv modeboot
+modeboot=sdboot
+ZynqMP> printenv boot_targets
+boot_targets=mmc0 jtag mmc0 mmc1 qspi0 nand0 usb0 usb1 scsi0 pxe dhcp 
+ZynqMP> echo ${bootmode}
+
+ZynqMP> mmc info
+Device: mmc@ff170000
+Manufacturer ID: 27
+OEM: 5048
+Name: SD64G 
+Bus Speed: 187481250
+Mode: UHS SDR104 (208MHz)
+Rd Block Len: 512
+SD version 3.0
+High Capacity: Yes
+Capacity: 58.2 GiB
+Bus Width: 4-bit
+Erase Group Size: 512 Bytes
+ZynqMP> boot
+switch to partitions #0, OK
+mmc0 is current device
+Scanning mmc 0:1...
+Found U-Boot script /boot.scr
+3833 bytes read in 17 ms (219.7 KiB/s)
+## Executing script at 20000000
+Trying to load boot images from mmc0
+55510056 bytes read in 3683 ms (14.4 MiB/s)
+## Loading kernel from FIT Image at 10000000 ...
+   Using 'conf-system-top.dtb' configuration
+   Trying 'kernel-1' kernel subimage
+     Description:  Linux kernel with spidev
+     Created:      2026-05-28  15:53:39 UTC
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Start:   0x100000e4
+     Data Size:    11660781 Bytes = 11.1 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: 0x00200000
+     Entry Point:  0x00200000
+     Hash algo:    sha256
+     Hash value:   023ae2aa3f608f115f466d150383ea50d40a727cb79e4c1ec7c42b4f637dcb99
+   Verifying Hash Integrity ... sha256+ OK
+## Loading ramdisk from FIT Image at 10000000 ...
+   Using 'conf-system-top.dtb' configuration
+   Trying 'ramdisk-1' ramdisk subimage
+     Description:  petalinux-image-minimal
+     Created:      2026-05-28  15:53:39 UTC
+     Type:         RAMDisk Image
+     Compression:  uncompressed
+     Data Start:   0x10b28648
+     Data Size:    43809071 Bytes = 41.8 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: unavailable
+     Entry Point:  unavailable
+     Hash algo:    sha256
+     Hash value:   6eba38d56d5ab4fc5a5e359e07429269b25e94a2262f0a151cc806f817ba7fe0
+   Verifying Hash Integrity ... sha256+ OK
+## Loading fdt from FIT Image at 10000000 ...
+   Using 'conf-system-top.dtb' configuration
+   Trying 'fdt-system-top.dtb' fdt subimage
+     Description:  DTB with spidev.bufsiz=1MB
+     Created:      2026-05-28  15:53:39 UTC
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x10b1efe4
+     Data Size:    36067 Bytes = 35.2 KiB
+     Architecture: AArch64
+     Hash algo:    sha256
+     Hash value:   852b2591a8f1d095d2392f098fb547280a0e3cb71b6556e416aea1684a3d942e
+   Verifying Hash Integrity ... sha256+ OK
+   Booting using the fdt blob at 0x10b1efe4
+Working FDT set to 10b1efe4
+   Uncompressing Kernel Image to 200000
+   Loading Ramdisk to 7531b000, end 77ce292f ... OK
+   Loading Device Tree to 000000007530f000, end 000000007531ace2 ... OK
+Working FDT set to 7530f000
+No RNG device
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.12.10-xilinx-g0a0f70e531c7 (oe-user@oe-host) (aarch64-amd-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP Sat May 17 14:01:06 UTC 2025
+[    0.000000] KASLR disabled due to lack of seed
+[    0.000000] Machine model: xlnx,zynqmp
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff000000 (options '115200n8')
+[    0.000000] printk: legacy bootconsole [cdns0] enabled
+[    0.000000] efi: UEFI not found.
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000000000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   [mem 0x0000000100000000-0x000000087fffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x000000007fefffff]
+[    0.000000]   node   0: [mem 0x0000000800000000-0x000000087fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000087fffffff]
+[    0.000000] On node 0, zone Normal: 256 pages in unavailable ranges
+[    0.000000] cma: Reserved 256 MiB at 0x0000000065200000 on node -1
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.5
+[    0.000000] percpu: Embedded 22 pages/cpu s51992 r8192 d29928 u90112
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: ARM erratum 845719
+[    0.000000] alternatives: applying boot alternatives
+[    0.000000] Kernel command line: earlycon console=ttyPS0,115200 root=/dev/ram0 rw spidev.bufsiz=1048576
+[    0.000000] Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 1048320
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+[    0.000000] software IO TLB: area num 4.
+[    0.000000] software IO TLB: mapped [mem 0x000000007bf00000-0x000000007ff00000] (64MB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=4.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] RCU Tasks Trace: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GIC: Adjusting CPU interface base to 0x00000000f902f000
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GIC: Using split EOI/Deactivate mode
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000000] arch_timer: cp15 timer(s) running at 99.99MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0x1ffffffffffffff max_cycles: 0x170f8de2d3, max_idle_ns: 440795206112 ns
+[    0.000000] sched_clock: 57 bits at 100MHz, resolution 10ns, wraps every 4398046511101ns
+[    0.008320] Console: colour dummy device 80x25
+[    0.012560] Calibrating delay loop (skipped), value calculated using timer frequency.. 199.98 BogoMIPS (lpj=399960)
+[    0.022973] pid_max: default: 32768 minimum: 301
+[    0.027712] Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.034991] Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.067078] rcu: Hierarchical SRCU implementation.
+[    0.067124] rcu: 	Max phase no-delay instances is 1000.
+[    0.071626] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+[    0.079707] EFI services will not be available.
+[    0.084240] smp: Bringing up secondary CPUs ...
+[    0.088999] Detected VIPT I-cache on CPU1
+[    0.089065] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.089516] Detected VIPT I-cache on CPU2
+[    0.089560] CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.089987] Detected VIPT I-cache on CPU3
+[    0.090031] CPU3: Booted secondary processor 0x0000000003 [0x410fd034]
+[    0.090090] smp: Brought up 1 node, 4 CPUs
+[    0.124258] SMP: Total of 4 processors activated.
+[    0.128957] CPU: All CPU(s) started at EL2
+[    0.133047] CPU features: detected: 32-bit EL0 Support
+[    0.138181] CPU features: detected: CRC32 instructions
+[    0.143346] alternatives: applying system-wide alternatives
+[    0.149836] Memory: 3710944K/4193280K available (16960K kernel code, 1082K rwdata, 5084K rodata, 3200K init, 478K bss, 216612K reserved, 262144K cma-reserved)
+[    0.163810] devtmpfs: initialized
+[    0.171811] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.176134] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.188856] 26000 pages in range for non-PLT usage
+[    0.188875] 517520 pages in range for PLT usage
+[    0.189067] pinctrl core: initialized pinctrl subsystem
+[    0.198156] DMI not present or invalid.
+[    0.203458] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.208203] DMA: preallocated 512 KiB GFP_KERNEL pool for atomic allocations
+[    0.214665] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.222459] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.230251] audit: initializing netlink subsys (disabled)
+[    0.235741] audit: type=2000 audit(0.156:1): state=initialized audit_enabled=0 res=1
+[    0.236367] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.250223] ASID allocator initialised with 65536 entries
+[    0.255689] Serial: AMBA PL011 UART driver
+[    0.264370] /axi/interrupt-controller@f9010000: Fixed dependency cycle(s) with /axi/interrupt-controller@f9010000
+[    0.269999] /axi/pcie@fd0e0000: Fixed dependency cycle(s) with /axi/pcie@fd0e0000
+[    0.281228] /axi/pcie@fd0e0000: Fixed dependency cycle(s) with /axi/pcie@fd0e0000
+[    0.284925] /axi/pcie@fd0e0000: Fixed dependency cycle(s) with /axi/pcie@fd0e0000/legacy-interrupt-controller
+[    0.297606] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.301581] HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.307846] HugeTLB: registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.314625] HugeTLB: 0 KiB vmemmap can be freed for a 32.0 MiB page
+[    0.320892] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.327676] HugeTLB: 0 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.333942] HugeTLB: registered 64.0 KiB page size, pre-allocated 0 pages
+[    0.340728] HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+[    0.415066] raid6: neonx8   gen()  2269 MB/s
+[    0.483142] raid6: neonx4   gen()  2222 MB/s
+[    0.551214] raid6: neonx2   gen()  2109 MB/s
+[    0.619278] raid6: neonx1   gen()  1786 MB/s
+[    0.687337] raid6: int64x8  gen()  1414 MB/s
+[    0.755420] raid6: int64x4  gen()  1563 MB/s
+[    0.823479] raid6: int64x2  gen()  1400 MB/s
+[    0.891559] raid6: int64x1  gen()  1032 MB/s
+[    0.891599] raid6: using algorithm neonx8 gen() 2269 MB/s
+[    0.963641] raid6: .... xor() 1659 MB/s, rmw enabled
+[    0.963687] raid6: using neon recovery algorithm
+[    0.968098] iommu: Default domain type: Translated
+[    0.972365] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.978875] SCSI subsystem initialized
+[    0.982439] usbcore: registered new interface driver usbfs
+[    0.987785] usbcore: registered new interface driver hub
+[    0.993092] usbcore: registered new device driver usb
+[    0.998211] mc: Linux media interface: v0.10
+[    1.002406] videodev: Linux video capture interface: v2.00
+[    1.007890] pps_core: LinuxPPS API ver. 1 registered
+[    1.012819] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    1.021962] PTP clock support registered
+[    1.025894] EDAC MC: Ver: 3.0.0
+[    1.029205] scmi_core: SCMI protocol bus registered
+[    1.034019] zynqmp-ipi-mbox mailbox@ff9905c0: Registered ZynqMP IPI mbox with TX/RX channels.
+[    1.042886] FPGA manager framework
+[    1.045946] Advanced Linux Sound Architecture Driver Initialized.
+[    1.052340] Bluetooth: Core ver 2.22
+[    1.055463] NET: Registered PF_BLUETOOTH protocol family
+[    1.060764] Bluetooth: HCI device and connection manager initialized
+[    1.067116] Bluetooth: HCI socket layer initialized
+[    1.071987] Bluetooth: L2CAP socket layer initialized
+[    1.077038] Bluetooth: SCO socket layer initialized
+[    1.082278] clocksource: Switched to clocksource arch_sys_counter
+[    1.088179] VFS: Disk quotas dquot_6.6.0
+[    1.091932] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    1.104916] NET: Registered PF_INET protocol family
+[    1.105117] IP idents hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    1.114306] tcp_listen_portaddr_hash hash table entries: 2048 (order: 3, 32768 bytes, linear)
+[    1.120105] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.127826] TCP established hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    1.135946] TCP bind hash table entries: 32768 (order: 8, 1048576 bytes, linear)
+[    1.143935] TCP: Hash tables configured (established 32768 bind 32768)
+[    1.149733] UDP hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[    1.156432] UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[    1.163658] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.169589] RPC: Registered named UNIX socket transport module.
+[    1.175074] RPC: Registered udp transport module.
+[    1.179764] RPC: Registered tcp transport module.
+[    1.184461] RPC: Registered tcp-with-tls transport module.
+[    1.189943] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    1.196390] PCI: CLS 0 bytes, default 64
+[    1.200696] Trying to unpack rootfs image as initramfs...
+[    1.201437] Initialise system trusted keyrings
+[    1.210299] workingset: timestamp_bits=46 max_order=20 bucket_order=0
+[    1.217186] NFS: Registering the id_resolver key type
+[    1.221650] Key type id_resolver registered
+[    1.225791] Key type id_legacy registered
+[    1.229824] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    1.236494] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    1.244151] jffs2: version 2.2. (NAND) (SUMMARY)  © 2001-2006 Red Hat, Inc.
+[    1.306633] NET: Registered PF_ALG protocol family
+[    1.306704] xor: measuring software checksum speed
+[    1.311894]    8regs           :  2517 MB/sec
+[    1.316240]    32regs          :  2522 MB/sec
+[    1.320675]    arm64_neon      :  2367 MB/sec
+[    1.323639] xor: using function: 32regs (2522 MB/sec)
+[    1.328704] Key type asymmetric registered
+[    1.332778] Asymmetric key parser 'x509' registered
+[    1.337740] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 243)
+[    1.345049] io scheduler mq-deadline registered
+[    1.349570] io scheduler kyber registered
+[    1.353619] io scheduler bfq registered
+[    1.364657] ledtrig-cpu: registered to indicate activity on CPUs
+[    1.402441] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    1.404709] Serial: AMBA driver
+[    1.414662] brd: module loaded
+[    1.418342] loop: module loaded
+[    1.423185] CAN device driver interface
+[    1.423953] usbcore: registered new interface driver asix
+[    1.426806] usbcore: registered new interface driver ax88179_178a
+[    1.432893] usbcore: registered new interface driver cdc_ether
+[    1.438719] usbcore: registered new interface driver net1080
+[    1.444377] usbcore: registered new interface driver cdc_subset
+[    1.450301] usbcore: registered new interface driver zaurus
+[    1.455871] usbcore: registered new interface driver cdc_ncm
+[    1.461525] usbcore: registered new interface driver r8153_ecm
+[    1.467794] VFIO - User Level meta-driver version: 0.3
+[    1.473183] usbcore: registered new interface driver uas
+[    1.477792] usbcore: registered new interface driver usb-storage
+[    1.483794] usbcore: registered new device driver onboard-usb-dev
+[    1.491209] rtc_zynqmp ffa60000.rtc: registered as rtc0
+[    1.495102] rtc_zynqmp ffa60000.rtc: setting system clock to 2026-09-11T15:00:53 UTC (1789138853)
+[    1.504061] i2c_dev: i2c /dev entries driver
+[    1.509842] usbcore: registered new interface driver uvcvideo
+[    1.513968] Driver for 1-wire Dallas network protocol.
+[    1.519842] Bluetooth: HCI UART driver ver 2.3
+[    1.523541] Bluetooth: HCI UART protocol H4 registered
+[    1.528685] Bluetooth: HCI UART protocol BCSP registered
+[    1.534011] Bluetooth: HCI UART protocol LL registered
+[    1.539109] Bluetooth: HCI UART protocol ATH3K registered
+[    1.544529] Bluetooth: HCI UART protocol Three-wire (H5) registered
+[    1.550874] Bluetooth: HCI UART protocol Intel registered
+[    1.556189] Bluetooth: HCI UART protocol QCA registered
+[    1.561420] usbcore: registered new interface driver bcm203x
+[    1.567062] usbcore: registered new interface driver bpa10x
+[    1.572633] usbcore: registered new interface driver bfusb
+[    1.578111] usbcore: registered new interface driver btusb
+[    1.583624] usbcore: registered new interface driver ath3k
+[    1.589281] EDAC MC: ECC not enabled
+[    1.593026] EDAC DEVICE0: Giving out device to module zynqmp-ocm-edac controller zynqmp_ocm: DEV ff960000.memory-controller (INTERRUPT)
+[    1.605421] sdhci: Secure Digital Host Controller Interface driver
+[    1.610991] sdhci: Copyright(c) Pierre Ossman
+[    1.615334] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.621713] SMCCC: SOC_ID: ID = jep106:0049:0000 Revision = 0x24738093
+[    1.627615] zynqmp_firmware_probe Platform Management API v1.1
+[    1.633375] zynqmp_firmware_probe Trustzone version v1.0
+[    1.667514] securefw securefw: securefw probed
+[    1.667721] xilinx_ecdsa xilinx_ecdsa.0: ECDSA is not supported on the platform
+[    1.674084] zynqmp-aes zynqmp-aes.0: will run requests pump with realtime priority
+[    1.681754] zynqmp-sha3-384 zynqmp-sha3-384.0: will run requests pump with realtime priority
+[    1.689974] usbcore: registered new interface driver usbhid
+[    1.695321] usbhid: USB HID core driver
+[    1.702354] ARM CCI_400_r1 PMU driver probed
+[    1.703000] hw perfevents: enabled with armv8_cortex_a53 PMU driver, 7 (0,8000003f) counters available
+[    1.714218] fpga_manager fpga0: Xilinx ZynqMP FPGA Manager registered
+[    1.719725] usbcore: registered new interface driver snd-usb-audio
+[    1.726192] pktgen: Packet Generator for packet performance testing. Version: 2.75
+[    1.734611] Initializing XFRM netlink socket
+[    1.737199] NET: Registered PF_INET6 protocol family
+[    1.742783] Segment Routing with IPv6
+[    1.745800] In-situ OAM (IOAM) with IPv6
+[    1.749791] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.756081] NET: Registered PF_PACKET protocol family
+[    1.760671] NET: Registered PF_KEY protocol family
+[    1.765467] can: controller area network core
+[    1.769825] NET: Registered PF_CAN protocol family
+[    1.774575] can: raw protocol
+[    1.777530] can: broadcast manager protocol
+[    1.781720] can: netlink gateway - max_hops=1
+[    1.786258] Bluetooth: RFCOMM TTY layer initialized
+[    1.790936] Bluetooth: RFCOMM socket layer initialized
+[    1.796075] Bluetooth: RFCOMM ver 1.11
+[    1.799813] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    1.805113] Bluetooth: BNEP filters: protocol multicast
+[    1.810342] Bluetooth: BNEP socket layer initialized
+[    1.815295] Bluetooth: HIDP (Human Interface Emulation) ver 1.2
+[    1.821222] Bluetooth: HIDP socket layer initialized
+[    1.826218] 8021q: 802.1Q VLAN Support v1.8
+[    1.830653] 9pnet: Installing 9P2000 support
+[    1.834658] Key type dns_resolver registered
+[    1.839079] NET: Registered PF_VSOCK protocol family
+[    1.852927] registered taskstats version 1
+[    1.853097] Loading compiled-in X.509 certificates
+[    1.865631] Btrfs loaded, zoned=no, fsverity=no
+[    2.035518] ff000000.serial: ttyPS0 at MMIO 0xff000000 (irq = 24, base_baud = 6249375) is a xuartps
+[    2.044602] printk: legacy console [ttyPS0] enabled
+[    2.044602] printk: legacy console [ttyPS0] enabled
+[    2.049538] printk: legacy bootconsole [cdns0] disabled
+[    2.049538] printk: legacy bootconsole [cdns0] disabled
+[    2.060764] ff010000.serial: ttyPS2 at MMIO 0xff010000 (irq = 25, base_baud = 6249375) is a xuartps
+[    2.074423] of-fpga-region fpga-region: FPGA Region probed
+[    2.082024] nwl-pcie fd0e0000.pcie: host bridge /axi/pcie@fd0e0000 ranges:
+[    2.088950] nwl-pcie fd0e0000.pcie:      MEM 0x00e0000000..0x00efffffff -> 0x00e0000000
+[    2.096981] nwl-pcie fd0e0000.pcie:      MEM 0x0600000000..0x07ffffffff -> 0x0600000000
+[    2.105225] nwl-pcie fd0e0000.pcie: Link is DOWN
+[    2.110364] nwl-pcie fd0e0000.pcie: PCI host bridge to bus 0000:00
+[    2.116554] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    2.122041] pci_bus 0000:00: root bus resource [mem 0xe0000000-0xefffffff]
+[    2.128916] pci_bus 0000:00: root bus resource [mem 0x600000000-0x7ffffffff pref]
+[    2.136439] pci 0000:00:00.0: [10ee:d021] type 01 class 0x060400 PCIe Root Port
+[    2.143773] pci 0000:00:00.0: PCI bridge to [bus 00]
+[    2.148748] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
+[    2.155549] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[    2.163359] pci 0000:00:00.0: PME# supported from D0 D1 D2 D3hot
+[    2.170749] pci 0000:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    2.178918] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+[    2.185563] pci 0000:00:00.0: PCI bridge to [bus 01]
+[    2.190542] pci_bus 0000:00: resource 4 [mem 0xe0000000-0xefffffff]
+[    2.196818] pci_bus 0000:00: resource 5 [mem 0x600000000-0x7ffffffff pref]
+[    2.208112] xilinx-zynqmp-dpdma fd4c0000.dma-controller: Xilinx DPDMA engine is probed
+[    2.216418] zynqmp-dpsub fd4a0000.display: DP output port not connected
+[    2.223058] zynqmp-dpsub fd4a0000.display: probe with driver zynqmp-dpsub failed with error -22
+[    2.232366] ahci-ceva fd0c0000.ahci: supply ahci not found, using dummy regulator
+[    2.239997] ahci-ceva fd0c0000.ahci: supply phy not found, using dummy regulator
+[    2.247447] ahci-ceva fd0c0000.ahci: supply target not found, using dummy regulator
+[    2.255257] ahci-ceva fd0c0000.ahci: ceva,p0-cominit-params property not defined
+[    2.262769] ahci-ceva fd0c0000.ahci: probe with driver ahci-ceva failed with error -22
+[    2.271847] spi_master spi0: cannot find modalias for /axi/spi@ff0f0000/flash@0
+[    2.279209] spi_master spi0: Failed to create SPI device for /axi/spi@ff0f0000/flash@0
+[    2.288724] macb ff0e0000.ethernet: invalid hw address, using random
+[    3.142455] Freeing initrd memory: 42780K
+[    3.314155] macb ff0e0000.ethernet eth0: Cadence GEM rev 0x50070106 at 0xff0e0000 irq 50 (0a:5d:c9:f6:ef:9e)
+[    3.324747] xilinx-axipmon ffa00000.perf-monitor: Probed Xilinx APM
+[    3.331447] xilinx-axipmon fd0b0000.perf-monitor: Probed Xilinx APM
+[    3.338085] xilinx-axipmon fd490000.perf-monitor: Probed Xilinx APM
+[    3.344729] xilinx-axipmon ffa10000.perf-monitor: Probed Xilinx APM
+[    3.376522] cdns-i2c ff020000.i2c: can't get pinctrl, bus recovery not supported
+[    3.384995] cdns-i2c ff020000.i2c: 400 kHz mmio ff020000 irq 53
+[    3.391212] cdns-i2c ff030000.i2c: can't get pinctrl, bus recovery not supported
+[    3.398914] cdns-i2c ff030000.i2c: 400 kHz mmio ff030000 irq 56
+[    3.405320] cdns-wdt fd4d0000.watchdog: Xilinx Watchdog Timer with timeout 60s
+[    3.412858] cdns-wdt ff150000.watchdog: Xilinx Watchdog Timer with timeout 10s
+[    3.420519] cpufreq: cpufreq_online: CPU0: Running at unlisted initial frequency: 1199880 KHz, changing to: 1200000 KHz
+[    3.433110] of_cfs_init
+[    3.435588] of_cfs_init: OK
+[    3.438550] clk: Disabling unused clocks
+[    3.443444] PM: genpd: Disabling unused power domains
+[    3.448842] ALSA device list:
+[    3.451805]   No soundcards found.
+[    3.486098] mmc0: SDHCI controller on ff170000.mmc [ff170000.mmc] using ADMA 64-bit
+[    3.494645] Freeing unused kernel memory: 3200K
+[    3.499284] Run /init as init process
+[    3.529096] systemd[1]: systemd 255.17^ running in system mode (+PAM -AUDIT -SELINUX -APPARMOR +IMA -SMACK +SECCOMP -GCRYPT -GNUTLS +OPENSSL +ACL +BLKID -CURL -ELFUTILS -FIDO2 -IDN2 -IDN -IPTC +KMOD -LIBCRYPTSETUP +LIBFDISK -PCRE2 -PWQUALITY -P11KIT -QRENCODE -TPM2 -BZIP2 -LZ4 -XZ -ZLIB +ZSTD -BPF_FRAMEWORK +XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    3.561175] systemd[1]: Detected architecture arm64.
+
+Welcome to [1mPetaLinux 2025.1+release-S05180137 (scarthgap)[0m!
+
+[    3.578422] systemd[1]: Hostname set to <newQspi>.
+[    3.583334] systemd[1]: Initializing machine ID from random generator.
+[    3.646064] mmc0: new ultra high speed SDR104 SDXC card at address 0001
+[    3.668989] mmcblk0: mmc0:0001 SD64G 58.2 GiB
+[    3.675728]  mmcblk0: p1
+[    3.909094] systemd[1]: Queued start job for default target Multi-User System.
+[    3.945310] systemd[1]: Created slice Slice /system/getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/getty[0m.
+[    3.963565] systemd[1]: Created slice Slice /system/modprobe.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/modprobe[0m.
+[    3.983452] systemd[1]: Created slice Slice /system/serial-getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/serial-getty[0m.
+[    4.003352] systemd[1]: Created slice User and Session Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mUser and Session Slice[0m.
+[    4.022568] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39mDispatch Password Requests to Console Directory Watch[0m.
+[    4.042473] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password Requests to Wall Directory Watch[0m.
+[    4.062516] systemd[1]: Reached target Path Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mPath Units[0m.
+[    4.074378] systemd[1]: Reached target Remote File Systems.
+[[0;32m  OK  [0m] Reached target [0;1;39mRemote File Systems[0m.
+[    4.090386] systemd[1]: Reached target Slice Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mSlice Units[0m.
+[    4.102406] systemd[1]: Reached target Swaps.
+[[0;32m  OK  [0m] Reached target [0;1;39mSwaps[0m.
+[    4.138870] systemd[1]: Listening on RPCbind Server Activation Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mRPCbind Server Activation Socket[0m.
+[    4.158494] systemd[1]: Reached target RPC Port Mapper.
+[[0;32m  OK  [0m] Reached target [0;1;39mRPC Port Mapper[0m.
+[    4.174937] systemd[1]: Listening on Syslog Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mSyslog Socket[0m.
+[    4.186586] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[[0;32m  OK  [0m] Listening on [0;1;39minitctl Compatibility Named Pipe[0m.
+[    4.207096] systemd[1]: Listening on Journal Audit Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Audit Socket[0m.
+[    4.226692] systemd[1]: Listening on Journal Socket (/dev/log).
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket (/dev/log)[0m.
+[    4.246770] systemd[1]: Listening on Journal Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket[0m.
+[    4.258867] systemd[1]: Listening on Network Service Netlink Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mNetwork Service Netlink Socket[0m.
+[    4.278768] systemd[1]: Listening on udev Control Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Control Socket[0m.
+[    4.294648] systemd[1]: Listening on udev Kernel Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Kernel Socket[0m.
+[    4.310679] systemd[1]: Listening on User Database Manager Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mUser Database Manager Socket[0m.
+[    4.350550] systemd[1]: Mounting Huge Pages File System...
+         Mounting [0;1;39mHuge Pages File System[0m...
+[    4.365035] systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting [0;1;39mPOSIX Message Queue File System[0m...
+[    4.385243] systemd[1]: Mounting Kernel Debug File System...
+         Mounting [0;1;39mKernel Debug File System[0m...
+[    4.398898] systemd[1]: Kernel Trace File System was skipped because of an unmet condition check (ConditionPathExists=/sys/kernel/tracing).
+[    4.414322] systemd[1]: Mounting Temporary Directory /tmp...
+         Mounting [0;1;39mTemporary Directory /tmp[0m...
+[    4.429936] systemd[1]: Starting Create List of Static Device Nodes...
+         Starting [0;1;39mCreate List of Static Device Nodes[0m...
+[    4.453680] systemd[1]: Starting Load Kernel Module configfs...
+         Starting [0;1;39mLoad Kernel Module configfs[0m...
+[    4.469765] systemd[1]: Starting Load Kernel Module dm_mod...
+         Starting [0;1;39mLoad Kernel Module dm_mod[0m...
+[    4.485907] systemd[1]: Starting Load Kernel Module drm...
+         Starting [0;1;39mLoad Kernel Module drm[0m...
+[    4.501799] systemd[1]: Starting Load Kernel Module fuse...
+         Starting [0;1;39mLoad Kernel Module fuse[0m...
+[    4.517795] systemd[1]: Starting Load Kernel Module loop...
+         Starting [0;1;39mLoad Kernel Module loop[0m...
+[    4.533679] systemd[1]: Starting RPC Bind...
+         Starting [0;1;39mRPC Bind[0m...
+[    4.546671] systemd[1]: File System Check on Root Device was skipped because of an unmet condition check (ConditionPathIsReadWrite=!/).
+[    4.565259] systemd[1]: Starting Journal Service...
+         Starting [0;1;39mJournal Service[0m...
+[    4.582014] systemd[1]: Starting Load Kernel Modules...
+         Starting [0;1;39mLoad Kernel Modules[0m...
+[    4.597570] systemd[1]: Starting Generate network units from Kernel command line...
+         Starting [0;1;39mGenerate network units from Kernel command line[0m...
+[    4.615108] openvswitch: Open vSwitch switching datapath
+[    4.649552] systemd-journald[225]: Collecting audit messages is enabled.
+[    4.654757] systemd[1]: Starting Remount Root and Kernel File Systems...
+         Starting [0;1;39mRemount Root and Kernel File Systems[0m...
+[    4.678896] systemd[1]: Starting Coldplug All udev Devices...
+         Starting [0;1;39mColdplug All udev Devices[0m...
+[    4.706612] systemd[1]: Started RPC Bind.
+[[0;32m  OK  [0m] Started [0;1;39mRPC Bind[0m.
+[    4.718856] systemd[1]: Started Journal Service.
+[[0;32m  OK  [0m] Started [0;1;39mJournal Service[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mHuge Pages File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mPOSIX Message Queue File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Debug File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mTemporary Directory /tmp[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate List of Static Device Nodes[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module configfs[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module dm_mod[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module drm[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module fuse[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module loop[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Modules[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mGenerate network units from Kernel command line[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRemount Root and Kernel File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Network[0m.
+         Mounting [0;1;39mNFSD configuration filesystem[0m...
+         Mounting [0;1;39mKernel Configuration File System[0m...
+         Starting [0;1;39mFlush Journal to Persistent Storage[0m...
+         Starting [0;1;39mApply Kernel Variables[0m...
+         Starting [0;1;39mCreate Static Device Nodes in /dev gra[    5.018630] systemd-journald[225]: Received client request to flush runtime journal.
+cefully[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mNFSD configuration filesystem[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Configuration File System[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mFlush Journal to Persistent Storage[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mApply Kernel Variables[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev gracefully[0m.
+         Starting [0;1;39mCreate System Users[0m...
+[    5.156050] audit: type=1334 audit(1789138857.155:2): prog-id=6 op=LOAD
+[    5.162701] audit: type=1334 audit(1789138857.163:3): prog-id=7 op=LOAD
+[    5.169865] audit: type=1334 audit(1789138857.167:4): prog-id=8 op=LOAD
+         Starting [0;1;39mUser Database Manager[0m...
+[[0;32m  OK  [0m] Started [0;1;39mUser Database Manager[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate System Users[0m.
+         Starting [0;1;39mCreate Static Device Nodes in /dev[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Local File Systems[0m.
+         Mounting [0;1;39m/var/volatile[0m...
+[    5.460207] audit: type=1334 audit(1789138857.459:5): prog-id=9 op=LOAD
+[    5.466868] audit: type=1334 audit(1789138857.467:6): prog-id=10 op=LOAD
+         Starting [0;1;39mRule-based Manager for Device Events and Files[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39m/var/volatile[0m.
+         Starting [0;1;39mLoad/Save OS Random Seed[0m...
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal File Systems[0m.
+         Starting [0;1;39mRebuild Dynamic Linker Cache[0m...
+         Starting [0;1;39mCreate System Files and Directories[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mColdplug All udev Devices[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRebuild Dynamic Linker Cache[0m.
+[[0;32m  OK  [0m] Started [0;1;39mRule-based Manager for Device Events and Files[0m.
+[    5.637369] audit: type=1334 audit(1789138857.635:7): prog-id=11 op=LOAD
+         Starting [0;1;39mNetwork Configuration[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mCreate System Files and Directories[0m.
+         Starting [0;1;39mRebuild Journal Catalog[0m...
+[    5.857434] audit: type=1334 audit(1789138857.855:8): prog-id=12 op=LOAD
+         Starting [0;1;39mNetwork Name Resolution[0m...
+[    5.893489] macb ff0e0000.ethernet end0: renamed from eth0
+[    5.920637] audit: type=1334 audit(1789138857.915:9): prog-id=13 op=LOAD
+         Starting [0;1;39mNetwork Time Synchronization[0m...
+         Starting [0;1;39mRecord System Boot/Shutdown in UTMP[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRebuild Journal Catalog[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRecord System Boot/Shutdown in UTMP[0m.
+[    6.475433] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    6.554323] random: crng init done
+[[0;32m  OK  [0m] Finished [0;1;39mLoad/Save OS Random Seed[0m.
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Name Resolution[0m.
+[    6.642037] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Time Synchronization[    6.649976] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[0m.
+[    6.661324] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    6.670302] cfg80211: failed to load regulatory.db
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Configuration[0m.
+[    7.202212] macb ff0e0000.ethernet end0: PHY [ff0e0000.ethernet-ffffffff:0c] driver [Generic PHY] (irq=POLL)
+[    7.212105] macb ff0e0000.ethernet end0: configuring for phy/rgmii-id link mode
+[    7.220309] pps pps0: new PPS source ptp0
+[    7.225120] macb ff0e0000.ethernet: gem-ptp-timer ptp clock registered.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/systemd-fsck[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mHost and Network Name Lookups[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Time Set[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mHardware activated USB gadget[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLoad/Save RF Kill Switch Status /dev/rfkill Watch[0m.
+         Starting [0;1;39mFile System Check on /dev/mmcblk0p1[0m...
+         Starting [0;1;39mUpdate is Completed[0m...
+         Starting [0;1;39mVirtual Console Setup[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mUpdate is Completed[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mVirtual Console Setup[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mD-Bus System Message Bus Socket[0m.
+         Starting [0;1;39msshd.socket[0m...
+[[0;32m  OK  [0m] Listening on [0;1;39msshd.socket[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSocket Units[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mBasic System[0m.
+[[0;32m  OK  [0m] Started [0;1;39mKernel Logging Service[0m.
+[[0;32m  OK  [0m] Started [0;[    8.214404] audit: type=1334 audit(1789138860.211:10): prog-id=14 op=LOAD
+1;39mSystem Logging Service[0m.
+         Starting [0;1;39mD-B[    8.221417] audit: type=1334 audit(1789138860.211:11): prog-id=15 op=LOAD
+us System Message Bus[0m...
+         Starting [0;1;39mUser Lo[    8.233800] audit: type=1334 audit(1789138860.211:12): prog-id=16 op=LOAD
+gin Management[0m...
+         Starting [0;1;39mPermit User Sessions[0m...
+         Starting [0;1;39mTarget Communication Framework agent[0m...
+         Starting [0;1;39mOpenSSH Key Generation[0m...
+[[0;32m  OK  [0m] Started [0;1;39mD-Bus System Message Bus[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Started [0;1;39mTarget Communication Framework agent[0m.
+[[0;32m  OK  [0m] Started [0;1;39mGetty on tty1[0m.
+[[0;32m  OK  [0m] Started [0;1;39mSerial Getty on ttyPS0[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLogin Prompts[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUser Login Management[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mMulti-User System[0m.
+         Starting [0;1;39mRecord Runlevel Change in UTMP[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRecord Runlevel Change in UTMP[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mFile System Check on /dev/mmcblk0p1[0m.
+         Mounting [0;1;39m/run/media/BOOT-mmcblk0p1[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39m/run/media/BOOT-mmcblk0p1[0m.
+
+********************************************************************************************
+The PetaLinux source code and images provided/generated are for demonstration purposes only.
+Please refer to https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2741928025/Moving+from+PetaLinux+to+Production+Deployment
+for more details.
+********************************************************************************************
+PetaLinux 2025.1+release-S05180137 newQspi ttyPS0
+
+newQspi login: petalinux
+You are required to change your password immediately (administrator enforced).
+New password: 
+Retype new password: 
+[   26.681551] audit: type=1006 audit(1789138878.679:13): pid=664 uid=0 old-auid=4294967295 auid=1000 tty=(none) old-ses=4294967295 ses=1 res=1
+[   26.694205] audit: type=1300 audit(1789138878.679:13): arch=c00000b7 syscall=64 success=yes exit=4 a0=8 a1=ffffc7703f10 a2=4 a3=1 items=0 ppid=1 pid=664 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=1 comm="(systemd)" exe="/usr/lib/systemd/systemd-executor" key=(null)
+[   26.721023] audit: type=1327 audit(1789138878.679:13): proctitle="(systemd)"
+7[r[999;999H[6n8newQspi:~$ sudo su
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+For security reasons, the password you type will not be visible.
+
+Password: 
+newQspi:/home/petalinux# date -u -s "2026-09-11 HH:MM:00"[1P[1P[1@1[1@1:MM[1P[1P[1@0[1@2
+[   74.039902] systemd-journald[225]: Time jumped backwards, rotating.
+Fri Sep 11 11:02:00 UTC 2026
+newQspi:/home/petalinux# od -An -tx1 /proc/device-tree/axi/spi@ff0f0000/is-dual
+ 00 00 00 01
+newQspi:/home/petalinux# od -An -tx1 /proc/device-tree/axi/spi@ff0f0000/num-cs
+ 00 00 00 02
+newQspi:/home/petalinux# cat /proc/device-tree/axi/spi@ff0f0000/compatible | tr ''\0' '\n'
+xlnx,zynqmp-qspi-1.0
+newQspi:/home/petalinux# od -An -tx1 /proc/device-tree/axi/spi@ff0f0000/flash@0/sspi-rx-bus-width /proc/device-tree/axi/spi@ff0f0000/flash@0/spi-tx-bus-width
+ 00 00 00 04 00 00 00 04
+newQspi:/home/petalinux# ls /sys/kernel/config/device-tree/overlays/ 2>&1
+newQspi:/home/petalinux# zcat /proc/config.gz | grep -iE 'OF_OVERLAY|OF_CONFIGFS''
+CONFIG_OF_OVERLAY=y
+CONFIG_OF_CONFIGFS=y
+newQspi:/home/petalinux# od -An -tx1 /proc/device-tree/axi/spi@ff0f0000/flash@0/ppartition@1/reg
+ 00 10 00 00 01 60 00 00
+newQspi:/home/petalinux# mkdir -p /tmp/qf
+newQspi:/home/petalinux# echo '0A3+7QAAAYoAAAA4AAABIAAAACgAAAARAAAAEAAAAAAAAABqAAAAA6AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAFmcmFnbWVudEAwAAAAAAADAAAAEgAAAAAvYXhpL33NwaUBmZjBmMDAwMAAAAAAAAAFfX292ZXJsYXlfXwAAAAADAAAABAAAAAwAAAABAAAAAwAAAAQAAAAbAAAAAAAAAAAFxZmxhc2hAMAAAAAAAAAADAAAADgAAACdqZWRlYyxzcGktbm9yAAAAAAAAAwAAAAQAAAAyAAAAAAAAAAAMAAAAEAAAANgCYloAAAAADAAAABAAAAEgAAAABAAAAAwAAAAQAAABZAAAAAQAAAAIAAAACAAAAAAgAAAAIAAAAJdGFyZ2V0LXBhdGgAI2FkZHJlc3MtY2VsbHMAI3NpemUtY2VsbHMAY29tcGF0aWJsZQQByZWcAc3BpLW1heC1mcmVxdWVuY3kAc3BpLXR4LWJ1cy13aWR0aABzcGktcngtYnVzLXdpZHRoAA=='  | base64 -d > /tmp/qf/qflash_probe.dtbo
+sh: base64: command not found
+newQspi:/home/petalinux# ls -l /tmp/qf/qflash_probe.dtbo
+-rw-r--r--    1 root     root             0 Sep 11 11:04 /tmp/qf/qflash_probe.dtbo
+newQspi:/home/petalinux# md5sum /tmp/qf/qflash_probe.dtbo
+d41d8cd98f00b204e9800998ecf8427e  /tmp/qf/qflash_probe.dtbo
+newQspi:/home/petalinux# which python3 openssl xxd uudecode perl 2>&1
+newQspi:/home/petalinux# printf '\x41\x42\x43' | od -An -tx1
+ 41 42 43
+newQspi:/home/petalinux# busybox --list 2>/dev/null | tr '\n' ' ' | head -c 1500 [AnewQspi:/home/petalinux# busybox --list 2>/dev/null | tr '\n' ' ' | head -c 150[K0
+head: invalid option -- 'c'
+BusyBox v1.36.1 () multi-call binary.
+
+Usage: head [OPTIONS] [FILE]...
+
+Print first 10 lines of FILEs (or stdin).
+With more than one FILE, precede each with a filename header.
+
+	-n N[bkm]	Print first N lines
+			(b:*512 k:*1024 m:*1024^2)
+newQspi:/home/petalinux# rm -f /tmp/qf/qflash_probe.dtbo
+newQspi:/home/petalinux# printf '\xd0\x0d\xfe\xed\x00\x00\x01\x8a\x00\x00\x00\x388\x00\x00\x01\x20\x00\x00\x00\x28\x00\x00\x00\x11\x00\x00\x00\x10\x00\x00\x00\x000\x00\x00\x00\x6a\x00\x00\x00\xe8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x01\x66\x72\x61\x677\x6d\x65\x6e\x74\x40\x30\x00\x00\x00\x00\x00\x03\x00\x00\x00\x12\x00\x00\x00\x000\x2f\x61\x78\x69\x2f\x73\x70\x69\x40\x66\x66\x30\x66\x30\x30\x30\x30\x00\x00\x000\x00\x00\x00\x01\x5f\x5f\x6f\x76\x65\x72\x6c\x61\x79\x5f\x5f\x00\x00\x00\x00\x033' > /tmp/qf/qflash_probe.dtbo
+newQspi:/home/petalinux# wc -c < /tmp/qf/qflash_probe.dtbo
+132
+newQspi:/home/petalinux# printf '\x00\x00\x00\x04\x00\x00\x00\x0c\x00\x00\x00\x011\x00\x00\x00\x03\x00\x00\x00\x04\x00\x00\x00\x1b\x00\x00\x00\x00\x00\x00\x00\x011\x71\x66\x6c\x61\x73\x68\x40\x30\x00\x00\x00\x00\x00\x00\x00\x03\x00\x00\x00\x0ee\x00\x00\x00\x27\x6a\x65\x64\x65\x63\x2c\x73\x70\x69\x2d\x6e\x6f\x72\x00\x00\x000\x00\x00\x00\x03\x00\x00\x00\x04\x00\x00\x00\x32\x00\x00\x00\x00\x00\x00\x00\x033\x00\x00\x00\x04\x00\x00\x00\x36\x00\x98\x96\x80\x00\x00\x00\x03\x00\x00\x00\x044\x00\x00\x00\x48\x00\x00\x00\x01\x00\x00\x00\x03\x00\x00\x00\x04\x00\x00\x00\x599' >> /tmp/qf/qflash_probe.dtbo
+newQspi:/home/petalinux# wc -c < /tmp/qf/qflash_probe.dtbo
+264
+newQspi:/home/petalinux# printf '\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x022\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x09\x74\x61\x72\x67\x65\x74\x2d\x700\x61\x74\x68\x00\x23\x61\x64\x64\x72\x65\x73\x73\x2d\x63\x65\x6c\x6c\x73\x00\x233\x73\x69\x7a\x65\x2d\x63\x65\x6c\x6c\x73\x00\x63\x6f\x6d\x70\x61\x74\x69\x62\x6cc\x65\x00\x72\x65\x67\x00\x73\x70\x69\x2d\x6d\x61\x78\x2d\x66\x72\x65\x71\x75\x655\x6e\x63\x79\x00\x73\x70\x69\x2d\x74\x78\x2d\x62\x75\x73\x2d\x77\x69\x64\x74\x688\x00\x73\x70\x69\x2d\x72\x78\x2d\x62\x75\x73\x2d\x77\x69\x64\x74\x68\x00' >> /tmmp/qf/qflash_probe.dtbo
+newQspi:/home/petalinux# wc -c < /tmp/qf/qflash_probe.dtbo
+394
+newQspi:/home/petalinux# md5sum /tmp/qf/qflash_probe.dtbo
+2099a8d6a0b5765c9460a5ac8b19a0d8  /tmp/qf/qflash_probe.dtbo
+newQspi:/home/petalinux# od -An -tx1 -N 8 /tmp/qf/qflash_probe.dtbo
+ d0 0d fe ed 00 00 01 8a
+newQspi:/home/petalinux# mkdir -p /sys/kernel/config/device-tree/overlays/qflash [AnewQspi:/home/petalinux# mkdir -p /sys/kernel/config/device-tree/overlays/qflas[Kh
+newQspi:/home/petalinux# cat /tmp/qf/qflash_probe.dtbo > /sys/kernel/config/devicce-tree/overlays/qflash/dtbo
+newQspi:/home/petalinux# cat /sys/kernel/config/device-tree/overlays/qflash/statuus
+applied
+newQspi:/home/petalinux# ls /dev/mtd* 2>&1
+/dev/mtd0       /dev/mtd0ro     /dev/mtdblock0
+
+/dev/mtd:
+by-name
+newQspi:/home/petalinux# ls /sys/bus/spi/devices/ 2>&1
+spi0.0
+newQspi:/home/petalinux# dmesg | tail -20
+[    5.857434] audit: type=1334 audit(1789138857.855:8): prog-id=12 op=LOAD
+[    5.893489] macb ff0e0000.ethernet end0: renamed from eth0
+[    5.920637] audit: type=1334 audit(1789138857.915:9): prog-id=13 op=LOAD
+[    6.475433] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    6.554323] random: crng init done
+[    6.642037] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    6.649976] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[    6.661324] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    6.670302] cfg80211: failed to load regulatory.db
+[    7.202212] macb ff0e0000.ethernet end0: PHY [ff0e0000.ethernet-ffffffff:0c] driver [Generic PHY] (irq=POLL)
+[    7.212105] macb ff0e0000.ethernet end0: configuring for phy/rgmii-id link mode
+[    7.220309] pps pps0: new PPS source ptp0
+[    7.225120] macb ff0e0000.ethernet: gem-ptp-timer ptp clock registered.
+[    8.214404] audit: type=1334 audit(1789138860.211:10): prog-id=14 op=LOAD
+[    8.221417] audit: type=1334 audit(1789138860.211:11): prog-id=15 op=LOAD
+[    8.233800] audit: type=1334 audit(1789138860.211:12): prog-id=16 op=LOAD
+[   26.681551] audit: type=1006 audit(1789138878.679:13): pid=664 uid=0 old-auid=4294967295 auid=1000 tty=(none) old-ses=4294967295 ses=1 res=1
+[   26.694205] audit: type=1300 audit(1789138878.679:13): arch=c00000b7 syscall=64 success=yes exit=4 a0=8 a1=ffffc7703f10 a2=4 a3=1 items=0 ppid=1 pid=664 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=1 comm="(systemd)" exe="/usr/lib/systemd/systemd-executor" key=(null)
+[   26.721023] audit: type=1327 audit(1789138878.679:13): proctitle="(systemd)"
+[   74.039902] systemd-journald[225]: Time jumped backwards, rotating.
+newQspi:/home/petalinux# dmesg | grep -iE 'spi-nor|mtd|jedec|qflash|spi0.0'
+newQspi:/home/petalinux# cat /proc/mtd
+dev:    size   erasesize  name
+mtd0: 04000000 00010000 "spi0.0"
+newQspi:/home/petalinux# cat /sys/class/mtd/mtd0/size /sys/class/mtd/mtd0/erasesiize /sys/class/mtd/mtd0/type /sys/class/mtd/mtd0/name
+67108864
+65536
+nor
+spi0.0
+newQspi:/home/petalinux# ls -l /dev/mtd/by-name/
+total 0
+lrwxrwxrwx    1 root     root            10 Sep 11 11:08 spi0.0 -> ../../mtd0
+newQspi:/home/petalinux# cat /sys/bus/spi/devices/spi0.0/modalias 2>&1
+spi:spi-nor
+newQspi:/home/petalinux# dd if=/dev/mtd0ro of=/tmp/qf/base.bin bs=4096 skip=256 ccount=256 2>&1
+256+0 records in
+256+0 records out
+newQspi:/home/petalinux# md5sum /tmp/qf/base.bin
+b4014a90c5187987c47ae375f33e5e91  /tmp/qf/base.bin
+newQspi:/home/petalinux# cat /sys/bus/spi/devices/spi0.0/driver_override 2>&1; lss /sys/class/mtd/mtd0/device/
+
+driver           mtd              spi-nor          uevent
+driver_override  of_node          statistics
+modalias         power            subsystem
+newQspi:/home/petalinux# dmesg -n 8; rmdir /sys/kernel/config/device-tree/overlayys/qflash; sleep 1; mkdir -p /sys/kernel/config/device-tree/overlays/qflash; cat  /tmp/qf/qflash_probe.dtbo > /sys/kernel/config/device-tree/overlays/qflash/dtbo;; sleep 1; dmesg | tail -12
+[  661.775303] Deleting MTD partitions on "spi0.0":
+[    7.202212] macb ff0e0000.ethernet end0: PHY [ff0e0000.ethernet-ffffffff:0c] driver [Generic PHY] (irq=POLL)
+[    7.212105] macb ff0e0000.ethernet end0: configuring for phy/rgmii-id link mode
+[    7.220309] pps pps0: new PPS source ptp0
+[    7.225120] macb ff0e0000.ethernet: gem-ptp-timer ptp clock registered.
+[    8.214404] audit: type=1334 audit(1789138860.211:10): prog-id=14 op=LOAD
+[    8.221417] audit: type=1334 audit(1789138860.211:11): prog-id=15 op=LOAD
+[    8.233800] audit: type=1334 audit(1789138860.211:12): prog-id=16 op=LOAD
+[   26.681551] audit: type=1006 audit(1789138878.679:13): pid=664 uid=0 old-auid=4294967295 auid=1000 tty=(none) old-ses=4294967295 ses=1 res=1
+[   26.694205] audit: type=1300 audit(1789138878.679:13): arch=c00000b7 syscall=64 success=yes exit=4 a0=8 a1=ffffc7703f10 a2=4 a3=1 items=0 ppid=1 pid=664 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=1 comm="(systemd)" exe="/usr/lib/systemd/systemd-executor" key=(null)
+[   26.721023] audit: type=1327 audit(1789138878.679:13): proctitle="(systemd)"
+[   74.039902] systemd-journald[225]: Time jumped backwards, rotating.
+[  661.775303] Deleting MTD partitions on "spi0.0":
+newQspi:/home/petalinux# dd if=/dev/mtd0ro of=/tmp/qf/r2.bin bs=4096 skip=256 couunt=256 2>/dev/null; md5sum /tmp/qf/r2.bin
+b4014a90c5187987c47ae375f33e5e91  /tmp/qf/r2.bin
+newQspi:/home/petalinux# dd if=/dev/mtd0ro of=/tmp/qf/r3.bin bs=4096 skip=256 couunt=256 2>/dev/null; md5sum /tmp/qf/r3.bin
+b4014a90c5187987c47ae375f33e5e91  /tmp/qf/r3.bin
+newQspi:/home/petalinux# dd if=/dev/mtd0ro bs=65536 skip=400 count=1 2>/dev/null  | md5sum
+ecb99e6ffea7be1e5419350f725da86b  -
+newQspi:/home/petalinux# cat /sys/kernel/config/device-tree/overlays/qflash/statuus
+applied
+newQspi:/home/petalinux# cat /proc/mtd
+dev:    size   erasesize  name
+mtd0: 04000000 00010000 "spi0.0"
+newQspi:/home/petalinux# rmdir /sys/kernel/config/device-tree/overlays/qflash
+[ 1032.656190] Deleting MTD partitions on "spi0.0":
+newQspi:/home/petalinux# printf '\x00\xee\x65\x0d' | dd of=/tmp/qf/qflash_probe.ddtbo bs=1 seek=232 count=4 conv=notrunc 2>/dev/null
+newQspi:/home/petalinux# od -An -tx1 -j 232 -N 4 /tmp/qf/qflash_probe.dtbo
+ 00 98 96 80
+newQspi:/home/petalinux# printf '\x00\xee\x65\x0d' | dd of=/tmp/qf/qflash_probe.ddtbo bs=1 seek=232 count=4 conv=notrunc
+BusyBox v1.36.1 () multi-call binary.
+
+Usage: dd [if=FILE] [of=FILE] [bs=N] [count=N] [skip=N] [seek=N]
+
+Copy a file with converting and formatting
+
+	if=FILE		Read from FILE instead of stdin
+	of=FILE		Write to FILE instead of stdout
+	bs=N		Read and write N bytes at a time
+	count=N		Copy only N input blocks
+	skip=N		Skip N input blocks
+	seek=N		Skip N output blocks
+
+N may be suffixed by c (1), w (2), b (512), kB (1000), k (1024), MB, M, GB, G
+newQspi:/home/petalinux# od -An -tx1 -j 232 -N 4 /tmp/qf/qflash_probe.dtbo
+ 00 98 96 80
+newQspi:/home/petalinux# dd if=/tmp/qf/qflash_probe.dtbo of=/tmp/qf/p1 bs=1 countt=232 2>/dev/null
+newQspi:/home/petalinux# dd if=/tmp/qf/qflash_probe.dtbo of=/tmp/qf/p3 bs=1 skip==236 2>/dev/null
+newQspi:/home/petalinux# printf '\x00\xee\x65\x0d' > /tmp/qf/p2
+newQspi:/home/petalinux# wc -c /tmp/qf/p1 /tmp/qf/p2 /tmp/qf/p3
+      232 /tmp/qf/p1
+        4 /tmp/qf/p2
+      158 /tmp/qf/p3
+      394 total
+newQspi:/home/petalinux# cat /tmp/qf/p1 /tmp/qf/p2 /tmp/qf/p3 > /tmp/qf/qflash_prrobe.dtbo
+newQspi:/home/petalinux# wc -c < /tmp/qf/qflash_probe.dtbo; od -An -tx1 -j 232 -NN 4 /tmp/qf/qflash_probe.dtbo; od -An -tx1 -N 8 /tmp/qf/qflash_probe.dtbo
+394
+ 00 ee 65 0d
+ d0 0d fe ed 00 00 01 8a
+newQspi:/home/petalinux# mkdir -p /sys/kernel/config/device-tree/overlays/qflash;; cat /tmp/qf/qflash_probe.dtbo > /sys/kernel/config/device-tree/overlays/qflash//dtbo; cat /sys/kernel/config/device-tree/overlays/qflash/status
+applied
+newQspi:/home/petalinux# time dd if=/dev/mtd0ro of=/tmp/qf/t.bin bs=4096 skip=2566 count=256 2>/dev/null; md5sum /tmp/qf/t.bin
+
+real	0m0.577s
+user	0m0.000s
+sys	0m0.024s
+b4014a90c5187987c47ae375f33e5e91  /tmp/qf/t.bin
+newQspi:/home/petalinux# rmdir /sys/kernel/config/device-tree/overlays/qflash
+[ 1219.841267] Deleting MTD partitions on "spi0.0":
+newQspi:/home/petalinux# printf '\x01\xdc\xca\x1b' > /tmp/qf/p2; cat /tmp/qf/p1 //tmp/qf/p2 /tmp/qf/p3 > /tmp/qf/qflash_probe.dtbo; wc -c < /tmp/qf/qflash_probe.ddtbo; od -An -tx1 -j 232 -N 4 /tmp/qf/qflash_probe.dtbo
+394
+ 01 dc ca 1b
+newQspi:/home/petalinux# mkdir -p /sys/kernel/config/device-tree/overlays/qflash;; cat /tmp/qf/qflash_probe.dtbo > /sys/kernel/config/device-tree/overlays/qflash//dtbo; cat /sys/kernel/config/device-tree/overlays/qflash/status
+applied
+newQspi:/home/petalinux# time dd if=/dev/mtd0ro of=/tmp/qf/t.bin bs=4096 skip=2566 count=256 2>/dev/null; md5sum /tmp/qf/t.bin
+
+real	0m0.309s
+user	0m0.000s
+sys	0m0.024s
+b4014a90c5187987c47ae375f33e5e91  /tmp/qf/t.bin
+newQspi:/home/petalinux# rmdir /sys/kernel/config/device-tree/overlays/qflash
+[ 1283.622023] Deleting MTD partitions on "spi0.0":
+newQspi:/home/petalinux# printf '\x03\xb9\x94\x36' > /tmp/qf/p2; cat /tmp/qf/p1 //tmp/qf/p2 /tmp/qf/p3 > /tmp/qf/qflash_probe.dtbo; wc -c < /tmp/qf/qflash_probe.ddtbo; od -An -tx1 -j 232 -N 4 /tmp/qf/qflash_probe.dtbo
+394
+ 03 b9 94 36
+newQspi:/home/petalinux# mkdir -p /sys/kernel/config/device-tree/overlays/qflash;; cat /tmp/qf/qflash_probe.dtbo > /sys/kernel/config/device-tree/overlays/qflash//dtbo; cat /sys/kernel/config/device-tree/overlays/qflash/status
+applied
+newQspi:/home/petalinux# time dd if=/dev/mtd0ro of=/tmp/qf/t.bin bs=4096 skip=2566 count=256 2>/dev/null; md5sum /tmp/qf/t.bin
+
+real	0m0.175s
+user	0m0.000s
+sys	0m0.025s
+b4014a90c5187987c47ae375f33e5e91  /tmp/qf/t.bin
+newQspi:/home/petalinux# rmdir /sys/kernel/config/device-tree/overlays/qflash
+[ 1343.868433] Deleting MTD partitions on "spi0.0":
+newQspi:/home/petalinux# printf '\x07\x73\x28\x6c' > /tmp/qf/p2; cat /tmp/qf/p1 //tmp/qf/p2 /tmp/qf/p3 > /tmp/qf/qflash_probe.dtbo; wc -c < /tmp/qf/qflash_probe.ddtbo; od -An -tx1 -j 232 -N 4 /tmp/qf/qflash_probe.dtbo
+394
+ 07 73 28 6c
+newQspi:/home/petalinux# mkdir -p /sys/kernel/config/device-tree/overlays/qflash;; cat /tmp/qf/qflash_probe.dtbo > /sys/kernel/config/device-tree/overlays/qflash//dtbo; cat /sys/kernel/config/device-tree/overlays/qflash/status
+applied
+newQspi:/home/petalinux# time dd if=/dev/mtd0ro of=/tmp/qf/t.bin bs=4096 skip=2566 count=256 2>/dev/null; md5sum /tmp/qf/t.bin
+
+real	0m0.098s
+user	0m0.000s
+sys	0m0.022s
+32c10de501f5f3670f4ff7a726f991b1  /tmp/qf/t.bin
+newQspi:/home/petalinux# time dd if=/dev/mtd0ro of=/tmp/qf/t2.bin bs=4096 skip=2556 count=256 2>/dev/null; md5sum /tmp/qf/t2.bin
+
+real	0m0.097s
+user	0m0.001s
+sys	0m0.021s
+5eef6d287af035b058410f52739ab8d5  /tmp/qf/t2.bin
+newQspi:/home/petalinux# time dd if=/dev/mtd0ro of=/tmp/qf/t3.bin bs=4096 skip=2556 count=256 2>/dev/null; md5sum /tmp/qf/t3.bin
+
+real	0m0.098s
+user	0m0.004s
+sys	0m0.019s
+f9b3daad991360ada00f599aa988dce7  /tmp/qf/t3.bin
+newQspi:/home/petalinux# cmp -l /tmp/qf/base.bin /tmp/qf/t.bin 2>/dev/null | wc --l
+697
+newQspi:/home/petalinux# cmp /tmp/qf/base.bin /tmp/qf/t.bin
+/tmp/qf/base.bin /tmp/qf/t.bin differ: char 852161, line 671
+newQspi:/home/petalinux# cmp /tmp/qf/base.bin /tmp/qf/t2.bin; cmp /tmp/qf/base.biin /tmp/qf/t3.bin
+/tmp/qf/base.bin /tmp/qf/t2.bin differ: char 852161, line 671
+/tmp/qf/base.bin /tmp/qf/t3.bin differ: char 852161, line 671
+newQspi:/home/petalinux# for n in 16 32 64 128; do dd if=/dev/mtd0ro of=/tmp/qf/ss.bin bs=4096 skip=256 count=$n 2>/dev/null; dd if=/tmp/qf/base.bin of=/tmp/qf/srref.bin bs=4096 count=$n 2>/dev/null; printf "%4d KiB  " $((n*4)); cmp -s /tmp/qff/s.bin /tmp/qf/sref.bin && echo CLEAN || echo CORRUPT; done
+  64 KiB  CLEAN
+ 128 KiB  CLEAN
+ 256 KiB  CLEAN
+ 512 KiB  CLEAN
+newQspi:/home/petalinux# for n in 16 32 64 128; do dd if=/dev/mtd0ro of=/tmp/qf/ss.bin bs=4096 skip=256 count=$n 2>/dev/null; dd if=/tmp/qf/base.bin of=/tmp/qf/srref.bin bs=4096 count=$n 2>/dev/null; printf "%4d KiB  " $((n*4)); cmp -s /tmp/qff/s.bin /tmp/qf/sref.bin && echo CLEAN || echo CORRUPT; done[A[A[AnewQspi:/home/petalinux# [K
+[K
+[K
+[K[A[A[AnewQspi:/home/petalinux# for n in 192 208 224 240 256; do dd if=/dev/mtd0ro of=/ttmp/qf/s.bin bs=4096 skip=256 count=$n 2>/dev/null; dd if=/tmp/qf/base.bin of=/tmmp/qf/sref.bin bs=4096 count=$n 2>/dev/null; printf "%4d KiB  " $((n*4)); cmp -s  /tmp/qf/s.bin /tmp/qf/sref.bin && echo CLEAN || echo CORRUPT; done
+ 768 KiB  CLEAN
+ 832 KiB  CLEAN
+ 896 KiB  CORRUPT
+ 960 KiB  CORRUPT
+1024 KiB  CORRUPT
+newQspi:/home/petalinux# dd if=/dev/mtd0ro of=/tmp/qf/o.bin bs=4096 skip=512 counnt=256 2>/dev/null; dd if=/dev/mtd0ro of=/tmp/qf/o2.bin bs=4096 skip=512 count=2556 2>/dev/null; cmp /tmp/qf/o.bin /tmp/qf/o2.bin
+newQspi:/home/petalinux# rmdir /sys/kernel/config/device-tree/overlays/qflash
+[ 1649.095899] Deleting MTD partitions on "spi0.0":
+newQspi:/home/petalinux# printf '\x03\xb9\x94\x36' > /tmp/qf/p2; cat /tmp/qf/p1 //tmp/qf/p2 /tmp/qf/p3 > /tmp/qf/qflash_probe.dtbo; od -An -tx1 -j 232 -N 4 /tmp/qqf/qflash_probe.dtbo; mkdir -p /sys/kernel/config/device-tree/overlays/qflash; caat /tmp/qf/qflash_probe.dtbo > /sys/kernel/config/device-tree/overlays/qflash/dtbbo; cat /sys/kernel/config/device-tree/overlays/qflash/status
+ 03 b9 94 36
+applied
+newQspi:/home/petalinux# dd if=/dev/mtd0ro of=/tmp/qf/o_ref.bin bs=4096 skip=512  count=256 2>/dev/null; md5sum /tmp/qf/o_ref.bin /tmp/qf/o.bin
+c2ebfbd8ef2f5605f9c48c5c2698acde  /tmp/qf/o_ref.bin
+c2ebfbd8ef2f5605f9c48c5c2698acde  /tmp/qf/o.bin
+newQspi:/home/petalinux# cmp /tmp/qf/o_ref.bin /tmp/qf/o.bin
+newQspi:/home/petalinux# dd if=/dev/mtd0ro of=/tmp/qf/bad1.bin bs=4096 skip=464 ccount=16 2>/dev/null; dd if=/dev/mtd0ro of=/tmp/qf/bad2.bin bs=4096 skip=464 counnt=16 2>/dev/null; md5sum /tmp/qf/bad1.bin /tmp/qf/bad2.bin
+05e6caa934d76df19176a2cc52044c7d  /tmp/qf/bad1.bin
+05e6caa934d76df19176a2cc52044c7d  /tmp/qf/bad2.bin
+newQspi:/home/petalinux# rmdir /sys/kernel/config/device-tree/overlays/qflash
+[ 1767.763588] Deleting MTD partitions on "spi0.0":
+newQspi:/home/petalinux# printf '\x07\x73\x28\x6c' > /tmp/qf/p2; cat /tmp/qf/p1 //tmp/qf/p2 /tmp/qf/p3 > /tmp/qf/qflash_probe.dtbo; od -An -tx1 -j 232 -N 4 /tmp/qqf/qflash_probe.dtbo; mkdir -p /sys/kernel/config/device-tree/overlays/qflash; caat /tmp/qf/qflash_probe.dtbo > /sys/kernel/config/device-tree/overlays/qflash/dtbbo; cat /sys/kernel/config/device-tree/overlays/qflash/status
+ 07 73 28 6c
+applied
+newQspi:/home/petalinux# dd if=/dev/mtd0ro of=/tmp/qf/bad3.bin bs=4096 skip=464 ccount=16 2>/dev/null; dd if=/dev/mtd0ro of=/tmp/qf/bad4.bin bs=4096 skip=464 counnt=16 2>/dev/null; md5sum /tmp/qf/bad3.bin /tmp/qf/bad4.bin
+b5519e7e077d85898986d3526e847f3f  /tmp/qf/bad3.bin
+d87fa48c88e8f0bc6e1cb9b50499d1e2  /tmp/qf/bad4.bin
+newQspi:/home/petalinux# for n in 400 416 432 448 464 480 496 512; do dd if=/dev//mtd0ro of=/tmp/qf/a.bin bs=4096 skip=$n count=16 2>/dev/null; dd if=/dev/mtd0ro  of=/tmp/qf/b.bin bs=4096 skip=$n count=16 2>/dev/null; printf "0x%06X  " $((n*40096+0x100000)); cmp -s /tmp/qf/a.bin /tmp/qf/b.bin && echo stable || echo UNSTABLLE; done
+0x290000  stable
+0x2A0000  stable
+0x2B0000  stable
+0x2C0000  stable
+0x2D0000  UNSTABLE
+0x2E0000  UNSTABLE
+0x2F0000  UNSTABLE
+0x300000  stable
+newQspi:/home/petalinux# for n in 0 64 128 192 256 320 384 576 640 768 896 1024;  do dd if=/dev/mtd0ro of=/tmp/qf/a.bin bs=4096 skip=$n count=16 2>/dev/null; dd iif=/dev/mtd0ro of=/tmp/qf/b.bin bs=4096 skip=$n count=16 2>/dev/null; printf "0x%%06X  " $((n*4096+0x100000)); cmp -s /tmp/qf/a.bin /tmp/qf/b.bin && echo stable ||| echo UNSTABLE; done
+0x100000  stable
+0x140000  stable
+0x180000  stable
+0x1C0000  stable
+0x200000  stable
+0x240000  stable
+0x280000  stable
+0x340000  stable
+0x380000  stable
+0x400000  stable
+0x480000  UNSTABLE
+0x500000  stable
+newQspi:/home/petalinux# 
+Terminating...
+Skipping tty reset...
+Thanks for using picocom
+
+Script done on 2026-09-11 11:35:42-04:00 [COMMAND_EXIT_CODE="0"]

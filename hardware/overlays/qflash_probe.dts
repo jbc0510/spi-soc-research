@@ -1,0 +1,52 @@
+/dts-v1/;
+/plugin/;
+
+/*
+ * MSU-2 Task 2 — ZCU102 QSPI flash enablement
+ * 2026-09-11, ZCU102 #1 at LPS
+ *
+ * The base device tree's /axi/spi@ff0f0000/flash@0 node lacks BOTH
+ * `compatible` and `reg`. Consequence: no software layer on this board can
+ * reach the QSPI flash.
+ *   Linux:  spi_master spi0: cannot find modalias for .../flash@0
+ *   U-Boot: sf probe -> Invalid chip select 0:0 (err=-19)
+ * Both read the same broken node. Kernel config is fine
+ * (CONFIG_SPI_ZYNQMP_GQSPI, CONFIG_MTD_SPI_NOR, CONFIG_SPI_SPIDEV all =y).
+ *
+ * Adding properties to the existing node does NOT re-trigger the SPI core's
+ * OF notifier, which fires on node ADDITION. So this adds a NEW child at the
+ * same chip-select with the missing properties supplied.
+ *
+ * Result: /dev/mtd0, /dev/mtd0ro, /dev/mtdblock0 appear; spi0.0 binds
+ * spi-nor; 64 MiB, 64 KiB erase. No PetaLinux rebuild required.
+ *
+ * spi-max-frequency is the clock-sweep knob. GQSPI divides qspi_ref
+ * (249,975,000 Hz) by powers of two, so achievable SCK is:
+ *     /32 =   7.812 MHz      /16 =  15.623 MHz
+ *     /8  =  31.247 MHz      /4  =  62.494 MHz
+ *     /2  = 124.987 MHz
+ * The driver selects the largest divisor at or below the request, so 10 MHz
+ * here yields 7.81 MHz, not 10.
+ *
+ * READ-ONLY INTENT. Boot mode is sdboot, so the flash is dormant, but
+ * qspi-boot / qspi-kernel / qspi-bootenv are real partitions. Use
+ * /dev/mtd0ro. Nothing in the 2026-09-11 session wrote to this device.
+ */
+
+/ {
+    fragment@0 {
+        target-path = "/axi/spi@ff0f0000";
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+
+            qflash@0 {
+                compatible = "jedec,spi-nor";
+                reg = <0>;
+                spi-max-frequency = <10000000>;
+                spi-tx-bus-width = <1>;
+                spi-rx-bus-width = <1>;
+            };
+        };
+    };
+};
