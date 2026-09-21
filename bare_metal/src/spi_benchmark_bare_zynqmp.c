@@ -78,6 +78,11 @@ typedef struct {
 benchmark_result_t results[NUM_PAYLOADS];
 volatile u32 g_done = 0;
 
+/* Parallel status arrays preserve the 32-byte results[] ABI used by JTAG. */
+static u32 ok_count[NUM_PAYLOADS];
+static u32 err_count[NUM_PAYLOADS];
+static s32 first_status[NUM_PAYLOADS];
+
 /* ─────────────────────────────────────────
  * Timing via the A53 generic timer (CNTPCT_EL0, read by XTime_GetTime).
  * COUNTS_PER_SECOND is provided by the BSP and equals the ~99.99 MHz
@@ -173,29 +178,42 @@ static int spi_init(void)
 /* ─────────────────────────────────────────
  * One payload sweep. XSpiPs_PolledTransfer handles arbitrary length by
  * looping the 128-byte FIFO internally - the same "software manages a big
- * transfer over a small FIFO" cost the Linux spidev path incurred, which
- * is what makes the large-payload numbers comparable. RX is ignored.
+ * transfer over a small FIFO" cost the Linux spidev path incurred. This aligns
+ * timing scope only; different SPI controllers are not apples-to-apples.
+ * RX is captured but not validated.
  * ───────────────────────────────────────── */
-static benchmark_result_t run_benchmark(int payload_size)
+static benchmark_result_t run_benchmark(int payload_size, int payload_index)
 {
     benchmark_result_t result = {0};
     static u64 lat_ns[NUM_TRIALS];   /* static: keep off the stack */
     u64 sum = 0;
-    int t, i;
+    int t, i, n_ok = 0;
+    s32 status;
 
     for (i = 0; i < payload_size; i++)
         tx_buf[i] = (u8)(i & 0xFF);   /* same pattern as Linux side */
 
     for (t = 0; t < NUM_TRIALS; t++) {
         u64 start = get_ticks();
-        XSpiPs_PolledTransfer(&Spi, tx_buf, rx_buf, payload_size);
+        status = XSpiPs_PolledTransfer(&Spi, tx_buf, rx_buf, payload_size);
         u64 end = get_ticks();
 
-        lat_ns[t] = ticks_to_ns(end - start);
-        sum += lat_ns[t];
+        if (status != XST_SUCCESS) {
+            if (err_count[payload_index] == 0U)
+                first_status[payload_index] = status;
+            err_count[payload_index]++;
+            continue;
+        }
+        lat_ns[n_ok] = ticks_to_ns(end - start);
+        sum += lat_ns[n_ok++];
     }
 
-    result.avg_ns = sum / (u64)NUM_TRIALS;
+    ok_count[payload_index] = (u32)n_ok;
+    if (n_ok == 0) {
+        result.min_ns = result.max_ns = result.avg_ns = result.stddev_ns = ~0ULL;
+        return result;
+    }
+    result.avg_ns = sum / (u64)n_ok;
     result.min_ns = lat_ns[0];
     result.max_ns = lat_ns[0];
 
@@ -204,11 +222,11 @@ static benchmark_result_t run_benchmark(int payload_size)
      * at the 64KB payload (where raw sum-of-squares would approach 1e19).
      * Per-term integer truncation is sub-ns on a ns^2 variance - negligible. */
     u64 variance = 0;
-    for (t = 0; t < NUM_TRIALS; t++) {
+    for (t = 0; t < n_ok; t++) {
         if (lat_ns[t] < result.min_ns) result.min_ns = lat_ns[t];
         if (lat_ns[t] > result.max_ns) result.max_ns = lat_ns[t];
         s64 diff = (s64)lat_ns[t] - (s64)result.avg_ns;
-        variance += (u64)(diff * diff) / (u64)NUM_TRIALS;
+        variance += (u64)(diff * diff) / (u64)n_ok;
     }
     /* integer sqrt of variance */
     u64 root = 0, bit = 1ULL << 62;
@@ -261,7 +279,7 @@ int main(void)
     xil_printf("-------- ------------ ------------ ------------ ------------\r\n");
 
     for (p = 0; p < NUM_PAYLOADS; p++) {
-        results[p] = run_benchmark(payload_sizes[p]);
+        results[p] = run_benchmark(payload_sizes[p], p);
         xil_printf("%-8d %12lu %12lu %12lu %12lu\r\n",
             payload_sizes[p],
             results[p].min_ns, results[p].avg_ns,
@@ -272,12 +290,15 @@ int main(void)
     __asm__ volatile ("dsb sy" ::: "memory");
 
     /* Machine-parseable CSV block, sentinel-bracketed. Columns in ns;
-     * divide by 1000 in post to get us for diff against emio_results.csv. */
+     * divide by 1000 in post to get us. Record controller identity separately. */
     xil_printf("\r\n---CSV-BEGIN---\r\n");
-    xil_printf("bytes,avg_ns,stddev_ns\r\n");
+    xil_printf("# UINT64_MAX timing means zero successful transfers\r\n");
+    xil_printf("bytes,avg_ns,stddev_ns,ok_count,err_count,first_status\r\n");
     for (p = 0; p < NUM_PAYLOADS; p++) {
-        xil_printf("%d,%lu,%lu\r\n",
-            payload_sizes[p], results[p].avg_ns, results[p].stddev_ns);
+        xil_printf("%d,%lu,%lu,%lu,%lu,%d\r\n",
+            payload_sizes[p], results[p].avg_ns, results[p].stddev_ns,
+            (unsigned long)ok_count[p], (unsigned long)err_count[p],
+            (int)first_status[p]);
     }
     xil_printf("---CSV-END---\r\n");
 
