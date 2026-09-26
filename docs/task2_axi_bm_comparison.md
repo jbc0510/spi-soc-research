@@ -187,6 +187,22 @@ Each run directory contains logs/manifests/configuration alongside a separate
   were retained: HOME write failure, nonempty-workspace rejection, and a
   sandboxed startup that was killed at its 180-second limit.
 
+- Hardware reconciliation flow added in `scripts/build_spi_common_hw.tcl`
+  (commit `99e7243434db26ea40b43b8812564848d70f7c75`). Vivado 2025.1 now starts
+  normally on the Morgan workstation, and the required board part
+  `xilinx.com:zcu102:part0:3.4` resolves. The flow creates an isolated project
+  from the repository BD/XDC, explicitly pins `xczu9eg-ffvb1156-2-e` and the
+  ZCU102 board part, generates the BD/wrapper/HWH, and launches synthesis.
+  AXI Quad SPI remains assigned at `0xA0000000 [64K]`.
+- The reconciliation build is currently **BLOCKED BY LICENSE INFRASTRUCTURE**,
+  not by a demonstrated SPI design failure. All synthesis sub-runs terminate
+  with Vivado `[Common 17-345]` reporting no valid `Synthesis` and/or `xczu9eg`
+  license. Bypassing DNS with `2100@172.20.3.171` produces the same result.
+  TCP port 2100 is reachable, but FlexLM reports `lmgrd` not responding
+  correctly. Available local Vivado Enterprise/XCZU9EG licenses are expired.
+  Therefore no new implemented `.bit`, reconciled XSA, `.bit.bin`, timing, or
+  utilization result is claimed yet.
+
 SHA-256 values for the validated software:
 
 | Input/output | SHA-256 |
@@ -230,4 +246,4 @@ This is **BUILD/STATIC validation only**, not evidence of SPI functionality.
    report CPU/cache/scheduling differences separately. Preserve failed runs and
    explain any missing samples. Never retrofit new validation onto old results.
 
-No board experiment or hardware regeneration is part of Phase 1.
+No board experiment or completed hardware regeneration is part of Phase 1. The reconciliation flow has been exercised through BD/IP generation, but implementation remains blocked by the synthesis-license infrastructure.
