@@ -124,16 +124,24 @@ launch environment and apply any desired scheduling policy explicitly to both
 the run procedure and provenance. No bare-metal CPU utilization equivalence is
 claimed.
 
-### BLOCKER: bounded transfer/recovery
+### Bounded transfer/recovery implemented; board validation pending
 
-Vendor `XSpi_Transfer` polling contains a TX-empty wait without a deadline.
-An outer timer cannot bound it. The default standalone ELF refuses transfers
-before controller initialization, returning 2. An explicit build switch
-`--allow-unbounded-polling` enables this known-unbounded path only for deliberate
-later bring-up. It prints the blocker and `timeout_count=-1` (unavailable).
-There is no timeout detection or bounded recovery in this phase. This must be
-resolved before unattended definitive sweeps. Do not describe the opt-in ELF
-as bounded, or its API success as independent hardware error detection.
+The standalone AXI application no longer uses the known-unbounded XSpi polling
+path. `XSpi_Transfer()` is now used in interrupt mode through the ZynqMP GIC,
+with completion reported by the XSpi status callback. The application applies
+an explicit 2000 ms software safety deadline to each transfer attempt.
+
+Deadline expiry is reported as `SPI_BENCH_TIMEOUT (-10004)` and contributes to
+the existing `timeout_count` CSV field. A timeout, transfer-start failure,
+non-completion interrupt event, or short completion triggers recovery through
+the public `XSpi_Reset()` API followed by option, slave-select, callback, start,
+and global-interrupt reconfiguration.
+
+The 2000 ms value is a conservative software safety bound, not a measured SPI
+latency requirement and not evidence of the physical SCK rate. The interrupt
+path and recovery logic have passed Vitis 2025.1 build validation, but neither
+timeout injection nor post-timeout recovery has yet been demonstrated on the
+ZCU102. Those remain required board-validation items before definitive sweeps.
 
 Linux counts only returned `ETIMEDOUT` errors as timeouts, a subset of API errors.
 It has no userspace deadline that can abort a hung kernel ioctl. A zero timeout
@@ -156,9 +164,11 @@ For board Linux, use the AMD AArch64 Linux compiler with the same flags and a
 new output path; never invoke the historical v2 build script for v3.
 
 The new Vitis script checks version, XSA/embedded-bit hashes, IP parameters,
-generated XSpi metadata and sources; creates an A53-0 standalone platform/app;
-uses explicit `-O2`, libm and a DDR origin of `0x00100000` while preserving the
-DDR upper bound; checks AArch64 ELF entry, LOAD placement and new result symbols.
+generated XSpi metadata and sources, AXI SPI interrupt ID, GIC base and XScuGic
+driver sources; creates an A53-0 standalone platform/app; uses explicit `-O2`,
+libm and a DDR origin of `0x00100000` while preserving the DDR upper bound;
+checks AArch64 ELF entry, LOAD placement, result symbols and required XSpi/GIC
+interrupt/recovery symbols.
 It writes input/generated/output hashes, compiler identification and logs in
 the **new** workspace only. Vitis configuration files are directed there too.
 The Vitis process group has a hard timeout (default 180 s, maximum 300 s).
@@ -186,6 +196,27 @@ Each run directory contains logs/manifests/configuration alongside a separate
   These generated files are ignored by Git. Earlier isolated failed attempts
   were retained: HOME write failure, nonempty-workspace rejection, and a
   sandboxed startup that was killed at its 180-second limit.
+
+#### Bounded-interrupt update (2026-09-26)
+
+- The shared contract now defines `SPI_BENCH_TIMEOUT (-10004)`.
+- Bare-metal AXI SPI now uses `XSpi_Transfer()` in interrupt mode through
+  `XScuGic`, with an explicit 2000 ms software deadline and
+  `XSpi_Reset()`-based recovery/reconfiguration on timeout or transfer error.
+- The obsolete `--allow-unbounded-polling` build option, compile definition,
+  environment variable and manifest field were removed.
+- Host regression coverage increased from five to six tests. All six pass; the
+  added static test requires the bounded interrupt/recovery architecture and
+  rejects reintroduction of the old unbounded-polling controls.
+- A fresh Vitis 2025.1 isolated build passed:
+  `bare_metal/vitis/spi_axi_bm_irq_recovery_check/`.
+  ELF SHA-256:
+  `241cd3bb49aebde812b23d19a34c9d740b558d16bc7a45ffd811dc5908bfcb5f`.
+  ELF validation includes `XSpi_InterruptHandler`, `XSpi_Reset`,
+  `XScuGic_Connect` and `XScuGic_InterruptHandler`.
+- This is build-only evidence. No board timeout/recovery experiment has yet been
+  performed, and the XSA/bitstream pair remains unreconciled for the definitive
+  common-controller experiment.
 
 - Hardware reconciliation flow added in `scripts/build_spi_common_hw.tcl`
   (commit `99e7243434db26ea40b43b8812564848d70f7c75`). Vivado 2025.1 now starts

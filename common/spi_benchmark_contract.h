@@ -20,6 +20,7 @@ static const unsigned spi_bench_payloads[] = {
 #define SPI_BENCH_RX_MISMATCH (-10001)
 #define SPI_BENCH_SHORT_TRANSFER (-10002)
 #define SPI_BENCH_TIMER_ERROR (-10003)
+#define SPI_BENCH_TIMEOUT (-10004)
 
 typedef struct {
     unsigned attempts, api_success, api_errors, short_returns, mismatches;

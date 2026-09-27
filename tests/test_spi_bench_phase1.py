@@ -112,6 +112,55 @@ class Phase1(unittest.TestCase):
         self.assertEqual(run.returncode, 2)
         self.assertNotIn("---CSV-BEGIN---", run.stdout)
 
+    def test_baremetal_axi_bounded_interrupt_contract(self):
+        src = (ROOT / "bare_metal/src/spi_benchmark_bare_axi.c").read_text()
+        contract = (ROOT / "common/spi_benchmark_contract.h").read_text()
+        build = (ROOT / "scripts/build_spi_axi_bm_vitis.py").read_text()
+
+        self.assertIn("#define SPI_BENCH_TIMEOUT (-10004)", contract)
+
+        for token in (
+            "XScuGic_Connect",
+            "XScuGic_Disable",
+            "XScuGic_Enable",
+            "XSpi_InterruptHandler",
+            "XSpi_IntrGlobalEnable",
+            "SPI_AXI_TRANSFER_TIMEOUT_MS",
+            "SPI_BENCH_TIMEOUT",
+            "XSpi_Reset",
+            "recover_spi",
+            "transfer_bounded",
+            "XST_SPI_TRANSFER_DONE",
+        ):
+            self.assertIn(token, src)
+
+        for obsolete in (
+            "SPI_AXI_ALLOW_UNBOUNDED_POLLING",
+            "allow_unbounded",
+            "BLOCKER_UNBOUNDED_XSpi_Transfer",
+        ):
+            self.assertNotIn(obsolete, src)
+
+        for token in (
+            "XPAR_FABRIC_XSPI_0_INTR",
+            "XPAR_XSCUGIC_0_BASEADDR",
+            "XSpi_InterruptHandler",
+            "XSpi_Reset",
+            "XScuGic_Connect",
+            "XScuGic_InterruptHandler",
+            '"transfer_mode": "XSpi interrupt mode with bounded software deadline"',
+            '"transfer_timeout_ms": 2000',
+        ):
+            self.assertIn(token, build)
+
+        for obsolete in (
+            "SPI_AXI_UNBOUNDED",
+            "SPI_AXI_ALLOW_UNBOUNDED_POLLING",
+            "allow-unbounded-polling",
+            "unbounded_polling_opt_in",
+        ):
+            self.assertNotIn(obsolete, build)
+
     def test_known_population_variance(self):
         src = self.work / "stats.c"
         src.write_text('''#include "spi_benchmark_contract.h"

@@ -98,11 +98,22 @@ def worker():
             match = re.search(r"^#define XPAR_XSPI_0_" + name + r"\s+(\S+)", xp, re.M)
             require(match is not None and int(match[1], 0) == value,
                     f"Missing/unexpected generated XSpi {name}")
-        driver = bsp / "libsrc/spi/src"
+        spi_driver = bsp / "libsrc/spi/src"
         for name in ("xspi.c", "xspi.h", "xspi_g.c", "xspi_sinit.c"):
-            require((driver / name).is_file(), f"Missing XSpi driver file {name}")
-        require("0xa0000000" in (driver / "xspi_g.c").read_text().lower(),
+            require((spi_driver / name).is_file(), f"Missing XSpi driver file {name}")
+        require("0xa0000000" in (spi_driver / "xspi_g.c").read_text().lower(),
                 "XSpi config table lacks target base")
+
+        irq = re.search(r"^#define XPAR_FABRIC_XSPI_0_INTR\s+(\S+)", xp, re.M)
+        require(irq is not None and int(irq[1], 0) == 89,
+                "Missing/unexpected AXI Quad SPI interrupt ID")
+        gic_base = re.search(r"^#define XPAR_XSCUGIC_0_BASEADDR\s+(\S+)", xp, re.M)
+        require(gic_base is not None and int(gic_base[1], 0) == 0xF9010000,
+                "Missing/unexpected GIC distributor base")
+
+        gic_driver = bsp / "libsrc/scugic/src"
+        for name in ("xscugic.c", "xscugic.h", "xscugic_intr.c", "xscugic_sinit.c"):
+            require((gic_driver / name).is_file(), f"Missing XScuGic driver file {name}")
         client.create_app_component(name=APP,
                                     platform=str(ws / PLATFORM / "export" / PLATFORM /
                                                  (PLATFORM + ".xpfm")),
@@ -116,9 +127,6 @@ def worker():
         replace_once(uc, "set(USER_LINK_LIBRARIES\n)", "set(USER_LINK_LIBRARIES\nm\n)")
         replace_once(uc, "set(USER_COMPILE_OPTIMIZATION_LEVEL -O0)",
                      "set(USER_COMPILE_OPTIMIZATION_LEVEL -O2)")
-        armed = int(os.environ["SPI_AXI_UNBOUNDED"])
-        replace_once(uc, 'set(USER_COMPILE_DEFINITIONS\n""\n)',
-                     f"set(USER_COMPILE_DEFINITIONS\nSPI_AXI_ALLOW_UNBOUNDED_POLLING={armed}\n)")
         ld = src / "lscript.ld"
         data = ld.read_text()
         pattern = r"(psu_ddr_0_memory_0\s*:\s*ORIGIN\s*=\s*)(0x[0-9a-fA-F]+)(\s*,\s*LENGTH\s*=\s*)(0x[0-9a-fA-F]+)"
@@ -135,7 +143,8 @@ def worker():
                 "Application build failed")
         files = [bsp / "bsp.yaml", bsp / "include/xparameters.h", uc, ld,
                  src / SOURCE.name, src / CONTRACT.name]
-        files += list(driver.glob("*.c")) + list(driver.glob("*.h"))
+        files += list(spi_driver.glob("*.c")) + list(spi_driver.glob("*.h"))
+        files += list(gic_driver.glob("*.c")) + list(gic_driver.glob("*.h"))
         (ws / "generated_hashes.json").write_text(json.dumps(
             {str(p.relative_to(ws)): sha(p) for p in files}, indent=2) + "\n")
     finally:
@@ -146,8 +155,6 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--timeout-seconds", type=int, default=180)
     parser.add_argument("--workspace-name", default="spi_axi_bm_ws")
-    parser.add_argument("--allow-unbounded-polling", action="store_true",
-                        help="explicitly arm UNSAFE-TO-HANG vendor polling; default ELF refuses transfers")
     args = parser.parse_args()
     require(1 <= args.timeout_seconds <= 300, "Build limit must be 1..300 seconds")
     require(re.fullmatch(r"spi_axi_bm_[A-Za-z0-9_]+", args.workspace_name),
@@ -170,14 +177,17 @@ def main():
                 "vitis_version": version, "xsa_sha256": sha(XSA),
                 "embedded_bit_sha256": BIT_SHA256, "source_sha256": sha(SOURCE),
                 "contract_sha256": sha(CONTRACT), "build_script_sha256": sha(Path(__file__)),
-                "xsa_parameters": params, "unbounded_polling_opt_in": args.allow_unbounded_polling,
+                "xsa_parameters": params,
+                "transfer_mode": "XSpi interrupt mode with bounded software deadline",
+                "transfer_timeout_ms": 2000,
+                "timeout_recovery": "XSpi_Reset then reconfigure/restart",
+                "hardware_timeout_validation": "NOT_PERFORMED",
                 "timeout_seconds": args.timeout_seconds, "packaging": "NOT_IMPLEMENTED"}
     ws.mkdir(parents=True)
     (ws / "input_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     # Vitis requires a new/empty workspace; keep logs/configuration outside it.
     env = dict(os.environ, SPI_AXI_BUILD_WORKER="1", SPI_AXI_WORKSPACE=str(ws / "workspace"),
-               XILINX_VITIS_DATA_DIR=str(ws / "vitis_config"),
-               SPI_AXI_UNBOUNDED=str(int(args.allow_unbounded_polling)))
+               XILINX_VITIS_DATA_DIR=str(ws / "vitis_config"))
     started = time.monotonic()
     with (ws / "build.log").open("w") as log:
         proc = subprocess.Popen([launcher, "-s", str(Path(__file__).resolve())],
@@ -201,7 +211,9 @@ def main():
     require(loads and min(int(line[2], 16) for line in loads) == ENTRY and
             min(int(line[3], 16) for line in loads) == ENTRY, "Unexpected ELF LOAD placement")
     symbols = command([nm, "-n", elf])
-    for name in ("main", "axi_results", "axi_done", "XSpi_Transfer", "XSpi_CfgInitialize"):
+    for name in ("main", "axi_results", "axi_done",
+                 "XSpi_Transfer", "XSpi_CfgInitialize", "XSpi_InterruptHandler",
+                 "XSpi_Reset", "XScuGic_Connect", "XScuGic_InterruptHandler"):
         require(re.search(r"^[0-9a-fA-F]+\s+[A-Za-z]\s+" + name + r"$", symbols, re.M),
                 f"Missing ELF symbol {name}")
     manifest.update(elf_sha256=sha(elf), elapsed_seconds=time.monotonic() - started,
