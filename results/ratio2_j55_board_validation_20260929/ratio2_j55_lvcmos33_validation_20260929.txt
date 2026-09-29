@@ -1,0 +1,22 @@
+MSU-2 Task 2 - ZCU102 AXI Quad SPI Physical Validation
+Date: 2026-09-29 UTC
+Git commit: e9b28dc64f616fb7e4ffb21a9775ba2c621c10e0
+Bitstream SHA256: c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd
+PL0_REF_CTRL: 0x01010F00
+AXI Quad SPI base: 0xA0000000
+SPICR: 0x00000086
+J55 mapping:
+  MOSI = pin 1 = A20
+  MISO = pin 2 = B21
+  SCK  = pin 4 = C21
+  SS0  = pin 7 = A21
+IOSTANDARD: LVCMOS33
+Loopback jumper: J55 pin 1 -> pin 2
+Requested SPI speed: 50000000 Hz
+Physical SCK measured on J55 pin 4: approximately 51 MHz
+External loopback result: PASS
+Payload range: 1 B through 65536 B
+Transfers per payload: 1000
+API errors: 0
+RX mismatches: 0
+Final failures: 0
