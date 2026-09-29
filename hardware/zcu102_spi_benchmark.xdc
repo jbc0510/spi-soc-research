@@ -1,37 +1,34 @@
 #==============================================================================
 # ZCU102 SPI Benchmark XDC Constraints
 # J55 = single PMOD connector (not dual like ZCU104)
-# SPI/EMIO package-pin mappings are constrained as LVCMOS18.
-# NOTE: Vivado 2026.1 implementation reports these package pins in device
-# banks 49/50; older comments identifying them as Bank 28 were stale.
+# AXI Quad SPI is routed to ZCU102 J55 PMOD using LVCMOS33.
+# J55 resides in PL Bank 47.
 #==============================================================================
 
 #------------------------------------------------------------------------------
-# AXI Quad SPI → J55 PMOD (LVCMOS18)
+# AXI Quad SPI → J55 PMOD (LVCMOS33)
 # J55 package-pin assignments used by this project:
-#   Pin 1 = D12
-#   Pin 2 = E10
-#   Pin 3 = F10
-#   Pin 4 = F11
-#   Pin 7 = D11
-#   Pin 8 = E12
+#   Pin 1 = A20
+#   Pin 2 = B21
+#   Pin 4 = C21
+#   Pin 7 = A21
 #------------------------------------------------------------------------------
 
 # SPI_0 SCK  → J55 pin 4
-set_property PACKAGE_PIN F11 [get_ports SPI_0_sck_io]
-set_property IOSTANDARD LVCMOS18 [get_ports SPI_0_sck_io]
+set_property PACKAGE_PIN C21 [get_ports SPI_0_sck_io]
+set_property IOSTANDARD LVCMOS33 [get_ports SPI_0_sck_io]
 
 # SPI_0 MOSI (io0) → J55 pin 1
-set_property PACKAGE_PIN D12 [get_ports SPI_0_io0_io]
-set_property IOSTANDARD LVCMOS18 [get_ports SPI_0_io0_io]
+set_property PACKAGE_PIN A20 [get_ports SPI_0_io0_io]
+set_property IOSTANDARD LVCMOS33 [get_ports SPI_0_io0_io]
 
 # SPI_0 MISO (io1) → J55 pin 2
-set_property PACKAGE_PIN E10 [get_ports SPI_0_io1_io]
-set_property IOSTANDARD LVCMOS18 [get_ports SPI_0_io1_io]
+set_property PACKAGE_PIN B21 [get_ports SPI_0_io1_io]
+set_property IOSTANDARD LVCMOS33 [get_ports SPI_0_io1_io]
 
 # SPI_0 SS   → J55 pin 7
-set_property PACKAGE_PIN D11 [get_ports {SPI_0_ss_io[0]}]
-set_property IOSTANDARD LVCMOS18 [get_ports {SPI_0_ss_io[0]}]
+set_property PACKAGE_PIN A21 [get_ports {SPI_0_ss_io[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_0_ss_io[0]}]
 
 #------------------------------------------------------------------------------
 # EMIO SPI1 → J55 remaining pins (probe points, LVCMOS18)
