@@ -1,19 +1,20 @@
 #==============================================================================
 # ZCU102 SPI Benchmark XDC Constraints
-# Bank 28 = 1.8V on ZCU102 — ALL PL I/O must use LVCMOS18
 # J55 = single PMOD connector (not dual like ZCU104)
-# Reference: ZCU102 Schematic (UG1182), Bank 28 pins
+# SPI/EMIO package-pin mappings are constrained as LVCMOS18.
+# NOTE: Vivado 2026.1 implementation reports these package pins in device
+# banks 49/50; older comments identifying them as Bank 28 were stale.
 #==============================================================================
 
 #------------------------------------------------------------------------------
-# AXI Quad SPI → J55 PMOD (Bank 28, LVCMOS18)
-# J55 pin assignments per ZCU102 schematic:
-#   Pin 1 = D12 (IO_L4P_T0L_N6_AD15P_28)
-#   Pin 2 = E10 (IO_L6P_T0U_N10_AD6P_28)
-#   Pin 3 = F10 (IO_L6N_T0U_N11_AD6N_28)
-#   Pin 4 = F11 (IO_L7P_T1L_N0_QBC_AD13P_28)
-#   Pin 7 = D11 (IO_L4N_T0L_N7_AD15N_28)
-#   Pin 8 = E12 (IO_L5P_T0U_N8_AD14P_28)
+# AXI Quad SPI → J55 PMOD (LVCMOS18)
+# J55 package-pin assignments used by this project:
+#   Pin 1 = D12
+#   Pin 2 = E10
+#   Pin 3 = F10
+#   Pin 4 = F11
+#   Pin 7 = D11
+#   Pin 8 = E12
 #------------------------------------------------------------------------------
 
 # SPI_0 SCK  → J55 pin 4
@@ -100,6 +101,8 @@ set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
 set_property port_width 1 [get_debug_ports u_ila_0/clk]
 connect_debug_port u_ila_0/clk [get_nets [list spi_benchmark_i/zynq_ultra_ps_e_0_pl_clk0]]
 set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe0]
+set_property port_width 1 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list spi_benchmark_i/axi_quad_spi_0/U0/NO_DUAL_QUAD_MODE.QSPI_NORMAL/QSPI_LEGACY_MD_GEN.QSPI_CORE_INTERFACE_I/LOGIC_FOR_MD_0_GEN.SPI_MODULE_I/sck_o_int]]
 create_debug_port u_ila_0 probe
 set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe1]
 set_property port_width 1 [get_debug_ports u_ila_0/probe1]
