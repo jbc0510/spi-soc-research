@@ -2,7 +2,7 @@
 #include "spi_benchmark_contract.h"
 #include "xparameters.h"
 #include "xspi.h"
-#include "xscugic.h"
+#include "xinterrupt_wrap.h"
 #include "xil_exception.h"
 #include "xiltimer.h"
 #include "xtimer_config.h"
@@ -17,9 +17,6 @@
 #if XPAR_XSPI_0_BASEADDR != 0xA0000000
 #error "Unexpected XSpi base address"
 #endif
-#ifndef XPAR_XSCUGIC_0_BASEADDR
-#error "Generated BSP must contain the ZynqMP GIC"
-#endif
 #ifndef XPAR_FABRIC_XSPI_0_INTR
 #error "Generated BSP must contain the AXI Quad SPI interrupt"
 #endif
@@ -30,7 +27,6 @@
 #define SPI_AXI_TRANSFER_TIMEOUT_MS 2000U
 
 static XSpi spi;
-static XScuGic gic;
 static uint8_t tx[SPI_BENCH_MAX_PAYLOAD], rx[SPI_BENCH_MAX_PAYLOAD];
 SpiBenchResult axi_results[SPI_BENCH_PAYLOAD_COUNT];
 volatile uint32_t axi_done;
@@ -90,7 +86,7 @@ static int recover_spi(void)
      * Mask the GIC source before resetting driver/controller state so a pending
      * SPI interrupt cannot race recovery. Re-enable only after restart succeeds.
      */
-    XScuGic_Disable(&gic, XPAR_FABRIC_XSPI_0_INTR);
+    XDisableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
     XSpi_IntrGlobalDisable(&spi);
     XSpi_Reset(&spi);
 
@@ -101,7 +97,7 @@ static int recover_spi(void)
     int s = configure_spi_after_reset();
     if (s != XST_SUCCESS) return s;
 
-    XScuGic_Enable(&gic, XPAR_FABRIC_XSPI_0_INTR);
+    XEnableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
     return XST_SUCCESS;
 }
 
@@ -119,21 +115,10 @@ static int initialize(void)
     s = XSpi_SelfTest(&spi);
     if (s != XST_SUCCESS) return s;
 
-    XScuGic_Config *gcfg = XScuGic_LookupConfig(XPAR_XSCUGIC_0_BASEADDR);
-    if (!gcfg) return XST_FAILURE;
-
-    s = XScuGic_CfgInitialize(&gic, gcfg, (u32)gcfg->CpuBaseAddress);
+    s = XSetupInterruptSystem(&spi, &XSpi_InterruptHandler,
+                              cfg->IntrId, cfg->IntrParent,
+                              XINTERRUPT_DEFAULT_PRIORITY);
     if (s != XST_SUCCESS) return s;
-
-    s = XScuGic_Connect(&gic, XPAR_FABRIC_XSPI_0_INTR,
-                        (Xil_InterruptHandler)XSpi_InterruptHandler, &spi);
-    if (s != XST_SUCCESS) return s;
-
-    XScuGic_Enable(&gic, XPAR_FABRIC_XSPI_0_INTR);
-    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
-                                 (Xil_ExceptionHandler)XScuGic_InterruptHandler,
-                                 &gic);
-    Xil_ExceptionEnable();
 
     irq_state.terminal = 0U;
     irq_state.event = 0U;
@@ -264,8 +249,9 @@ int main(void)
     }
     puts("---CSV-END---");
     XSpi_IntrGlobalDisable(&spi);
-    XScuGic_Disable(&gic, XPAR_FABRIC_XSPI_0_INTR);
-    XScuGic_Disconnect(&gic, XPAR_FABRIC_XSPI_0_INTR);
+    XDisableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
+    XDisconnectInterruptCntrl(XPAR_XSPI_0_INTERRUPTS,
+                              XPAR_XSPI_0_INTERRUPT_PARENT);
     XSpi_Stop(&spi);
     axi_done = failures ? 2U : 1U; /* completion, never topology certification */
     __asm__ volatile ("dsb sy" ::: "memory");
