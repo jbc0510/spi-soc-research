@@ -215,3 +215,46 @@ preserved. This does not replace hardware fault/recovery validation.
 The October 13 bare-metal CSV was extracted without changing values into
 baremetal_baseline_extracted.csv; all 11 rows have 1000 verified timing samples,
 zero RX mismatches and zero timeouts. No Linux comparison values are fabricated.
+
+## Approved FPGA load completed; reset output-enable gap found
+
+The user approved full programming. The exact committed script was transferred
+to /tmp and its SHA-256 matched
+2fd99caa5b10f9a69b7c832ddcd1a1ba5cf950ffd2fc7e97945a3b0c213b362f.
+The script passed its input/staged bitstream hash and clock checks. The manager
+reported operating and the script returned 0. Completion marker and raw
+clk_summary/dmesg/reset results are captured in target_console.log.
+This is a successful hash-pinned load, not bitstream readback verification.
+
+PL0 remains enabled at 99,990,000 Hz and IOPLL remains 1,499,850,000 Hz.
+Read-only PS GPIO accesses after load returned:
+
+| Register | Address | Value |
+|---|---|---|
+| DATA_5 | 0xFF0A0054 | 0xF0000000 |
+| DATA_5_RO | 0xFF0A0074 | 0x00000000 |
+| DIRM_5 | 0xFF0A0344 | 0xF0000000 |
+| OEN_5 | 0xFF0A0348 | 0x00000000 |
+
+These establish missing output-enable relative to the XSA initialization. They
+do not yet prove the physical reset net level or the cause of previous hangs.
+Reset IDs 1116..1119 still report zero. The PS reads completed and Linux remains
+responsive. No AXI SPI transaction was issued.
+
+The matching kernel gpio-zynq.c zynq_gpio_dir_out sets both DIRM and OUTEN then
+the requested output value. zynqmp_gpio line 173 is EMIO95 / Bank5 bit31.
+The live controller is ff0a0000.gpio, gpiochip1, 174 lines, with none requested
+in debugfs. GPIO sysfs and libgpiod tools are absent.
+
+Next proposal (NOT APPLIED; approval required): pl-reset-release.dts uses a
+dynamic GPIO hog under the verified gpio symbol to request line 173 output-high
+through the kernel driver. It compiles with dtc. Require a claimed
+msu2-pl-resetn0 output in debugfs, OEN bit31 set, output data bit31 high and
+recheck firmware/GPIO readback before any SPI registration. If dynamic hog
+handling is unavailable, stop and inspect; do not substitute raw writes.
+This releases active-low fabric reset and can activate the loaded design.
+No reset pulse, AFI change or SPI probe is part of this proposal. Removing a hog
+releases ownership but does not guarantee restoration of hardware direction or
+OEN; rollback requires a separately reviewed operation.
+
+Kernel source: https://github.com/Xilinx/linux-xlnx/blob/0a0f70e531c7/drivers/gpio/gpio-zynq.c
