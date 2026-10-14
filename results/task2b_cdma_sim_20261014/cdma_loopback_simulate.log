@@ -1,0 +1,337 @@
+Time resolution is 1 ps
+XilinxAXIVIP: Found at Path: tb_keyhole.dut.sim_keyhole_i.axi_vip_0.inst
+XilinxAXIVIP: Found at Path: tb_keyhole.dut.sim_keyhole_i.axi_vip_1.inst
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_keyhole.dut.sim_keyhole_i.axi_quad_spi_0.U0.no_dual_quad_mode.QSPI_NORMAL.qspi_enhanced_md_gen.QSPI_CORE_INTERFACE_I.fifo_exists.RX_FIFO_II.gnuram_async_fifo.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_keyhole/dut/sim_keyhole_i/axi_quad_spi_0/U0/no_dual_quad_mode/QSPI_NORMAL/qspi_enhanced_md_gen/QSPI_CORE_INTERFACE_I/fifo_exists/RX_FIFO_II/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/Initial310_618  Scope: tb_keyhole.dut.sim_keyhole_i.axi_quad_spi_0.U0.no_dual_quad_mode.QSPI_NORMAL.qspi_enhanced_md_gen.QSPI_CORE_INTERFACE_I.fifo_exists.RX_FIFO_II.gnuram_async_fifo.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc  File: /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 522
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_keyhole.dut.sim_keyhole_i.axi_quad_spi_0.U0.no_dual_quad_mode.QSPI_NORMAL.qspi_enhanced_md_gen.QSPI_CORE_INTERFACE_I.fifo_exists.TX_FIFO_II.gnuram_async_fifo.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_keyhole/dut/sim_keyhole_i/axi_quad_spi_0/U0/no_dual_quad_mode/QSPI_NORMAL/qspi_enhanced_md_gen/QSPI_CORE_INTERFACE_I/fifo_exists/TX_FIFO_II/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/Initial310_618  Scope: tb_keyhole.dut.sim_keyhole_i.axi_quad_spi_0.U0.no_dual_quad_mode.QSPI_NORMAL.qspi_enhanced_md_gen.QSPI_CORE_INTERFACE_I.fifo_exists.TX_FIFO_II.gnuram_async_fifo.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc  File: /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 522
+ANCHOR: QSPI SPICR = 0x00000180 (expect 0x00000180)
+MON M00.AW  addr=0xa0000040            t=1105 ns
+MON M00.W   data=0x0000000a          t=1105 ns
+MON M00.B   resp=0               t=1115 ns
+MON M01.AW  addr=0xa0010000            t=1235 ns
+MON M01.W   data=0x00000004          t=1235 ns
+MON M01.AR  addr=0xa0010000            t=2365 ns
+MON M01.R   data=0x00000000 resp=0 t=2385 ns
+PHASE_A: post-reset CDMACR = 0x00000000 (rst bit2=0)
+MON M01.AW  addr=0xa0010000            t=2525 ns
+MON M01.W   data=0x00000020          t=2525 ns
+MON M01.AR  addr=0xa0010000            t=2665 ns
+MON M01.R   data=0x00000020 resp=0 t=2685 ns
+PHASE_A: CDMACR readback = 0x00000020 (keyhole bit5=1)
+MON M01.AW  addr=0xa0010018            t=2825 ns
+MON M01.W   data=0x5a5a1234          t=2825 ns
+MON M01.AR  addr=0xa0010018            t=2965 ns
+MON M01.R   data=0x5a5a1234 resp=0 t=2985 ns
+PHASE_A: SA probe wrote 5A5A1234 read 0x5a5a1234
+MON M01.AW  addr=0xa0010018            t=3125 ns
+MON M01.W   data=0x00000000          t=3125 ns
+MON M01.AW  addr=0xa0010020            t=3295 ns
+MON M01.W   data=0xa0000068          t=3295 ns
+MON M01.AW  addr=0xa0010028            t=3465 ns
+MON M01.W   data=0x00000040          t=3465 ns
+MON CDMA.AW addr=0xa0000068 len=5 burst=0 t=3585 ns
+MON CDMA.AR addr=0x00000000 len=15 burst=1 t=3595 ns
+MON M01.AR  addr=0xa0010004            t=3605 ns
+MON M01.R   data=0x00000000 resp=0 t=3625 ns
+PHASE_A: CDMASR just after kick = 0x00000000
+MON M00.AW  addr=0xa0000068            t=3685 ns
+MON M00.W   data=0xa5b00000          t=3685 ns
+MON M00.W   data=0xa5b00001          t=3695 ns
+MON M00.W   data=0xa5b00002          t=3705 ns
+MON CDMA.AW addr=0xa0000068 len=9 burst=0 t=3715 ns
+MON M00.W   data=0xa5b00003          t=3715 ns
+MON M00.W   data=0xa5b00004          t=3725 ns
+MON M01.AR  addr=0xa0010004            t=3735 ns
+MON M00.W   data=0xa5b00005          t=3735 ns
+MON M01.R   data=0x00000000 resp=0 t=3755 ns
+MON M00.B   resp=0               t=3755 ns
+MON M00.AW  addr=0xa0000068            t=3775 ns
+MON M00.W   data=0xa5b00006          t=3775 ns
+MON M00.W   data=0xa5b00007          t=3785 ns
+MON M00.W   data=0xa5b00008          t=3795 ns
+MON M00.W   data=0xa5b00009          t=3805 ns
+MON M00.W   data=0xa5b0000a          t=3815 ns
+MON M00.W   data=0xa5b0000b          t=3825 ns
+MON M00.W   data=0xa5b0000c          t=3835 ns
+MON M00.W   data=0xa5b0000d          t=3845 ns
+MON M00.W   data=0xa5b0000e          t=3855 ns
+MON M00.W   data=0xa5b0000f          t=3865 ns
+MON M00.B   resp=0               t=3885 ns
+MON M01.AR  addr=0xa0010004            t=4055 ns
+MON M01.R   data=0x00001002 resp=0 t=4075 ns
+PHASE_A: done=1 CDMASR=0x00001002 OCY=15 SPISR=0x00000021 TxEmpty=0
+KEYHOLE_SIM: PASS — 16/16 words held at DTR
+PHASE_A: OBS aw=2 w=16 wready_low=4 addr_held=1
+MON M00.AW  addr=0xa0000040            t=4655 ns
+MON M00.W   data=0x0000000a          t=4655 ns
+MON M00.B   resp=0               t=4665 ns
+MON M01.AW  addr=0xa0010000            t=4785 ns
+MON M01.W   data=0x00000004          t=4785 ns
+MON M01.AR  addr=0xa0010000            t=5915 ns
+MON M01.R   data=0x00000000 resp=0 t=5935 ns
+PHASE_B: post-reset CDMACR = 0x00000000 (rst bit2=0)
+MON M01.AW  addr=0xa0010000            t=6075 ns
+MON M01.W   data=0x00000000          t=6075 ns
+MON M01.AR  addr=0xa0010000            t=6215 ns
+MON M01.R   data=0x00000000 resp=0 t=6235 ns
+PHASE_B: CDMACR readback = 0x00000000 (keyhole bit5=0)
+MON M01.AW  addr=0xa0010018            t=6375 ns
+MON M01.W   data=0x5a5a1234          t=6375 ns
+MON M01.AR  addr=0xa0010018            t=6515 ns
+MON M01.R   data=0x5a5a1234 resp=0 t=6535 ns
+PHASE_B: SA probe wrote 5A5A1234 read 0x5a5a1234
+MON M01.AW  addr=0xa0010018            t=6675 ns
+MON M01.W   data=0x00000000          t=6675 ns
+MON M01.AW  addr=0xa0010020            t=6845 ns
+MON M01.W   data=0xa0000068          t=6845 ns
+MON M01.AW  addr=0xa0010028            t=7015 ns
+MON M01.W   data=0x00000040          t=7015 ns
+MON CDMA.AW addr=0xa0000068 len=5 burst=1 t=7135 ns
+MON CDMA.AR addr=0x00000000 len=15 burst=1 t=7145 ns
+MON M01.AR  addr=0xa0010004            t=7155 ns
+MON M01.R   data=0x00000000 resp=0 t=7175 ns
+PHASE_B: CDMASR just after kick = 0x00000000
+MON M00.AW  addr=0xa0000068            t=7235 ns
+MON M00.W   data=0xa5b00000          t=7235 ns
+MON M00.W   data=0xa5b00001          t=7245 ns
+MON M00.W   data=0xa5b00002          t=7255 ns
+MON CDMA.AW addr=0xa0000080 len=9 burst=1 t=7265 ns
+MON M00.W   data=0xa5b00003          t=7265 ns
+MON M00.W   data=0xa5b00004          t=7275 ns
+MON M01.AR  addr=0xa0010004            t=7285 ns
+MON M00.W   data=0xa5b00005          t=7285 ns
+MON M01.R   data=0x00000000 resp=0 t=7305 ns
+MON M00.B   resp=0               t=7305 ns
+MON M00.AW  addr=0xa0000080            t=7325 ns
+MON M00.W   data=0xa5b00006          t=7325 ns
+MON M00.W   data=0xa5b00007          t=7335 ns
+MON M00.W   data=0xa5b00008          t=7345 ns
+MON M00.W   data=0xa5b00009          t=7355 ns
+MON M00.W   data=0xa5b0000a          t=7365 ns
+MON M00.W   data=0xa5b0000b          t=7375 ns
+MON M00.W   data=0xa5b0000c          t=7385 ns
+MON M00.W   data=0xa5b0000d          t=7395 ns
+MON M00.W   data=0xa5b0000e          t=7405 ns
+MON M00.W   data=0xa5b0000f          t=7415 ns
+MON M00.B   resp=0               t=7435 ns
+MON M01.AR  addr=0xa0010004            t=7605 ns
+MON M01.R   data=0x00001002 resp=0 t=7625 ns
+PHASE_B: done=1 CDMASR=0x00001002 OCY=5 SPISR=0x00000021 TxEmpty=0
+KEYHOLE_SIM: PASS — INCR control accepted 5/16 words
+PHASE_B: OBS aw=2 w=16 wready_low=4 addr_held=0
+MON M00.AW  addr=0xa0000040            t=8205 ns
+MON M00.W   data=0x0000000a          t=8205 ns
+MON M00.B   resp=0               t=8215 ns
+MON M01.AW  addr=0xa0010000            t=8335 ns
+MON M01.W   data=0x00000004          t=8335 ns
+MON M00.AW  addr=0xa0000070            t=9485 ns
+MON M00.W   data=0xfffffffe          t=9485 ns
+MON M00.B   resp=0               t=9495 ns
+MON M00.AW  addr=0xa0000060            t=9605 ns
+MON M00.W   data=0x00000087          t=9605 ns
+MON M00.B   resp=0               t=9615 ns
+MON M01.AR  addr=0xa0010000            t=9705 ns
+MON M01.R   data=0x00000000 resp=0 t=9725 ns
+PHASE_C: post-reset CDMACR = 0x00000000 (rst bit2=0)
+MON M01.AW  addr=0xa0010000            t=9865 ns
+MON M01.W   data=0x00000020          t=9865 ns
+MON M01.AR  addr=0xa0010000            t=10005 ns
+MON M01.R   data=0x00000020 resp=0 t=10025 ns
+PHASE_C: CDMACR readback = 0x00000020 (keyhole bit5=1)
+MON M01.AW  addr=0xa0010018            t=10165 ns
+MON M01.W   data=0x5a5a1234          t=10165 ns
+MON M01.AR  addr=0xa0010018            t=10305 ns
+MON M01.R   data=0x5a5a1234 resp=0 t=10325 ns
+PHASE_C: SA probe wrote 5A5A1234 read 0x5a5a1234
+MON M01.AW  addr=0xa0010018            t=10465 ns
+MON M01.W   data=0x00000000          t=10465 ns
+MON M01.AW  addr=0xa0010020            t=10635 ns
+MON M01.W   data=0xa0000068          t=10635 ns
+MON M01.AW  addr=0xa0010028            t=10805 ns
+MON M01.W   data=0x00000200          t=10805 ns
+MON CDMA.AW addr=0xa0000068 len=5 burst=0 t=10925 ns
+MON CDMA.AR addr=0x00000000 len=15 burst=1 t=10935 ns
+MON M01.AR  addr=0xa0010004            t=10945 ns
+MON M01.R   data=0x00000000 resp=0 t=10965 ns
+MON CDMA.AR addr=0x00000040 len=15 burst=1 t=10975 ns
+PHASE_C: CDMASR just after kick = 0x00000000
+MON M00.AW  addr=0xa0000068            t=11025 ns
+MON M00.W   data=0xa5b00000          t=11025 ns
+MON M00.W   data=0xa5b00001          t=11035 ns
+MON M00.W   data=0xa5b00002          t=11045 ns
+MON CDMA.AW addr=0xa0000068 len=15 burst=0 t=11055 ns
+MON M00.W   data=0xa5b00003          t=11055 ns
+MON M00.W   data=0xa5b00004          t=11065 ns
+MON M01.AR  addr=0xa0010004            t=11075 ns
+MON M00.W   data=0xa5b00005          t=11075 ns
+MON M01.R   data=0x00000000 resp=0 t=11095 ns
+MON M00.B   resp=0               t=11095 ns
+MON M00.AW  addr=0xa0000068            t=11115 ns
+MON M00.W   data=0xa5b00006          t=11115 ns
+MON M00.W   data=0xa5b00007          t=11125 ns
+MON M00.W   data=0xa5b00008          t=11135 ns
+MON CDMA.AW addr=0xa0000068 len=15 burst=0 t=11145 ns
+MON M00.W   data=0xa5b00009          t=11145 ns
+MON M00.W   data=0xa5b0000a          t=11155 ns
+MON M00.W   data=0xa5b0000b          t=11165 ns
+MON M00.W   data=0xa5b0000c          t=11175 ns
+MON M00.W   data=0xa5b0000d          t=11185 ns
+MON M00.W   data=0xa5b0000e          t=11195 ns
+MON M00.W   data=0xa5b0000f          t=11205 ns
+MON M00.W   data=0xa5b00010          t=11215 ns
+MON CDMA.AR addr=0x00000080 len=15 burst=1 t=11225 ns
+MON M00.W   data=0xa5b00011          t=11225 ns
+MON M00.W   data=0xa5b00012          t=11235 ns
+MON M00.W   data=0xa5b00013          t=11245 ns
+MON M00.W   data=0xa5b00014          t=11255 ns
+MON M00.W   data=0xa5b00015          t=11265 ns
+MON M00.B   resp=0               t=11285 ns
+MON M00.AW  addr=0xa0000068            t=11305 ns
+MON M00.W   data=0xa5b00016          t=11305 ns
+MON M00.W   data=0xa5b00017          t=11315 ns
+MON M00.W   data=0xa5b00018          t=11325 ns
+MON CDMA.AW addr=0xa0000068 len=15 burst=0 t=11335 ns
+MON M00.W   data=0xa5b00019          t=11335 ns
+MON M00.W   data=0xa5b0001a          t=11345 ns
+MON M00.W   data=0xa5b0001b          t=11355 ns
+MON M00.W   data=0xa5b0001c          t=11365 ns
+MON M00.W   data=0xa5b0001d          t=11375 ns
+MON M00.W   data=0xa5b0001e          t=11385 ns
+MON M01.AR  addr=0xa0010004            t=11395 ns
+MON M00.W   data=0xa5b0001f          t=11395 ns
+MON M00.W   data=0xa5b00020          t=11405 ns
+MON M01.R   data=0x00000000 resp=0 t=11415 ns
+MON CDMA.AR addr=0x000000c0 len=15 burst=1 t=11415 ns
+MON M00.W   data=0xa5b00021          t=11415 ns
+MON M00.W   data=0xa5b00022          t=11425 ns
+MON M00.W   data=0xa5b00023          t=11435 ns
+MON M00.W   data=0xa5b00024          t=11445 ns
+MON M00.W   data=0xa5b00025          t=11455 ns
+MON M00.B   resp=0               t=11475 ns
+MON M00.AW  addr=0xa0000068            t=11495 ns
+MON M00.W   data=0xa5b00026          t=11495 ns
+MON M00.W   data=0xa5b00027          t=11505 ns
+MON M00.W   data=0xa5b00028          t=11515 ns
+MON CDMA.AW addr=0xa0000068 len=15 burst=0 t=11525 ns
+MON M00.W   data=0xa5b00029          t=11525 ns
+MON M00.W   data=0xa5b0002a          t=11535 ns
+MON M00.W   data=0xa5b0002b          t=11545 ns
+MON M00.W   data=0xa5b0002c          t=11555 ns
+MON M00.W   data=0xa5b0002d          t=11565 ns
+MON M00.W   data=0xa5b0002e          t=11575 ns
+MON M00.W   data=0xa5b0002f          t=11585 ns
+MON M00.W   data=0xa5b00030          t=11595 ns
+MON CDMA.AR addr=0x00000100 len=15 burst=1 t=11605 ns
+MON M00.W   data=0xa5b00031          t=11605 ns
+MON M00.W   data=0xa5b00032          t=11615 ns
+MON M00.W   data=0xa5b00033          t=11625 ns
+MON M00.W   data=0xa5b00034          t=11635 ns
+MON M00.W   data=0xa5b00035          t=11645 ns
+MON M00.B   resp=0               t=11665 ns
+MON M00.AW  addr=0xa0000068            t=11685 ns
+MON M00.W   data=0xa5b00036          t=11685 ns
+MON M00.W   data=0xa5b00037          t=11695 ns
+MON M00.W   data=0xa5b00038          t=11705 ns
+MON M01.AR  addr=0xa0010004            t=11715 ns
+MON CDMA.AW addr=0xa0000068 len=15 burst=0 t=11715 ns
+MON M00.W   data=0xa5b00039          t=11715 ns
+MON M00.W   data=0xa5b0003a          t=11725 ns
+MON M01.R   data=0x00000000 resp=0 t=11735 ns
+MON M00.W   data=0xa5b0003b          t=11735 ns
+MON M00.W   data=0xa5b0003c          t=11745 ns
+MON M00.W   data=0xa5b0003d          t=11755 ns
+MON M00.W   data=0xa5b0003e          t=11765 ns
+MON M00.W   data=0xa5b0003f          t=11775 ns
+MON M00.W   data=0xa5b00040          t=11785 ns
+MON CDMA.AR addr=0x00000140 len=15 burst=1 t=11795 ns
+MON M00.W   data=0xa5b00041          t=11795 ns
+MON M00.W   data=0xa5b00042          t=11805 ns
+MON M00.W   data=0xa5b00043          t=11815 ns
+MON M00.W   data=0xa5b00044          t=11825 ns
+MON M00.W   data=0xa5b00045          t=11835 ns
+MON M00.B   resp=0               t=11855 ns
+MON M00.AW  addr=0xa0000068            t=11875 ns
+MON M00.W   data=0xa5b00046          t=11875 ns
+MON M00.W   data=0xa5b00047          t=11885 ns
+MON M00.W   data=0xa5b00048          t=11895 ns
+MON CDMA.AW addr=0xa0000068 len=15 burst=0 t=11905 ns
+MON M00.W   data=0xa5b00049          t=11905 ns
+MON M00.W   data=0xa5b0004a          t=11915 ns
+MON M00.W   data=0xa5b0004b          t=11925 ns
+MON M00.W   data=0xa5b0004c          t=11935 ns
+MON M00.W   data=0xa5b0004d          t=11945 ns
+MON M00.W   data=0xa5b0004e          t=11955 ns
+MON M00.W   data=0xa5b0004f          t=11965 ns
+MON M00.W   data=0xa5b00050          t=11975 ns
+MON CDMA.AR addr=0x00000180 len=15 burst=1 t=11985 ns
+MON M00.W   data=0xa5b00051          t=11985 ns
+MON M00.W   data=0xa5b00052          t=11995 ns
+MON M00.W   data=0xa5b00053          t=12005 ns
+MON M00.W   data=0xa5b00054          t=12015 ns
+MON M00.W   data=0xa5b00055          t=12025 ns
+MON M00.B   resp=0               t=12045 ns
+MON M01.AR  addr=0xa0010004            t=12055 ns
+MON M00.AW  addr=0xa0000068            t=12065 ns
+MON M00.W   data=0xa5b00056          t=12065 ns
+MON M01.R   data=0x00000000 resp=0 t=12075 ns
+MON M00.W   data=0xa5b00057          t=12075 ns
+MON M00.W   data=0xa5b00058          t=12085 ns
+MON CDMA.AW addr=0xa0000068 len=15 burst=0 t=12095 ns
+MON M00.W   data=0xa5b00059          t=12095 ns
+MON M00.W   data=0xa5b0005a          t=12105 ns
+MON M00.W   data=0xa5b0005b          t=12115 ns
+MON M00.W   data=0xa5b0005c          t=12125 ns
+MON M00.W   data=0xa5b0005d          t=12135 ns
+MON M00.W   data=0xa5b0005e          t=12145 ns
+MON M00.W   data=0xa5b0005f          t=12155 ns
+MON M00.W   data=0xa5b00060          t=12165 ns
+MON CDMA.AR addr=0x000001c0 len=15 burst=1 t=12175 ns
+MON M00.W   data=0xa5b00061          t=12175 ns
+MON M00.W   data=0xa5b00062          t=12185 ns
+MON M00.W   data=0xa5b00063          t=12195 ns
+MON M00.W   data=0xa5b00064          t=12205 ns
+MON M00.W   data=0xa5b00065          t=12215 ns
+MON M00.B   resp=0               t=12235 ns
+MON M00.AW  addr=0xa0000068            t=12255 ns
+MON M00.W   data=0xa5b00066          t=12255 ns
+MON M00.W   data=0xa5b00067          t=12265 ns
+MON M00.W   data=0xa5b00068          t=12275 ns
+MON CDMA.AW addr=0xa0000068 len=9 burst=0 t=12285 ns
+MON M00.W   data=0xa5b00069          t=12285 ns
+MON M00.W   data=0xa5b0006a          t=12295 ns
+MON M00.W   data=0xa5b0006b          t=12305 ns
+MON M00.W   data=0xa5b0006c          t=12315 ns
+MON M00.W   data=0xa5b0006d          t=12325 ns
+MON M00.W   data=0xa5b0006e          t=12335 ns
+MON M00.W   data=0xa5b0006f          t=12345 ns
+MON M00.W   data=0xa5b00070          t=12355 ns
+MON M00.W   data=0xa5b00071          t=12365 ns
+MON M01.AR  addr=0xa0010004            t=12375 ns
+MON M00.W   data=0xa5b00072          t=12375 ns
+MON M00.W   data=0xa5b00073          t=12385 ns
+MON M01.R   data=0x00000000 resp=0 t=12395 ns
+MON M00.W   data=0xa5b00074          t=12395 ns
+MON M00.W   data=0xa5b00075          t=12405 ns
+MON M00.B   resp=0               t=12425 ns
+MON M00.AW  addr=0xa0000068            t=12445 ns
+MON M00.W   data=0xa5b00076          t=12445 ns
+MON M00.W   data=0xa5b00077          t=12455 ns
+MON M00.W   data=0xa5b00078          t=12465 ns
+MON M00.W   data=0xa5b00079          t=12475 ns
+MON M00.W   data=0xa5b0007a          t=12485 ns
+MON M00.W   data=0xa5b0007b          t=12495 ns
+MON M00.W   data=0xa5b0007c          t=12505 ns
+MON M00.W   data=0xa5b0007d          t=12515 ns
+MON M00.W   data=0xa5b0007e          t=12525 ns
+MON M00.W   data=0xa5b0007f          t=12535 ns
+MON M00.B   resp=0               t=12555 ns
+MON M01.AR  addr=0xa0010004            t=12695 ns
+MON M01.R   data=0x00001002 resp=0 t=12715 ns
+PHASE_C: done=1 CDMASR=0x00001002 OCY=0 SPISR=0x00000024 TxEmpty=1
+KEYHOLE_SIM: PASS — 128-byte CDMA SPI loopback, RX verified (RFO-before=127)
+PHASE_C: OBS aw=9 w=128 wready_low=25 addr_held=1
+KEYHOLE_SIM: DONE — all assertions passed
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+$finish called at time : 222045 ns : File "/home/opentitan/msu2-verify/spi-soc-research/hardware/sim/tb_keyhole.sv" Line 145
