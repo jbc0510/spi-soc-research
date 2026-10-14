@@ -4,8 +4,53 @@
   "hashes": {
     "linux/src/spi_benchmark_v3_rxverify.c": "d6db1f27431e3fdd563ff14527495e28a2d56bf354c1cf66281bf0743cfbf35e",
     "common/spi_benchmark_contract.h": "aa5af323605598d89f813be6477a229c6da3a3197c93171877cfcf627bcb5a07",
-    "results/linux_axi_spi_bringup_20261013/spi_benchmark_v3_rxverify_aarch64": "d4e0e6b747789eb44e9013397e8956703ab41d8b78800e18d5586e72e5037c85"
+    "results/linux_axi_spi_bringup_20261013/spi_benchmark_v3_rxverify_aarch64": "d4e0e6b747789eb44e9013397e8956703ab41d8b78800e18d5586e72e5037c85",
+    "results/linux_axi_spi_bringup_20261013/linux_spi_smoke.c": "e0bb2c2c639f52522ae13f2e849715cf0e6e3485343c628e5a0b1266a87b6501",
+    "results/linux_axi_spi_bringup_20261013/linux_spi_smoke_aarch64": "fb01baec3d451849bd147837491f0d63b62efd0e1a1f99389314d407582b8dcd"
   },
-  "execution": "NOT_RUN_ON_BOARD",
-  "requested_speed_hz_for_future_run": 49995000
+  "execution": "PASSED_ON_BOARD_2026-10-14",
+  "requested_speed_hz": 49995000,
+  "physical_sck_hz": "UNKNOWN",
+  "target": {
+    "hostname": "newQspi",
+    "kernel": "6.12.10-xilinx-g0a0f70e531c7",
+    "device": "/dev/spidev1.0",
+    "platform_device": "a0000000.spi",
+    "platform_driver": "xilinx_spi",
+    "spi_child_driver": "spidev",
+    "fpga_manager_state": "operating",
+    "bitstream_sha256": "c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd",
+    "pl0_hz": 99990000,
+    "iopll_hz": 1499850000,
+    "cpu_policy_khz": 1200000,
+    "cpu_governor": "userspace"
+  },
+  "benchmark": {
+    "payload_sizes_bytes": [1, 8, 16, 64, 128, 256, 512, 1024, 4096, 16384, 65536],
+    "trials_per_size": 1000,
+    "api_successes": 11000,
+    "rx_matches": 11000,
+    "api_errors": 0,
+    "timeouts": 0,
+    "rx_mismatches": 0,
+    "exit_status": 0,
+    "raw_log_sha256": "ad687cac2662f4b56b187408d19c33fa3cfa0aa3bc7af25be2cf18a977147e49",
+    "csv_sha256": "7800861c7aec0ce39ff41a716a7f6cff97fd8b36d6e01e820ac749dff20830b7",
+    "comparison_csv_sha256": "7fda77901b39990a799e56df6c483aa10722c660d6d732ddc15858616ab7be38",
+    "smoke_test": {
+      "device": "/dev/spidev1.0",
+      "mode": 0,
+      "bits_per_word": 8,
+      "requested_speed_hz": 1000000,
+      "tx_hex": "a5",
+      "rx_hex": "a5",
+      "ioctl_return": 1,
+      "elapsed_ns": 57806
+    }
+  },
+  "baremetal_baseline": {
+    "source_log": "results/axi_baremetal_validation_20261013/axi_ratio2_sdtirq_uart_20261013.log",
+    "source_log_sha256": "07924c04ba7ebc09aacccd61dddaca107d8420ddc909509feaa0fe96c285cb78",
+    "comparison_csv": "results/linux_axi_spi_bringup_20261013/linux_vs_baremetal_comparison_20261014.csv"
+  }
 }

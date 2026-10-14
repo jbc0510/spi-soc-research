@@ -1,0 +1,16 @@
+Target console output; workstation capture date 2026-10-14.
+
+device=/dev/spidev1.0 mode=0x0 mode_readback=0x0 bits=8 speed_requested_hz=1000000 speed_readback_hz=1000000 tx=a5 rx=a5 ioctl_rc=1 errno=0 elapsed_ns=57806
+
+Post-run state:
+fpga_manager_state=operating
+platform_driver=/sys/bus/platform/drivers/xilinx_spi
+spi_child_driver=/sys/bus/spi/drivers/spidev
+irq=60 gic=121 edge=Edge device=a0000000.spi cpu0_count=348001 other_cpu_counts=0
+kernel=6.12.10-xilinx-g0a0f70e531c7
+cpu_policy_khz=1200000 governor=userspace
+
+The IRQ count is a cumulative post-run read with no pre-run snapshot; it must
+not be interpreted as an interrupt count for only the smoke or benchmark run.
+The target wall clock reported January 9, 2025 and was not used for timing or
+the capture date.
