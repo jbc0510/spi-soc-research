@@ -2,9 +2,11 @@
 
 ## Result
 
-The fresh Vivado 2025.1 build and XSim run passed the AXI anchor check, the 16-beat keyhole test, the INCR control case, and a 128-byte CDMA-to-AXI-Quad-SPI internal-loopback transfer. The 128 transmitted bytes were read from the SPI receive FIFO in order and all matched the source pattern. The run ended with `CDMASR=0x00001002`, TX FIFO empty, RX FIFO empty after reading, zero byte mismatches, and all testbench assertion groups passed.
+The fresh Vivado 2025.1 build and XSim run passed the AXI anchor check, the 16-beat keyhole test, the INCR control case, and 1, 8, 16, 64, 128, and 256-byte CDMA-to-AXI-Quad-SPI internal-loopback transfers. Every transmitted byte was read from the SPI receive FIFO in order and matched the source pattern. All six payload points and all testbench assertion groups passed.
 
-The RX FIFO occupancy register read 127 before the 128 verified FIFO reads. The test checks the data itself and confirms the FIFO is empty afterward; the one-count difference is retained as a register diagnostic.
+The RX FIFO occupancy register read one less than the number of verified FIFO reads at every tested size (for example, 255 before 256 verified reads). The test checks the data itself and confirms the FIFO is empty afterward; the one-count difference is retained as a register diagnostic.
+
+The CSV records model time from just before the CDMA BTT register write through TX FIFO empty, with a 2 µs allowance for the final serial word. The design uses a 100 MHz input clock and configured 16:1 SCK ratio. These points characterize the simulation model only; they are not joined to the physical PIO measurements.
 
 ## Reproduction
 
@@ -22,7 +24,8 @@ The Tcl script builds a new project in a unique `/tmp/msu2_task2b_cdma_<pid>` di
 
 - AXI CDMA source: AXI VIP memory model; destination: AXI Quad SPI DTR at `0xA0000068`.
 - SPI: internal loopback, SPE enabled, manual SS0 selected; the SPI external pins are not part of this check.
-- One 128-byte payload was functionally verified. This is not a multi-size DMA performance sweep.
+- Six payloads from 1 to 256 bytes were functionally verified. RX is not serviced concurrently, so the test stops at the 256-byte FIFO depth.
+- The timing curve is not a target-board DMA benchmark and provides no direct PIO-to-DMA crossover.
 - Testbench assertion groups fail with `$fatal` if the anchor, keyhole acceptance, INCR control behavior, transfer completion, or received data does not match expectations.
 - Simulation timestamps are not compared with physical PIO latency. No hardware DMA test, CPU-use measurement, J55 external loopback, or DMA crossover conclusion is claimed.
 
@@ -33,3 +36,4 @@ The Tcl script builds a new project in a unique `/tmp/msu2_task2b_cdma_<pid>` di
 - `../../hardware/sim/run_task2b_cdma_loopback.tcl` — fresh-build run script.
 - `fresh_build_vivado.log` — fresh design generation, compilation, elaboration, and run log.
 - `cdma_loopback_simulate.log` — simulator transaction and testbench output.
+- `cdma_simulated_sweep.csv` — six model timing points with RX verification counts.

@@ -48,6 +48,8 @@ module tb_keyhole;
     bit ok; bit[31:0] sr, ocy, spisr, cr;
     bit[31:0] rx_count, rx_after, rx_word;
     int rx_errors;
+    int tx_wait;
+    time sim_start, sim_done;
     wr32(QSPI + 32'h40, 32'h0000000A);      // QSPI soft reset
     wr32(CDMA + 32'h00, 32'h00000004);      // CDMA soft reset
     #1000;
@@ -68,11 +70,23 @@ module tb_keyhole;
     wr32(CDMA + 32'h18, 32'h00000000);      // SA
     wr32(CDMA + 32'h20, QSPI + 32'h68);     // DA = DTR
     obs_reset();
+    sim_start = $time;
     wr32(CDMA + 32'h28, btt);                // BTT -> go
     rd32(CDMA + 32'h04, sr);
     $display("%s: CDMASR just after kick = 0x%08x", tag, sr);
     wait_done(ok, sr);
-    if (enable_spi) #200000; // allow the final serial word to reach RX FIFO
+    if (enable_spi) begin
+      tx_wait = 0;
+      do begin
+        rd32(QSPI + 32'h64, spisr);
+        if (spisr[2]) break;
+        #200;
+        tx_wait++;
+      end while (tx_wait < 10000);
+      #2000; // finish the last word after the TX FIFO becomes empty
+      sim_done = $time;
+      $display("CDMA_SPI_SIM_TIME,%0d,%0t", btt / 4, sim_done - sim_start);
+    end
     rd32(QSPI + 32'h74, ocy);
     rd32(QSPI + 32'h64, spisr);
     $display("%s: done=%0d CDMASR=0x%08x OCY=%0d SPISR=0x%08x TxEmpty=%0d",
@@ -137,7 +151,14 @@ module tb_keyhole;
     end
     run_phase(1, "PHASE_A");
     run_phase(0, "PHASE_B");
-    run_phase(1, "PHASE_C", 512, 1); // 128 SPI bytes, SPE drains FIFO, RX verified
+    // Match the small-payload part of the PIO sweep. AXI BTT is four times
+    // the SPI payload because enhanced mode uses one byte per 32-bit beat.
+    run_phase(1, "DMA_1B",    4,    1);
+    run_phase(1, "DMA_8B",    32,   1);
+    run_phase(1, "DMA_16B",   64,   1);
+    run_phase(1, "DMA_64B",   256,  1);
+    run_phase(1, "DMA_128B",  512,  1);
+    run_phase(1, "DMA_256B",  1024, 1);
     if (sim_errors == 0)
       $display("KEYHOLE_SIM: DONE — all assertions passed");
     else
