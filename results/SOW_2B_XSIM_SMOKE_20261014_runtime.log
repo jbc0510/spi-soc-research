@@ -1,0 +1,30 @@
+#-----------------------------------------------------------
+# xsim v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Wed Oct 14 19:25:30 2026
+# Process ID         : 158
+# Current directory  : /tmp/task2b_xsim_smoke
+# Command line       : xsim -log xsim.log -mode tcl -source {xsim.dir/smoke_snapshot/xsim_script.tcl}
+# Log file           : /tmp/task2b_xsim_smoke/xsim.log
+# Journal file       : /tmp/task2b_xsim_smoke/xsim.jou
+# Running On         : bxqp8b3-ub22
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 22.04.5 LTS
+# Processor Detail   : Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz
+# CPU Frequency      : 4600.012 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 33373 MB
+# Swap memory        : 2147 MB
+# Total Virtual      : 35521 MB
+# Available Virtual  : 23624 MB
+#-----------------------------------------------------------
+source xsim.dir/smoke_snapshot/xsim_script.tcl
+# xsim {smoke_snapshot} -autoloadwcfg -runall
+ERROR: unexpected exception when evaluating tcl command
+    while executing
+"xsim {smoke_snapshot} -autoloadwcfg -runall"
+    (file "xsim.dir/smoke_snapshot/xsim_script.tcl" line 1)
+INFO: [Common 17-206] Exiting xsim at Wed Oct 14 19:25:31 2026...
