@@ -660,3 +660,88 @@ unknown
 ls: /dev/spidev*: No such file or directory
 Reset status: 0
 newQspi:/home/petalinux# 
+newQspi:/home/petalinux# echo MSU2_CLOCK_PRECHECK; ls /sys/kernel/config/device-tree/overlays; for c in pl0_ref pl0_ref_div1 pl0_ref_div2 pl0_ref_mux; do echo CLOCK=$c; cat /sys/kernel/debug/clk/$cc/clk_flags /sys/kernel/debug/clk/$c/clk_rate /sys/kernel/debug/clk/$c/clk_enable_count; done; cat /sys/kernel/debug/clk/clk_summary > /tmp/msu2_clock_before.txt; cat /sys/class/fpga_manager/fpga0//state
+MSU2_CLOCK_PRECHECK
+CLOCK=pl0_ref
+CLK_SET_RATE_PARENT
+249975000
+0
+CLOCK=pl0_ref_div1
+249975000
+0
+CLOCK=pl0_ref_div2
+CLK_SET_RATE_PARENT
+249975000
+0
+CLOCK=pl0_ref_mux
+CLK_SET_RATE_NO_REPARENT
+1499850000
+0
+unknown
+newQspi:/home/petalinux# printf '%s' '0A3+7QAAAi4AAAA4AAABwAAAACgAAAARAAAAEAAAAAAAAABuAAABiAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAFmcmFnbWVudEAwAAAAAAADAAAABAAAAAD/////AAAAAV9fb3ZlcmxheV9fAAAAAAFtc3UUyX3BsMF9jbG9jawAAAAAAAwAAAAoAAAAHeGxueCxmY2xrAAAAAAAAAwAAAAgAAAAS/////wAAAEcAAAADAAAACAAAABn/////AAAARwAAAAMAAAAEAAAAKQX1ufAAAAADAAAACQAAAD5tc3UyX3BsMAAAAAAAAAADAAAABAAAAFEAAAAAAAAAAgAAAAIAAAACAAAAAAV9fZml4dXBzX18AAAAAAAMAAAAVAAAAXi9mcmFnbWVudEAwOnRhcmdldDowAAAAAAAAAAMAAABpAAAAYy9mcmFnbWVudEAwL19fb3ZlcmxheV9fL21zdTJfcGwwX2Nsb2NrOmNsb2NrczowAC9mcmFnbWVudEAwL19fb3ZlcmxheV9fL21zdTJfcGwwX2Nsb2NNrOmFzc2lnbmVkLWNsb2NrczowAAAAAAAAAAIAAAACAAAACXRhcmdldABjb21wYXRpYmxlAGNsb2NrcwBhc3NpZ25lZC1jbG9ja3MAYXNzaWduZWQtY2xvY2stcmF0ZXMAY2xvY2stb3V0cHV0LW5hbWVzACNjbG9jay1jZWxscwBhbWJhAHp5bnFtcF9jbGsA' || base64 -d > /tmp/msu2-pl0-clock-only.dtbo; sha256sum /tmp/msu2-pl0-clock-only.dtbo
+sh: base64: command not found
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /tmp/msu2-pl0-clock-only.dtbo
+newQspi:/home/petalinux# cat > /tmp/msu2-pl0-clock-only.dts <<'EOF'
+> /dts-v1/;
+> /plugin/;
+> / { fragment@0 { target = <&amba>; __overlay__ { msu2_pl0_clock { compatible = "xlnx,fclk"; clocks = <&zynqmp_clk 71>; assigned-clocks = <&zynqmp_clk 71>; assigned-clock-rates = <99990000>; clockk-output-names = "msu2_pl0"; #clock-cells = <0>; }; }; }; };
+> EOF
+newQspi:/home/petalinux# dtc -@ -I dts -O dtb -o /tmp/msu2-pl0-clock-only.dtbo /tmp/msu2-pl0-clock-only.dts; sha256sum /tmp/msu2-pl0-clock-only.dtbo
+00d3bd63dd926a41c3e8581c8d4ee8abb3e94307ad7e4ba345e500e45bb1bffa  /tmp/msu2-pl0-clock-only.dtbo
+newQspi:/home/petalinux# mkdir /sys/kernel/config/device-tree/overlays/msu2_pl0_clock && cat /tmp/msu2-pl0-clock-only.dtbo > /sys/kernel/config/device-tree/overlays/msu2_pl0_clock/dtbo; echo MSU2_AAPPLY_RC=$?; cat /sys/kernel/config/device-tree/overlays/msu2_pl0_clock/status; cat /sys/kernel/debug/clk/clk_summary > /tmp/msu2_clock_after.txt; grep -E 'pl0_ref|iopll ' /tmp/msu2_clock_after.txtt; cat /sys/bus/platform/devices/msu2_pl0_clock/set_rate; dmesg | tail -12
+MSU2_APPLY_RC=0
+applied
+                iopll                10      14       11       1499850000  0          0     50000      Y                  deviceless                      no_connection_id         
+                   pl0_ref_mux       1       1        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      pl0_ref_div1   1       1        0        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         pl0_ref_div2 1       1        0        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            pl0_ref  1       1        0        99990000    0          0     50000      Y                              axi:msu2_pl0_clock              no_connection_id         
+cat: can't open '/sys/bus/platform/devices/msu2_pl0_clock/set_rate': No such file or directory
+[    7.083129] macb ff0e0000.ethernet: gem-ptp-timer ptp clock registered.
+[    7.825162] audit: type=1334 audit(1736360581.327:8): prog-id=12 op=LOAD
+[    7.836872] audit: type=1334 audit(1736360581.339:9): prog-id=13 op=LOAD
+[    8.130062] audit: type=1334 audit(1736360581.631:10): prog-id=14 op=LOAD
+[    8.140000] audit: type=1334 audit(1736360581.631:11): prog-id=15 op=LOAD
+[    8.152299] audit: type=1334 audit(1736360581.631:12): prog-id=16 op=LOAD
+[   11.171700] macb ff0e0000.ethernet end0: unable to generate target frequency: 125000000 Hz
+[   11.180000] macb ff0e0000.ethernet end0: Link is Up - 1Gbps/Full - flow control tx
+[   21.136371] audit: type=1006 audit(1736360594.639:13): pid=664 uid=0 old-auid=4294967295 auid=1000 tty=(none) old-ses=4294967295 ses=1 res=1
+[   21.149067] audit: type=1300 audit(1736360594.639:13): arch=c00000b7 syscall=64 success=yes exit=4 a0=8 a1=ffffeb7e2080 a2=4 a3=1 items=0 ppid=1 pid=664 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=1 comm="(systemd)" exe="/usr/lib/systemd/systemd-executor" key=(null)
+[   21.175876] audit: type=1327 audit(1736360594.639:13): proctitle="(systemd)"
+[  152.194795] audit: type=1701 audit(1736360725.699:14): auid=4294967295 uid=0 gid=0 ses=4294967295 pid=694 comm="devmem" exe="/usr/bin/busybox" sig=7 res=1
+newQspi:/home/petalinux# echo MSU2_CLOCK_DIFF_BEGIN; diff -u /tmp/msu2_clock_before.txt /tmp/msu2_clock_after.txt; echo MSU2_CLOCK_DIFF_END; cat /sys/bus/platform/devices/axi:msu2_pl0_clock/set_ratte; readlink /sys/bus/platform/devices/axi:msu2_pl0_clock/driver; echo pm_reset_get_status 1116 > /sys/kernel/debug/zynqmp-firmware/pm; cat /sys/kernel/debug/zynqmp-firmware/pm; uptime; cat /sys/cllass/fpga_manager/fpga0/state
+MSU2_CLOCK_DIFF_BEGIN
+--- /tmp/msu2_clock_before.txt
++++ /tmp/msu2_clock_after.txt
+@@ -69,7 +69,7 @@
+        iopll_int                     1       1        1        2999700000  0          0     50000      Y         deviceless                      no_connection_id         
+           iopll_half                 1       1        1        1499850000  0          0     50000      Y            deviceless                      no_connection_id         
+              iopll_int_mux           1       1        1        1499850000  0          0     50000      Y               deviceless                      no_connection_id         
+-                iopll                9       13       11       1499850000  0          0     50000      Y                  deviceless                      no_connection_id         
++                iopll                10      14       11       1499850000  0          0     50000      Y                  deviceless                      no_connection_id         
+                    gem3_ref_ung_mux  1       1        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                       gem3_ref_ung_div1 1       1        0        124987500   0          0     50000      Y                        deviceless                      no_connection_id         
+                          gem3_ref_ung 1       1        0        124987500   0          0     50000      Y                           deviceless                      no_connection_id         
+@@ -104,10 +104,11 @@
+                       pl1_ref_div1   0       0        0        46870313    0          0     50000      Y                        deviceless                      no_connection_id         
+                          pl1_ref_div2 0       0        0        9374063     0          0     50000      Y                           deviceless                      no_connection_id         
+                             pl1_ref  0       0        0        9374063     0          0     50000      N                              deviceless                      no_connection_id         
+-                   pl0_ref_mux       0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+-                      pl0_ref_div1   0       0        0        249975000   0          0     50000      Y                        deviceless                      no_connection_id         
+-                         pl0_ref_div2 0       0        0        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+-                            pl0_ref  0       0        0        249975000   0          0     50000      N                              deviceless                      no_connection_id         
++                   pl0_ref_mux       1       1        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
++                      pl0_ref_div1   1       1        0        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
++                         pl0_ref_div2 1       1        0        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
++                            pl0_ref  1       1        0        99990000    0          0     50000      Y                              axi:msu2_pl0_clock              no_connection_id         
++                                                                                                                                      deviceless                      no_connection_id         
+                    ams_ref_mux       1       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                       ams_ref_div1   1       1        1        49995000    0          0     50000      Y                        deviceless                      no_connection_id         
+                          ams_ref_div2 1       1        1        49995000    0          0     50000      Y                           deviceless                      no_connection_id         
+MSU2_CLOCK_DIFF_END
+99990000
+../../../../bus/platform/drivers/xilinx_fclk
+Reset status: 0
+ 16:14:55 up 21:52,  load average: 0.00, 0.00, 0.00
+unknown
+newQspi:/home/petalinux# 

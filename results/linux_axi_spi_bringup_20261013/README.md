@@ -1,8 +1,8 @@
 # Linux AXI SPI investigation, October 13–14, 2026
 
-Status: read-only board investigation complete; clock-only experiment prepared,
-not applied. Linux transfer verification and comparison remain blocked on
-hardware initialization. No root cause of the earlier hangs is established.
+Status: approved clock-only experiment PASSED on October 14. PL0 is enabled
+at 99,990,000 Hz; the overlay remains active. Linux transfer verification and
+comparison remain blocked on the remaining hardware initialization. No root cause of the earlier hangs is established.
 
 ## Provenance and confirmed observations
 
@@ -77,7 +77,7 @@ Sources inspected at the running kernel's reported commit:
   describes FPGA-region, AFI and FCLK integration. Sample values must be checked
   against this hardware rather than copied wholesale.
 
-## Next approved experiment: clock only (approval pending)
+## Clock-only experiment (approved and executed October 14)
 
 `pl0-clock-only.dts` compiles successfully using dtc. It requests 99,990,000 Hz
 via CCF clock 71 and an xlnx,fclk consumer under the live `amba` symbol. No SPI,
@@ -127,3 +127,34 @@ correct driver overlay; actual loopback; Linux benchmark; CPU/timer and physical
 clock reconciliation; failure/recovery checks; comparisons; actual Statement of
 Work 2a–2f acceptance mapping. No Linux performance CSV or Task 2 completion is
 claimed. Existing historical reports are retained and may describe older hardware.
+
+## Clock-only execution result, October 14
+
+User explicitly approved this step. Preconditions remained unchanged: no
+overlays, PL0 disabled at configured 249,975,000 Hz, and div1 rate propagation
+stopped before IOPLL. Target lacked base64, so staging via base64 failed before
+any overlay application. The equivalent DTS was compiled with target dtc; its
+dtbo SHA-256 matched the workstation exactly:
+00d3bd63dd926a41c3e8581c8d4ee8abb3e94307ad7e4ba345e500e45bb1bffa.
+
+Configfs application returned 0; status is applied. PL0 div1/div2/gate now
+report 99,990,000 Hz, enable/prepare counts 1, hardware enable Y. The consumer
+bound to xilinx_fclk and its set_rate attribute returns 99990000. The actual
+platform device path is /sys/bus/platform/devices/axi:msu2_pl0_clock; an initial
+read without the axi: prefix failed harmlessly. Use the prefixed path for the
+rollback described above.
+
+Full before/after clk_summary diff shows only PL0 branch rate/enable/consumer
+changes and the additional IOPLL enable/prepare reference. IOPLL remains
+1,499,850,000 Hz; all other reported clock rates are unchanged. Firmware reset
+1116 still reports 0. Board remains responsive, FPGA-manager state remains
+unknown. No FPGA programming, reset mutation, SPI probe or AXI SPI MMIO occurred.
+
+The clock overlay is intentionally left active. This establishes CCF-reported
+clock initialization, not a measured pin frequency, fabric reset release, AXI
+accessibility or SPI functionality. Next work is the remaining reset/firmware
+sequence investigation and preparation of a separately approved FPGA load.
+Raw command output, including the complete clock-tree diff, is appended in
+target_console.log. Historical dmesg includes a devmem SIGBUS at uptime 152 s;
+that predates this experiment (uptime about 21 h 52 min) and was not generated
+by a new devmem command.
