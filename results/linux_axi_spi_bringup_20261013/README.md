@@ -11,10 +11,12 @@ payload sizes and 1,000 trials per size as the bare-metal baseline. Both runs
 reported zero receive mismatches and zero timeouts.
 
 This completes the Linux transfer and benchmark portion of the investigation.
-It does not claim all MSU-2 Task 2a–2f acceptance criteria: the primary
-Statement of Work was not in the repository, physical SCK was not measured,
-failure/recovery behavior was not exercised, and operating conditions do not
-support a controlled OS-only performance comparison. The earlier hang's root
+The final SoW was located in Downloads (revision 2026-02-23), and the
+Task 2a end-to-end performance comparison is documented in
+`SOW_2A_FINAL_COMPARISON_20261014.md`. This does not close all Task 2a–2g
+requirements. Physical SCK has already been measured on J55 for this exact
+bitstream/configuration; timing/CPU limitations on causal attribution and
+remaining Task 2 work are documented below. The earlier Linux hang's root
 cause remains unconfirmed.
 
 ## Hardware and software identity
@@ -37,8 +39,10 @@ cause remains unconfirmed.
   child bound to `spidev` as `/dev/spidev1.0`.
 - Runtime clocks: IOPLL 1,499,850,000 Hz; PL0 CCF 99,990,000 Hz. CPU policy
   1,200,000 kHz with `userspace` governor. The SPI request/readback was
-  49,995,000 Hz for the benchmark. Physical SCK is unknown; requested speed,
-  driver readback, and CCF rates are not pin measurements.
+  49,995,000 Hz for the benchmark. Physical SCK was measured at approximately
+  51 MHz on J55 pin 4 for this exact bitstream and ratio-2/PL0 configuration
+  during the September 29 validation. It was not remeasured during the October
+  timing sweep; see `SOW_2A_FINAL_COMPARISON_20261014.md`.
 - Kernel reported boot arguments include `spidev.bufsiz=1048576`, sufficient
   for 65,536-byte payloads. Full console chronology and raw diagnostics are in
   `target_console.log`.
@@ -89,15 +93,14 @@ The target clock's wall time was wrong and was not used for dates or timing.
 The bare-metal rows in `baremetal_baseline_extracted.csv` were extracted
 without changing values from
 `results/axi_baremetal_validation_20261013/axi_ratio2_sdtirq_uart_20261013.log`.
-That log also reports 11 sizes × 1,000 trials with zero mismatches/timeouts,
-but its own metadata labels topology unverified. The comparison CSV aligns
-payload sizes and trial counts; it is exploratory because bare metal uses
-`XTime_GetTime` and Linux uses `CLOCK_MONOTONIC_RAW`, processor points are not
-confirmed matched, and physical SCK is unknown. At 65,536 bytes, mean API
-latency was 54.350 ms bare metal and 43.287 ms Linux; one-byte means were
-6.922 μs and 28.031 μs. Derived effective payload rates at 65,536 bytes were
-1.206 and 1.514 MB/s respectively. These include software and transfer costs
-and are not measured wire throughput.
+The final comparison includes all 11 sizes × 1,000 attempts and mean, range,
+standard deviation, and error counts. Linux is slower for 1–16-byte messages
+and faster from 64 bytes upward; at 65,536 bytes it measured 20.36% lower API
+latency. The J55 measurement and limitations are reconciled in
+`SOW_2A_FINAL_COMPARISON_20261014.md`. Effective payload rates are not wire
+throughput. Timer methods differ, and the bare-metal log lacks a live CPU
+frequency readback, so results quantify observed path differences but do not
+isolate a universal kernel-only overhead.
 
 ## Reproduction
 
@@ -124,9 +127,9 @@ readable run metadata.
 
 ## Remaining Task 2 evidence
 
-The transfer-integrity and repeatable Linux benchmark criteria are supported
-by the attached evidence. To close the broader Task 2a–2f scope, compare this
-report with the authoritative SoW acceptance criteria, measure SCK and any
-other relevant board signals with suitable instrumentation, run failure and
-recovery cases, and repeat the comparison with matched operating conditions
-if a controlled Linux-versus-bare-metal performance conclusion is required.
+The Linux transfer-integrity and repeatable benchmark criteria are supported;
+Task 2a's measured end-to-end comparison is captured separately. Task 2b
+(PIO/DMA characterization), remaining real-time/OS optimization analysis,
+secure update and verified boot, and minimal appliance development remain
+open against the SoW's Task 2a–2g outcomes. J55 SCK measurement is complete for
+the tested image/configuration and is not an open item.

@@ -10,7 +10,7 @@
   },
   "execution": "PASSED_ON_BOARD_2026-10-14",
   "requested_speed_hz": 49995000,
-  "physical_sck_hz": "UNKNOWN",
+  "physical_sck_hz": "approximately 51000000; measured on J55 pin 4 on 2026-09-29 with the matching bitstream/configuration; not simultaneous with the 2026-10-14 timing run",
   "target": {
     "hostname": "newQspi",
     "kernel": "6.12.10-xilinx-g0a0f70e531c7",
@@ -20,6 +20,8 @@
     "spi_child_driver": "spidev",
     "fpga_manager_state": "operating",
     "bitstream_sha256": "c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd",
+    "j55_sck_measurement": "approximately 51 MHz at 50 MHz request on 2026-09-29",
+    "j55_validation_record": "results/ratio2_j55_board_validation_20260929/ratio2_j55_lvcmos33_validation_20260929.txt",
     "pl0_hz": 99990000,
     "iopll_hz": 1499850000,
     "cpu_policy_khz": 1200000,
@@ -36,7 +38,9 @@
     "exit_status": 0,
     "raw_log_sha256": "ad687cac2662f4b56b187408d19c33fa3cfa0aa3bc7af25be2cf18a977147e49",
     "csv_sha256": "7800861c7aec0ce39ff41a716a7f6cff97fd8b36d6e01e820ac749dff20830b7",
-    "comparison_csv_sha256": "7fda77901b39990a799e56df6c483aa10722c660d6d732ddc15858616ab7be38",
+    "comparison_csv_sha256": "e7c662983445a10c6d15cd771027c9460975909a31ef86c80e4579baec9cc12e",
+    "comparison_interpretation": "end-to-end Linux ioctl path versus bare-metal XSpi interrupt path; measured difference is not isolated kernel-only overhead",
+    "comparison_report": "results/linux_axi_spi_bringup_20261013/SOW_2A_FINAL_COMPARISON_20261014.md",
     "smoke_test": {
       "device": "/dev/spidev1.0",
       "mode": 0,
