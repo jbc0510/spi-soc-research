@@ -1,0 +1,662 @@
+
+HOST SESSION 2026-10-13T17:34:07.799487+00:00
+
+newQspi:/home/petalinux# uname -a; cat /proc/cmdline; ip -brief address; cat /sys/class/fpga_manager/fpga0/name /sys/class/fpga_manager/fpga0/state; ls /sys/kernel/config/device-tree/overlays; cat  /sys/kernel/debug/clk/clk_summary; cat /sys/kernel/debug/gpio; cat /sys/module/spidev/parameters/bufsiz
+Linux newQspi 6.12.10-xilinx-g0a0f70e531c7 #1 SMP Sat May 17 14:01:06 UTC 2025 aarch64 GNU/Linux
+earlycon console=ttyPS0,115200 root=/dev/ram0 rw spidev.bufsiz=1048576
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+sit0@NONE        DOWN           
+can0             DOWN           
+end0             UP             fe80::5835:64ff:feca:87b5/64 
+Xilinx ZynqMP FPGA Manager
+unknown
+                                 enable  prepare  protect                                duty  hardware                            connection
+   clock                          count    count    count        rate   accuracy phase  cycle    enable   consumer                         id
+---------------------------------------------------------------------------------------------------------------------------------------------
+ aux_ref_clk                         0       0        0        27000000    0          0     50000      Y   deviceless                      no_connection_id         
+ gt_crx_ref_clk                      0       0        0        108000000   0          0     50000      Y   deviceless                      no_connection_id         
+ pss_alt_ref_clk                     0       0        0        0           0          0     50000      Y   deviceless                      no_connection_id         
+ video_clk                           0       0        0        33333000    0          0     50000      Y   deviceless                      no_connection_id         
+ pss_ref_clk                         2       2        2        33330000    0          0     50000      Y   deviceless                      no_connection_id         
+    vpll_post_src                    0       0        0        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+    vpll_pre_src                     0       0        0        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+       vpll_int                      0       0        0        2999700000  0          0     50000      Y         deviceless                      no_connection_id         
+          vpll_half                  0       0        0        1499850000  0          0     50000      Y            deviceless                      no_connection_id         
+             vpll_int_mux            0       0        0        1499850000  0          0     50000      Y               deviceless                      no_connection_id         
+                vpll                 0       0        0        1499850000  0          0     50000      Y                  deviceless                      no_connection_id         
+                   dp_video_ref_mux  0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      dp_video_ref_div1 0       0        0        299970000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         dp_video_ref_div2 0       0        0        299970000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            dp_video_ref 0       0        0        299970000   0          0     50000      N                              deviceless                      no_connection_id         
+                   vpll_to_lpd       0       0        0        499950000   0          0     50000      Y                     deviceless                      no_connection_id         
+    dpll_post_src                    0       0        0        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+    dpll_pre_src                     0       0        0        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+       dpll_int                      0       0        0        2133120000  0          0     50000      Y         deviceless                      no_connection_id         
+          dpll_half                  0       0        0        1066560000  0          0     50000      Y            deviceless                      no_connection_id         
+             dpll_int_mux            0       0        0        1066560000  0          0     50000      Y               deviceless                      no_connection_id         
+                dpll                 0       0        0        1066560000  0          0     50000      Y                  deviceless                      no_connection_id         
+                   dpll_to_lpd       0       0        0        533280000   0          0     50000      Y                     deviceless                      no_connection_id         
+    apll_post_src                    0       0        0        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+    apll_pre_src                     1       1        1        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+       apll_int                      1       1        1        2399760000  0          0     50000      Y         deviceless                      no_connection_id         
+          apll_half                  1       1        1        1199880000  0          0     50000      Y            deviceless                      no_connection_id         
+             apll_int_mux            1       1        1        1199880000  0          0     50000      Y               deviceless                      no_connection_id         
+                apll                 1       1        1        1199880000  0          0     50000      Y                  deviceless                      no_connection_id         
+                   dpdma_ref_mux     1       1        1        1199880000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      dpdma_ref_div1 1       1        1        599940000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         dpdma_ref   1       1        1        599940000   0          0     50000      Y                           fd4c0000.dma-controller         axi_clk                  
+                                                                                                                                   deviceless                      no_connection_id         
+                   gdma_ref_mux      0       0        0        1199880000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      gdma_ref_div1  0       0        0        599940000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         gdma_ref    0       0        0        599940000   0          0     50000      N                           fd570000.dma-controller         clk_main                 
+                                                                                                                                   fd560000.dma-controller         clk_main                 
+                                                                                                                                   fd550000.dma-controller         clk_main                 
+                                                                                                                                   fd540000.dma-controller         clk_main                 
+                                                                                                                                   fd530000.dma-controller         clk_main                 
+                                                                                                                                   fd520000.dma-controller         clk_main                 
+                                                                                                                                   fd510000.dma-controller         clk_main                 
+                                                                                                                                   fd500000.dma-controller         clk_main                 
+                                                                                                                                   deviceless                      no_connection_id         
+                   acpu_mux          0       0        0        1199880000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      acpu           0       0        0        1199880000  0          0     50000      Y                        cpu0                            no_connection_id         
+                                                                                                                                cpu0                            no_connection_id         
+                                                                                                                                deviceless                      no_connection_id         
+    rpll_post_src                    0       0        0        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+    rpll_pre_src                     0       0        0        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+       rpll_int                      0       0        0        1499850000  0          0     50000      N         deviceless                      no_connection_id         
+          rpll_half                  0       0        0        749925000   0          0     50000      Y            deviceless                      no_connection_id         
+             rpll_int_mux            0       0        0        749925000   0          0     50000      Y               deviceless                      no_connection_id         
+                rpll                 0       0        0        749925000   0          0     50000      Y                  deviceless                      no_connection_id         
+                   rpll_to_fpd       0       0        0        374962500   0          0     50000      Y                     deviceless                      no_connection_id         
+                      dp_stc_ref_mux 0       0        0        374962500   0          0     50000      Y                        deviceless                      no_connection_id         
+                         dp_stc_ref_div1 0       0        0        26783036    0          0     50000      Y                           deviceless                      no_connection_id         
+                            dp_stc_ref_div2 0       0        0        26783036    0          0     50000      Y                              deviceless                      no_connection_id         
+                               dp_stc_ref 0       0        0        26783036    0          0     50000      N                                 deviceless                      no_connection_id         
+                      dp_audio_ref_mux 0       0        0        374962500   0          0     50000      Y                        deviceless                      no_connection_id         
+                         dp_audio_ref_div1 0       0        0        24997500    0          0     50000      Y                           deviceless                      no_connection_id         
+                            dp_audio_ref_div2 0       0        0        24997500    0          0     50000      Y                              deviceless                      no_connection_id         
+                               dp_audio_ref 0       0        0        24997500    0          0     50000      N                                 deviceless                      no_connection_id         
+    iopll_post_src                   0       0        0        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+    iopll_pre_src                    1       1        1        33330000    0          0     50000      Y      deviceless                      no_connection_id         
+       iopll_int                     1       1        1        2999700000  0          0     50000      Y         deviceless                      no_connection_id         
+          iopll_half                 1       1        1        1499850000  0          0     50000      Y            deviceless                      no_connection_id         
+             iopll_int_mux           1       1        1        1499850000  0          0     50000      Y               deviceless                      no_connection_id         
+                iopll                9       13       11       1499850000  0          0     50000      Y                  deviceless                      no_connection_id         
+                   gem3_ref_ung_mux  1       1        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      gem3_ref_ung_div1 1       1        0        124987500   0          0     50000      Y                        deviceless                      no_connection_id         
+                         gem3_ref_ung 1       1        0        124987500   0          0     50000      Y                           deviceless                      no_connection_id         
+                            gem3_ref 2       2        0        124987500   0          0     50000      Y                              ff0e0000.ethernet               hclk                     
+                                                                                                                                      deviceless                      no_connection_id         
+                               gem3_tx 1       1        0        124987500   0          0     50000      Y                                 ff0e0000.ethernet               tx_clk                   
+                                                                                                                                         deviceless                      no_connection_id         
+                   gem2_ref_ung_mux  0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      gem2_ref_ung_div1 0       0        0        62493750    0          0     50000      Y                        deviceless                      no_connection_id         
+                         gem2_ref_ung 0       0        0        62493750    0          0     50000      Y                           deviceless                      no_connection_id         
+                            gem2_ref 0       0        0        62493750    0          0     50000      Y                              deviceless                      no_connection_id         
+                               gem2_tx 0       0        0        62493750    0          0     50000      Y                                 deviceless                      no_connection_id         
+                   gem1_ref_ung_mux  0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      gem1_ref_ung_div1 0       0        0        62493750    0          0     50000      Y                        deviceless                      no_connection_id         
+                         gem1_ref_ung 0       0        0        62493750    0          0     50000      Y                           deviceless                      no_connection_id         
+                            gem1_ref 0       0        0        62493750    0          0     50000      Y                              deviceless                      no_connection_id         
+                               gem1_tx 0       0        0        62493750    0          0     50000      Y                                 deviceless                      no_connection_id         
+                   gem0_ref_ung_mux  0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      gem0_ref_ung_div1 0       0        0        62493750    0          0     50000      Y                        deviceless                      no_connection_id         
+                         gem0_ref_ung 0       0        0        62493750    0          0     50000      Y                           deviceless                      no_connection_id         
+                            gem0_ref 0       0        0        62493750    0          0     50000      Y                              deviceless                      no_connection_id         
+                               gem0_tx 0       0        0        62493750    0          0     50000      Y                                 deviceless                      no_connection_id         
+                   pl3_ref_mux       0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      pl3_ref_div1   0       0        0        46870313    0          0     50000      Y                        deviceless                      no_connection_id         
+                         pl3_ref_div2 0       0        0        9374063     0          0     50000      Y                           deviceless                      no_connection_id         
+                            pl3_ref  0       0        0        9374063     0          0     50000      N                              deviceless                      no_connection_id         
+                   pl2_ref_mux       0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      pl2_ref_div1   0       0        0        46870313    0          0     50000      Y                        deviceless                      no_connection_id         
+                         pl2_ref_div2 0       0        0        9374063     0          0     50000      Y                           deviceless                      no_connection_id         
+                            pl2_ref  0       0        0        9374063     0          0     50000      N                              deviceless                      no_connection_id         
+                   pl1_ref_mux       0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      pl1_ref_div1   0       0        0        46870313    0          0     50000      Y                        deviceless                      no_connection_id         
+                         pl1_ref_div2 0       0        0        9374063     0          0     50000      Y                           deviceless                      no_connection_id         
+                            pl1_ref  0       0        0        9374063     0          0     50000      N                              deviceless                      no_connection_id         
+                   pl0_ref_mux       0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      pl0_ref_div1   0       0        0        249975000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         pl0_ref_div2 0       0        0        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            pl0_ref  0       0        0        249975000   0          0     50000      N                              deviceless                      no_connection_id         
+                   ams_ref_mux       1       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      ams_ref_div1   1       1        1        49995000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         ams_ref_div2 1       1        1        49995000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            ams_ref  1       1        1        49995000    0          0     50000      Y                              ffa50000.ams                    no_connection_id         
+                                                                                                                                      deviceless                      no_connection_id         
+                   adma_ref_mux      0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      adma_ref_div1  0       0        0        499950000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         adma_ref    0       0        0        499950000   0          0     50000      N                           ffaf0000.dma-controller         clk_main                 
+                                                                                                                                   ffae0000.dma-controller         clk_main                 
+                                                                                                                                   ffad0000.dma-controller         clk_main                 
+                                                                                                                                   ffac0000.dma-controller         clk_main                 
+                                                                                                                                   ffab0000.dma-controller         clk_main                 
+                                                                                                                                   ffaa0000.dma-controller         clk_main                 
+                                                                                                                                   ffa90000.dma-controller         clk_main                 
+                                                                                                                                   ffa80000.dma-controller         clk_main                 
+                                                                                                                                   deviceless                      no_connection_id         
+                   can1_ref_mux      0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      can1_ref_div1  0       0        0        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         can1_ref_div2 0       0        0        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            can1_ref 0       0        0        99990000    0          0     50000      N                              ff070000.can                    can_clk                  
+                                                                                                                                      deviceless                      no_connection_id         
+                               can1  0       0        0        99990000    0          0     50000      Y                                 deviceless                      no_connection_id         
+                   can0_ref_mux      0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      can0_ref_div1  0       0        0        46870313    0          0     50000      Y                        deviceless                      no_connection_id         
+                         can0_ref_div2 0       0        0        46870313    0          0     50000      Y                           deviceless                      no_connection_id         
+                            can0_ref 0       0        0        46870313    0          0     50000      Y                              deviceless                      no_connection_id         
+                               can0  0       0        0        46870313    0          0     50000      Y                                 deviceless                      no_connection_id         
+                   i2c1_ref_mux      0       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      i2c1_ref_div1  0       1        1        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         i2c1_ref_div2 0       1        1        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            i2c1_ref 0       1        1        99990000    0          0     50000      N                              ff030000.i2c                    no_connection_id         
+                                                                                                                                      deviceless                      no_connection_id         
+                   i2c0_ref_mux      0       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      i2c0_ref_div1  0       1        1        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         i2c0_ref_div2 0       1        1        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            i2c0_ref 0       1        1        99990000    0          0     50000      N                              ff020000.i2c                    no_connection_id         
+                                                                                                                                      deviceless                      no_connection_id         
+                   nand_ref_mux      0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      nand_ref_div1  0       0        0        46870313    0          0     50000      Y                        deviceless                      no_connection_id         
+                         nand_ref_div2 0       0        0        9374063     0          0     50000      Y                           deviceless                      no_connection_id         
+                            nand_ref 0       0        0        9374063     0          0     50000      N                              deviceless                      no_connection_id         
+                   spi1_ref_mux      0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      spi1_ref_div1  0       0        0        62493750    0          0     50000      Y                        deviceless                      no_connection_id         
+                         spi1_ref_div2 0       0        0        62493750    0          0     50000      Y                           deviceless                      no_connection_id         
+                            spi1_ref 0       0        0        62493750    0          0     50000      Y                              deviceless                      no_connection_id         
+                   spi0_ref_mux      0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      spi0_ref_div1  0       0        0        62493750    0          0     50000      Y                        deviceless                      no_connection_id         
+                         spi0_ref_div2 0       0        0        62493750    0          0     50000      Y                           deviceless                      no_connection_id         
+                            spi0_ref 0       0        0        62493750    0          0     50000      Y                              deviceless                      no_connection_id         
+                   uart1_ref_mux     0       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      uart1_ref_div1 0       1        1        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         uart1_ref_div2 0       1        1        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            uart1_ref 0       1        1        99990000    0          0     50000      N                              ff010000.serial                 uart_clk                 
+                                                                                                                                      deviceless                      no_connection_id         
+                   uart0_ref_mux     1       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      uart0_ref_div1 1       1        1        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         uart0_ref_div2 1       1        1        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            uart0_ref 1       1        1        99990000    0          0     50000      Y                              ff000000.serial                 uart_clk                 
+                                                                                                                                      deviceless                      no_connection_id         
+                   sdio1_ref_mux     1       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      sdio1_ref_div1 1       1        1        187481250   0          0     50000      Y                        deviceless                      no_connection_id         
+                         sdio1_ref_div2 1       1        1        187481250   0          0     50000      Y                           deviceless                      no_connection_id         
+                            sdio1_ref 1       1        1        187481250   0          0     50000      Y                              ff170000.mmc                    clk_xin                  
+                                                                                                                                      deviceless                      no_connection_id         
+                               clk_in_sd1 0       0        0        200000000   0          0     50000      Y                                 deviceless                      no_connection_id         
+                               clk_out_sd1 0       0        0        200000000   0          0     50000      Y                                 deviceless                      no_connection_id         
+                   sdio0_ref_mux     0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      sdio0_ref_div1 0       0        0        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         sdio0_ref_div2 0       0        0        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            sdio0_ref 0       0        0        99990000    0          0     50000      Y                              deviceless                      no_connection_id         
+                   qspi_ref_mux      0       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      qspi_ref_div1  0       1        1        249975000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         qspi_ref_div2 0       1        1        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            qspi_ref 0       1        1        249975000   0          0     50000      N                              ff0f0000.spi                    ref_clk                  
+                                                                                                                                      deviceless                      no_connection_id         
+                   gem_tsu_ref_mux   1       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      gem_tsu_ref_div1 1       1        1        249975000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         gem_tsu_ref_div2 1       1        1        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            gem_tsu_ref 1       1        1        249975000   0          0     50000      Y                              deviceless                      no_connection_id         
+                               gem_tsu 1       1        0        249975000   0          0     50000      Y                                 ff0e0000.ethernet               tsu_clk                  
+                                                                                                                                         ff0e0000.ethernet               tsu_clk                  
+                                                                                                                                         deviceless                      no_connection_id         
+                   usb3_dual_ref_mux 1       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      usb3_dual_ref_div1 1       1        1        59994000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         usb3_dual_ref_div2 1       1        1        19998000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            usb3_dual_ref 2       2        2        19998000    0          0     50000      Y                              fe200000.usb                    ref                      
+                                                                                                                                      usb@ff9d0000                    no_connection_id         
+                                                                                                                                      deviceless                      no_connection_id         
+                   usb1_bus_ref_mux  0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      usb1_bus_ref_div1 0       0        0        124987500   0          0     50000      Y                        deviceless                      no_connection_id         
+                         usb1_bus_ref_div2 0       0        0        124987500   0          0     50000      Y                           deviceless                      no_connection_id         
+                            usb1_bus_ref 0       0        0        124987500   0          0     50000      N                              deviceless                      no_connection_id         
+                   usb0_bus_ref_mux  1       1        1        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      usb0_bus_ref_div1 1       1        1        249975000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         usb0_bus_ref_div2 1       1        1        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            usb0_bus_ref 1       1        1        249975000   0          0     50000      Y                              usb@ff9d0000                    no_connection_id         
+                                                                                                                                      deviceless                      no_connection_id         
+                   lpd_lsbus_mux     1       1        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      lpd_lsbus_div1 1       1        0        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         lpd_lsbus   6       8        0        99990000    0          0     50000      Y                           ff170000.mmc                    clk_ahb                  
+                                                                                                                                   ffa10000.perf-monitor           no_connection_id         
+                                                                                                                                   ffa00000.perf-monitor           no_connection_id         
+                                                                                                                                   ff0e0000.ethernet               pclk                     
+                                                                                                                                   ff070000.can                    pclk                     
+                                                                                                                                   ff0f0000.spi                    pclk                     
+                                                                                                                                   ffaf0000.dma-controller         clk_apb                  
+                                                                                                                                   ffae0000.dma-controller         clk_apb                  
+                                                                                                                                   ffad0000.dma-controller         clk_apb                  
+                                                                                                                                   ffac0000.dma-controller         clk_apb                  
+                                                                                                                                   ffab0000.dma-controller         clk_apb                  
+                                                                                                                                   ffaa0000.dma-controller         clk_apb                  
+                                                                                                                                   ffa90000.dma-controller         clk_apb                  
+                                                                                                                                   ffa80000.dma-controller         clk_apb                  
+                                                                                                                                   fd570000.dma-controller         clk_apb                  
+                                                                                                                                   fd560000.dma-controller         clk_apb                  
+                                                                                                                                   fd550000.dma-controller         clk_apb                  
+                                                                                                                                   fd540000.dma-controller         clk_apb                  
+                                                                                                                                   fd530000.dma-controller         clk_apb                  
+                                                                                                                                   fd520000.dma-controller         clk_apb                  
+                                                                                                                                   fd510000.dma-controller         clk_apb                  
+                                                                                                                                   fd500000.dma-controller         clk_apb                  
+                                                                                                                                   ff0a0000.gpio                   no_connection_id         
+                                                                                                                                   ff010000.serial                 pclk                     
+                                                                                                                                   ff000000.serial                 pclk                     
+                                                                                                                                   deviceless                      no_connection_id         
+                            lpd_wdt  1       1        0        99990000    0          0     50000      Y                              ff150000.watchdog               no_connection_id         
+                                                                                                                                      deviceless                      no_connection_id         
+                   iopll_to_fpd      2       2        1        499950000   0          0     50000      Y                     deviceless                      no_connection_id         
+                      topsw_lsbus_mux 1       1        0        499950000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         topsw_lsbus_div1 1       1        0        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            topsw_lsbus 4       4        0        99990000    0          0     50000      Y                              fd490000.perf-monitor           no_connection_id         
+                                                                                                                                      fd0b0000.perf-monitor           no_connection_id         
+                                                                                                                                      deviceless                      no_connection_id         
+                               fpd_wdt 1       1        0        99990000    0          0     50000      Y                                 fd4d0000.watchdog               no_connection_id         
+                                                                                                                                         deviceless                      no_connection_id         
+                      gpu_ref_mux    0       0        0        499950000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         gpu_ref_div1 0       0        0        499950000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            gpu_ref  0       0        0        499950000   0          0     50000      Y                              deviceless                      no_connection_id         
+                               gpu_pp1_ref 0       0        0        499950000   0          0     50000      N                                 deviceless                      no_connection_id         
+                               gpu_pp0_ref 0       0        0        499950000   0          0     50000      N                                 deviceless                      no_connection_id         
+                      pcie_ref_mux   1       1        1        499950000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         pcie_ref_div1 1       1        1        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            pcie_ref 1       1        1        249975000   0          0     50000      Y                              fd0e0000.pcie                   no_connection_id         
+                                                                                                                                      deviceless                      no_connection_id         
+                      sata_ref_mux   0       0        0        499950000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         sata_ref_div1 0       0        0        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            sata_ref 0       0        0        249975000   0          0     50000      N                              deviceless                      no_connection_id         
+ can1_mio                            0       0        0        0           0          0     50000      Y   deviceless                      no_connection_id         
+ can0_mio                            0       0        0        0           0          0     50000      Y   deviceless                      no_connection_id         
+ gem3_rx                             1       1        0        0           0          0     50000      Y   ff0e0000.ethernet               rx_clk                   
+                                                                                                           deviceless                      no_connection_id         
+ gem2_rx                             0       0        0        0           0          0     50000      N   deviceless                      no_connection_id         
+ gem1_rx                             0       0        0        0           0          0     50000      N   deviceless                      no_connection_id         
+ gem0_rx                             0       0        0        0           0          0     50000      N   deviceless                      no_connection_id         
+gpiochip0: GPIOs 512-515, parent: platform/firmware:zynqmp-firmware:gpio, firmware:zynqmp-firmware:gpio:
+ gpio-513 (                    |reset               ) out hi ACTIVE LOW
+
+gpiochip1: GPIOs 516-689, parent: platform/ff0a0000.gpio, zynqmp_gpio:
+1048576
+newQspi:/home/petalinux# command -v dtc fpgautil gpioget gpioinfo; ls /sys/bus/platform/drivers | grep -E 'afi|spi|reset|fclk'; ls /sys/class/spi_master /dev/spidev*; dmesg | grep -Ei 'fpga|zynqmp||firmware|spi|reset'; ls /lib/firmware; mount | grep mmc; cat /sys/kernel/debug/clk/clk_summary | grep -E 'pl0|iopll '; ls /sys/kernel/debug/zynqmp*; ls /sys/firmware/zynqmp
+/bin/dtc
+/bin/fpgautil
+afi-fpga
+cadence-qspi
+cdns-spi
+reset_zynqmp
+xilinx_fclk
+xilinx_spi
+zynqmp-qspi
+ls: /dev/spidev*: No such file or directory
+/sys/class/spi_master:
+spi0
+[    0.000000] Machine model: xlnx,zynqmp
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] Kernel command line: earlycon console=ttyPS0,115200 root=/dev/ram0 rw spidev.bufsiz=1048576
+[    1.033754] zynqmp-ipi-mbox mailbox@ff9905c0: Registered ZynqMP IPI mbox with TX/RX channels.
+[    1.042577] FPGA manager framework
+[    1.488165] rtc_zynqmp ffa60000.rtc: registered as rtc0
+[    1.492101] rtc_zynqmp ffa60000.rtc: setting system clock to 1970-01-01T18:12:23 UTC (65543)
+[    1.589590] EDAC DEVICE0: Giving out device to module zynqmp-ocm-edac controller zynqmp_ocm: DEV ff960000.memory-controller (INTERRUPT)
+[    1.624176] zynqmp_firmware_probe Platform Management API v1.1
+[    1.629937] zynqmp_firmware_probe Trustzone version v1.0
+[    1.670509] zynqmp-aes zynqmp-aes.0: will run requests pump with realtime priority
+[    1.678196] zynqmp-sha3-384 zynqmp-sha3-384.0: will run requests pump with realtime priority
+[    1.710699] fpga_manager fpga0: Xilinx ZynqMP FPGA Manager registered
+[    1.916726] of-fpga-region fpga-region: FPGA Region probed
+[    2.050408] xilinx-zynqmp-dpdma fd4c0000.dma-controller: Xilinx DPDMA engine is probed
+[    2.058744] zynqmp-dpsub fd4a0000.display: DP output port not connected
+[    2.065389] zynqmp-dpsub fd4a0000.display: probe with driver zynqmp-dpsub failed with error -22
+[    2.114290] spi_master spi0: cannot find modalias for /axi/spi@ff0f0000/flash@0
+[    2.121638] spi_master spi0: Failed to create SPI device for /axi/spi@ff0f0000/flash@0
+[    3.558155] systemd[1]: Hostname set to <newQspi>.
+[    6.374273] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+ls: /lib/firmware: No such file or directory
+/dev/mmcblk0p1 on /run/media/BOOT-mmcblk0p1 type vfat (rw,relatime,gid=6,fmask=0007,dmask=0007,allow_utime=0020,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro)
+                iopll                9       13       11       1499850000  0          0     50000      Y                  deviceless                      no_connection_id         
+                   pl0_ref_mux       0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      pl0_ref_div1   0       0        0        249975000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         pl0_ref_div2 0       0        0        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            pl0_ref  0       0        0        249975000   0          0     50000      N                              deviceless                      no_connection_id         
+pm
+config_reg
+newQspi:/home/petalinux# dtc -I fs -O dts /sys/firmware/devicetree/base 2>/dev/null | grep -A18 -B3 -E 'fpga-region|zynqmp-firmware|reset-controller|gpio-reset'; ls -l /run/media/BOOT-mmcblk0p1; lss /sys/devices/system/cpu/cpufreq/policy0; cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq /sys/devices/system/cpu/cpufreq/policy0/scaling_governor; ls /sys/firmware/devicetree/base/___symbols__ | grep -E 'fpga|clk|reset|amba|gpio|gic'
+		phandle = <0x0d>;
+	};
+
+	fpga-region {
+		fpga-mgr = <0x10>;
+		#address-cells = <0x02>;
+		#size-cells = <0x02>;
+		compatible = "fpga-region";
+		ranges;
+		phandle = <0x34>;
+	};
+
+	thermal-sensor-pl {
+		io-channels = <0x11 0x14>;
+		#thermal-sensor-cells = <0x00>;
+		compatible = "generic-adc-thermal";
+		phandle = <0x15>;
+		io-channel-names = "sensor-channel";
+	};
+
+	timer {
+		interrupts = <0x01 0x0d 0xf08 0x01 0x0e 0xf08 0x01 0x0b 0xf08 0x01 0x0a 0xf08>;
+		interrupt-parent = <0x05>;
+		compatible = "arm,armv8-timer";
+	};
+
+--
+
+	firmware {
+
+		zynqmp-firmware {
+			method = "smc";
+			bootph-all;
+			#power-domain-cells = <0x01>;
+			compatible = "xlnx,zynqmp-firmware";
+			phandle = <0x17>;
+
+			pinctrl {
+				compatible = "xlnx,zynqmp-pinctrl";
+				status = "disabled";
+				phandle = <0x33>;
+			};
+
+			pcap {
+				compatible = "xlnx,zynqmp-pcap-fpga";
+				phandle = <0x10>;
+			};
+
+			gpio {
+				gpio-controller;
+				compatible = "xlnx,zynqmp-gpio-modepin";
+				phandle = <0x1a>;
+				#gpio-cells = <0x02>;
+--
+				};
+			};
+
+			reset-controller {
+				#reset-cells = <0x01>;
+				compatible = "xlnx,zynqmp-reset";
+				phandle = <0x16>;
+			};
+		};
+	};
+
+	ams {
+		io-channels = <0x11 0x00 0x11 0x01 0x11 0x02 0x11 0x03 0x11 0x04 0x11 0x05 0x11 0x06 0x11 0x07 0x11 0x08 0x11 0x09 0x11 0x0a 0x11 0x0b 0x11 0x0c 0x11 0x0d 0x11 0x0e 0x11 0x0f 0x11 0x10 0x11 0x11 0x11 0x12 0x11 0x13 0x11 0x14 0x11 0x15 0x11 0x16 0x11 0x17 0x11 0x18 0x11 0x19 0x11 0x1a 0x11 0x1b 0x11 0x1c 0x11 0x1d>;
+		compatible = "iio-hwmon";
+		status = "disabled";
+		phandle = <0x35>;
+	};
+
+	chosen {
+		u-boot,version = "2025.01-ga09d2660433d";
+		linux,initrd-end = <0x00 0x77ce292f>;
+		bootargs = "earlycon console=ttyPS0,115200 root=/dev/ram0 rw spidev.bufsiz=1048576";
+--
+	};
+
+	__symbols__ {
+		efuse_usr0 = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-usr0@20";
+		fpd_dma_chan3 = "/axi/dma-controller@fd520000";
+		efuse_ppk0hash = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-ppk0hash@a0";
+		ams_ps = "/axi/ams@ffa50000/ams-ps@0";
+		nand0 = "/axi/nand-controller@ff100000";
+		cpu2_debug = "/axi/debug@fee10000";
+		zynqmp_pcap = "/firmware/zynqmp-firmware/pcap";
+		CPU_SLEEP_0 = "/cpus/idle-states/cpu-sleep-0";
+		live_gfx = "/axi/display@fd4a0000/ports/port@1";
+		efuse_chash = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-chash@50";
+		ipi_mailbox_pmu1 = "/zynqmp-ipi/mailbox@ff9905c0";
+		i2c1 = "/axi/i2c@ff030000";
+		fpd_dma_chan1 = "/axi/dma-controller@fd500000";
+		efuse_sec = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-sec@58";
+		out_dp = "/axi/display@fd4a0000/ports/port@5";
+		tsens_rpu = "/thermal-sensor-rpu";
+		ttc3 = "/axi/timer@ff140000";
+		qspi = "/axi/spi@ff0f0000";
+		tsens_pl = "/thermal-sensor-pl";
+		gpu = "/axi/gpu@fd4b0000";
+		spi0 = "/axi/spi@ff040000";
+		lpd_dma_chan8 = "/axi/dma-controller@ffaf0000";
+		efuse_usr7 = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-usr7@3c";
+		gpio = "/axi/gpio@ff0a0000";
+		zynqmp_clk = "/firmware/zynqmp-firmware/clock-controller";
+		usb1 = "/axi/usb@ff9e0000";
+		ttc1 = "/axi/timer@ff120000";
+		amba = "/axi";
+		efuse_spkid = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-spkid@5c";
+		pss_ref_clk = "/pss-ref-clk";
+		lpd_dma_chan6 = "/axi/dma-controller@ffad0000";
+		efuse_usr5 = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-usr5@34";
+		fpd_dma_chan8 = "/axi/dma-controller@fd570000";
+		efuse_ppk1hash = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-ppk1hash@d0";
+		gem3 = "/axi/ethernet@ff0e0000";
+		cpu3_debug = "/axi/debug@fef10000";
+		cpu3 = "/cpus/cpu@3";
+		dwc3_0 = "/axi/usb@ff9d0000/usb@fe200000";
+		perf_monitor_cci = "/axi/perf-monitor@fd490000";
+		lpd_dma_chan4 = "/axi/dma-controller@ffab0000";
+		efuse_usr3 = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-usr3@2c";
+		fpd_dma_chan6 = "/axi/dma-controller@fd550000";
+		efuse_aeskey = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-aeskey@60";
+		gt_crx_ref_clk = "/gt-crx-ref-clk";
+		gic = "/axi/interrupt-controller@f9010000";
+		gem1 = "/axi/ethernet@ff0c0000";
+		sata = "/axi/ahci@fd0c0000";
+		cpu1 = "/cpus/cpu@1";
+		xilinx_ams = "/axi/ams@ffa50000";
+		perf_monitor_lpd = "/axi/perf-monitor@ffa10000";
+		uart0 = "/axi/serial@ff000000";
+		dcc = "/dcc";
+		lpd_dma_chan2 = "/axi/dma-controller@ffa90000";
+		ams_pl = "/axi/ams@ffa50000/ams-pl@400";
+		L2 = "/cpus/l2-cache";
+		efuse_usr1 = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-usr1@24";
+		fpd_dma_chan4 = "/axi/dma-controller@fd530000";
+		out_video = "/axi/display@fd4a0000/ports/port@3";
+		cci = "/axi/cci@fd6e0000";
+		perf_monitor_ddr = "/axi/perf-monitor@fd0b0000";
+		tsens_apu = "/thermal-sensor-apu";
+		cpu_opp_table = "/opp-table-cpu";
+		can0 = "/axi/can@ff060000";
+		cpu0_debug = "/axi/debug@fec10000";
+		pcie = "/axi/pcie@fd0e0000";
+		sdhci0 = "/axi/mmc@ff160000";
+		perf_monitor_ocm = "/axi/perf-monitor@ffa00000";
+		watchdog0 = "/axi/watchdog@fd4d0000";
+		fpga_full = "/fpga-region";
+		out_audio = "/axi/display@fd4a0000/ports/port@4";
+		fpd_dma_chan2 = "/axi/dma-controller@fd510000";
+		zynqmp_firmware = "/firmware/zynqmp-firmware";
+		spi1 = "/axi/spi@ff050000";
+		ocm = "/axi/memory-controller@ff960000";
+		i2c0 = "/axi/i2c@ff020000";
+		binman = "/binman";
+		apu_passive = "/thermal-zones/apu-thermal/trips/passive";
+		ttc2 = "/axi/timer@ff130000";
+		soc_revision = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/soc-revision@0";
+		pss_alt_ref_clk = "/pss-alt-ref-clk";
+		lpd_dma_chan7 = "/axi/dma-controller@ffae0000";
+		efuse_usr6 = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-usr6@38";
+		efuse_dna = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-dna@c";
+		ams = "/ams";
+		aux_ref_clk = "/aux-ref-clk";
+		psgtr = "/axi/phy@fd400000";
+		usb0 = "/axi/usb@ff9d0000";
+		ttc0 = "/axi/timer@ff110000";
+		efuse_pufuser = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-pufuser@100";
+		cpu1_debug = "/axi/debug@fed10000";
+		flash0 = "/axi/spi@ff0f0000/flash@0";
+		mc = "/axi/memory-controller@fd070000";
+		zynqmp_dpsub = "/axi/display@fd4a0000";
+		pinctrl0 = "/firmware/zynqmp-firmware/pinctrl";
+		dwc3_1 = "/axi/usb@ff9e0000/usb@fe300000";
+		apu_critical = "/thermal-zones/apu-thermal/trips/critical";
+		lpd_dma_chan5 = "/axi/dma-controller@ffac0000";
+		zynqmp_ipi = "/zynqmp-ipi";
+		efuse_usr4 = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-usr4@30";
+		fpd_dma_chan7 = "/axi/dma-controller@fd560000";
+		video_clk = "/video-clk";
+		gem2 = "/axi/ethernet@ff0d0000";
+		efuse_pufmisc = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-pufmisc@54";
+		zynqmp_dpdma = "/axi/dma-controller@fd4c0000";
+		cpu2 = "/cpus/cpu@2";
+		uart1 = "/axi/serial@ff010000";
+		efuse_miscusr = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-miscusr@40";
+		lpd_dma_chan3 = "/axi/dma-controller@ffaa0000";
+		live_video = "/axi/display@fd4a0000/ports/port@0";
+		efuse_usr2 = "/firmware/zynqmp-firmware/soc-nvmem/nvmem-layout/efuse-usr2@28";
+		fpd_dma_chan5 = "/axi/dma-controller@fd540000";
+		zynqmp_power = "/firmware/zynqmp-firmware/power-management";
+		can1 = "/axi/can@ff070000";
+		gem0 = "/axi/ethernet@ff0b0000";
+		pcie_intc = "/axi/pcie@fd0e0000/legacy-interrupt-controller";
+		sdhci1 = "/axi/mmc@ff170000";
+		rtc = "/axi/rtc@ffa60000";
+		smmu = "/axi/iommu@fd800000";
+		lpd_watchdog = "/axi/watchdog@ff150000";
+		modepin_gpio = "/firmware/zynqmp-firmware/gpio";
+		cpu0 = "/cpus/cpu@0";
+		zynqmp_reset = "/firmware/zynqmp-firmware/reset-controller";
+		live_audio = "/axi/display@fd4a0000/ports/port@2";
+		lpd_dma_chan1 = "/axi/dma-controller@ffa80000";
+	};
+
+	axi {
+		#address-cells = <0x02>;
+		bootph-all;
+		#size-cells = <0x02>;
+		compatible = "simple-bus";
+		ranges;
+		phandle = <0x37>;
+
+		memory-controller@ff960000 {
+			interrupts = <0x00 0x0a 0x04>;
+			interrupt-parent = <0x05>;
+			compatible = "xlnx,zynqmp-ocmc-1.0";
+			reg = <0x00 0xff960000 0x00 0x1000>;
+			phandle = <0x59>;
+total 248256
+-rwxrwx---    1 root     disk       1775880 Oct 13  2026 BOOT.BIN
+-rwxrwx---    1 root     disk        323968 Sep 23  2026 BOOT_2e_hardened_cf11cd76.bin
+-rwxrwx---    1 root     disk      26898248 Oct  1  2026 BOOT_AXI_RATIO2_SDTIRQ_PASS_20260930.BIN
+-rwxrwx---    1 root     disk       1775880 Sep 27  2026 BOOT_before_axi_irq_recovery.bin
+-rwxrwx---    1 root     disk       1775880 Sep 29  2026 BOOT_before_axi_ratio2_20260929.bin
+-rwxrwx---    1 root     disk       1775880 Oct  1  2026 BOOT_linux_backup_20261013.bin
+-rwxrwx---    1 root     disk       1775880 Aug 20  2026 BOOT_linux_pre_2e_a25d6549.bin
+-rwxrwx---    1 root     disk          3833 Aug 20  2026 boot.scr
+-rwxrwx---    1 root     disk         67816 Sep  8  2026 fw_printenv
+-rwxrwx---    1 root     disk      55510056 Aug 20  2026 image.ub
+-rwxrwx---    1 root     disk         67416 Sep  8  2026 libubootenv.so.0.3.5
+-rwxrwx---    1 root     disk        133040 Sep  8  2026 libyaml.so.0.2.5
+-rwxrwx---    1 root     disk          3329 Sep 29  2026 ratio2_j55_50mhz_baseline_20260929.log
+-rwxrwx---    1 root     disk          3332 Sep 29  2026 ratio2_j55_57p7mhz_20260929.log
+-rwxrwx---    1 root     disk          3334 Sep 29  2026 ratio2_j55_57p7mhz_recovery_20260929.log
+-rwxrwx---    1 root     disk          3308 Sep 29  2026 ratio2_j55_62p5mhz_20260929.log
+-rwxrwx---    1 root     disk          3310 Sep 29  2026 ratio2_j55_62p5mhz_repeat_20260929.log
+-rwxrwx---    1 root     disk           672 Sep 29  2026 ratio2_j55_lvcmos33_validation_20260929.txt
+-rwxrwx---    1 root     disk           779 Sep 29  2026 ratio2_j55_validation_sha256_20260929.txt
+-rwxrwx---    1 root     disk          2213 Aug 25  2026 run_log.txt
+-rwxrwx---    1 root     disk          1754 Aug 25  2026 spi_bench_spidev1.0_20260825_190101.csv
+-rwxrwx---    1 root     disk          1754 Aug 27  2026 spi_bench_spidev1.0_20260827_125526.csv
+-rwxrwx---    1 root     disk          1755 Sep  8  2026 spi_bench_spidev1.0_20260908_141830.csv
+-rwxrwx---    1 root     disk          1754 Sep  8  2026 spi_bench_spidev1.0_20260908_142131.csv
+-rwxrwx---    1 root     disk          1756 Sep  8  2026 spi_bench_spidev1.0_20260908_142536.csv
+-rwxrwx---    1 root     disk          1759 Sep  8  2026 spi_bench_spidev1.0_20260908_142923.csv
+-rwxrwx---    1 root     disk        704072 Aug 20  2026 spi_benchmark_axi
+-rwxrwx---    1 root     disk        704048 Aug 20  2026 spi_benchmark_axi_ext
+-rwxrwx---    1 root     disk      26510780 Sep 27  2026 spi_benchmark_ila.bit.bin
+-rwxrwx---    1 root     disk      26510780 Sep 23  2026 spi_benchmark_ratio2_70b831e7.bit.bin
+-rwxrwx---    1 root     disk         94544 Aug 25  2026 spi_benchmark_v2_aarch64
+-rwxrwx---    1 root     disk         74784 Sep 27  2026 spi_benchmark_v3_rxverify
+-rwxrwx---    1 root     disk      26510780 Aug 20  2026 spi_benchmark_wrapper.bit.bin
+-rwxrwx---    1 root     disk      26510780 Sep 27  2026 spi_benchmark_xsa_exact_77d482a5.bit.bin
+-rwxrwx---    1 root     disk         74832 Aug 20  2026 spi_loopback_test
+-rwxrwx---    1 root     disk      26510780 Sep 29  2026 spi_ratio2_j55_lvcmos33_20260929.bit.bin
+-rwxrwx---    1 root     disk      26510780 Oct  1  2026 spi_ratio2_j55_wrapper.bit.bin
+-rwxrwx---    1 root     disk         42130 Aug 20  2026 system.dtb
+-rwxrwx---    1 root     disk        262144 Sep  9  2026 uboot-redund.env
+-rwxrwx---    1 root     disk        262144 Sep  9  2026 uboot.env
+affected_cpus                  cpuinfo_min_freq               scaling_available_frequencies  scaling_driver                 scaling_min_freq
+cpuinfo_cur_freq               cpuinfo_transition_latency     scaling_available_governors    scaling_governor               scaling_setspeed
+cpuinfo_max_freq               related_cpus                   scaling_cur_freq               scaling_max_freq
+1200000
+userspace
+amba
+aux_ref_clk
+fpga_full
+gic
+gpio
+gt_crx_ref_clk
+modepin_gpio
+pss_alt_ref_clk
+pss_ref_clk
+video_clk
+zynqmp_clk
+zynqmp_reset
+newQspi:/home/petalinux# sha256sum /run/media/BOOT-mmcblk0p1/spi_ratio2_j55_lvcmos33_20260929.bit.bin /run/media/BOOT-mmcblk0p1/BOOT.BIN /run/media/BOOT-mmcblk0p1/image.ub; cat /sys/firmware/deviceetree/base/__symbols__/fpga_full /sys/firmware/devicetree/base/__symbols__/zynqmp_clk /sys/firmware/devicetree/base/__symbols__/amba; cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq /ssys/devices/system/cpu/cpufreq/policy0/scaling_governor
+c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd  /run/media/BOOT-mmcblk0p1/spi_ratio2_j55_lvcmos33_20260929.bit.bin
+56db96f7530aa9cf4008d5494f1e1497d6fb6e76ece965d820b99b017e1539de  /run/media/BOOT-mmcblk0p1/BOOT.BIN
+446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0  /run/media/BOOT-mmcblk0p1/image.ub
+/fpga-region /firmware/zynqmp-firmware/clock-controller /axi 1200000
+userspace
+newQspi:/home/petalinux# echo pm_reset_get_status 1116 > /sys/kernel/debug/zynqmp-firmware/pm; cat /sys/kernel/debug/zynqmp-firmware/pm; echo pm_reset_get_status 1112 > /sys/kernel/debug/zynqmp-firrmware/pm; cat /sys/kernel/debug/zynqmp-firmware/pm; ls /sys/kernel/debug/clk/pl0_ref*; cat /sys/kernel/debug/clk/pl0_ref*/clk_flags
+Reset status: 0
+Reset status: 0
+/sys/kernel/debug/clk/pl0_ref:
+clk_accuracy        clk_enable_count    clk_max_rate        clk_notifier_count  clk_phase           clk_protect_count
+clk_duty_cycle      clk_flags           clk_min_rate        clk_parent          clk_prepare_count   clk_rate
+
+/sys/kernel/debug/clk/pl0_ref_div1:
+clk_accuracy        clk_enable_count    clk_max_rate        clk_notifier_count  clk_phase           clk_protect_count
+clk_duty_cycle      clk_flags           clk_min_rate        clk_parent          clk_prepare_count   clk_rate
+
+/sys/kernel/debug/clk/pl0_ref_div2:
+clk_accuracy        clk_enable_count    clk_max_rate        clk_notifier_count  clk_phase           clk_protect_count
+clk_duty_cycle      clk_flags           clk_min_rate        clk_parent          clk_prepare_count   clk_rate
+
+/sys/kernel/debug/clk/pl0_ref_mux:
+clk_accuracy          clk_enable_count      clk_max_rate          clk_notifier_count    clk_phase             clk_prepare_count     clk_rate
+clk_duty_cycle        clk_flags             clk_min_rate          clk_parent            clk_possible_parents  clk_protect_count
+CLK_SET_RATE_PARENT
+CLK_SET_RATE_PARENT
+CLK_SET_RATE_NO_REPARENT
+newQspi:/home/petalinux# for c in pl0_ref pl0_ref_div1 pl0_ref_div2 pl0_ref_mux; do echo CLOCK=$c; cat /sys/kernel/debug/clk/$c/clk_flags /sys/kernel/debug/clk/$c/clk_rate /sys/kernel/debug/clk/$c//clk_parent; done; sha256sum /run/media/BOOT-mmcblk0p1/spi_benchmark_v3_rxverify
+CLOCK=pl0_ref
+CLK_SET_RATE_PARENT
+249975000
+pl0_ref_div2
+CLOCK=pl0_ref_div1
+249975000
+pl0_ref_mux
+CLOCK=pl0_ref_div2
+CLK_SET_RATE_PARENT
+249975000
+pl0_ref_div1
+CLOCK=pl0_ref_mux
+CLK_SET_RATE_NO_REPARENT
+1499850000
+iopll
+a0410ff3afe52aa83ca519085e73103b61ac2fdfd11b0fc94b3c0d14f9bd318d  /run/media/BOOT-mmcblk0p1/spi_benchmark_v3_rxverify
+newQspi:/home/petalinux# 
+HOST SESSION 2026-10-14T14:35:32.603689+00:00
+
+newQspi:/home/petalinux# uname -a; uptime; cat /sys/class/fpga_manager/fpga0/state; ls /sys/kernel/config/device-tree/overlays; cat /sys/kernel/debug/clk/clk_summary | grep -E 'pl0_ref|iopll '; ls  /dev/spidev*; echo pm_reset_get_status 1116 > /sys/kernel/debug/zynqmp-firmware/pm; cat /sys/kernel/debug/zynqmp-firmware/pm
+Linux newQspi 6.12.10-xilinx-g0a0f70e531c7 #1 SMP Sat May 17 14:01:06 UTC 2025 aarch64 GNU/Linux
+ 16:09:26 up 21:46,  load average: 0.00, 0.00, 0.00
+unknown
+                iopll                9       13       11       1499850000  0          0     50000      Y                  deviceless                      no_connection_id         
+                   pl0_ref_mux       0       0        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      pl0_ref_div1   0       0        0        249975000   0          0     50000      Y                        deviceless                      no_connection_id         
+                         pl0_ref_div2 0       0        0        249975000   0          0     50000      Y                           deviceless                      no_connection_id         
+                            pl0_ref  0       0        0        249975000   0          0     50000      N                              deviceless                      no_connection_id         
+ls: /dev/spidev*: No such file or directory
+Reset status: 0
+newQspi:/home/petalinux# 

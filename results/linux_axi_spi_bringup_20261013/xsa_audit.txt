@@ -1,0 +1,441 @@
+
+MODULE {'COREREVISION': '36', 'FULLNAME': '/axi_quad_spi_0', 'HWVERSION': '3.2', 'INSTANCE': 'axi_quad_spi_0', 'IPTYPE': 'PERIPHERAL', 'IS_ENABLE': '1', 'MODCLASS': 'MEMORY_CNTLR', 'MODTYPE': 'axi_quad_spi', 'VLNV': 'xilinx.com:ip:axi_quad_spi:3.2'}
+{'NAME': 'Async_Clk', 'VALUE': '0'}
+{'NAME': 'C_BYTE_LEVEL_INTERRUPT_EN', 'VALUE': '0'}
+{'NAME': 'C_DUAL_QUAD_MODE', 'VALUE': '0'}
+{'NAME': 'C_FAMILY', 'VALUE': 'zynquplus'}
+{'NAME': 'C_FIFO_DEPTH', 'VALUE': '256'}
+{'NAME': 'C_INSTANCE', 'VALUE': 'axi_quad_spi_inst'}
+{'NAME': 'C_LSB_STUP', 'VALUE': '0'}
+{'NAME': 'C_NEW_SEQ_EN', 'VALUE': '1'}
+{'NAME': 'C_NUM_SS_BITS', 'VALUE': '1'}
+{'NAME': 'C_NUM_TRANSFER_BITS', 'VALUE': '8'}
+{'NAME': 'C_SCK_RATIO', 'VALUE': '2'}
+{'NAME': 'C_SELECT_XPM', 'VALUE': '0'}
+{'NAME': 'C_SHARED_STARTUP', 'VALUE': '0'}
+{'NAME': 'C_SPI_MEMORY', 'VALUE': '1'}
+{'NAME': 'C_SPI_MEM_ADDR_BITS', 'VALUE': '24'}
+{'NAME': 'C_SPI_MODE', 'VALUE': '0'}
+{'NAME': 'C_SUB_FAMILY', 'VALUE': 'zynquplus'}
+{'NAME': 'C_S_AXI4_ADDR_WIDTH', 'VALUE': '24'}
+{'NAME': 'C_S_AXI4_DATA_WIDTH', 'VALUE': '32'}
+{'NAME': 'C_S_AXI4_ID_WIDTH', 'VALUE': '4'}
+{'NAME': 'C_S_AXI_ADDR_WIDTH', 'VALUE': '7'}
+{'NAME': 'C_S_AXI_DATA_WIDTH', 'VALUE': '32'}
+{'NAME': 'C_TYPE_OF_AXI4_INTERFACE', 'VALUE': '0'}
+{'NAME': 'C_UC_FAMILY', 'VALUE': '1'}
+{'NAME': 'C_USE_STARTUP', 'VALUE': '0'}
+{'NAME': 'C_USE_STARTUP_EXT', 'VALUE': '0'}
+{'NAME': 'C_XIP_MODE', 'VALUE': '0'}
+{'NAME': 'C_XIP_PERF_MODE', 'VALUE': '1'}
+{'NAME': 'C_SCK_RATIO1', 'VALUE': '1'}
+{'NAME': 'C_USE_STARTUP_INT', 'VALUE': '0'}
+{'NAME': 'Component_Name', 'VALUE': 'spi_benchmark_axi_quad_spi_0_0'}
+{'NAME': 'FIFO_INCLUDED', 'VALUE': '1'}
+{'NAME': 'Master_mode', 'VALUE': '1'}
+{'NAME': 'Multiples16', 'VALUE': '1'}
+{'NAME': 'QSPI_BOARD_INTERFACE', 'VALUE': 'Custom'}
+{'NAME': 'UC_FAMILY', 'VALUE': '1'}
+{'NAME': 'USE_BOARD_FLOW', 'VALUE': 'false'}
+{'NAME': 'EDK_IPTYPE', 'VALUE': 'PERIPHERAL'}
+{'NAME': 'C_BASEADDR', 'VALUE': '0xA0000000'}
+{'NAME': 'C_HIGHADDR', 'VALUE': '0xA000FFFF'}
+PORT {'CLKFREQUENCY': '99990005', 'DIR': 'I', 'NAME': 'ext_spi_clk', 'SIGIS': 'clk', 'SIGNAME': 'zynq_ultra_ps_e_0_pl_clk0'}
+PORT {'DIR': 'I', 'NAME': 'io0_i', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_io0_i'}
+PORT {'DIR': 'O', 'NAME': 'io0_o', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_io0_o'}
+PORT {'DIR': 'O', 'NAME': 'io0_t', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_io0_t'}
+PORT {'DIR': 'I', 'NAME': 'io1_i', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_io1_i'}
+PORT {'DIR': 'O', 'NAME': 'io1_o', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_io1_o'}
+PORT {'DIR': 'O', 'NAME': 'io1_t', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_io1_t'}
+PORT {'DIR': 'O', 'NAME': 'ip2intc_irpt', 'SENSITIVITY': 'EDGE_RISING', 'SIGIS': 'INTERRUPT', 'SIGNAME': 'axi_quad_spi_0_ip2intc_irpt'}
+PORT {'CLKFREQUENCY': '99990005', 'DIR': 'I', 'NAME': 's_axi_aclk', 'SIGIS': 'clk', 'SIGNAME': 'zynq_ultra_ps_e_0_pl_clk0'}
+PORT {'DIR': 'I', 'LEFT': '6', 'NAME': 's_axi_araddr', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_araddr'}
+PORT {'DIR': 'I', 'NAME': 's_axi_aresetn', 'POLARITY': 'ACTIVE_LOW', 'SIGIS': 'rst', 'SIGNAME': 'proc_sys_reset_0_peripheral_aresetn'}
+PORT {'DIR': 'O', 'NAME': 's_axi_arready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_arready'}
+PORT {'DIR': 'I', 'NAME': 's_axi_arvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_arvalid'}
+PORT {'DIR': 'I', 'LEFT': '6', 'NAME': 's_axi_awaddr', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_awaddr'}
+PORT {'DIR': 'O', 'NAME': 's_axi_awready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_awready'}
+PORT {'DIR': 'I', 'NAME': 's_axi_awvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_awvalid'}
+PORT {'DIR': 'I', 'NAME': 's_axi_bready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_bready'}
+PORT {'DIR': 'O', 'LEFT': '1', 'NAME': 's_axi_bresp', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_bresp'}
+PORT {'DIR': 'O', 'NAME': 's_axi_bvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_bvalid'}
+PORT {'DIR': 'O', 'LEFT': '31', 'NAME': 's_axi_rdata', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_rdata'}
+PORT {'DIR': 'I', 'NAME': 's_axi_rready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_rready'}
+PORT {'DIR': 'O', 'LEFT': '1', 'NAME': 's_axi_rresp', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_rresp'}
+PORT {'DIR': 'O', 'NAME': 's_axi_rvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_rvalid'}
+PORT {'DIR': 'I', 'LEFT': '31', 'NAME': 's_axi_wdata', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_wdata'}
+PORT {'DIR': 'O', 'NAME': 's_axi_wready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_wready'}
+PORT {'DIR': 'I', 'LEFT': '3', 'NAME': 's_axi_wstrb', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_wstrb'}
+PORT {'DIR': 'I', 'NAME': 's_axi_wvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_wvalid'}
+PORT {'DIR': 'I', 'NAME': 'sck_i', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_sck_i'}
+PORT {'DIR': 'O', 'NAME': 'sck_o', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_sck_o'}
+PORT {'DIR': 'O', 'NAME': 'sck_t', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_sck_t'}
+PORT {'DIR': 'I', 'LEFT': '0', 'NAME': 'ss_i', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_ss_i'}
+PORT {'DIR': 'O', 'LEFT': '0', 'NAME': 'ss_o', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_ss_o'}
+PORT {'DIR': 'O', 'NAME': 'ss_t', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_ss_t'}
+BUSINTERFACE {'BUSNAME': 'axi_quad_spi_0_SPI_0', 'NAME': 'SPI_0', 'TYPE': 'INITIATOR', 'VLNV': 'xilinx.com:interface:spi:1.0'}
+BUSINTERFACE {'BUSNAME': 'smartconnect_0_M00_AXI', 'DATAWIDTH': '32', 'NAME': 'AXI_LITE', 'TYPE': 'SLAVE', 'VLNV': 'xilinx.com:interface:aximm:1.0'}
+{'NAME': 'ADDR_WIDTH', 'VALUE': '7'}
+{'NAME': 'ARUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'AWUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'BUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'CLK_DOMAIN', 'VALUE': 'spi_benchmark_zynq_ultra_ps_e_0_0_pl_clk0'}
+{'NAME': 'DATA_WIDTH', 'VALUE': '32'}
+{'NAME': 'FREQ_HZ', 'VALUE': '99990005'}
+{'NAME': 'HAS_BRESP', 'VALUE': '1'}
+{'NAME': 'HAS_BURST', 'VALUE': '0'}
+{'NAME': 'HAS_CACHE', 'VALUE': '0'}
+{'NAME': 'HAS_LOCK', 'VALUE': '0'}
+{'NAME': 'HAS_PROT', 'VALUE': '0'}
+{'NAME': 'HAS_QOS', 'VALUE': '0'}
+{'NAME': 'HAS_REGION', 'VALUE': '0'}
+{'NAME': 'HAS_RRESP', 'VALUE': '1'}
+{'NAME': 'HAS_WSTRB', 'VALUE': '1'}
+{'NAME': 'ID_WIDTH', 'VALUE': '0'}
+{'NAME': 'INSERT_VIP', 'VALUE': '0'}
+{'NAME': 'MAX_BURST_LENGTH', 'VALUE': '1'}
+{'NAME': 'NUM_READ_OUTSTANDING', 'VALUE': '1'}
+{'NAME': 'NUM_READ_THREADS', 'VALUE': '1'}
+{'NAME': 'NUM_WRITE_OUTSTANDING', 'VALUE': '1'}
+{'NAME': 'NUM_WRITE_THREADS', 'VALUE': '1'}
+{'NAME': 'PHASE', 'VALUE': '0.0'}
+{'NAME': 'PROTOCOL', 'VALUE': 'AXI4LITE'}
+{'NAME': 'READ_WRITE_MODE', 'VALUE': 'READ_WRITE'}
+{'NAME': 'RUSER_BITS_PER_BYTE', 'VALUE': '0'}
+{'NAME': 'RUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'SUPPORTS_NARROW_BURST', 'VALUE': '0'}
+{'NAME': 'WUSER_BITS_PER_BYTE', 'VALUE': '0'}
+{'NAME': 'WUSER_WIDTH', 'VALUE': '0'}
+
+MODULE {'COREREVISION': '17', 'FULLNAME': '/proc_sys_reset_0', 'HWVERSION': '5.0', 'INSTANCE': 'proc_sys_reset_0', 'IPTYPE': 'PERIPHERAL', 'IS_ENABLE': '1', 'MODCLASS': 'PERIPHERAL', 'MODTYPE': 'proc_sys_reset', 'VLNV': 'xilinx.com:ip:proc_sys_reset:5.0'}
+{'NAME': 'C_AUX_RESET_HIGH', 'VALUE': '0'}
+{'NAME': 'C_AUX_RST_WIDTH', 'VALUE': '4'}
+{'NAME': 'C_EXT_RESET_HIGH', 'VALUE': '0'}
+{'NAME': 'C_EXT_RST_WIDTH', 'VALUE': '4'}
+{'NAME': 'C_FAMILY', 'VALUE': 'zynquplus'}
+{'NAME': 'C_NUM_BUS_RST', 'VALUE': '1'}
+{'NAME': 'C_NUM_INTERCONNECT_ARESETN', 'VALUE': '1'}
+{'NAME': 'C_NUM_PERP_ARESETN', 'VALUE': '1'}
+{'NAME': 'C_NUM_PERP_RST', 'VALUE': '1'}
+{'NAME': 'Component_Name', 'VALUE': 'spi_benchmark_proc_sys_reset_0_0'}
+{'NAME': 'RESET_BOARD_INTERFACE', 'VALUE': 'Custom'}
+{'NAME': 'USE_BOARD_FLOW', 'VALUE': 'false'}
+{'NAME': 'EDK_IPTYPE', 'VALUE': 'PERIPHERAL'}
+PORT {'DIR': 'I', 'NAME': 'aux_reset_in', 'POLARITY': 'ACTIVE_LOW', 'SIGIS': 'rst'}
+PORT {'DIR': 'O', 'LEFT': '0', 'NAME': 'bus_struct_reset', 'POLARITY': 'ACTIVE_HIGH', 'RIGHT': '0', 'SIGIS': 'rst'}
+PORT {'DIR': 'I', 'NAME': 'dcm_locked', 'SIGIS': 'undef'}
+PORT {'DIR': 'I', 'NAME': 'ext_reset_in', 'POLARITY': 'ACTIVE_LOW', 'SIGIS': 'rst', 'SIGNAME': 'zynq_ultra_ps_e_0_pl_resetn0'}
+PORT {'DIR': 'O', 'LEFT': '0', 'NAME': 'interconnect_aresetn', 'POLARITY': 'ACTIVE_LOW', 'RIGHT': '0', 'SIGIS': 'rst', 'SIGNAME': 'proc_sys_reset_0_interconnect_aresetn'}
+PORT {'DIR': 'I', 'NAME': 'mb_debug_sys_rst', 'POLARITY': 'ACTIVE_HIGH', 'SIGIS': 'rst'}
+PORT {'DIR': 'O', 'NAME': 'mb_reset', 'POLARITY': 'ACTIVE_HIGH', 'SIGIS': 'rst'}
+PORT {'DIR': 'O', 'LEFT': '0', 'NAME': 'peripheral_aresetn', 'POLARITY': 'ACTIVE_LOW', 'RIGHT': '0', 'SIGIS': 'rst', 'SIGNAME': 'proc_sys_reset_0_peripheral_aresetn'}
+PORT {'DIR': 'O', 'LEFT': '0', 'NAME': 'peripheral_reset', 'POLARITY': 'ACTIVE_HIGH', 'RIGHT': '0', 'SIGIS': 'rst'}
+PORT {'CLKFREQUENCY': '99990005', 'DIR': 'I', 'NAME': 'slowest_sync_clk', 'SIGIS': 'clk', 'SIGNAME': 'zynq_ultra_ps_e_0_pl_clk0'}
+
+MODULE {'BD': 'spi_benchmark_smartconnect_0_0', 'BDTYPE': 'SBD', 'COREREVISION': '29', 'DRIVERMODE': 'CORE', 'FULLNAME': '/smartconnect_0', 'HWVERSION': '1.0', 'INSTANCE': 'smartconnect_0', 'IPTYPE': 'BUS', 'IS_ENABLE': '1', 'MODCLASS': 'BUS', 'MODTYPE': 'smartconnect', 'SIM_BD': 'spi_benchmark_smartconnect_0_0', 'VLNV': 'xilinx.com:ip:smartconnect:1.0'}
+{'NAME': 'HAS_RESET', 'VALUE': '1'}
+{'NAME': 'TLM_COMPONENT_NAME', 'VALUE': 'spi_benchmark_smartconnect_0_0'}
+{'NAME': 'ADVANCED_PROPERTIES', 'VALUE': '0'}
+{'NAME': 'Component_Name', 'VALUE': 'spi_benchmark_smartconnect_0_0'}
+{'NAME': 'HAS_ARESETN', 'VALUE': '1'}
+{'NAME': 'HID_PARAM_26_1', 'VALUE': '1'}
+{'NAME': 'NUM_CLKS', 'VALUE': '1'}
+{'NAME': 'NUM_MI', 'VALUE': '1'}
+{'NAME': 'NUM_SI', 'VALUE': '1'}
+{'NAME': 'STRATEGY', 'VALUE': 'AUTOMATIC'}
+{'NAME': 'EDK_IPTYPE', 'VALUE': 'BUS'}
+PORT {'DIR': 'O', 'LEFT': '6', 'NAME': 'M00_AXI_araddr', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_araddr'}
+PORT {'DIR': 'I', 'NAME': 'M00_AXI_arready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_arready'}
+PORT {'DIR': 'O', 'NAME': 'M00_AXI_arvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_arvalid'}
+PORT {'DIR': 'O', 'LEFT': '6', 'NAME': 'M00_AXI_awaddr', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_awaddr'}
+PORT {'DIR': 'I', 'NAME': 'M00_AXI_awready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_awready'}
+PORT {'DIR': 'O', 'NAME': 'M00_AXI_awvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_awvalid'}
+PORT {'DIR': 'O', 'NAME': 'M00_AXI_bready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_bready'}
+PORT {'DIR': 'I', 'LEFT': '1', 'NAME': 'M00_AXI_bresp', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_bresp'}
+PORT {'DIR': 'I', 'NAME': 'M00_AXI_bvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_bvalid'}
+PORT {'DIR': 'I', 'LEFT': '31', 'NAME': 'M00_AXI_rdata', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_rdata'}
+PORT {'DIR': 'O', 'NAME': 'M00_AXI_rready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_rready'}
+PORT {'DIR': 'I', 'LEFT': '1', 'NAME': 'M00_AXI_rresp', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_rresp'}
+PORT {'DIR': 'I', 'NAME': 'M00_AXI_rvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_rvalid'}
+PORT {'DIR': 'O', 'LEFT': '31', 'NAME': 'M00_AXI_wdata', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_wdata'}
+PORT {'DIR': 'I', 'NAME': 'M00_AXI_wready', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_wready'}
+PORT {'DIR': 'O', 'LEFT': '3', 'NAME': 'M00_AXI_wstrb', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_wstrb'}
+PORT {'DIR': 'O', 'NAME': 'M00_AXI_wvalid', 'SIGIS': 'undef', 'SIGNAME': 'axi_quad_spi_0_s_axi_wvalid'}
+PORT {'DIR': 'I', 'LEFT': '39', 'NAME': 'S00_AXI_araddr', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_araddr'}
+PORT {'DIR': 'I', 'LEFT': '1', 'NAME': 'S00_AXI_arburst', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arburst'}
+PORT {'DIR': 'I', 'LEFT': '3', 'NAME': 'S00_AXI_arcache', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arcache'}
+PORT {'DIR': 'I', 'LEFT': '15', 'NAME': 'S00_AXI_arid', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arid'}
+PORT {'DIR': 'I', 'LEFT': '7', 'NAME': 'S00_AXI_arlen', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arlen'}
+PORT {'DIR': 'I', 'LEFT': '0', 'NAME': 'S00_AXI_arlock', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arlock'}
+PORT {'DIR': 'I', 'LEFT': '2', 'NAME': 'S00_AXI_arprot', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arprot'}
+PORT {'DIR': 'I', 'LEFT': '3', 'NAME': 'S00_AXI_arqos', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arqos'}
+PORT {'DIR': 'O', 'NAME': 'S00_AXI_arready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arready'}
+PORT {'DIR': 'I', 'LEFT': '2', 'NAME': 'S00_AXI_arsize', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arsize'}
+PORT {'DIR': 'I', 'LEFT': '15', 'NAME': 'S00_AXI_aruser', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_aruser'}
+PORT {'DIR': 'I', 'NAME': 'S00_AXI_arvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arvalid'}
+PORT {'DIR': 'I', 'LEFT': '39', 'NAME': 'S00_AXI_awaddr', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awaddr'}
+PORT {'DIR': 'I', 'LEFT': '1', 'NAME': 'S00_AXI_awburst', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awburst'}
+PORT {'DIR': 'I', 'LEFT': '3', 'NAME': 'S00_AXI_awcache', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awcache'}
+PORT {'DIR': 'I', 'LEFT': '15', 'NAME': 'S00_AXI_awid', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awid'}
+PORT {'DIR': 'I', 'LEFT': '7', 'NAME': 'S00_AXI_awlen', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awlen'}
+PORT {'DIR': 'I', 'LEFT': '0', 'NAME': 'S00_AXI_awlock', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awlock'}
+PORT {'DIR': 'I', 'LEFT': '2', 'NAME': 'S00_AXI_awprot', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awprot'}
+PORT {'DIR': 'I', 'LEFT': '3', 'NAME': 'S00_AXI_awqos', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awqos'}
+PORT {'DIR': 'O', 'NAME': 'S00_AXI_awready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awready'}
+PORT {'DIR': 'I', 'LEFT': '2', 'NAME': 'S00_AXI_awsize', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awsize'}
+PORT {'DIR': 'I', 'LEFT': '15', 'NAME': 'S00_AXI_awuser', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awuser'}
+PORT {'DIR': 'I', 'NAME': 'S00_AXI_awvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awvalid'}
+PORT {'DIR': 'O', 'LEFT': '15', 'NAME': 'S00_AXI_bid', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_bid'}
+PORT {'DIR': 'I', 'NAME': 'S00_AXI_bready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_bready'}
+PORT {'DIR': 'O', 'LEFT': '1', 'NAME': 'S00_AXI_bresp', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_bresp'}
+PORT {'DIR': 'O', 'NAME': 'S00_AXI_bvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_bvalid'}
+PORT {'DIR': 'O', 'LEFT': '127', 'NAME': 'S00_AXI_rdata', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rdata'}
+PORT {'DIR': 'O', 'LEFT': '15', 'NAME': 'S00_AXI_rid', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rid'}
+PORT {'DIR': 'O', 'NAME': 'S00_AXI_rlast', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rlast'}
+PORT {'DIR': 'I', 'NAME': 'S00_AXI_rready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rready'}
+PORT {'DIR': 'O', 'LEFT': '1', 'NAME': 'S00_AXI_rresp', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rresp'}
+PORT {'DIR': 'O', 'NAME': 'S00_AXI_rvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rvalid'}
+PORT {'DIR': 'I', 'LEFT': '127', 'NAME': 'S00_AXI_wdata', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wdata'}
+PORT {'DIR': 'I', 'NAME': 'S00_AXI_wlast', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wlast'}
+PORT {'DIR': 'O', 'NAME': 'S00_AXI_wready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wready'}
+PORT {'DIR': 'I', 'LEFT': '15', 'NAME': 'S00_AXI_wstrb', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wstrb'}
+PORT {'DIR': 'I', 'NAME': 'S00_AXI_wvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wvalid'}
+PORT {'CLKFREQUENCY': '99990005', 'DIR': 'I', 'NAME': 'aclk', 'SIGIS': 'clk', 'SIGNAME': 'zynq_ultra_ps_e_0_pl_clk0'}
+PORT {'DIR': 'I', 'NAME': 'aresetn', 'POLARITY': 'ACTIVE_LOW', 'SIGIS': 'rst', 'SIGNAME': 'proc_sys_reset_0_interconnect_aresetn'}
+BUSINTERFACE {'BUSNAME': 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD', 'DATAWIDTH': '128', 'NAME': 'S00_AXI', 'TYPE': 'SLAVE', 'VLNV': 'xilinx.com:interface:aximm:1.0'}
+{'NAME': 'ADDR_WIDTH', 'VALUE': '40'}
+{'NAME': 'ARUSER_WIDTH', 'VALUE': '16'}
+{'NAME': 'AWUSER_WIDTH', 'VALUE': '16'}
+{'NAME': 'BUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'CLK_DOMAIN', 'VALUE': 'spi_benchmark_zynq_ultra_ps_e_0_0_pl_clk0'}
+{'NAME': 'DATA_WIDTH', 'VALUE': '128'}
+{'NAME': 'FREQ_HZ', 'VALUE': '99990005'}
+{'NAME': 'HAS_BRESP', 'VALUE': '1'}
+{'NAME': 'HAS_BURST', 'VALUE': '1'}
+{'NAME': 'HAS_CACHE', 'VALUE': '1'}
+{'NAME': 'HAS_LOCK', 'VALUE': '1'}
+{'NAME': 'HAS_PROT', 'VALUE': '1'}
+{'NAME': 'HAS_QOS', 'VALUE': '1'}
+{'NAME': 'HAS_REGION', 'VALUE': '0'}
+{'NAME': 'HAS_RRESP', 'VALUE': '1'}
+{'NAME': 'HAS_WSTRB', 'VALUE': '1'}
+{'NAME': 'ID_WIDTH', 'VALUE': '16'}
+{'NAME': 'INSERT_VIP', 'VALUE': '0'}
+{'NAME': 'MAX_BURST_LENGTH', 'VALUE': '256'}
+{'NAME': 'NUM_READ_OUTSTANDING', 'VALUE': '8'}
+{'NAME': 'NUM_READ_THREADS', 'VALUE': '4'}
+{'NAME': 'NUM_WRITE_OUTSTANDING', 'VALUE': '8'}
+{'NAME': 'NUM_WRITE_THREADS', 'VALUE': '4'}
+{'NAME': 'PHASE', 'VALUE': '0.0'}
+{'NAME': 'PROTOCOL', 'VALUE': 'AXI4'}
+{'NAME': 'READ_WRITE_MODE', 'VALUE': 'READ_WRITE'}
+{'NAME': 'RUSER_BITS_PER_BYTE', 'VALUE': '0'}
+{'NAME': 'RUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'SUPPORTS_NARROW_BURST', 'VALUE': '1'}
+{'NAME': 'WUSER_BITS_PER_BYTE', 'VALUE': '0'}
+{'NAME': 'WUSER_WIDTH', 'VALUE': '0'}
+BUSINTERFACE {'BUSNAME': 'smartconnect_0_M00_AXI', 'DATAWIDTH': '32', 'NAME': 'M00_AXI', 'TYPE': 'MASTER', 'VLNV': 'xilinx.com:interface:aximm:1.0'}
+{'NAME': 'ADDR_WIDTH', 'VALUE': '7'}
+{'NAME': 'ARUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'AWUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'BUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'CLK_DOMAIN', 'VALUE': 'spi_benchmark_zynq_ultra_ps_e_0_0_pl_clk0'}
+{'NAME': 'DATA_WIDTH', 'VALUE': '32'}
+{'NAME': 'FREQ_HZ', 'VALUE': '99990005'}
+{'NAME': 'HAS_BRESP', 'VALUE': '1'}
+{'NAME': 'HAS_BURST', 'VALUE': '0'}
+{'NAME': 'HAS_CACHE', 'VALUE': '0'}
+{'NAME': 'HAS_LOCK', 'VALUE': '0'}
+{'NAME': 'HAS_PROT', 'VALUE': '1'}
+{'NAME': 'HAS_QOS', 'VALUE': '0'}
+{'NAME': 'HAS_REGION', 'VALUE': '0'}
+{'NAME': 'HAS_RRESP', 'VALUE': '1'}
+{'NAME': 'HAS_WSTRB', 'VALUE': '1'}
+{'NAME': 'ID_WIDTH', 'VALUE': '0'}
+{'NAME': 'INSERT_VIP', 'VALUE': '0'}
+{'NAME': 'MAX_BURST_LENGTH', 'VALUE': '1'}
+{'NAME': 'NUM_READ_OUTSTANDING', 'VALUE': '1'}
+{'NAME': 'NUM_READ_THREADS', 'VALUE': '1'}
+{'NAME': 'NUM_WRITE_OUTSTANDING', 'VALUE': '1'}
+{'NAME': 'NUM_WRITE_THREADS', 'VALUE': '1'}
+{'NAME': 'PHASE', 'VALUE': '0.0'}
+{'NAME': 'PROTOCOL', 'VALUE': 'AXI4LITE'}
+{'NAME': 'READ_WRITE_MODE', 'VALUE': 'READ_WRITE'}
+{'NAME': 'RUSER_BITS_PER_BYTE', 'VALUE': '0'}
+{'NAME': 'RUSER_WIDTH', 'VALUE': '0'}
+{'NAME': 'SUPPORTS_NARROW_BURST', 'VALUE': '0'}
+{'NAME': 'WUSER_BITS_PER_BYTE', 'VALUE': '0'}
+{'NAME': 'WUSER_WIDTH', 'VALUE': '0'}
+
+MODULE {'CONFIGURABLE': 'TRUE', 'COREREVISION': '9', 'FULLNAME': '/zynq_ultra_ps_e_0', 'HWVERSION': '3.5', 'INSTANCE': 'zynq_ultra_ps_e_0', 'IPTYPE': 'PERIPHERAL', 'IS_ENABLE': '1', 'IS_PL': 'FALSE', 'MODTYPE': 'zynq_ultra_ps_e', 'VLNV': 'xilinx.com:ip:zynq_ultra_ps_e:3.5'}
+{'NAME': 'C_NUM_FABRIC_RESETS', 'VALUE': '1'}
+{'NAME': 'PSU__CRL_APB__IOPLL_CTRL__DIV2', 'VALUE': '1'}
+{'NAME': 'PSU__CRL_APB__IOPLL_CTRL__FBDIV', 'VALUE': '60'}
+{'NAME': 'PSU__CRL_APB__IOPLL_CTRL__FRACDATA', 'VALUE': '0.000000'}
+{'NAME': 'PSU__CRL_APB__IOPLL_CTRL__FRACFREQ', 'VALUE': '27.138'}
+{'NAME': 'PSU__CRL_APB__IOPLL_CTRL__SRCSEL', 'VALUE': 'PSS_REF_CLK'}
+{'NAME': 'PSU__CRL_APB__IOPLL_FRAC_CFG__ENABLED', 'VALUE': '0'}
+{'NAME': 'PSU__CRL_APB__IOPLL_TO_FPD_CTRL__DIVISOR0', 'VALUE': '2'}
+{'NAME': 'PSU__CRL_APB__PL0_REF_CTRL__ACT_FREQMHZ', 'VALUE': '99.990005'}
+{'NAME': 'PSU__CRL_APB__PL0_REF_CTRL__DIVISOR0', 'VALUE': '10'}
+{'NAME': 'PSU__CRL_APB__PL0_REF_CTRL__DIVISOR1', 'VALUE': '1'}
+{'NAME': 'PSU__CRL_APB__PL0_REF_CTRL__FREQMHZ', 'VALUE': '100'}
+{'NAME': 'PSU__CRL_APB__PL0_REF_CTRL__SRCSEL', 'VALUE': 'IOPLL'}
+{'NAME': 'PSU__FPGA_PL0_ENABLE', 'VALUE': '1'}
+{'NAME': 'PSU__FPGA_PL1_ENABLE', 'VALUE': '0'}
+{'NAME': 'PSU__FPGA_PL2_ENABLE', 'VALUE': '0'}
+{'NAME': 'PSU__FPGA_PL3_ENABLE', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ADMA_CHAN__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_AIB_AXI__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_AMS__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_APM_FPD__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_APU_COMM__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_APU_CPUMNT__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_APU_CTI__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_APU_EXTERR__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_APU_IPI__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_APU_L2ERR__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_APU_PMU__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_APU_REGS__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ATB_LPD__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_CAN0__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_CAN1__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_CLKMON__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_CSUPMU_WDT__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_CSU_DMA__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_CSU__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_DDR_SS__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_DPDMA__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_DPORT__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_EFUSE__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ENT0_WAKEUP__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ENT0__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ENT1_WAKEUP__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ENT1__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ENT2_WAKEUP__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ENT2__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ENT3_WAKEUP__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_ENT3__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_FPD_APB__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_FPD_ATB_ERR__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_FP_WDT__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_GDMA_CHAN__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_GPIO__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_GPU__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_I2C0__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_I2C1__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_LPD_APB__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_LPD_APM__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_LP_WDT__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_NAND__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_OCM_ERR__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_PCIE_DMA__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_PCIE_LEGACY__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_PCIE_MSC__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_PCIE_MSI__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_PL_IPI__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_QSPI__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_R5_CORE0_ECC_ERR__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_R5_CORE1_ECC_ERR__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_RPU_IPI__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_RPU_PERMON__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_RTC_ALARM__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_RTC_SECONDS__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_SATA__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_SDIO0_WAKE__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_SDIO0__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_SDIO1_WAKE__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_SDIO1__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_SPI0__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_SPI1__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC0__INT0', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC0__INT1', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC0__INT2', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC1__INT0', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC1__INT1', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC1__INT2', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC2__INT0', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC2__INT1', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC2__INT2', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC3__INT0', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC3__INT1', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_TTC3__INT2', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_UART0__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_UART1__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_USB2_OTG__INT0', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_USB2_OTG__INT1', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_USB3_ENDPOINT__INT0', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_USB3_ENDPOINT__INT1', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_USB3_OTG__INT0', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_USB3_OTG__INT1', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_USB3_PMU_WAKEUP__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_XMPU_FPD__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F_XMPU_LPD__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F__INTF_FPD_SMMU__INT', 'VALUE': '0'}
+{'NAME': 'PSU__IRQ_P2F__INTF_PPD_CCI__INT', 'VALUE': '0'}
+{'NAME': 'PSU__M_AXI_GP0_SUPPORTS_NARROW_BURST', 'VALUE': '1'}
+{'NAME': 'PSU__M_AXI_GP0__FREQMHZ', 'VALUE': '99.990005'}
+{'NAME': 'PSU__NUM_FABRIC_RESETS', 'VALUE': '1'}
+{'NAME': 'PSU__USE__FABRIC__RST', 'VALUE': '1'}
+{'NAME': 'PSU__USE__IRQ', 'VALUE': '0'}
+{'NAME': 'PSU__USE__IRQ0', 'VALUE': '1'}
+{'NAME': 'PSU__USE__IRQ1', 'VALUE': '0'}
+{'NAME': 'PSU__USE__M_AXI_GP0', 'VALUE': '1'}
+PORT {'DIR': 'I', 'NAME': 'emio_spi1_m_i', 'SIGIS': 'undef', 'SIGNAME': 'External_Ports_emio_spi1_mosi_i'}
+PORT {'DIR': 'O', 'NAME': 'emio_spi1_m_o', 'SIGIS': 'undef', 'SIGNAME': 'zynq_ultra_ps_e_0_emio_spi1_m_o'}
+PORT {'DIR': 'O', 'NAME': 'emio_spi1_mo_t', 'SIGIS': 'undef'}
+PORT {'DIR': 'I', 'NAME': 'emio_spi1_s_i', 'SIGIS': 'undef'}
+PORT {'DIR': 'O', 'NAME': 'emio_spi1_s_o', 'SIGIS': 'undef'}
+PORT {'DIR': 'I', 'NAME': 'emio_spi1_sclk_i', 'SIGIS': 'undef', 'SIGNAME': 'External_Ports_emio_spi1_sclk_i'}
+PORT {'DIR': 'O', 'NAME': 'emio_spi1_sclk_o', 'SIGIS': 'undef', 'SIGNAME': 'zynq_ultra_ps_e_0_emio_spi1_sclk_o'}
+PORT {'DIR': 'O', 'NAME': 'emio_spi1_sclk_t', 'SIGIS': 'undef'}
+PORT {'DIR': 'O', 'NAME': 'emio_spi1_so_t', 'SIGIS': 'undef'}
+PORT {'DIR': 'I', 'NAME': 'emio_spi1_ss_i_n', 'SIGIS': 'undef'}
+PORT {'DIR': 'O', 'NAME': 'emio_spi1_ss_n_t', 'SIGIS': 'undef'}
+PORT {'DIR': 'O', 'NAME': 'emio_spi1_ss_o_n', 'SIGIS': 'undef', 'SIGNAME': 'zynq_ultra_ps_e_0_emio_spi1_ss_o_n'}
+PORT {'DIR': 'O', 'LEFT': '39', 'NAME': 'maxigp0_araddr', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_araddr'}
+PORT {'DIR': 'O', 'LEFT': '1', 'NAME': 'maxigp0_arburst', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arburst'}
+PORT {'DIR': 'O', 'LEFT': '3', 'NAME': 'maxigp0_arcache', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arcache'}
+PORT {'DIR': 'O', 'LEFT': '15', 'NAME': 'maxigp0_arid', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arid'}
+PORT {'DIR': 'O', 'LEFT': '7', 'NAME': 'maxigp0_arlen', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arlen'}
+PORT {'DIR': 'O', 'NAME': 'maxigp0_arlock', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arlock'}
+PORT {'DIR': 'O', 'LEFT': '2', 'NAME': 'maxigp0_arprot', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arprot'}
+PORT {'DIR': 'O', 'LEFT': '3', 'NAME': 'maxigp0_arqos', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arqos'}
+PORT {'DIR': 'I', 'NAME': 'maxigp0_arready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arready'}
+PORT {'DIR': 'O', 'LEFT': '2', 'NAME': 'maxigp0_arsize', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arsize'}
+PORT {'DIR': 'O', 'LEFT': '15', 'NAME': 'maxigp0_aruser', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_aruser'}
+PORT {'DIR': 'O', 'NAME': 'maxigp0_arvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_arvalid'}
+PORT {'DIR': 'O', 'LEFT': '39', 'NAME': 'maxigp0_awaddr', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awaddr'}
+PORT {'DIR': 'O', 'LEFT': '1', 'NAME': 'maxigp0_awburst', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awburst'}
+PORT {'DIR': 'O', 'LEFT': '3', 'NAME': 'maxigp0_awcache', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awcache'}
+PORT {'DIR': 'O', 'LEFT': '15', 'NAME': 'maxigp0_awid', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awid'}
+PORT {'DIR': 'O', 'LEFT': '7', 'NAME': 'maxigp0_awlen', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awlen'}
+PORT {'DIR': 'O', 'NAME': 'maxigp0_awlock', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awlock'}
+PORT {'DIR': 'O', 'LEFT': '2', 'NAME': 'maxigp0_awprot', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awprot'}
+PORT {'DIR': 'O', 'LEFT': '3', 'NAME': 'maxigp0_awqos', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awqos'}
+PORT {'DIR': 'I', 'NAME': 'maxigp0_awready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awready'}
+PORT {'DIR': 'O', 'LEFT': '2', 'NAME': 'maxigp0_awsize', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awsize'}
+PORT {'DIR': 'O', 'LEFT': '15', 'NAME': 'maxigp0_awuser', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awuser'}
+PORT {'DIR': 'O', 'NAME': 'maxigp0_awvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_awvalid'}
+PORT {'DIR': 'I', 'LEFT': '15', 'NAME': 'maxigp0_bid', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_bid'}
+PORT {'DIR': 'O', 'NAME': 'maxigp0_bready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_bready'}
+PORT {'DIR': 'I', 'LEFT': '1', 'NAME': 'maxigp0_bresp', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_bresp'}
+PORT {'DIR': 'I', 'NAME': 'maxigp0_bvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_bvalid'}
+PORT {'DIR': 'I', 'LEFT': '127', 'NAME': 'maxigp0_rdata', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rdata'}
+PORT {'DIR': 'I', 'LEFT': '15', 'NAME': 'maxigp0_rid', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rid'}
+PORT {'DIR': 'I', 'NAME': 'maxigp0_rlast', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rlast'}
+PORT {'DIR': 'O', 'NAME': 'maxigp0_rready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rready'}
+PORT {'DIR': 'I', 'LEFT': '1', 'NAME': 'maxigp0_rresp', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rresp'}
+PORT {'DIR': 'I', 'NAME': 'maxigp0_rvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_rvalid'}
+PORT {'DIR': 'O', 'LEFT': '127', 'NAME': 'maxigp0_wdata', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wdata'}
+PORT {'DIR': 'O', 'NAME': 'maxigp0_wlast', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wlast'}
+PORT {'DIR': 'I', 'NAME': 'maxigp0_wready', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wready'}
+PORT {'DIR': 'O', 'LEFT': '15', 'NAME': 'maxigp0_wstrb', 'RIGHT': '0', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wstrb'}
+PORT {'DIR': 'O', 'NAME': 'maxigp0_wvalid', 'SIGIS': 'undef', 'SIGNAME': 'smartconnect_0_S00_AXI_wvalid'}
+PORT {'CLKFREQUENCY': '99990005', 'DIR': 'I', 'NAME': 'maxihpm0_fpd_aclk', 'SIGIS': 'clk', 'SIGNAME': 'zynq_ultra_ps_e_0_pl_clk0'}
+PORT {'CLKFREQUENCY': '99990005', 'DIR': 'O', 'NAME': 'pl_clk0', 'SIGIS': 'clk', 'SIGNAME': 'zynq_ultra_ps_e_0_pl_clk0'}
+PORT {'DIR': 'I', 'LEFT': '0', 'NAME': 'pl_ps_irq0', 'RIGHT': '0', 'SENSITIVITY': 'EDGE_RISING', 'SIGIS': 'INTERRUPT', 'SIGNAME': 'axi_quad_spi_0_ip2intc_irpt'}
+PORT {'DIR': 'O', 'NAME': 'pl_resetn0', 'POLARITY': 'ACTIVE_LOW', 'SIGIS': 'rst', 'SIGNAME': 'zynq_ultra_ps_e_0_pl_resetn0'}
+BUSINTERFACE {'BUSNAME': 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD', 'DATAWIDTH': '128', 'NAME': 'M_AXI_HPM0_FPD', 'TYPE': 'MASTER', 'VLNV': 'xilinx.com:interface:aximm:1.0'}
+BUSINTERFACE {'BUSNAME': '__NOC__', 'NAME': 'SPI_1', 'TYPE': 'INITIATOR', 'VLNV': 'xilinx.com:interface:spi:1.0'}
+MEMRANGE {'ADDRESSBLOCK': 'Reg', 'BASENAME': 'C_BASEADDR', 'BASEVALUE': '0xA0000000', 'HIGHNAME': 'C_HIGHADDR', 'HIGHVALUE': '0xA000FFFF', 'INSTANCE': 'axi_quad_spi_0', 'IS_DATA': 'TRUE', 'IS_INSTRUCTION': 'TRUE', 'MASTERBUSINTERFACE': 'M_AXI_HPM0_FPD', 'MEMTYPE': 'REGISTER', 'SLAVEBUSINTERFACE': 'AXI_LITE'}
