@@ -1168,3 +1168,81 @@ gpiochip0: GPIOs 512-515, parent: platform/firmware:zynqmp-firmware:gpio, firmwa
 gpiochip1: GPIOs 516-689, parent: platform/ff0a0000.gpio, zynqmp_gpio:
 ls: /sys/class/gpio/gpio689: No such file or directory
 newQspi:/home/petalinux# 
+newQspi:/home/petalinux# cat /sys/class/fpga_manager/fpga0/state; cat /sys/bus/platform/devices/axi:msu2_pl0_clock/set_rate; cat /sys/kernel/debug/gpio; ls /sys/kernel/config/device-tree/overlays
+operating
+99990000
+gpiochip0: GPIOs 512-515, parent: platform/firmware:zynqmp-firmware:gpio, firmware:zynqmp-firmware:gpio:
+ gpio-513 (                    |reset               ) out hi ACTIVE LOW
+
+gpiochip1: GPIOs 516-689, parent: platform/ff0a0000.gpio, zynqmp_gpio:
+msu2_pl0_clock
+newQspi:/home/petalinux# cat > /tmp/msu2-pl-reset-release.dts <<'MSU2_DTS_END'
+> /dts-v1/;
+> /plugin/;
+> /* Approval required: release validated pl_resetn0 via EMIO95.
+>  * zynqmp_gpio offset 173 = 78 MIO + 95 EMIO = Bank5 bit31.
+>  * Flags 0: physical high, releasing the active-low fabric reset.
+>  * No SPI controller or AXI register access.
+>  */
+> / {
+>     fragment@0 {
+>         target = <&gpio>;
+>         __overlay__ {
+>             msu2_pl_reset_release {
+>                 gpio-hog;
+>                 gpios = <173 0>;
+>                 output-high;
+>                 line-name = "msu2-pl-resetn0";
+>             };
+>         };
+>     };
+> };
+> MSU2_DTS_END
+newQspi:/home/petalinux# dtc -@ -I dts -O dtb -o /tmp/msu2-pl-reset-release.dtbo /tmp/msu2-pl-reset-release.dts; sha256sum /tmp/msu2-pl-reset-release.dtbo
+6ae01a4bddea4fe225e2fdee6c5da48df70ce68df7be14328326d7066a171255  /tmp/msu2-pl-reset-release.dtbo
+newQspi:/home/petalinux# mkdir /sys/kernel/config/device-tree/overlays/msu2_pl_reset_release && cat /tmp/msu2-pl-reset-release.dtbo > /sys/kernel/config/device-tree/overlays/msu2_pl_reset_release/ddtbo; echo MSU2_RESET_OVERLAY_RC=$?; cat /sys/kernel/config/device-tree/overlays/msu2_pl_reset_release/status; cat /sys/kernel/debug/gpio; for addr in 0xFF0A0054 0xFF0A0074 0xFF0A0344 0xFF0A0348; ddo echo PS_GPIO_ADDRESS=$addr; devmem $addr 32; done; echo pm_reset_get_status 1119 > /sys/kernel/debug/zynqmp-firmware/pm; cat /sys/kernel/debug/zynqmp-firmware/pm; cat /sys/bus/platform/devices/aaxi:msu2_pl0_clock/set_rate; dmesg | tail -5; uptime
+MSU2_RESET_OVERLAY_RC=0
+applied
+gpiochip0: GPIOs 512-515, parent: platform/firmware:zynqmp-firmware:gpio, firmware:zynqmp-firmware:gpio:
+ gpio-513 (                    |reset               ) out hi ACTIVE LOW
+
+gpiochip1: GPIOs 516-689, parent: platform/ff0a0000.gpio, zynqmp_gpio:
+ gpio-689 (                    |msu2-pl-resetn0     ) out hi 
+PS_GPIO_ADDRESS=0xFF0A0054
+0xF0000000
+PS_GPIO_ADDRESS=0xFF0A0074
+0x00000000
+PS_GPIO_ADDRESS=0xFF0A0344
+0xF0000000
+PS_GPIO_ADDRESS=0xFF0A0348
+0x80000000
+Reset status: 0
+99990000
+[   21.136371] audit: type=1006 audit(1736360594.639:13): pid=664 uid=0 old-auid=4294967295 auid=1000 tty=(none) old-ses=4294967295 ses=1 res=1
+[   21.149067] audit: type=1300 audit(1736360594.639:13): arch=c00000b7 syscall=64 success=yes exit=4 a0=8 a1=ffffeb7e2080 a2=4 a3=1 items=0 ppid=1 pid=664 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=1 comm="(systemd)" exe="/usr/lib/systemd/systemd-executor" key=(null)
+[   21.175876] audit: type=1327 audit(1736360594.639:13): proctitle="(systemd)"
+[  152.194795] audit: type=1701 audit(1736360725.699:14): auid=4294967295 uid=0 gid=0 ses=4294967295 pid=694 comm="devmem" exe="/usr/bin/busybox" sig=7 res=1
+[81174.450228] fpga_manager fpga0: writing msu2_ratio2_j55_c27bb684.bit.bin to Xilinx ZynqMP FPGA Manager
+ 17:03:26 up 22:40,  load average: 0.00, 0.00, 0.00
+newQspi:/home/petalinux# echo MSU2_PS_AXI_WIDTH_CHECK; devmem 0xFD615000 32; devmem 0xFD1A0100 32
+MSU2_PS_AXI_WIDTH_CHECK
+0x00000A00
+0x00000032
+newQspi:/home/petalinux# echo MSU2_PS_ISOLATION_CHECK; devmem 0xFFD80600 32; devmem 0xFFD80604 32; devmem 0xFFD80110 32
+MSU2_PS_IS[81822.394167] audit: type=1701 audit(1736442395.897:15): auid=4294967295 uid=0 gid=0 ses=4294967295 pid=1849 comm="devmem" exe="/usr/bin/busybox" sig=7 res=1
+OLATION_CHECK
+[81822.411827] audit: type=1701 audit(1736442395.901:16): auid=4294967295 uid=0 gid=0 ses=4294967295 pid=1851 comm="devmem" exe="/usr/bin/busybox" sig=7 res=1
+Bus error (core dumped)
+Bus error (core dumped)
+Bus error (cor[81822.427001] audit: type=1701 audit(1736442395.905:17): auid=4294967295 uid=0 gid=0 ses=4294967295 pid=1853 comm="devmem" exe="/usr/bin/busybox" sig=7 res=1
+e dumped)
+newQspi:/home/petalinux# echo MSU2_FIRMWARE_ISOLATION_READ; for addr in 0xFFD80600 0xFFD80604 0xFFD80110; do echo PMU_ADDRESS=$addr; echo $addr > /sys/firmware/zynqmp/config_reg; cat /sys/firmware//zynqmp/config_reg; done; uptime
+MSU2_FIRMWARE_ISOLATION_READ
+PMU_ADDRESS=0xFFD80600
+0x0
+PMU_ADDRESS=0xFFD80604
+0x0
+PMU_ADDRESS=0xFFD80110
+0x0
+ 17:07:31 up 22:44,  load average: 0.00, 0.00, 0.00
+newQspi:/home/petalinux# 

@@ -1,0 +1,35 @@
+/dts-v1/;
+/plugin/;
+/* Requires approval: driver probe performs AXI MMIO immediately.
+ * Apply only after hash-pinned FPGA load, PL0 and reset stages.
+ */
+/ {
+    fragment@0 {
+        target = <&amba>;
+        __overlay__ {
+            #address-cells = <2>;
+            #size-cells = <2>;
+            spi@a0000000 {
+                compatible = "xlnx,axi-quad-spi-3.2", "xlnx,xps-spi-2.00.a";
+                reg = <0 0xa0000000 0 0x10000>;
+                clocks = <&zynqmp_clk 71>, <&zynqmp_clk 71>;
+                clock-names = "ext_spi_clk", "s_axi_aclk";
+                interrupt-parent = <&gic>;
+                interrupts = <0 89 1>;
+                interrupt-names = "ip2intc_irpt";
+                fifo-size = <256>;
+                bits-per-word = <8>;
+                num-cs = <1>;
+                xlnx,num-ss-bits = <1>;
+                xlnx,spi-mode = <0>;
+                #address-cells = <1>;
+                #size-cells = <0>;
+                loopback@0 {
+                    compatible = "msu2,spi-loopback";
+                    reg = <0>;
+                    spi-max-frequency = <49995000>;
+                };
+            };
+        };
+    };
+};

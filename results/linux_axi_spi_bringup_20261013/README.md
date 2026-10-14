@@ -258,3 +258,44 @@ releases ownership but does not guarantee restoration of hardware direction or
 OEN; rollback requires a separately reviewed operation.
 
 Kernel source: https://github.com/Xilinx/linux-xlnx/blob/0a0f70e531c7/drivers/gpio/gpio-zynq.c
+
+## Approved reset release completed; PS path prechecks
+
+The user approved the EMIO95 output-high overlay. Target dtc output matched
+SHA-256 6ae01a4bddea4fe225e2fdee6c5da48df70ce68df7be14328326d7066a171255.
+Configfs returned 0 and applied. Debugfs shows gpio-689 owned by
+msu2-pl-resetn0, out hi. DATA_5 and DIRM_5 remain 0xF0000000; OEN_5 changed
+from zero to 0x80000000. This matches the validated XSA's bit31 output-enable.
+DATA_5_RO and firmware reset 1119 still return zero. Kernel gpio-zynq.c reads
+the output latch for EMIO output reporting, so neither debugfs high nor the
+input readback is a direct measurement of the downstream reset net.
+
+PS read-only checks: AFI_FS at 0xFD615000 = 0x00000A00; masked with 0x300 this
+is 0x200, matching XSA HPM0 128-bit selection. RST_FPD_TOP at 0xFD1A0100 =
+0x32; masked with XSA AFI reset mask 0x1f80 this is zero.
+
+Direct devmem reads of protected PMU addresses 0xFFD80600, 0xFFD80604 and
+0xFFD80110 returned SIGBUS (uptime ~81822 seconds); the shell and Linux remained
+responsive. No retry through devmem was made. Inspection of kernel-matched
+zynqmp-pm.c verified that writing ONLY an address to config_reg selects a read,
+and cat performs CONFIG_REG_READ via firmware. That authorized read path returned
+zero for all three registers: AIB isolation control, AIB isolation status, and
+pending power-up request status. No PMU register value was written.
+
+Clock remains 99.99 MHz and FPGA manager operating. Clock and reset overlays
+remain applied. Missing OEN is now corrected, but root-cause confirmation and
+functional SPI proof still require an AXI test.
+
+Next proposed test (NOT EXECUTED; approval required): apply the compiled
+axi-spi-controller.dtbo, matching XSA address, two PL0 clock inputs, 256-entry
+FIFO, 8-bit words, one CS, direct PL IRQ0 (GIC SPI 89, rising edge). The matching
+xilinx_spi driver performs CR writes/reads and controller initialization during
+probe. This is the first planned AXI access and can still hang if an unobserved
+path fault remains. Capture driver symlink, SPI master and child device,
+interrupt registration, dmesg and continued console responsiveness.
+
+The child uses descriptive msu2,spi-loopback rather than impersonating another
+physical chip. A later explicit spidev driver_override binding will expose it
+for loopback verification. This proposed controller-probe stage does not send
+benchmark payloads. No automatic reboot, retry or overlay removal on a hang.
+The reset GPIO hog must remain owned and high while the controller operates.
