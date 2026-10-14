@@ -299,3 +299,33 @@ physical chip. A later explicit spidev driver_override binding will expose it
 for loopback verification. This proposed controller-probe stage does not send
 benchmark payloads. No automatic reboot, retry or overlay removal on a hang.
 The reset GPIO hog must remain owned and high while the controller operates.
+
+## Controller probe completed; serial transfer is still unverified
+
+After the reset release, the authorized controller overlay was applied. Linux
+bound `xilinx_spi` at `/sys/bus/platform/devices/a0000000.spi`; it created
+`spi1` and child `spi1.0`, with IRQ 60. Binding completed without a console
+hang. The child was then bound to `spidev` using `driver_override`, and
+`/dev/spidev1.0` appeared root-owned with mode 0600. This proves controller
+probe/register access and device exposure, but does not prove an SPI transfer.
+
+The workstation-built smoke executable is an AArch64 ELF of 74,248 bytes,
+SHA-256 `fb01baec3d451849bd147837491f0d63b62efd0e1a1f99389314d407582b8dcd`.
+The benchmark is 74,784 bytes with SHA-256
+`d4e0e6b747789eb44e9013397e8956703ab41d8b78800e18d5586e72e5037c85`. Neither
+was run on the target. Serial byte-stream transfer attempts failed: bytes were
+echoed and interpreted by the target shell rather than consumed by the intended
+file receiver. The resulting target files were not executed; no valid transfer
+hash was obtained. The target console session ended, and no post-transfer
+health check was captured. No claim of SPI loopback success, Linux benchmark
+results, or Linux-versus-bare-metal performance comparison is made.
+
+The active PL0 clock, FPGA image load, reset output-high hog, controller
+overlay, and `spidev` binding had all completed before the failed file transfer.
+The workstation-side files are ready for a reliable deployment path. Resume by
+restoring a clean console, checking the live platform/spidev state, and using a
+reliable file transport (for example, a configured network link or a paced
+text-safe serial protocol with target-side verification) before running the
+one-byte smoke test. Keep the current overlays and reset hog in place until the
+controller state is deliberately reviewed; do not infer a functional root cause
+from the file-transfer failure.
