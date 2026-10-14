@@ -158,3 +158,60 @@ Raw command output, including the complete clock-tree diff, is appended in
 target_console.log. Historical dmesg includes a devmem SIGBUS at uptime 152 s;
 that predates this experiment (uptime about 21 h 52 min) and was not generated
 by a new devmem command.
+
+## Reset mapping investigation and proposed programming stage
+
+Installed AMD 2025.1 embeddedsw sources (hashes in reset_source_hashes.sha256)
+provide a crucial distinction: pm_defs.h maps firmware IDs 1116..1119 to GPIO5
+EMIO92..95 respectively. pm_reset.c maps those IDs to GPIO direction and input
+data registers. The XSA reset sequence uses Bank5 bit31 (EMIO95), corresponding
+to firmware ID 1119 / DT reset index 119, not index 116 from the older overlay.
+The generated XSA sequence and HWH support this mapping; exact running PMUFW
+binary identity remains unverified. ID 1112 is PMU GPO3_PL31, a different path.
+
+PmResetGetStatusGpioBankIOs returns the raw GPIO input bit without checking DIRM
+or OEN. Despite its generic comment about reset assertion, do not interpret a
+zero result as proof that the active-low fabric reset has been released.
+All four live queries currently return zero. The reference pulse handler sets
+direction and writes high-low-high masked output data; it does not explicitly
+configure OEN. Do not assume that pulse alone reproduces XSA initialization.
+
+FSBL reference source calls psu_ps_pl_reset_config_data after a PL partition
+load, and in particular reset/handoff branches. This does not establish that the
+current Linux boot image executed the same generated function.
+
+Proposed next step (NOT EXECUTED, requires approval): program the hash-matched
+September 29 full bitstream through fpga_manager, with PL0 already enabled.
+program-validated-fpga.sh is syntax-checked and pins the input hash, current
+clock and overlay state, stages into volatile rootfs /lib/firmware, uses flags=0
+and writes only the firmware filename to the manager. It then requires state
+operating and captures clock, firmware reset-status and dmesg evidence. No SPI
+node, reset mutation, AFI change, or AXI SPI MMIO is requested by the script.
+FPGA programming itself can alter PL state and firmware-managed isolation; this
+is the consequential operation for approval. SD boot files remain untouched.
+
+A failed/hung load stops the investigation; no automatic reboot or retry is
+authorized. The previous FPGA contents are unknown and cannot be restored from
+a known image. No bitstream readback identity or functional SPI result is claimed
+from a successful manager load alone. Further reset/path checks precede any
+controller binding. The prepared script is a proposal, not an executed result.
+
+## Software readiness
+
+Linux RX-verifying benchmark rebuilt successfully with AMD AArch64 Linux GCC
+13.3.0 and -std=c11 -O2 -Wall -Wextra -Werror -Icommon, linked with -lm.
+linux_build_manifest.json pins source, shared contract, executable hashes and
+flags. The resulting AArch64 ELF has SHA-256
+d4e0e6b747789eb44e9013397e8956703ab41d8b78800e18d5586e72e5037c85.
+It has not been executed on the board. For the eventual run, explicitly pass
+49995000 as requested speed; its historical default is not this design's SCK.
+The driver does not make that requested speed a physical measurement.
+
+The stale static regression was updated to require the current SDT wrapper
+setup/disable/enable/disconnect calls and generated interrupt metadata. All six
+existing host tests now pass; both original failing and corrected logs are
+preserved. This does not replace hardware fault/recovery validation.
+
+The October 13 bare-metal CSV was extracted without changing values into
+baremetal_baseline_extracted.csv; all 11 rows have 1000 verified timing samples,
+zero RX mismatches and zero timeouts. No Linux comparison values are fabricated.

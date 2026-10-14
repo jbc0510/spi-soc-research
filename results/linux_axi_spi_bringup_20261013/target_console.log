@@ -744,4 +744,33 @@ MSU2_CLOCK_DIFF_END
 Reset status: 0
  16:14:55 up 21:52,  load average: 0.00, 0.00, 0.00
 unknown
+newQspi:/home/petalinux# echo MSU2_RESET_AUDIT; cat /sys/class/fpga_manager/fpga0/state; cat /sys/kernel/config/device-tree/overlays/msu2_pl0_clock/status; cat /sys/bus/platform/devices/axi:msu2_pll0_clock/set_rate; cat /sys/kernel/debug/gpio; cat /sys/kernel/debug/clk/clk_summary | grep -E 'pl0_ref|iopll '
+MSU2_RESET_AUDIT
+unknown
+applied
+99990000
+gpiochip0: GPIOs 512-515, parent: platform/firmware:zynqmp-firmware:gpio, firmware:zynqmp-firmware:gpio:
+ gpio-513 (                    |reset               ) out hi ACTIVE LOW
+
+gpiochip1: GPIOs 516-689, parent: platform/ff0a0000.gpio, zynqmp_gpio:
+                iopll                10      14       11       1499850000  0          0     50000      Y                  deviceless                      no_connection_id         
+                   pl0_ref_mux       1       1        0        1499850000  0          0     50000      Y                     deviceless                      no_connection_id         
+                      pl0_ref_div1   1       1        0        99990000    0          0     50000      Y                        deviceless                      no_connection_id         
+                         pl0_ref_div2 1       1        0        99990000    0          0     50000      Y                           deviceless                      no_connection_id         
+                            pl0_ref  1       1        0        99990000    0          0     50000      Y                              axi:msu2_pl0_clock              no_connection_id         
+newQspi:/home/petalinux# echo MSU2_RESET_IDS; for id in 1116 1117 1118 1119; do echo RESET_ID=$id; echo pm_reset_get_status $id > /sys/kernel/debug/zynqmp-firmware/pm; cat /sys/kernel/debug/zynqmp--firmware/pm; done; ls /sys/class/fpga_manager/fpga0; sha256sum /run/media/BOOT-mmcblk0p1/spi_ratio2_j55_lvcmos33_20260929.bit.bin
+MSU2_RESET_IDS
+RESET_ID=1116
+Reset status: 0
+RESET_ID=1117
+Reset status: 0
+RESET_ID=1118
+Reset status: 0
+RESET_ID=1119
+Reset status: 0
+device     firmware   flags      key        name       of_node    power      state      status     subsystem  uevent
+c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd  /run/media/BOOT-mmcblk0p1/spi_ratio2_j55_lvcmos33_20260929.bit.bin
+newQspi:/home/petalinux# cat /sys/class/fpga_manager/fpga0/flags /sys/class/fpga_manager/fpga0/status; ls /sys/bus/platform/devices | grep -E '^a[0-9a-f]{7}\.'; test -d /lib/firmware; echo FIRMWAREE_DIRECTORY_RC=$?
+0
+FIRMWARE_DIRECTORY_RC=1
 newQspi:/home/petalinux# 

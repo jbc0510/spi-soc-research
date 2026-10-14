@@ -120,9 +120,11 @@ class Phase1(unittest.TestCase):
         self.assertIn("#define SPI_BENCH_TIMEOUT (-10004)", contract)
 
         for token in (
-            "XScuGic_Connect",
-            "XScuGic_Disable",
-            "XScuGic_Enable",
+            "XSetupInterruptSystem",
+            "XDisableIntrId",
+            "XEnableIntrId",
+            "XDisconnectInterruptCntrl",
+            "cfg->IntrId, cfg->IntrParent",
             "XSpi_InterruptHandler",
             "XSpi_IntrGlobalEnable",
             "SPI_AXI_TRANSFER_TIMEOUT_MS",

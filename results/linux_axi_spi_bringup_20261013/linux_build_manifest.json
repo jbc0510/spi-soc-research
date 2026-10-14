@@ -1,0 +1,11 @@
+{
+  "compiler": "AMD AArch64 Linux GCC 13.3.0",
+  "flags": "-std=c11 -O2 -Wall -Wextra -Werror -Icommon -lm",
+  "hashes": {
+    "linux/src/spi_benchmark_v3_rxverify.c": "d6db1f27431e3fdd563ff14527495e28a2d56bf354c1cf66281bf0743cfbf35e",
+    "common/spi_benchmark_contract.h": "aa5af323605598d89f813be6477a229c6da3a3197c93171877cfcf627bcb5a07",
+    "results/linux_axi_spi_bringup_20261013/spi_benchmark_v3_rxverify_aarch64": "d4e0e6b747789eb44e9013397e8956703ab41d8b78800e18d5586e72e5037c85"
+  },
+  "execution": "NOT_RUN_ON_BOARD",
+  "requested_speed_hz_for_future_run": 49995000
+}
