@@ -1,6 +1,6 @@
 # MSU-2 Task 2 evidence deck
 
-`MSU2_Task2_Evidence_Review_20261015_v14.pptx` is the current cumulative Task 2 deck. It covers the Task 2a performance comparison, Task 2b PIO/DMA assessment, Task 2c real-time suitability finding, the Task 2d hardening design, Task 2e benchmark-thread CPU analysis, the host-only Task 2g A/B updater prototype, the Vivado Enterprise license diagnostic, and a new baseline-versus-hardened update fault comparison. The deck identifies remaining target integration and validation gaps. The four charts and process figures are editable PowerPoint objects, and slide notes cite the source reports and data.
+`MSU2_Task2_Evidence_Review_20261015_v15.pptx` is the current cumulative Task 2 deck. It covers the Task 2a performance comparison, Task 2b PIO/DMA assessment, Task 2c real-time suitability finding, the Task 2d hardening design, Task 2e benchmark-thread CPU analysis, the Task 2g A/B updater prototype, the Vivado Enterprise license diagnostic, and the baseline-versus-hardened update demo executed on ZCU102 Linux. The deck identifies remaining target boot-chain integration and validation gaps. The four charts and process figures are editable PowerPoint objects, and slide notes cite the source reports and data.
 
 ## Rebuild
 
@@ -25,4 +25,4 @@ The builder reads the committed comparison CSV and CDMA simulation CSV, exports 
 7. Task 2e Linux benchmark-thread CPU share by payload size; bare-metal CPU-use and sustained-throughput tests remain open.
 8. Task 2g signed inactive-slot update prototype and four host fault-injection tests; U-Boot and target validation remain open.
 9. Vivado Enterprise license diagnostic: host-ID visibility caused a false failure inside the sandbox; synthesis succeeds with normal workstation host access.
-10. Task 2g host fault-injection comparison: tamper, interrupted-write, and failed-health cases distinguish unsafe baseline behavior from the A/B reference; this is model evidence, not ZCU102 secure-boot proof.
+10. Task 2g ZCU102 Linux execution: four update-control cases pass on the board CPU using target OpenSSL and `/tmp` files; persistent update state and verified boot remain untested.

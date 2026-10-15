@@ -1,0 +1,10 @@
+ZCU102 Linux target demo; temporary files under /tmp/msu2-hardening-rqBaJN
+Target libcrypto.so.3 signature verification; no FPGA/MMIO/spidev or boot-media access
+Scenario                | Baseline (unsafe)               | Hardened reference             | Check
+--------------------------------------------------------------------------------------------------------------
+Valid signed release    | image accepted in place         | verified; staged to B          | PASS
+Tampered release        | altered bytes accepted          | rejected; A and B unchanged    | PASS
+Interrupted update      | active A partly overwritten     | A retained; no trial published | PASS
+Trial health failure    | unhealthy image remains active  | rollback; A selected           | PASS
+Overall: PASS (0 failures)
+Scope: target Linux execution with temporary file slots; not verified boot or hardware-rooted key proof.

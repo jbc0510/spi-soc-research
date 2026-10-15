@@ -1,0 +1,17 @@
+ZCU102 physical-target execution capture
+Target: newQspi, Linux 6.12.10-xilinx-g0a0f70e531c7, AArch64
+Target OpenSSL runtime: /usr/lib/libcrypto.so.3 (present)
+Target application SHA-256: 0ca6af020d16ea8174ec3d2f7ff625b1dd727870b1f28753898f51a98646f8e8
+Target SHA-256 matched the workstation build before execution.
+After execution, fpga_manager state remained operating and /dev/spidev1.0 remained present.
+
+ZCU102 Linux target demo; temporary files under /tmp/msu2-hardening-LQ5mEr
+Target libcrypto.so.3 signature verification; no FPGA/MMIO/spidev or boot-media access
+Scenario                | Baseline (unsafe)               | Hardened reference             | Check
+--------------------------------------------------------------------------------------------------------------
+Valid signed release    | image accepted in place         | verified; staged to B          | PASS
+Tampered release        | altered bytes accepted          | rejected; A and B unchanged    | PASS
+Interrupted update      | active A partly overwritten     | A retained; no trial published | PASS
+Trial health failure    | unhealthy image remains active  | rollback; A selected           | PASS
+Overall: PASS (0 failures)
+Scope: target Linux execution with temporary file slots; not verified boot or hardware-rooted key proof.

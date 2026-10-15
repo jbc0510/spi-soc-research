@@ -8,12 +8,14 @@ const skillDir = '/home/opentitan/.codex/plugins/cache/openai-primary-runtime/pr
 const nodeModules = process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES ?? '/home/opentitan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules';
 const runtimeRequire = createRequire(path.join(nodeModules, '__runtime__.cjs'));
 const { Presentation, PresentationFile } = await import(pathToFileURL(runtimeRequire.resolve('@oai/artifact-tool')).href);
+process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v14.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v15.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
+process.stderr.write('presentation helpers imported\n');
 const C = {
   ink: '#17252C', muted: '#50636B', paper: '#F8FAF9', white: '#FFFFFF',
   teal: '#1B6E78', orange: '#C35A2B', blue: '#446B9E', pale: '#DFECEA',
@@ -69,7 +71,9 @@ function setNotes(slide, lines) { slide.speakerNotes.text = lines.join('\n'); }
 const comparison = await readCsv('results/linux_axi_spi_bringup_20261013/linux_vs_baremetal_comparison_20261014.csv');
 const cdma = await readCsv('results/task2b_cdma_sim_20261014/cdma_simulated_sweep.csv');
 const framework = await readCsv('results/linux_axi_spi_bringup_20261013/task2e_framework_metrics_20261014.csv');
+process.stderr.write('source data read\n');
 const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
+process.stderr.write('presentation initialized\n');
 
 // 1 — Cover
 {
@@ -302,7 +306,8 @@ const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
 
 // 10 — Controlled updater contrast
 {
-  const s = baseSlide(p, 'Update fault handling: baseline vs A/B reference', '2g  /  Host fault-injection demonstration', 10);
+  process.stderr.write('slide 10 start\n');
+  const s = baseSlide(p, 'ZCU102 Linux update-control demonstration', '2g  /  Target execution', 10);
   box(s, 72, 176, 265, 35, 'TEST CASE', { size: 19, bold: true, color: C.muted });
   box(s, 365, 176, 375, 35, 'UNSAFE BASELINE', { size: 19, bold: true, color: C.red });
   box(s, 785, 176, 400, 35, 'SIGNED A/B REFERENCE', { size: 19, bold: true, color: C.green });
@@ -319,30 +324,35 @@ const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
     box(s, 365, y, 375, 47, row[1], { size: 20, color: C.red });
     box(s, 785, y, 400, 47, row[2], { size: 20, color: C.green });
   });
-  box(s, 72, 544, 1115, 74, 'All four model checks passed. This proves updater behavior in a host reference model; it does not verify ZCU102 secure boot, SD-card power-loss recovery, or hardware key provisioning.', { size: 19, bold: true, color: C.amber });
+  box(s, 72, 544, 1115, 74, 'All four checks passed on the ZCU102 AArch64 Linux system using its OpenSSL runtime and temporary /tmp slots. This did not test BootROM/U-Boot, persistent boot state, or physical power-loss recovery.', { size: 19, bold: true, color: C.amber });
   setNotes(s, [
-    'Report: results/SOW_2G_HARDENING_CONTRAST_20261015.md.',
-    'Reproduction: python3 linux/appliance/hardening_contrast_demo.py. Captured output: results/task2g_hardening_contrast_20261015/demo_run.log.',
-    'The hardened column invokes linux/appliance/ab_update_prototype.py using temporary host files. The baseline is an intentionally unsafe in-memory illustration.',
-    'Tests: tests/test_task2g_hardening_contrast.py and tests/test_task2g_ab_update.py. Passing tests are model evidence only, not target secure-boot validation.',
+    'Target report: results/SOW_2G_ZCU102_HARDENING_DEMO_20261015.md.',
+    'Target source/build: linux/appliance/hardening_contrast_board.c and scripts/build_task2g_board_demo.py. The application ran on newQspi, Linux 6.12.10-xilinx, and verified its RSA/SHA-256 fixture through target libcrypto.so.3.',
+    'Target executable SHA-256: 0ca6af020d16ea8174ec3d2f7ff625b1dd727870b1f28753898f51a98646f8e8. Captured output: results/task2g_board_contrast_20261015/target_run.log.',
+    'All file slots were in /tmp and removed by the application. The baseline intentionally lacks signature verification and recovery. The health failure and interrupted write are injected software cases, not a physical reset or boot test.',
+    'Tests: tests/test_task2g_board_demo_host.py and tests/test_task2g_ab_update.py. Target execution proves the user-space demo on the board, not its BootROM/FSBL/TF-A/U-Boot chain.',
   ]);
+  process.stderr.write('slide 10 end\n');
 }
 
 await fs.mkdir(stagingDir, { recursive: true });
 await fs.mkdir(previewDir, { recursive: true });
 await fs.mkdir(path.dirname(finalPath), { recursive: true });
+console.log(`rendering ${p.slides.items.length} slides`);
 for (const [i, slide] of p.slides.items.entries()) {
   const blob = await p.export({ slide, format: 'png', scale: 1 });
   await fs.writeFile(path.join(previewDir, `slide-${String(i + 1).padStart(2, '0')}.png`), new Uint8Array(await blob.arrayBuffer()));
 }
+console.log('slide renders complete; exporting draft');
 const draftPath = path.join(stagingDir, 'candidate.pptx');
 await (await PresentationFile.exportPptx(p)).save(draftPath);
+console.log('draft export complete; running final validation');
 const { finalizePresentation } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 const result = await finalizePresentation({
   workspaceDir: root,
   candidatePath: draftPath,
   finalPath,
-  pythonExecutable: '/home/opentitan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3.12',
+  pythonExecutable: '/usr/bin/python3',
   integrityValidatorPath: path.join(skillDir, 'container_tools/inspect_presentation_package_integrity.py'),
   layoutValidatorPath: path.join(skillDir, 'container_tools/inspect_presentation_layout_geometry.py'),
   layoutArgs: ['--expected-slide-size-emu', '12192000,6858000', '--validate-heading-fit'],
@@ -351,6 +361,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v14.json'),
+  receiptPath: path.join(stagingDir, 'validation_v15.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
