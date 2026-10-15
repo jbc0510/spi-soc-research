@@ -1,5 +1,13 @@
 # SOW 2.f STARTED — CPU frequency sweep, ZCU102 #2
 
+> **Interpretation correction (2026-10-14):** The captures record `nivcsw=0`
+> for all measured rows. This establishes that the process reported no
+> involuntary context switches during those loops. It does not prove that all
+> scheduler delays, interrupt interference, or other sources of timing
+> variation were absent. Read the jitter result as correlated with the tested
+> CPU operating point; do not treat `nivcsw=0` as causal exclusion of
+> preemption.
+
 Measured at Morgan, `bxqp8b3-ub22`, 2026-09-08. MSU-2 Task 2, IAC/TAT P1-22-2393.
 Repo commit `e042277` at time of measurement.
 
@@ -57,7 +65,7 @@ some per-byte involvement, so a slower CPU costs slightly more per byte.
 **NOT CLAIMED:** that the +9.1% is fully explained by polling. It is
 consistent with polling. No instrumentation was added to attribute it.
 
-## JITTER SCALES WITH CPU FREQUENCY — AND IT IS NOT PREEMPTION
+## JITTER SCALES WITH CPU FREQUENCY; CAUSAL SOURCE UNRESOLVED
 
 Unpredicted, and directly on the SOW 2.f determinism question.
 
@@ -68,12 +76,14 @@ frequency reduction**.
 **`ivcsw = 0` on every row of all four captures.** Zero involuntary context
 switches across 44,000 timed trials in this session.
 
-So the growing variability is **not** the scheduler preempting the
-measurement. With preemption excluded by measurement, the remaining candidate
-is the polling loop's own timing spreading out as cycles become scarce.
+The recorded `nivcsw=0` counts show no involuntary process context switches
+reported during these runs. They do not exclude all scheduling or interrupt
+effects. The polling loop's timing spreading out as cycles become scarce is a
+possible explanation, but it was not instrumented.
 
-**NOT CLAIMED:** that the polling loop is the cause. What is established is
-that jitter grows as CPU frequency falls and that preemption is excluded.
+**NOT CLAIMED:** that the polling loop is the cause or that preemption and
+interrupt effects are excluded. What is established is that jitter grows as
+CPU frequency falls in these captures; its cause remains unresolved.
 Attributing the mechanism requires instrumentation not present in this harness.
 
 `err_count = 0` on every row of all four captures.
@@ -188,8 +198,9 @@ prompt before pasting a path.**
 - **That 2.f is complete.** It is not. One axis of three has been swept.
 - That the +9.1% slope drift is fully explained by polling. Consistent with,
   not attributed.
-- That the polling loop causes the jitter growth. Preemption is excluded by
-  measurement; the mechanism is not established.
+- That the polling loop causes the jitter growth, or that scheduler and
+  interrupt effects are categorically excluded; the mechanism is not
+  established.
 - That these results transfer to PS SPI1. That controller remains unreachable
   from Linux (ATF domain restriction).
 - That the achieved Mbps reflects the requested rate. It does not — the driver
