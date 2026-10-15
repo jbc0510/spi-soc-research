@@ -1,10 +1,10 @@
 # MSU-2 Task 2b — PIO and DMA transfer-mechanism assessment
 
-**Status: Task 2b mechanism assessment complete with limits; CDMA points are simulated and target-board DMA performance is not claimed.**
+**Status: Task 2b is closed as a performance-characteristics assessment.** PIO is measured on the target across 11 payload sizes; the viable CDMA path is characterized in simulation across six sizes; the attempted ZDMA-to-PS-SPI path is documented as invalid for performance measurement. Target-board DMA performance and a direct physical PIO-versus-DMA comparison are not claimed.
 
 ## Governing requirement
 
-The controlling document is `MSU-2_SOW_Final (1).docx`, revision 2026-02-23, in the workstation Downloads folder. Task 2b says: “Analyze Data Transfer Mechanisms — Assess the performance characteristics of Programmed I/O (PIO) and Direct Memory Access (DMA) across varying payload sizes.” The SOW does not explicitly mandate a physical DMA sweep, but it does ask for performance characteristics across sizes. This report therefore separates measured PIO data, DMA feasibility/constraint evidence, and the missing valid DMA performance curve. It does not mark Task 2b fully closed.
+The controlling document is `MSU-2_SOW_Final (1).docx`, revision 2026-02-23, in the workstation Downloads folder. Task 2b says: “Analyze Data Transfer Mechanisms — Assess the performance characteristics of Programmed I/O (PIO) and Direct Memory Access (DMA) across varying payload sizes.” This assessment separates measured PIO data, simulated CDMA characteristics, and the invalid ZDMA result, with the evidence class explicit for each result. The criterion asks for an assessment across sizes; it does not explicitly require a physical DMA sweep. Hardware DMA throughput and direct physical PIO-versus-DMA comparison remain open under Task 2f's separate driver-performance comparison.
 
 ## PIO baseline: measured on the validated AXI Quad SPI
 
@@ -43,7 +43,7 @@ For present use, select PIO for every validated payload from 1 through 65,536 by
 
 This recommendation is not a claim that PIO is intrinsically faster than CDMA. It records which path is presently validated and avoids inventing a DMA crossover from simulation constraints or a failed ZDMA implementation. The SOW’s later transfer-size-to-refined-software/DMA mapping deliverable and Task 2f’s standard-driver-versus-optimized-DMA comparison remain open pending valid DMA data.
 
-## Closeout and next experiment
+## Task 2b closeout decision
 
 The Task 2b mechanism assessment is complete: it combines the physical 11-size PIO curve, the failed physical ZDMA route as a negative result, and a six-size simulation curve for the viable CDMA-to-AXI-SPI topology. Vivado 2025.1/XSim runs when launched with host-level local IPC access; the identical smoke test failed in the restricted execution sandbox and passed outside it. No global tool, OS, or target-board settings were changed. The CDMA timing interval begins immediately before the BTT register write and ends after TX FIFO empty plus a 2 µs final-shift allowance. The model uses a 100 MHz input clock, 16:1 SCK ratio, AXI VIP memory, and internal SPI loopback. These points are useful for comparing the simulated CDMA design across sizes, but cannot establish target-board performance, CPU offload, or a crossover against physical PIO. The next step, if CDMA implementation is pursued, is a DMA-capable bitstream and hardware test; the expired synthesis feature currently blocks that. Task 2b closure does not close Task 2f’s standard-driver-versus-optimized-DMA comparison. No clock, reset, FPGA, or target-board state was changed for this assessment.
 
@@ -57,5 +57,6 @@ The Task 2b mechanism assessment is complete: it combines the physical 11-size P
 - October 14 simulator control test: `SOW_2B_XSIM_SMOKE_20261014_elab.log`, `SOW_2B_XSIM_SMOKE_20261014_runtime.log`, and `SOW_2B_XSIM_SMOKE_20261014_runtime_nolibpath.log`.
 - Reproducible fresh-build CDMA test: `hardware/sim/run_task2b_cdma_loopback.tcl`; raw Vivado and XSim logs in `results/task2b_cdma_sim_20261014/`. The test uses the Xilinx AXI CDMA, AXI Quad SPI, and AXI VIP memory/master models; the 128-byte SPI test uses the core's internal loopback.
 - Simulated CDMA payload curve: `results/task2b_cdma_sim_20261014/cdma_simulated_sweep.csv`. Timings are model timing only and are not combined with the physical PIO timing table.
+- Optional physical follow-on experiment design and image-readiness gate: `results/SOW_2B_PHYSICAL_DMA_EXPERIMENT_DESIGN_20261015.md`. No CDMA-enabled bitstream is currently present in the repository.
 - Vivado version on the Morgan workstation: 2025.1. The archived September 2026 synthesis log records the XCZU9EG synthesis feature as expired; a new FPGA build was not attempted for this assessment.
 - SHA-256 of the controlling local SOW (`/home/opentitan/Downloads/MSU-2_SOW_Final (1).docx`): `047f1865e1c956fc97e39ce7d057b03c27ecdc7ba9ef99f7bb1229984faf8634`.

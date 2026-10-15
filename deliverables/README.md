@@ -1,6 +1,6 @@
 # MSU-2 Task 2 evidence deck
 
-`MSU2_Task2_Evidence_Review_20261014_v5.pptx` is the cumulative Task 2 deck. It covers the Task 2a performance comparison, simulation-only Task 2b CDMA evidence, Task 2c real-time suitability finding, the Task 2d hardening design, Task 2e benchmark-thread CPU analysis, and the host-only Task 2g A/B updater prototype. The deck identifies remaining target integration and validation gaps. The four charts are editable PowerPoint line charts, the boot/update figures are editable diagrams, and slide notes cite the source reports and data.
+`MSU2_Task2_Evidence_Review_20261015_v7.pptx` is the cumulative Task 2 deck. It covers the Task 2a performance comparison, Task 2b PIO/DMA assessment, Task 2c real-time suitability finding, the Task 2d hardening design, Task 2e benchmark-thread CPU analysis, and the host-only Task 2g A/B updater prototype. The deck identifies remaining target integration and validation gaps. The four charts are editable PowerPoint line charts, the boot/update figures are editable diagrams, and slide notes cite the source reports and data.
 
 ## Rebuild
 
@@ -18,7 +18,7 @@ The builder reads the committed comparison CSV and CDMA simulation CSV, exports 
 
 1. Scope and evidence date.
 2. Task 2a: Linux and bare-metal effective payload rate by size; crossover is between 16 B and 64 B in the captured run.
-3. Task 2b: six simulated CDMA-to-SPI internal-loopback points; not a physical DMA benchmark.
+3. Task 2b: assessment closure combines the 11-size measured PIO curve, six simulated CDMA-to-SPI internal-loopback points, and the invalid ZDMA-to-PS-SPI result; it is not a physical DMA benchmark.
 4. Task 2c: 64 KiB Linux latency standard deviation across CPU-frequency points; no hard-deadline claim.
 5. Current status and evidence boundaries for Tasks 2d–2g.
 6. Task 2d proposed boot trust, signed FIT, and A/B update/rollback design; implementation remains open.

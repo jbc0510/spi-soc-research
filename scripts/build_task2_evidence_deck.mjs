@@ -11,7 +11,7 @@ const { Presentation, PresentationFile } = await import(pathToFileURL(runtimeReq
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261014_v5.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v7.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 const C = {
@@ -118,14 +118,15 @@ const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
     series: [{ name: 'Simulated effective rate', values: cdma.map(r => Number(r.effective_simulated_MB_per_s)), line: { style: 'solid', fill: C.blue, width: 3 }, marker: { symbol: 'circle', size: 7, fill: C.blue } }],
     hasLegend: false, xTitle: 'Payload size', yTitle: 'Effective simulated rate (MB/s)', yMin: 0, yMax: 0.9, yMajor: 0.2, yFormat: '0.0',
   });
-  box(s, 875, 190, 320, 60, '6 / 6 payloads passed', { size: 27, bold: true, color: C.green });
-  box(s, 875, 258, 320, 75, '1–256 B; every received byte matched the source pattern.', { size: 21, color: C.muted });
+  box(s, 875, 190, 320, 60, '2b assessment complete', { size: 26, bold: true, color: C.green });
+  box(s, 875, 258, 320, 75, '6 / 6 simulated DMA sizes passed; every received byte matched.', { size: 20, color: C.muted });
   box(s, 875, 365, 320, 55, 'What this proves', { size: 23, bold: true });
   box(s, 875, 408, 320, 81, 'The AXI CDMA keyhole path can feed the modeled AXI Quad SPI DTR and complete internal-loopback transfers.', { size: 19, color: C.muted });
-  box(s, 875, 520, 320, 79, 'Simulation only: no physical DMA, CPU-use measurement, J55 test, or PIO/DMA crossover claim.', { size: 18, bold: true, color: C.amber });
+  box(s, 875, 520, 320, 79, 'PIO is physically measured on slide 2. DMA points here are simulation only; no physical DMA or crossover is claimed.', { size: 18, bold: true, color: C.amber });
   setNotes(s, [
     'Source: results/task2b_cdma_sim_20261014/cdma_simulated_sweep.csv and results/task2b_cdma_sim_20261014/cdma_loopback_simulate.log.',
     'Reproduction and test limits: results/task2b_cdma_sim_20261014/README.md; source testbench: hardware/sim/tb_keyhole.sv.',
+    'Optional physical follow-on experiment design and readiness gate: results/SOW_2B_PHYSICAL_DMA_EXPERIMENT_DESIGN_20261015.md. No CDMA-enabled bitstream is currently in the repository.',
     'Vivado 2025.1 fresh build and XSim run passed with host IPC access. The chart shows model effective rate from the BTT write to TX FIFO empty plus the stated 2 us final-word allowance.',
   ]);
 }
@@ -300,6 +301,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v5.json'),
+  receiptPath: path.join(stagingDir, 'validation_v7.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
