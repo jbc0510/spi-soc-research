@@ -2,7 +2,7 @@
 
 **SOW activity:** “System Hardening — Design a minimal software environment that supports secure boot, reliable updates, and automated recovery mechanisms.”
 
-**Disposition:** Task 2d remains open. The repository contains a measured U-Boot environment fallback demonstration, but no evidence of a hardened and deployable Linux appliance with verified boot, atomic image updates, or automatic recovery across the boot image and root filesystem.
+**Disposition (corrected 2026-10-15): Task 2d's design criterion is complete** based on `SOW_2D_SYSTEM_HARDENING_DESIGN_20261014.md`. This gap review remains valid for implementation: the repository does not yet contain a deployed and hardware-validated appliance with verified boot, atomic image updates, or automatic recovery across the boot image and root filesystem. Those implementation gaps belong to the later minimal-appliance activity (Task 2g).
 
 ## Confirmed evidence
 
@@ -18,12 +18,12 @@ The environment-copy fallback should be described as recovery evidence for U-Boo
 
 The SOW separately names “Minimal Appliance Development and Security” later in Task 2. That clause overlaps secure-boot and update themes; this review keeps the activities distinct by mapping Task 2d to hardening and recovery requirements and reserving deployable-minimal-rootfs and integrity implementation to Task 2g. Evidence is not counted twice as criterion closure.
 
-## Work required to close Task 2d
+## Implementation work remaining under Task 2g
 
-1. Define a trust model and threat boundary, including the immutable trust anchor and key enrollment procedure. Do not burn ZynqMP eFuses as part of an unreviewed experiment.
-2. Build a signed boot chain with the intended signature-verification options enabled in the actual bootloader, and show acceptance of an authentic image and rejection of a modified image on a test target.
-3. Design a redundant or A/B update layout with atomic slot selection, health confirmation, and rollback after failed boot; include `BOOT.BIN`, kernel, device tree, and rootfs in the scope.
-4. Add detection and repair for a damaged update slot or environment record, and test interruption/corruption at relevant write stages.
+1. Implement the approved trust-anchor and key-enrollment procedure on a designated test unit; do not burn ZynqMP eFuses as an unreviewed experiment.
+2. Build the signed boot chain with the intended signature-verification options enabled, then demonstrate acceptance of an authentic image and rejection of a modified image on the test target.
+3. Implement the designed A/B layout with atomic slot selection, health confirmation, and rollback across `BOOT.BIN`, kernel, device tree, and rootfs.
+4. Implement detection and repair for a damaged update slot or environment record, and test interruption/corruption at relevant write stages.
 5. Repeat recovery trials and preserve before/after hashes, boot logs, firmware/kernel configuration, and the exact SD-image manifest.
 
 ## Workstation inventory observation
@@ -38,4 +38,4 @@ A PetaLinux 2025.2 project is present outside this repository at `/home/opentita
 - PetaLinux generated configuration: `/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/configs/config`
 - PetaLinux generated boot image manifest: `/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/images/linux/bootgen.bif`
 
-This is an evidence and gap review, not a claim that Task 2d is complete.
+This is an implementation gap review, not a claim that the proposed architecture has been deployed. It does not reopen Task 2d's completed design criterion.

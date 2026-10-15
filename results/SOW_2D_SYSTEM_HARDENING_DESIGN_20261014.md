@@ -2,7 +2,7 @@
 
 **SOW activity:** “System Hardening — Design a minimal software environment that supports secure boot, reliable updates, and automated recovery mechanisms.”
 
-**Disposition:** The system-hardening architecture is defined here. It is a design deliverable, not a claim of implemented or hardware-validated secure boot or update recovery. The U-Boot environment-copy fallback is existing bounded evidence; the deployable implementation and fault-injection tests remain open under the appliance work.
+**Disposition: Task 2d design criterion complete.** This report specifies the minimal software environment, hardware-rooted secure-boot chain, signed update flow, and automatic trial-boot recovery. It is a design deliverable, not a claim of implemented or hardware-validated secure boot or update recovery. Deployment, target validation, and fault-injection tests remain open under the later minimal-appliance implementation activity (Task 2g).
 
 ## Design goals and threat boundary
 
@@ -52,4 +52,4 @@ No target image was rebuilt, no SD card or board state was changed, and no eFUSE
 - AMD Zynq UltraScale+ MPSoC Software Developer Guide, [Boot Time Security](https://docs.amd.com/r/en-US/ug1137-zynq-ultrascale-mpsoc-swdev/Boot-Time-Security) and [Authentication](https://docs.amd.com/r/en-US/ug1137-zynq-ultrascale-mpsoc-swdev/Authentication).
 - AMD Embedded Design Tutorial, [Enabling Boot Header Authentication](https://docs.amd.com/r/en-US/ug1209-embedded-design-tutorial/Enabling-Boot-Header-Authentication).
 
-The design defines the architecture to implement and test; it does not close the separate Task 2g appliance implementation or claim the overall hardening requirement is fully satisfied in the deployed system.
+The design satisfies the SOW's “Design” activity for Task 2d. It does not close the separate Task 2g appliance implementation or claim the overall hardening approach is deployed or hardware-validated.

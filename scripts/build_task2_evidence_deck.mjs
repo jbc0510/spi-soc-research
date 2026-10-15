@@ -11,7 +11,7 @@ const { Presentation, PresentationFile } = await import(pathToFileURL(runtimeReq
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v8.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v10.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 const C = {
@@ -46,7 +46,7 @@ function baseSlide(p, title, kicker, index) {
   box(slide, 70, 38, 1120, 25, kicker.toUpperCase(), { size: 15, bold: true, color: C.teal });
   box(slide, 70, 70, 1130, 62, title, { size: 42, bold: true });
   const line = slide.shapes.add({ geometry: 'rect', position: { left: 70, top: 146, width: 1140, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
-  box(slide, 70, 680, 1120, 18, `MSU-2  ·  Task 2 evidence review  ·  14 Oct 2026                                      ${String(index).padStart(2, '0')}`, { size: 13, color: C.muted });
+  box(slide, 70, 680, 1120, 18, `MSU-2  ·  Task 2 evidence review  ·  15 Oct 2026                                      ${String(index).padStart(2, '0')}`, { size: 13, color: C.muted });
   return slide;
 }
 function addLineChart(slide, opts) {
@@ -79,7 +79,7 @@ const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
   box(s, 88, 100, 1080, 34, 'MORGAN STATE UNIVERSITY  /  MSU-2', { size: 18, bold: true, color: C.teal });
   box(s, 88, 195, 1030, 146, 'Task 2: SPI performance,\ndeterminism and secure integration', { size: 54, bold: true });
   box(s, 92, 382, 970, 75, 'Evidence review: completed comparisons, simulation findings, and remaining verification work', { size: 27, color: C.muted });
-  box(s, 92, 580, 900, 32, 'ZCU102  ·  AXI Quad SPI  ·  J55 loopback  ·  Evidence through 14 October 2026', { size: 18, color: C.muted });
+  box(s, 92, 580, 900, 32, 'ZCU102  ·  AXI Quad SPI  ·  J55 loopback  ·  Evidence through 15 October 2026', { size: 18, color: C.muted });
   setNotes(s, [
     'Scope: Task 2a–2c findings and current status of remaining SOW activities.',
     'Primary source: /home/opentitan/Downloads/MSU-2_SOW_Final (1).docx, revision 2026-02-23.',
@@ -215,6 +215,7 @@ const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
     });
   };
   box(s, 62, 174, 1135, 26, 'BOOT AUTHENTICATION', { size: 17, bold: true, color: C.teal });
+  box(s, 850, 174, 347, 26, '2d DESIGN CRITERION COMPLETE', { size: 16, bold: true, color: C.green, align: 'right' });
   addFlow(bootNodes, 208, C.teal);
   box(s, 62, 350, 1135, 26, 'UPDATE TRANSACTION AND AUTOMATIC ROLLBACK', { size: 17, bold: true, color: C.blue });
   addFlow(updateNodes, 384, C.blue);
@@ -301,6 +302,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v8.json'),
+  receiptPath: path.join(stagingDir, 'validation_v10.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
