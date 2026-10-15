@@ -23,6 +23,8 @@ The existing bare-metal firmware loops on `irq_state.terminal` while each XSpi i
 3. Turn the two backend binaries into a single orchestration workflow with a shared run manifest and schema. Current execution/capture procedures remain target-specific even though they share the payload contract and comparison validator.
 4. Re-run the completed suite after the harness changes and preserve raw logs, per-transfer results, CPU counters, SCK configuration, CPU operating point, and hashes together.
 
+The concrete paired closure experiment is specified in `results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md`. It defines the 60-second sustained-throughput window, three repeats, CPU-metric basis, stop conditions, and run manifest. It has not been executed because the target was unreachable from the workstation session on 2026-10-15.
+
 ## Reproduction
 
 Run the existing comparison validator first, then derive the CPU metrics:

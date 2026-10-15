@@ -11,7 +11,7 @@ const { Presentation, PresentationFile } = await import(pathToFileURL(runtimeReq
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v10.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v11.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 const C = {
@@ -245,6 +245,7 @@ const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
     'Source CSV: results/linux_axi_spi_bringup_20261013/task2e_framework_metrics_20261014.csv.',
     'Derived from raw Linux CLOCK_THREAD_CPUTIME_ID and CLOCK_MONOTONIC_RAW loop totals in results/linux_axi_spi_bringup_20261013/linux_benchmark_20261014.log.',
     'Framework status and scope: results/SOW_2E_BENCHMARK_FRAMEWORK_STATUS_20261014.md. The utilization percentage is per benchmark thread normalized to one CPU core, not total system CPU utilization.',
+    'Physical closure experiment and remaining metric definitions: results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md.',
   ]);
 }
 
@@ -302,6 +303,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v10.json'),
+  receiptPath: path.join(stagingDir, 'validation_v11.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
