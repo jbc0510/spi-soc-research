@@ -1,5 +1,7 @@
 # SOW Task 2c — Real-Time Suitability Assessment
 
+**Status: Task 2c assessment complete for the tested configurations.** Linux demonstrated reliable best-effort SPI transfers with measurable latency variability; the evidence does not establish hard real-time or guaranteed deadline execution.
+
 **Criterion:** “Evaluate Real Time Suitability — Analyze latency and jitter behavior to assess OS support for deterministic execution.”
 
 ## Finding
@@ -29,6 +31,8 @@ The prior frequency-sweep report identifies the AXI SPI driver path as polling-b
 ## Conclusion
 
 For the tested ZCU102 configuration, Linux successfully performs the measured SPI transfers, but the current evidence establishes only best-effort timing behavior. It does not establish hard real-time suitability. Closing the hard-determinism question would require a defined deadline and workload, per-transfer latency samples or tail percentiles, concurrent-load tests, and controlled scheduling/preemption experiments with timer overhead characterized.
+
+This closes the SOW activity as an evidence-based suitability assessment: the available measurements characterize latency and jitter and support a bounded conclusion about deterministic execution. The absent deadline, tail analysis, concurrent-load test, and controlled scheduling experiment remain limitations; they are not represented as completed tests or as proof that Linux can never meet a particular real-time requirement.
 
 ## Reproduction and source evidence
 

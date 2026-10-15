@@ -11,7 +11,7 @@ const { Presentation, PresentationFile } = await import(pathToFileURL(runtimeReq
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v7.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v8.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 const C = {
@@ -140,8 +140,8 @@ const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
     series: [{ name: '64 KiB standard deviation', values: [3.87, 5.17, 8.65, 14.23], line: { style: 'solid', fill: C.orange, width: 3 }, marker: { symbol: 'circle', size: 7, fill: C.orange } }],
     hasLegend: false, xTitle: 'A53 CPU operating point', yTitle: 'Latency standard deviation (µs)', yMin: 0, yMax: 16, yMajor: 4, yFormat: '0',
   });
-  box(s, 875, 190, 320, 57, '44,000 timed transfers', { size: 26, bold: true });
-  box(s, 875, 255, 320, 65, 'Zero reported transfer errors across the four Linux frequency runs.', { size: 20, color: C.muted });
+  box(s, 875, 190, 320, 57, '2c assessment complete', { size: 24, bold: true, color: C.green });
+  box(s, 875, 255, 320, 65, '44,000 frequency-sweep transfers; zero reported errors.', { size: 20, color: C.muted });
   box(s, 875, 355, 320, 83, 'At 64 KiB, standard deviation rises 3.7× from 1,200 to 300 MHz.', { size: 22, bold: true, color: C.orange });
   box(s, 875, 455, 320, 126, 'Observed timing is variable and frequency-sensitive. These captures do not define a deadline or establish hard real-time behavior; they do not identify the cause of the spread.', { size: 19, color: C.muted });
   setNotes(s, [
@@ -301,6 +301,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v7.json'),
+  receiptPath: path.join(stagingDir, 'validation_v8.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

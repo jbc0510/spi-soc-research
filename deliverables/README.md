@@ -1,6 +1,6 @@
 # MSU-2 Task 2 evidence deck
 
-`MSU2_Task2_Evidence_Review_20261015_v7.pptx` is the cumulative Task 2 deck. It covers the Task 2a performance comparison, Task 2b PIO/DMA assessment, Task 2c real-time suitability finding, the Task 2d hardening design, Task 2e benchmark-thread CPU analysis, and the host-only Task 2g A/B updater prototype. The deck identifies remaining target integration and validation gaps. The four charts are editable PowerPoint line charts, the boot/update figures are editable diagrams, and slide notes cite the source reports and data.
+`MSU2_Task2_Evidence_Review_20261015_v8.pptx` is the cumulative Task 2 deck. It covers the Task 2a performance comparison, Task 2b PIO/DMA assessment, Task 2c real-time suitability finding, the Task 2d hardening design, Task 2e benchmark-thread CPU analysis, and the host-only Task 2g A/B updater prototype. The deck identifies remaining target integration and validation gaps. The four charts are editable PowerPoint line charts, the boot/update figures are editable diagrams, and slide notes cite the source reports and data.
 
 ## Rebuild
 
