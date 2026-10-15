@@ -1,0 +1,10 @@
+MODEL-ONLY DEMO — temporary host files; no board or block device access
+Release SHA-256: 587cb568567a195793a8fe97e6acfb853905ba76c6b46f9ceb8344852778173c
+Scenario                 | Baseline (unsafe)                  | Hardened reference           | Check
+----------------------------------------------------------------------------------------------------------------
+Valid signed release     | image accepted in place            | accept; B trial              | PASS
+Tampered release         | tampered image accepted            | reject; A intact             | PASS
+Interrupted update       | partial overwrite; A damaged       | reject; A intact             | PASS
+Trial health failure     | bad image remains active           | rollback; A selected         | PASS
+
+Scope: demonstrates updater control-flow differences only; not secure-boot or target proof.

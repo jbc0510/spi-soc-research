@@ -1,13 +1,13 @@
 # MSU-2 Task 2 evidence deck
 
-`MSU2_Task2_Evidence_Review_20261015_v11.pptx` is the cumulative Task 2 deck. It covers the Task 2a performance comparison, Task 2b PIO/DMA assessment, Task 2c real-time suitability finding, the Task 2d hardening design, Task 2e benchmark-thread CPU analysis, and the host-only Task 2g A/B updater prototype. The deck identifies remaining target integration and validation gaps. The four charts are editable PowerPoint line charts, the boot/update figures are editable diagrams, and slide notes cite the source reports and data.
+`MSU2_Task2_Evidence_Review_20261015_v14.pptx` is the current cumulative Task 2 deck. It covers the Task 2a performance comparison, Task 2b PIO/DMA assessment, Task 2c real-time suitability finding, the Task 2d hardening design, Task 2e benchmark-thread CPU analysis, the host-only Task 2g A/B updater prototype, the Vivado Enterprise license diagnostic, and a new baseline-versus-hardened update fault comparison. The deck identifies remaining target integration and validation gaps. The four charts and process figures are editable PowerPoint objects, and slide notes cite the source reports and data.
 
 ## Rebuild
 
 From the repository root on the Morgan workstation, use the installed Codex presentation runtime:
 
 ```sh
-MSU2_TASK2_DECK_OUTPUT=deliverables/MSU2_Task2_Evidence_Review_20261014_rebuild.pptx \
+MSU2_TASK2_DECK_OUTPUT=deliverables/MSU2_Task2_Evidence_Review_20261015_rebuild.pptx \
   /home/opentitan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node \
   scripts/build_task2_evidence_deck.mjs
 ```
@@ -24,3 +24,5 @@ The builder reads the committed comparison CSV and CDMA simulation CSV, exports 
 6. Task 2d proposed boot trust, signed FIT, and A/B update/rollback design; implementation remains open.
 7. Task 2e Linux benchmark-thread CPU share by payload size; bare-metal CPU-use and sustained-throughput tests remain open.
 8. Task 2g signed inactive-slot update prototype and four host fault-injection tests; U-Boot and target validation remain open.
+9. Vivado Enterprise license diagnostic: host-ID visibility caused a false failure inside the sandbox; synthesis succeeds with normal workstation host access.
+10. Task 2g host fault-injection comparison: tamper, interrupted-write, and failed-health cases distinguish unsafe baseline behavior from the A/B reference; this is model evidence, not ZCU102 secure-boot proof.

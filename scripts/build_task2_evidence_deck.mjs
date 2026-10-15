@@ -11,7 +11,7 @@ const { Presentation, PresentationFile } = await import(pathToFileURL(runtimeReq
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v11.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v14.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 const C = {
@@ -280,6 +280,54 @@ const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
   ]);
 }
 
+// 9 — License diagnostic
+{
+  const s = baseSlide(p, 'Enterprise license passes ZCU9EG synthesis', 'Toolchain  /  License diagnostic', 9);
+  box(s, 72, 178, 515, 34, 'Sandboxed check', { size: 25, bold: true, color: C.amber });
+  box(s, 72, 223, 505, 165, 'FlexNet could not read the workstation network-interface ID. It reported the node-locked license as invalid; Vivado then surfaced the failed checkout as an expired Synthesis feature.', { size: 21, color: C.muted });
+  box(s, 652, 178, 515, 34, 'Normal host access', { size: 25, bold: true, color: C.green });
+  box(s, 652, 223, 505, 165, 'The permanent Enterprise license matched the active workstation NIC. FlexNet approved the node, and Vivado granted Synthesis for xczu9eg.', { size: 21, color: C.muted });
+  s.shapes.add({ geometry: 'rightArrow', position: { left: 570, top: 270, width: 72, height: 34 }, fill: C.teal, line: { style: 'solid', fill: C.teal, width: 1 } });
+  const result = s.shapes.add({ geometry: 'rect', position: { left: 72, top: 432, width: 1090, height: 82 }, fill: C.pale, line: { style: 'solid', fill: C.teal, width: 2 } });
+  result.text = 'Fresh synthesis for xczu9eg-ffvb1156-2-e completed with 0 errors';
+  result.text.style = { typeface: font, fontSize: 25, color: C.ink, bold: true, alignment: 'center' };
+  result.text.insets = { left: 18, right: 18, top: 14, bottom: 12 };
+  box(s, 72, 545, 1090, 58, 'This was a small license-check design, not the project build. Synthesis uses the selected FPGA part; it does not communicate with the physical ZCU102 board.', { size: 19, color: C.muted });
+  setNotes(s, [
+    'Diagnostic report: results/vivado_license_diagnostic_20261015/README.md.',
+    'Successful Vivado 2025.1 synthesis transcript: results/vivado_license_diagnostic_20261015/zcu9eg_license_synthesis.log.',
+    'AMD Vivado 2025.1 UG973, Supported Devices: https://docs.amd.com/r/2025.1-English/ug973-vivado-release-notes-install-license/Supported-Devices. The Enterprise edition supports all Zynq UltraScale+ MPSoC devices.',
+  ]);
+}
+
+// 10 — Controlled updater contrast
+{
+  const s = baseSlide(p, 'Update fault handling: baseline vs A/B reference', '2g  /  Host fault-injection demonstration', 10);
+  box(s, 72, 176, 265, 35, 'TEST CASE', { size: 19, bold: true, color: C.muted });
+  box(s, 365, 176, 375, 35, 'UNSAFE BASELINE', { size: 19, bold: true, color: C.red });
+  box(s, 785, 176, 400, 35, 'SIGNED A/B REFERENCE', { size: 19, bold: true, color: C.green });
+  const rows = [
+    ['Valid release', 'Accepted in place', 'Verified; staged to B'],
+    ['Tampered release', 'Accepted altered bytes', 'Rejected; A unchanged'],
+    ['Interrupted write', 'Active A partially overwritten', 'A retained; no trial published'],
+    ['Failed trial health', 'Bad image remains active', 'Pending cleared; A selected'],
+  ];
+  rows.forEach((row, i) => {
+    const y = 228 + i * 73;
+    s.shapes.add({ geometry: 'rect', position: { left: 72, top: y + 55, width: 1115, height: 1 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
+    box(s, 72, y, 265, 47, row[0], { size: 21, bold: true });
+    box(s, 365, y, 375, 47, row[1], { size: 20, color: C.red });
+    box(s, 785, y, 400, 47, row[2], { size: 20, color: C.green });
+  });
+  box(s, 72, 544, 1115, 74, 'All four model checks passed. This proves updater behavior in a host reference model; it does not verify ZCU102 secure boot, SD-card power-loss recovery, or hardware key provisioning.', { size: 19, bold: true, color: C.amber });
+  setNotes(s, [
+    'Report: results/SOW_2G_HARDENING_CONTRAST_20261015.md.',
+    'Reproduction: python3 linux/appliance/hardening_contrast_demo.py. Captured output: results/task2g_hardening_contrast_20261015/demo_run.log.',
+    'The hardened column invokes linux/appliance/ab_update_prototype.py using temporary host files. The baseline is an intentionally unsafe in-memory illustration.',
+    'Tests: tests/test_task2g_hardening_contrast.py and tests/test_task2g_ab_update.py. Passing tests are model evidence only, not target secure-boot validation.',
+  ]);
+}
+
 await fs.mkdir(stagingDir, { recursive: true });
 await fs.mkdir(previewDir, { recursive: true });
 await fs.mkdir(path.dirname(finalPath), { recursive: true });
@@ -303,6 +351,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v11.json'),
+  receiptPath: path.join(stagingDir, 'validation_v14.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

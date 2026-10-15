@@ -1,0 +1,9 @@
+test_boot_limit_rolls_back_and_health_rejection_keeps_confirmed (test_task2g_ab_update.ABUpdatePrototypeTests) ... ok
+test_interrupted_inactive_write_keeps_confirmed_slot_and_no_pending (test_task2g_ab_update.ABUpdatePrototypeTests) ... ok
+test_invalid_signature_does_not_change_slots_or_state (test_task2g_ab_update.ABUpdatePrototypeTests) ... ok
+test_valid_release_stages_inactive_slot_and_confirms (test_task2g_ab_update.ABUpdatePrototypeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.083s
+
+OK
