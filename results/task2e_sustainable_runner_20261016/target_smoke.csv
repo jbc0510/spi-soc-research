@@ -1,0 +1,2 @@
+repetition,payload_bytes,window_s,attempts,verified_transfers,verified_bytes,application_MBps,cpu_metric_kind,cpu_metric_pct,thread_cpu_s,thread_cpu_share_pct,busy_wait_core_occupancy_pct,max_transfer_us,api_errors,mismatches,first_error_code
+1,64,1.000063594,15354,15354,982656,0.982593513,thread_cpu_share,48.233360,0.482364275,48.233360,-1,130.833,0,0,0

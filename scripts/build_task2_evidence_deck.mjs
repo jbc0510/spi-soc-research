@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261016_v20.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261016_v21.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -163,7 +163,7 @@ process.stderr.write('presentation initialized\n');
     ['2b  PIO and DMA', 'Assessment complete', 'Physical PIO; six-size CDMA simulation; ZDMA result invalid for performance. No physical DMA crossover.', C.green],
     ['2c  Real-time suitability', 'Assessment complete', 'Best-effort latency and jitter characterized; no hard deadline or deterministic guarantee established.', C.green],
     ['2d  System hardening', 'Design complete', 'Design documented. Verified boot, reliable updates and automatic recovery are not deployed.', C.green],
-    ['2e  Benchmark framework', 'Partial', 'Shared contract and both sustained runners built; physical sustained runs and paired manifest remain open.', C.amber],
+    ['2e  Benchmark framework', 'Partial', 'Shared contract and both sustained runners built; one-second Linux loopback smoke passes, sustained paired runs remain open.', C.amber],
     ['2f  OS tuning', 'Partial', 'CPU-frequency sweep done; preemption-model and physical optimized-DMA comparison remain open.', C.amber],
     ['2g  Minimal appliance/security', 'Partial', 'Prototypes pass defined tests; active boot is unsigned and integrated target recovery remains open.', C.amber],
   ];
@@ -179,7 +179,7 @@ process.stderr.write('presentation initialized\n');
   setNotes(s, [
     'Governing source: /home/opentitan/Downloads/MSU-2_SOW_Final (1).docx, revision 2026-02-23. The seven activity names are quoted or closely abbreviated from Task 2; internal labels 2a–2g are mapped in sequence.',
     'Evidence basis: results/MSU2_TASK2_SOW_STATUS_20261016.md and the source reports in results/ for Task 2a–2g.',
-    'Task 2a comparison is bounded and does not identify a universal causal Linux-only cost. Task 2b has simulation but no valid physical DMA sweep. Task 2c supports best-effort suitability only. Task 2d is design-only. Task 2e has no physical sustained-run data. Task 2f lacks a changed preemption configuration and valid physical optimized-DMA comparison. Task 2g lacks integrated target verified boot and persistent recovery.',
+    'Task 2a comparison is bounded and does not identify a universal causal Linux-only cost. Task 2b has simulation but no valid physical DMA sweep. Task 2c supports best-effort suitability only. Task 2d is design-only. Task 2e has one passing one-second Linux loopback smoke (15,354 transfers, zero mismatches), but no physical sustained-run data. Task 2f lacks a changed preemption configuration and valid physical optimized-DMA comparison. Task 2g lacks integrated target verified boot and persistent recovery.',
     'The SOW also requires separate Task 1 work and formal monthly, interim, simulation/emulation, OS/appliance, and final-report deliverables; this Task 2 status slide does not certify those deliverables.',
   ]);
 }
@@ -393,19 +393,19 @@ process.stderr.write('presentation initialized\n');
 
 // 13 — Task 2e sustained runners and target execution gate
 {
-  const s = baseSlide(p, 'Task 2e runners are built; board execution remains open', '2e  /  Sustained benchmark', 13);
+  const s = baseSlide(p, 'Task 2e runners are built; Linux loopback smoke passes', '2e  /  Sustained benchmark', 13);
   box(s, 72, 178, 520, 38, 'Linux runner', { size: 27, bold: true, color: C.blue });
   box(s, 72, 232, 520, 112, 'AArch64 executable built against the target ABI. Four host tests pass, including echo, API-error, mismatch, and invalid-input cases.', { size: 21, color: C.ink });
-  box(s, 72, 365, 520, 118, 'Not yet run on the ZCU102. The active console account is unprivileged and /dev/spidev1.0 is root-only (0600). No SPI transfer was issued in this session.', { size: 19, bold: true, color: C.amber });
+  box(s, 72, 365, 520, 118, 'One-second 64-byte J55 loopback: 15,354 transfers, 982,656 verified bytes, zero API errors and mismatches. 0.9826 MB/s is a smoke result, not sustained performance.', { size: 19, bold: true, color: C.teal });
   box(s, 650, 178, 540, 38, 'Bare-metal runner', { size: 27, bold: true, color: C.teal });
   box(s, 650, 232, 540, 112, 'Vitis 2025.1 build against the pinned 29 September XSA completed. The ELF and build manifests are preserved.', { size: 21, color: C.ink });
   box(s, 650, 365, 540, 118, 'Not yet run on the board. No sustained-throughput or new CPU-utilization comparison is claimed.', { size: 19, bold: true, color: C.amber });
   s.shapes.add({ geometry: 'rect', position: { left: 72, top: 520, width: 1115, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
-  box(s, 72, 548, 1110, 72, 'Next: restore root console access → run the guarded 1-second loopback smoke test → execute the paired 60-second × 11-size × 3-repeat plan.', { size: 23, bold: true });
+  box(s, 72, 548, 1110, 72, 'Next: measure physical SCK and CPU point, then execute the paired 60-second × 11-size × 3-repeat plan on Linux and bare metal.', { size: 23, bold: true });
   setNotes(s, [
     'Task 2e runner report: results/SOW_2E_SUSTAINED_RUNNER_20261016.md.',
-    'Build artifacts, AArch64 Linux runner, live target preflight, and access limitations: results/task2e_sustainable_runner_20261016/. SHA-256 manifest: results/task2e_sustainable_runner_20261016/SHA256SUMS.',
-    'Host mocks validate software behavior only; they are not hardware results. The target preflight confirmed /dev/spidev1.0, the a0000000.spi platform device, and active SPI IRQ. The console user lacks permission to access the device.',
+    'Build artifacts, AArch64 Linux runner, live target preflight, and one-second smoke transcript: results/task2e_sustainable_runner_20261016/. SHA-256 manifest: results/task2e_sustainable_runner_20261016/SHA256SUMS.',
+    'The Linux smoke used mode 0, 8-bit words, 1 MHz requested/read-back speed, and produced 15,354 verified 64-byte transfers with no API errors or mismatches. Physical SCK was not measured; this is not sustained throughput evidence. Host mocks remain software tests only.',
     'Bare-metal ELF is a build artifact, not a target execution result. The plan and closure criteria are in results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md.',
   ]);
 }
@@ -436,6 +436,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v20.json'),
+  receiptPath: path.join(stagingDir, 'validation_v21.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
