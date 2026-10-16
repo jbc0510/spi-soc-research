@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v17.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v18.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -367,6 +367,28 @@ process.stderr.write('presentation initialized\n');
   ]);
 }
 
+// 12 — Generated boot-flow audit
+{
+  const s = baseSlide(p, 'Generated boot policy can bypass FIT verification', '2g  /  Boot-chain audit', 12);
+  box(s, 72, 176, 515, 30, 'COMPILED BOOT SCRIPT', { size: 19, bold: true, color: C.blue });
+  box(s, 652, 176, 515, 30, 'COMPILED DEFAULT ENVIRONMENT', { size: 19, bold: true, color: C.blue });
+  box(s, 72, 222, 515, 68, '1  Load image.ub\n2  bootm verifies the signed FIT', { size: 21, bold: true });
+  box(s, 72, 313, 515, 71, 'If FIT boot returns: load Image + system.dtb\n3  booti hands off the raw kernel', { size: 20, color: C.red });
+  box(s, 72, 414, 515, 60, 'MMC/USB also imports uEnv.txt and runs uenvcmd.', { size: 19, color: C.red });
+  box(s, 652, 222, 515, 68, 'bootcmd = run distro_bootcmd\nboot_targets includes JTAG, MMC, QSPI, NAND, USB, SCSI, PXE, DHCP', { size: 19, bold: true });
+  box(s, 652, 313, 515, 71, 'Distro scan also checks scripts, extlinux,\nand EFI boot paths across discovered media.', { size: 20, color: C.red });
+  box(s, 652, 414, 515, 60, 'No bootlimit or upgrade_available in initial environment.', { size: 19, color: C.red });
+  s.shapes.add({ geometry: 'rect', position: { left: 72, top: 510, width: 1115, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
+  box(s, 72, 538, 1115, 76, 'Conclusion: FIT signature validation passes in isolation, but generated boot policy is not fail-closed. Restrict trusted boot paths, remove raw fallbacks and external command imports, then test persistent A/B rollback before claiming secure update.', { size: 20, bold: true, color: C.amber });
+  setNotes(s, [
+    'Audit report and raw evidence: results/task2g_bootflow_audit_20261015/README.md, boot.scr, u-boot-initial-env.txt, audit.json, and SHA256SUMS.',
+    'Generated boot.scr SHA-256: 6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608. Initial environment SHA-256: b87a9efa96343fbee9e42b4fbcbc43365a844100c6b7df76153d91a442ba628f.',
+    'The FIT path calls bootm, then MMC/USB may import uEnv.txt and run uenvcmd; raw Image/system.dtb and optional ramdisk paths call booti. QSPI/NAND/NOR branches also fall back to raw boot. Default environment is bootcmd=run distro_bootcmd with broad boot_targets including JTAG, MMC, QSPI, NAND, USB, SCSI, PXE, DHCP, and includes script/extlinux/EFI discovery.',
+    'CONFIG_BOOTCOUNT_LIMIT=y was configured, but no bootlimit or upgrade_available value exists in the captured initial environment. No slot selection, persistent health confirmation, or rollback was tested.',
+    'The audit is a lexical/configuration inspection, not U-Boot sandbox execution or ZCU102 boot. No boot media or board state was changed. Reported conclusion is limited to the generated host build artifacts.',
+  ]);
+}
+
 await fs.mkdir(stagingDir, { recursive: true });
 await fs.mkdir(previewDir, { recursive: true });
 await fs.mkdir(path.dirname(finalPath), { recursive: true });
@@ -393,6 +415,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v17.json'),
+  receiptPath: path.join(stagingDir, 'validation_v18.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

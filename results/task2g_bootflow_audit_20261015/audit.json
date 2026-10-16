@@ -1,0 +1,28 @@
+{
+  "input": "results/task2g_bootflow_audit_20261015/boot.scr",
+  "sha256": "6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608",
+  "script_bytes": 3760,
+  "findings": [
+    {
+      "code": "raw-kernel-boot",
+      "evidence": "booti",
+      "description": "booti command can hand off a kernel outside FIT verification"
+    },
+    {
+      "code": "separate-kernel-path",
+      "evidence": "kernel_name",
+      "description": "separate raw kernel filename is referenced"
+    },
+    {
+      "code": "environment-import",
+      "evidence": "env import",
+      "description": "untrusted environment may redirect boot commands or filenames"
+    },
+    {
+      "code": "uenv-command",
+      "evidence": "uenvcmd",
+      "description": "external uEnv command can execute arbitrary boot policy"
+    }
+  ],
+  "scope": "lexical audit; does not emulate U-Boot command execution"
+}
