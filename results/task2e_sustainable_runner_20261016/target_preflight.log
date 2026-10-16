@@ -1,0 +1,108 @@
+HOST_UTC=2026-10-16T21:55:24.588510+00:00
+PORT=/dev/serial/by-id/usb-Silicon_Labs_CP2108_Quad_USB_to_UART_Bridge_Controller_B66A78CB12A648B611E661AF58A7182-if00-port0
+
+newQspi:~$ 
+HOST_COMMAND[0]=uname -a
+uname -a; printf '\n__MSU2_DONE_0__\n'
+Linux newQspi 6.12.10-xilinx-g0a0f70e531c7 #1 SMP Sat May 17 14:01:06 UTC 2025 aarch64 GNU/Linux
+
+__MSU2_DONE_0__
+newQspi:~$ 
+HOST_COMMAND[1]=ldd --version 2>&1
+ldd --version 2>&1; printf '\n__MSU2_DONE_1__\n'
+-sh: ldd: command not found
+
+__MSU2_DONE_1__
+newQspi:~$ 
+HOST_COMMAND[2]=strings /lib/libc.so.6 2>&1 | grep ^GLIBC_ | sort -Vu | tail -5
+strings /lib/libc.so.6 2>&1 | grep ^GLIBC_ | sort -Vu | tail -5; printtf '\n__MSU2_DONE_2__\n'
+GLIBC_2.36
+GLIBC_2.38
+GLIBC_2.39
+GLIBC_ABI_DT_RELR
+GLIBC_PRIVATE
+
+__MSU2_DONE_2__
+newQspi:~$ 
+HOST_COMMAND[3]=ls -l /lib/ld-linux-aarch64.so.1 2>&1
+ls -l /lib/ld-linux-aarch64.so.1 2>&1; printf '\n__MSU2_DONE_3__\n'
+-rwxr-xr-x    1 root     root        202848 Mar  9  2018 /lib/ld-linux-aarch64.so.1
+
+__MSU2_DONE_3__
+newQspi:~$ 
+HOST_COMMAND[4]=cat /etc/os-release
+cat /etc/os-release; printf '\n__MSU2_DONE_4__\n'
+ID=petalinux
+NAME="PetaLinux"
+VERSION="2025.1+release-S05180137 (scarthgap)"
+VERSION_ID=2025.1-release-s05180137
+VERSION_CODENAME="scarthgap"
+PRETTY_NAME="PetaLinux 2025.1+release-S05180137 (scarthgap)"
+CPE_NAME="cpe:/o:openembedded:petalinux:2025.1+release-S05180137"
+
+__MSU2_DONE_4__
+newQspi:~$ 
+HOST_COMMAND[5]=cat /proc/cmdline
+cat /proc/cmdline; printf '\n__MSU2_DONE_5__\n'
+earlycon console=ttyPS0,115200 root=/dev/ram0 rw spidev.bufsiz=1048576
+
+__MSU2_DONE_5__
+newQspi:~$ 
+HOST_COMMAND[6]=cat /sys/class/fpga_manager/fpga0/state 2>&1
+cat /sys/class/fpga_manager/fpga0/state 2>&1; printf '\n__MSU2_DONE_6___\n'
+operating
+
+__MSU2_DONE_6__
+newQspi:~$ 
+HOST_COMMAND[7]=sha256sum /lib/firmware/msu2_ratio2_j55_c27bb684.bit.bin 2>&1
+sha256sum /lib/firmware/msu2_ratio2_j55_c27bb684.bit.bin 2>&1; printf  '\n__MSU2_DONE_7__\n'
+sha256sum: can't open '/lib/firmware/msu2_ratio2_j55_c27bb684.bit.bin': Permission denied
+
+__MSU2_DONE_7__
+newQspi:~$ 
+HOST_COMMAND[8]=ls -l /dev/spidev* 2>&1
+ls -l /dev/spidev* 2>&1; printf '\n__MSU2_DONE_8__\n'
+crw-------    1 root     root      153,   0 Jan  9 17:44 /dev/spidev1.0
+
+__MSU2_DONE_8__
+newQspi:~$ 
+HOST_COMMAND[9]=find /sys/bus/platform/devices -maxdepth 1 -name '*a0000000*' -print 2>&1
+find /sys/bus/platform/devices -maxdepth 1 -name '*a0000000*' -print 22>&1; printf '\n__MSU2_DONE_9__\n'
+/sys/bus/platform/devices/a0000000.spi
+
+__MSU2_DONE_9__
+newQspi:~$ 
+HOST_COMMAND[10]=find /sys/bus/spi/devices -maxdepth 3 -print 2>&1 | head -60
+find /sys/bus/spi/devices -maxdepth 3 -print 2>&1 | head -60; printf ''\n__MSU2_DONE_10__\n'
+/sys/bus/spi/devices
+/sys/bus/spi/devices/spi1.0
+
+__MSU2_DONE_10__
+newQspi:~$ 
+HOST_COMMAND[11]=cat /proc/interrupts | grep -i spi 2>&1
+cat /proc/interrupts | grep -i spi 2>&1; printf '\n__MSU2_DONE_11__\n''
+ 48:          0          0          0          0     GICv2  47 Level     ff0f0000.spi
+ 60:     348001          0          0          0     GICv2 121 Edge      a0000000.spi
+
+__MSU2_DONE_11__
+newQspi:~$ 
+HOST_COMMAND[12]=cat /sys/module/spidev/parameters/bufsiz 2>&1
+cat /sys/module/spidev/parameters/bufsiz 2>&1; printf '\n__MSU2_DONE_112__\n'
+1048576
+
+__MSU2_DONE_12__
+newQspi:~$ 
+HOST_COMMAND[13]=for f in /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq; do echo $f; cat $f 2>&1; done
+for f in /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor /sys/deevices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq; do echo $f; cat $f 2>&1; done; pprintf '\n__MSU2_DONE_13__\n'
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+userspace
+/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+cat: can't open '/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq': Permission denied
+
+__MSU2_DONE_13__
+newQspi:~$ 
+HOST_COMMAND[14]=cat /sys/kernel/debug/clk/clk_summary 2>&1 | grep -E 'iopll|pl0_ref'
+cat /sys/kernel/debug/clk/clk_summary 2>&1 | grep -E 'iopll|pl0_ref';  printf '\n__MSU2_DONE_14__\n'
+
+__MSU2_DONE_14__
+newQspi:~$ 
