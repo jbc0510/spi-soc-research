@@ -1,0 +1,75 @@
+Signature check bad (error 1)
+Verifying Hash Integrity for node 'conf-system-top.dtb'... sha256,rsa2048:msu2-test+ 
+Verified OK, loading images
+## Loading kernel from FIT Image at 7534a7c00000 ...
+   Using 'conf-system-top.dtb' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:msu2-test+ 
+OK
+
+   Trying 'kernel-1' kernel subimage
+     Description:  Linux kernel
+     Created:      Fri Nov  7 10:28:23 2025
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Size:    12816296 Bytes = 12515.91 KiB = 12.22 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: 0x00200000
+     Entry Point:  0x00200000
+     Hash algo:    sha256
+     Hash value:   6a17224e33bbf4eae3674c96d307024b77ab49974b59e3d4bfa0dae873b70d1b
+   Verifying Hash Integrity ... 
+sha256 error!
+Bad hash value for 'hash-1' hash node in 'kernel-1' image node
+Bad Data Hash
+
+## Loading fdt from FIT Image at 7534a7c00000 ...
+   Using 'conf-system-top.dtb' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:msu2-test+ 
+OK
+
+   Trying 'fdt-system-top.dtb' fdt subimage
+     Description:  Flattened Device Tree blob
+     Created:      Fri Nov  7 10:28:23 2025
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Size:    41153 Bytes = 40.19 KiB = 0.04 MiB
+     Architecture: AArch64
+     Hash algo:    sha256
+     Hash value:   61d6c8ec0c1a1e971b8c0a512247f5ab37097e00a7c842cc7b2edb34b7756f45
+   Verifying Hash Integrity ... 
+sha256+ 
+OK
+
+   Decrypting Data ... 
+OK
+
+   Loading Flat Device Tree to 0
+## Loading ramdisk from FIT Image at 7534a7c00000 ...
+   Using 'conf-system-top.dtb' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:msu2-test+ 
+OK
+
+   Trying 'ramdisk-1' ramdisk subimage
+     Description:  petalinux-image-minimal
+     Created:      Fri Nov  7 10:28:23 2025
+     Type:         RAMDisk Image
+     Compression:  uncompressed
+     Data Size:    31351383 Bytes = 30616.58 KiB = 29.90 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: unavailable
+     Entry Point:  unavailable
+     Hash algo:    sha256
+     Hash value:   94e19e9312d389c897e1abc7c11f4e928b43e225e4ca966141b197bc5a6b4bed
+   Verifying Hash Integrity ... 
+sha256+ 
+OK
+
+   Decrypting Data ... 
+OK
+
+   Loading RAMDisk Image to 0

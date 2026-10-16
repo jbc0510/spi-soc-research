@@ -1,0 +1,13 @@
+Extracted:
+ Image 0 (kernel-1)
+  Description:  Linux kernel
+  Created:      Fri Nov  7 10:28:23 2025
+  Type:         Kernel Image
+  Compression:  gzip compressed
+  Data Size:    12816296 Bytes = 12515.91 KiB = 12.22 MiB
+  Architecture: AArch64
+  OS:           Linux
+  Load Address: 0x00200000
+  Entry Point:  0x00200000
+  Hash algo:    sha256
+  Hash value:   6a17224e33bbf4eae3674c96d307024b77ab49974b59e3d4bfa0dae873b70d1b

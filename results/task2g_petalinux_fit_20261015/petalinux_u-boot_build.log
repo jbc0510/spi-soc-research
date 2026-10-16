@@ -1,0 +1,112 @@
+NOTE: Started PRServer with DBfile: /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/cache/prserv.sqlite3, Address: 127.0.0.1:34213, PID: 460572
+WARNING: XSCT has been deprecated.  All non Microblaze XSCT BSPs will be deprecated in version 2026.1, while Microblaze will be end-of-life in 2026.2.  Users are advised to start new projects with the SDT workflow, and transition Microblaze to Microblaze-V.
+NOTE: Resolving any missing task queue dependencies
+Sstate summary: Wanted 522 Local 13 Mirrors 487 Missed 22 Current 2118 (95% match, 99% complete)
+NOTE: Executing Tasks
+NOTE: Running setscene task 2624 of 2640 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/hdf/external-hdf_2025.2.bb:do_package_write_rpm_setscene)
+NOTE: Running setscene task 2625 of 2640 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/device-tree/device-tree.bb:do_package_write_rpm_setscene)
+NOTE: recipe external-hdf-2025.2-r0: task do_package_write_rpm_setscene: Started
+NOTE: recipe external-hdf-2025.2-r0: task do_package_write_rpm_setscene: Succeeded
+NOTE: recipe device-tree-1_2025.1+git-r0: task do_package_write_rpm_setscene: Started
+NOTE: recipe device-tree-1_2025.1+git-r0: task do_package_write_rpm_setscene: Succeeded
+NOTE: Setscene tasks completed
+NOTE: Running task 3527 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_compile)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_compile: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_compile: Succeeded
+NOTE: Running task 5723 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_create_extlinux_config)
+NOTE: Running task 5724 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_uboot_generate_rsa_keys)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_create_extlinux_config: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_create_extlinux_config: Succeeded
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_uboot_generate_rsa_keys: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_uboot_generate_rsa_keys: Succeeded
+NOTE: Running task 5725 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_uboot_assemble_fitimage)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_uboot_assemble_fitimage: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_uboot_assemble_fitimage: Succeeded
+NOTE: Running task 5726 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_deploy)
+NOTE: Running task 5727 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_install)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_deploy: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_install: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_install: Succeeded
+NOTE: Running task 5728 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_package)
+NOTE: Running task 5729 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_populate_sysroot)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_deploy: Succeeded
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_package: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_populate_sysroot: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_populate_sysroot: Succeeded
+NOTE: Running task 5730 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_prepare_recipe_sysroot)
+NOTE: Running task 5731 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-uenv.bb:do_prepare_recipe_sysroot)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_prepare_recipe_sysroot: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_package: Succeeded
+NOTE: Running task 5732 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_packagedata)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 5733 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_configure)
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_prepare_recipe_sysroot: Succeeded
+NOTE: Running task 5734 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-uenv.bb:do_configure)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_packagedata: Started
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_configure: Started
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_configure: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_packagedata: Succeeded
+NOTE: Running task 5735 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_package_qa)
+NOTE: Running task 5736 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_package_write_rpm)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_package_qa: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_package_write_rpm: Started
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_configure: Succeeded
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_configure: Succeeded
+NOTE: Running task 5737 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_create_spdx)
+NOTE: Running task 5738 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_compile)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_create_spdx: Started
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_compile: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_package_qa: Succeeded
+NOTE: Running task 5739 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-uenv.bb:do_compile)
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_compile: Started
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_compile: Succeeded
+NOTE: Running task 5740 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-uenv.bb:do_deploy)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_create_spdx: Succeeded
+NOTE: Running task 5741 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_create_runtime_spdx)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 5742 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_collect_spdx_deps)
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_deploy: Started
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_compile: Succeeded
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_create_runtime_spdx: Started
+NOTE: Running task 5743 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_deploy)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_collect_spdx_deps: Started
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_deploy: Succeeded
+NOTE: Running task 5744 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_install)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_collect_spdx_deps: Succeeded
+NOTE: Running task 5745 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-uenv.bb:do_install)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_deploy: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_create_runtime_spdx: Succeeded
+NOTE: Running task 5746 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_rm_work)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_install: Started
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_install: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_rm_work: Started
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_deploy: Succeeded
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_install: Succeeded
+NOTE: Running task 5747 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_package)
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_install: Succeeded
+NOTE: Running task 5748 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-uenv.bb:do_populate_sysroot)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_package: Started
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_populate_sysroot: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_rm_work: Succeeded
+NOTE: Running noexec task 5749 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_rm_work_all)
+NOTE: recipe u-boot-xlnx-uenv-1.0-r0: task do_populate_sysroot: Succeeded
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_package: Succeeded
+NOTE: Running task 5750 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_packagedata)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_packagedata: Started
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_packagedata: Succeeded
+NOTE: Running task 5751 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_package_qa)
+NOTE: Running task 5752 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb:do_package_qa)
+NOTE: Running task 5753 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_package_write_rpm)
+NOTE: Running task 5754 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb:do_package_write_rpm)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_package_qa: Started
+NOTE: recipe packagegroup-core-boot-1.0-r0: task do_package_qa: Started
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_package_write_rpm: Started
+ERROR: Task (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb:do_package_write_rpm) failed with exit code '139'
+NOTE: Running task 5755 of 5769 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_create_spdx)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_create_spdx: Started
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_package_qa: Succeeded
+NOTE: recipe packagegroup-core-boot-1.0-r0: task do_package_qa: Succeeded
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_create_spdx: Succeeded
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: Tasks Summary: Attempted 5755 tasks of which 5721 didn't need to be rerun and 1 failed.

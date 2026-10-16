@@ -1,0 +1,27 @@
+DEBUG: Executing python function sstate_task_prefunc
+DEBUG: Python function sstate_task_prefunc finished
+DEBUG: Executing shell function do_deploy
+/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/temp/run.do_deploy.467003: 169: [: zynqmp: unexpected operator
+DEBUG: Shell function do_deploy finished
+DEBUG: Executing python function plnx_deploy
+DEBUG: Python function plnx_deploy finished
+DEBUG: Executing python function sstate_task_postfunc
+NOTE: Using umask 0o002 (not 22) for sstate packaging
+DEBUG: Preparing tree /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/deploy-u-boot-xlnx for packaging at /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/sstate-build-deploy/deploy-u-boot-xlnx
+DEBUG: Executing python function target_add_sysroot_deps
+DEBUG: Python function target_add_sysroot_deps finished
+DEBUG: Executing python function sstate_hardcode_path
+NOTE: Removing hardcoded paths from sstate package: 'find /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/sstate-build-deploy/ \( -name "*.la" -o -name "*-config" -o -name "*_config" -o -name "postinst-*" \) -type f | xargs grep -l -e '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot' -e '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native' -e '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/hosttools' | tee /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/sstate-build-deploy/fixmepath | xargs --no-run-if-empty sed -i -e 's:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native:FIXMESTAGINGDIRHOST:g' -e 's:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot:FIXMESTAGINGDIRTARGET:g' -e 's:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/hosttools:FIXME_HOSTTOOLS_DIR:g''
+DEBUG: Python function sstate_hardcode_path finished
+DEBUG: Executing python function sstate_report_unihash
+DEBUG: Python function sstate_report_unihash finished
+DEBUG: Executing python function sstate_create_and_sign_package
+DEBUG: Executing shell function sstate_archive_package
+DEBUG: Shell function sstate_archive_package finished
+DEBUG: Python function sstate_create_and_sign_package finished
+DEBUG: Executing python function sstate_hardcode_path_unpack
+DEBUG: Python function sstate_hardcode_path_unpack finished
+DEBUG: Executing python function uninative_changeinterp
+DEBUG: Python function uninative_changeinterp finished
+DEBUG: Staging files from /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/deploy-u-boot-xlnx to /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/deploy/images/zynqmp-generic-xczu9eg
+DEBUG: Python function sstate_task_postfunc finished

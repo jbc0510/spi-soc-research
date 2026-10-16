@@ -1,0 +1,40 @@
+NOTE: Started PRServer with DBfile: /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/cache/prserv.sqlite3, Address: 127.0.0.1:45903, PID: 471574
+WARNING: XSCT has been deprecated.  All non Microblaze XSCT BSPs will be deprecated in version 2026.1, while Microblaze will be end-of-life in 2026.2.  Users are advised to start new projects with the SDT workflow, and transition Microblaze to Microblaze-V.
+NOTE: Resolving any missing task queue dependencies
+Sstate summary: Wanted 505 Local 13 Mirrors 487 Missed 5 Current 2135 (99% match, 99% complete)
+NOTE: Executing Tasks
+NOTE: Running setscene task 2581 of 2640 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx_2025.01-xilinx-v2025.1.bb:do_package_write_rpm_setscene)
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_package_write_rpm_setscene: Started
+NOTE: recipe u-boot-xlnx-1_2025.01-xilinx-v2025.1+git-r0: task do_package_write_rpm_setscene: Succeeded
+NOTE: Setscene tasks completed
+NOTE: Running noexec task 3147 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-kernel/linux/linux-xlnx_6.12.40-v2025.2.bb:do_rm_work_all)
+NOTE: Running task 5011 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/bootbin/xilinx-bootbin_1.0.bb:do_create_runtime_spdx)
+NOTE: Running task 5027 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb:do_package_write_rpm)
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_create_runtime_spdx: Started
+NOTE: recipe xilinx-bootbin-1.0-r0: task do_create_runtime_spdx: Succeeded
+NOTE: recipe packagegroup-core-boot-1.0-r0: task do_package_write_rpm: Started
+NOTE: recipe packagegroup-core-boot-1.0-r0: task do_package_write_rpm: Succeeded
+NOTE: Running task 5751 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/recipes-core/images/petalinux-image-minimal.bb:do_rootfs)
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_rootfs: Started
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_rootfs: Succeeded
+NOTE: Running task 5752 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/recipes-core/images/petalinux-image-minimal.bb:do_write_qemuboot_conf)
+NOTE: Running task 5753 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/recipes-core/images/petalinux-image-minimal.bb:do_flush_pseudodb)
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_write_qemuboot_conf: Started
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_write_qemuboot_conf: Succeeded
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_flush_pseudodb: Started
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_flush_pseudodb: Succeeded
+NOTE: Running task 5754 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/recipes-core/images/petalinux-image-minimal.bb:do_image_qa)
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_image_qa: Started
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_image_qa: Succeeded
+NOTE: Running task 5755 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/recipes-core/images/petalinux-image-minimal.bb:do_image)
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_image: Started
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_image: Succeeded
+NOTE: Running task 5756 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/recipes-core/images/petalinux-image-minimal.bb:do_image_cpio)
+NOTE: Running task 5757 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/recipes-core/images/petalinux-image-minimal.bb:do_image_ext4)
+NOTE: Running task 5758 of 5763 (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/recipes-core/images/petalinux-image-minimal.bb:do_image_tar)
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_image_cpio: Started
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_image_ext4: Started
+ERROR: Task (/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/recipes-core/images/petalinux-image-minimal.bb:do_image_tar) failed with exit code '139'
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_image_ext4: Succeeded
+NOTE: recipe petalinux-image-minimal-1.0-r0: task do_image_cpio: Succeeded
+NOTE: Tasks Summary: Attempted 5758 tasks of which 5747 didn't need to be rerun and 1 failed.

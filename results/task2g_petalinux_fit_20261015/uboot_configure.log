@@ -1,0 +1,423 @@
+DEBUG: Executing python function extend_recipe_sysroot
+NOTE: Direct dependencies are ['/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/device-tree/device-tree.bb:do_populate_sysroot', '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-core/glibc/glibc_2.39.bb:do_populate_sysroot', '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/gcc/gcc-cross_13.4.bb:do_populate_sysroot', '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/gcc/gcc-runtime_13.4.bb:do_populate_sysroot', '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/quilt/quilt-native_0.67.bb:do_populate_sysroot', '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-tools-xlnx_2025.01-xilinx-v2025.1.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-connectivity/openssl/openssl_3.2.4.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/bison/bison_3.8.2.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/flex/flex_2.6.4.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/pkgconfig/pkgconfig_git.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/python/python3-setuptools_69.1.1.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/python/python3_3.12.11.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-devtools/swig/swig_4.2.1.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-extended/bc/bc_1.07.1.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-kernel/dtc/dtc_1.7.0.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-support/gnutls/gnutls_3.8.4.bb:do_populate_sysroot', 'virtual:native:/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/poky/meta/recipes-support/vim/vim_9.1.bb:do_populate_sysroot']
+NOTE: Installed into sysroot: ['device-tree']
+NOTE: Skipping as already exists in sysroot: ['gettext-minimal-native', 'glibc', 'binutils-cross-aarch64', 'cmake-native', 'gcc-cross-aarch64', 'gcc-runtime', 'libgcc', 'libtool-native', 'm4-native', 'quilt-native', 'texinfo-dummy-native', 'kern-tools-native', 'linux-libc-headers', 'u-boot-tools-xlnx-native', 'util-linux-libuuid-native', 'util-linux-native', 'openssl-native', 'expat-native', 'gettext-native', 'glib-2.0-native', 'ncurses-native', 'readline-native', 'zlib-native', 'bison-native', 'desktop-file-utils-native', 'flex-native', 'git-native', 'gnu-config-native', 'libedit-native', 'make-native', 'patch-native', 'perl-native', 'pkgconfig-native', 'pseudo-native', 'python3-build-native', 'python3-flit-core-native', 'python3-installer-native', 'python3-packaging-native', 'python3-pyproject-hooks-native', 'python3-setuptools-native', 'python3-wheel-native', 'python3-native', 'swig-native', 'bc-native', 'bzip2-native', 'libidn2-native', 'libnsl2-native', 'libtirpc-native', 'unzip-native', 'xz-native', 'zstd-native', 'dtc-native', 'attr-native', 'ca-certificates-native', 'curl-native', 'gdbm-native', 'gmp-native', 'gnutls-native', 'libtasn1-native', 'libcap-ng-native', 'libffi-native', 'libmpc-native', 'libpcre2-native', 'libunistring-native', 'mpfr-native', 'nettle-native', 'sqlite3-native', 'vim-native']
+DEBUG: Python function extend_recipe_sysroot finished
+DEBUG: Searching for platform-top.h in paths:
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/
+DEBUG: Using /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/platform-top.h for platform-top.h
+DEBUG: Searching for bsp.cfg in paths:
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/
+DEBUG: Using /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/bsp.cfg for bsp.cfg
+DEBUG: Searching for task2g-verified-boot.cfg in paths:
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/petalinux
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/zynqmp-generic-xczu9eg
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/zynqmp-generic
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/zynqmp
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/cortexa72-cortexa53
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/qemuboot-xilinx
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/aarch64
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx-tools/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-embedded-plus/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-kria/recipes-bsp/u-boot/files/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-v2025.01/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx-2025.01-xilinx-v2025.1+git/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx/
+    /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/components/yocto/layers/meta-xilinx/meta-xilinx-core/recipes-bsp/u-boot/files/
+DEBUG: Using /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/task2g-verified-boot.cfg for task2g-verified-boot.cfg
+DEBUG: Executing shell function do_configure
+NOTE: make CROSS_COMPILE=aarch64-amd-linux- CC=aarch64-amd-linux-gcc  --sysroot=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot -fcanon-prefix-map  -fmacro-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fmacro-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot=  -fmacro-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot=  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native=  V=1 HOSTCC=gcc  -isystem/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/include -O2 -pipe -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2 -pthread STAGING_INCDIR=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/include STAGING_LIBDIR=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib EXT_DTB=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot/boot/devicetree//system-top.dtb -C /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git O=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build xilinx_zynqmp_virt_defconfig
+make: Entering directory '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git'
+make -C /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build KBUILD_SRC=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git \
+-f /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/Makefile xilinx_zynqmp_virt_defconfig
+make[1]: Entering directory '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build'
+make -f /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/Makefile.build obj=scripts/basic
+  gcc  -isystem/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/include -O2 -pipe -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2 -pthread -Wp,-MD,scripts/basic/.fixdep.d -Iscripts/basic -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu11   -o scripts/basic/fixdep /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/basic/fixdep.c   
+rm -f .tmp_quiet_recordmcount
+ln -fsn /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git source
+/bin/bash /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/mkmakefile /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git
+  GEN     Makefile
+make -f /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/Makefile.build obj=scripts/kconfig xilinx_zynqmp_virt_defconfig
+  gcc  -isystem/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/include -O2 -pipe -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2 -pthread -Wp,-MD,scripts/kconfig/.conf.o.d -Iscripts/kconfig -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu11 -c -o scripts/kconfig/conf.o /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/kconfig/conf.c
+  bison -oscripts/kconfig/zconf.tab.c -t -l /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/kconfig/zconf.y
+  flex -oscripts/kconfig/zconf.lex.c -L /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/kconfig/zconf.l
+  gcc  -isystem/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/include -O2 -pipe -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2 -pthread -Wp,-MD,scripts/kconfig/.zconf.tab.o.d -Iscripts/kconfig -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu11  -I/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/kconfig -c -o scripts/kconfig/zconf.tab.o scripts/kconfig/zconf.tab.c
+  gcc  -isystem/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/include -O2 -pipe -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2 -pthread   -o scripts/kconfig/conf scripts/kconfig/conf.o scripts/kconfig/zconf.tab.o   
+aarch64-amd-linux-gcc  --sysroot=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot -fcanon-prefix-map  -fmacro-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fmacro-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot=  -fmacro-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot=  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native=  -E -nostdinc -P -I /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git -undef -x assembler-with-cpp /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/arch/../configs/xilinx_zynqmp_virt_defconfig -o generated_defconfig
+scripts/kconfig/conf  --defconfig=generated_defconfig Kconfig
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build'
+make: Leaving directory '/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git'
+Using .config as base
+Merging /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/bsp.cfg
+Value of CONFIG_SYS_CONFIG_NAME is redefined by fragment /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/bsp.cfg:
+Previous value: CONFIG_SYS_CONFIG_NAME="xilinx_zynqmp"
+New value: CONFIG_SYS_CONFIG_NAME="platform-top"
+
+Merging /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/task2g-verified-boot.cfg
+Value of CONFIG_FIT_SIGNATURE is redefined by fragment /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/task2g-verified-boot.cfg:
+Previous value: # CONFIG_FIT_SIGNATURE is not set
+New value: CONFIG_FIT_SIGNATURE=y
+
+Value of CONFIG_RSA is redefined by fragment /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/task2g-verified-boot.cfg:
+Previous value: # CONFIG_RSA is not set
+New value: CONFIG_RSA=y
+
+Value of CONFIG_BOOTCOUNT_LIMIT is redefined by fragment /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/task2g-verified-boot.cfg:
+Previous value: # CONFIG_BOOTCOUNT_LIMIT is not set
+New value: CONFIG_BOOTCOUNT_LIMIT=y
+
+Value of CONFIG_LEGACY_IMAGE_FORMAT is redefined by fragment /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/project-spec/meta-user/recipes-bsp/u-boot/files/task2g-verified-boot.cfg:
+Previous value: CONFIG_LEGACY_IMAGE_FORMAT=y
+New value: # CONFIG_LEGACY_IMAGE_FORMAT is not set
+
+#
+# merged configuration written to .config (needs make)
+#
+NOTE: make CROSS_COMPILE=aarch64-amd-linux- CC=aarch64-amd-linux-gcc  --sysroot=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot -fcanon-prefix-map  -fmacro-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fmacro-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build=/usr/src/debug/u-boot-xlnx/2025.01-xilinx-v2025.1+git  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot=  -fmacro-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot=  -fdebug-prefix-map=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native=  V=1 HOSTCC=gcc  -isystem/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/include -O2 -pipe -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -L/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2 -pthread STAGING_INCDIR=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/include STAGING_LIBDIR=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot-native/usr/lib EXT_DTB=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/recipe-sysroot/boot/devicetree//system-top.dtb oldconfig
+make -C /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git O=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build oldconfig
+make -C /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/build KBUILD_SRC=/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git \
+-f /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/Makefile oldconfig
+make -f /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/Makefile.build obj=scripts/basic
+rm -f .tmp_quiet_recordmcount
+ln -fsn /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git source
+/bin/bash /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/mkmakefile /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git
+  GEN     Makefile
+make -f /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/work/zynqmp_generic_xczu9eg-amd-linux/u-boot-xlnx/2025.01-xilinx-v2025.1+git/git/scripts/Makefile.build obj=scripts/kconfig oldconfig
+scripts/kconfig/conf  --oldconfig Kconfig
+*
+* Restart config...
+*
+*
+* UEFI Support
+*
+Support running UEFI applications (EFI_LOADER) [Y/n/?] y
+  Execute UEFI binary (EFI_BINARY_EXEC) [Y/n/?] y
+  Enable EFI secure boot support (EFI_SECURE_BOOT) [N/y/?] (NEW) 
+  Compile a standard EFI hello world binary for testing (BOOTEFI_HELLO_COMPILE) [Y/n/?] y
+  Compile an EFI test app for testing (BOOTEFI_TESTAPP_COMPILE) [Y/n/?] y
+*
+* Flattened Image Tree (FIT)
+*
+Flattened Image Tree (FIT) (FIT) [Y/n/?] y
+  FIT external data offset (FIT_EXTERNAL_OFFSET) [0x0] 0x0
+  Do a full check of the FIT before using it (FIT_FULL_CHECK) [Y/?] y
+  Enable signature verification of FIT uImages (FIT_SIGNATURE) [Y/n/?] y
+    Max size of signed FIT structures (FIT_SIGNATURE_MAX_SIZE) [0x10000000] 0x10000000
+    Support rsassa-pss signature scheme of FIT image contents (FIT_RSASSA_PSS) [N/y/?] (NEW) 
+  Enable ciphering data in a FIT uImages (FIT_CIPHER) [N/y/?] n
+  Show verbose messages when FIT images fail (FIT_VERBOSE) [Y/n/?] y
+  Select the best match for the kernel device tree (FIT_BEST_MATCH) [N/y/?] n
+  Support FIT printing (FIT_PRINT) [Y/n/?] y
+  Support Flattened Image Tree within SPL (SPL_FIT) [Y/?] y
+    Support FIT printing within SPL (SPL_FIT_PRINT) [N/y/?] n
+    Do a full check of the FIT before using it (SPL_FIT_FULL_CHECK) [N/y/?] n
+  Enable signature verification of FIT firmware within SPL (SPL_FIT_SIGNATURE) [N/y/?] n
+  Enable SPL loading U-Boot as a FIT (basic fitImage features) (SPL_LOAD_FIT) [Y/n/?] y
+    load address of fit image (SPL_LOAD_FIT_ADDRESS) [0x10000000] 0x10000000
+    Enable SPL applying DT overlays from FIT (SPL_LOAD_FIT_APPLY_OVERLAY) [N/y/?] n
+  Enable SPL loading U-Boot as a FIT (full fitImage features) (SPL_LOAD_FIT_FULL) [N/y/?] n
+  Enable post-processing of FIT artifacts after loading by the SPL (SPL_FIT_IMAGE_POST_PROCESS) [N/y/?] n
+*
+* Misc commands
+*
+Play 2048 (CMD_2048) [N/y/?] n
+Enable 'bmp' command (CMD_BMP) [Y/n/?] y
+bootcount (CMD_BOOTCOUNT) [N/y/?] (NEW) 
+Enable board-specific commands (CMD_BSP) [N/y/?] n
+blkcache - control and stats for block cache (CMD_BLOCK_CACHE) [Y/n/?] y
+blkmap - Composable virtual block devices (CMD_BLKMAP) [Y/n/?] y
+button (CMD_BUTTON) [Y/n/?] y
+icache or dcache (CMD_CACHE) [Y/n/?] y
+conitrace - trace console input codes (CMD_CONITRACE) [N/y/?] n
+Enable clear screen command 'cls' (CMD_CLS) [Y/n/?] y
+efidebug - display/configure UEFI environment (CMD_EFIDEBUG) [Y/n/?] y
+eficonfig - provide menu-driven uefi variables maintenance interface (CMD_EFICONFIG) [Y/n/?] y
+exception - raise exception (CMD_EXCEPTION) [N/y/?] n
+led (CMD_LED) [Y/n/?] y
+ini (CMD_INI) [N/y/?] n
+date (CMD_DATE) [Y/n/?] y
+rtc (CMD_RTC) [Y/n/?] y
+time (CMD_TIME) [Y/n/?] y
+gettime - read elapsed time (CMD_GETTIME) [Y/n/?] y
+pause command (CMD_PAUSE) [N/y/?] n
+rng command (CMD_RNG) [Y/n/?] y
+kaslrseed (CMD_KASLRSEED) [Y/n/?] y
+sleep (CMD_SLEEP) [Y/n/?] y
+support for multiprocessor commands (CMD_MP) [Y/n/?] y
+timer (CMD_TIMER) [Y/n/?] y
+sysboot (CMD_SYSBOOT) [Y/?] y
+qfw (CMD_QFW) [N/y/?] n
+pstore (CMD_PSTORE) [N/y/?] n
+terminal - provides a way to attach a serial terminal (CMD_TERMINAL) [N/y/?] n
+uuid, guid - generation of unique IDs (CMD_UUID) [N/y/?] n
+lcdputs and setcurs (CMD_VIDCONSOLE) [Y/n/?] y
+select font size (CMD_SELECT_FONT) [N/y/?] n
+*
+* Enable support for checking boot count limit
+*
+Enable support for checking boot count limit (BOOTCOUNT_LIMIT) [Y/n/?] y
+  Boot count device
+    1. Generic default boot counter (BOOTCOUNT_GENERIC) (NEW)
+    2. Boot counter on a filesystem (BOOTCOUNT_FS) (NEW)
+  > 3. Boot counter in environment (BOOTCOUNT_ENV)
+    4. Boot counter in RAM (BOOTCOUNT_RAM) (NEW)
+    5. Boot counter in a device-model device (DM_BOOTCOUNT) (NEW)
+  choice[1-5?]: 
+  Maximum number of reboot cycles allowed (BOOTCOUNT_BOOTLIMIT) [0] (NEW) 
+  Magic value for the boot counter (SYS_BOOTCOUNT_MAGIC) [0xB001C041] (NEW) 
+  Endianness of bootcount accessors
+  > 1. Little endian accessors (SYS_BOOTCOUNT_LE) (NEW)
+    2. Big endian accessors (SYS_BOOTCOUNT_BE) (NEW)
+  choice[1-2?]: 
+*
+* Security support
+*
+Support the AES algorithm (AES) [N/y/?] n
+Enable ECDSA support (ECDSA) [N/y/?] n
+Use RSA Library (RSA) [Y/n/?] y
+  Use RSA Library within SPL (SPL_RSA) [N/y/?] (NEW) 
+  Execute RSA verification without key parameters from FDT (RSA_VERIFY_WITH_PKEY) [N/y/?] (NEW) 
+  Execute RSA verification without key parameters from FDT within SPL (SPL_RSA_VERIFY_WITH_PKEY) [N/y/?] (NEW) 
+  Enable driver for RSA Modular Exponentiation in software (RSA_SOFTWARE_EXP) [Y/?] (NEW) y
+*
+* Asymmetric (public-key cryptographic) key Support
+*
+Asymmetric (public-key cryptographic) key Support (ASYMMETRIC_KEY_TYPE) [N/y/?] (NEW) 
+Trusted Platform Module (TPM) Support (TPM) [Y/n/?] y
+Trusted Platform Module (TPM) Support in SPL (SPL_TPM) [N/y/?] n
+#
+# configuration written to .config
+#
+DEBUG: Shell function do_configure finished
+DEBUG: Executing python function do_qa_configure
+DEBUG: Python function do_qa_configure finished

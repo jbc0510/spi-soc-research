@@ -1,0 +1,32 @@
+{
+  "result": "HOST BUILD AND FIT SIGNATURE/TAMPER VERIFICATION PASS",
+  "build_tool": "PetaLinux 2025.2",
+  "u_boot": "2025.01-Xilinx (g5e0d8abc7e09)",
+  "linux_kernel_in_fit": "6.12.40-xilinx build",
+  "target_architecture": "ZynqMP XCZU9EG",
+  "authoritative_xsa": {
+    "path": "results/ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.xsa",
+    "sha256": "e8b4626edb5949bc8adb14ae259802cdd24b16ea3f02daf0dd8fdbeb1cc0e7d7",
+    "project_copy_sha256": "e8b4626edb5949bc8adb14ae259802cdd24b16ea3f02daf0dd8fdbeb1cc0e7d7"
+  },
+  "xsa_bitstream": {
+    "name": "spi_ratio2_j55_wrapper.bit",
+    "sha256_in_authoritative_xsa": "90f93479dd47c505b8f9e4fe6f4f18e853f8923d081f4b2037401ed3cb46994a",
+    "sha256_petalinux_deployed_bit": "90f93479dd47c505b8f9e4fe6f4f18e853f8923d081f4b2037401ed3cb46994a",
+    "identical": true
+  },
+  "linux_fdt": {
+    "sha256_generated_from_imported_xsa": "61d6c8ec0c1a1e971b8c0a512247f5ab37097e00a7c842cc7b2edb34b7756f45",
+    "sha256_embedded_in_signed_fit": "61d6c8ec0c1a1e971b8c0a512247f5ab37097e00a7c842cc7b2edb34b7756f45",
+    "identical": true
+  },
+  "signed_fit_sha256": "ca4985971bc9c0914e428d0db7ed04601f8669c3f5660fc424b22084c7e37222",
+  "uboot_control_dtb_sha256": "493d7a51669c9ab2e1cea9b675feeb63bade51864561b73e0191ff78f1ad75fe",
+  "uboot_elf_sha256": "0928834c26938157f768edb61e2f25f447b23f793f7facf3e2ef9fce9663b958",
+  "boot_bin_generated_by_bootbin_recipe_sha256": "e4a439814ac547670b05e12d467f9f37c07eb1f9e928b1bbf1c802815d692adc",
+  "signature_key_node": "/signature/key-msu2-test (required)",
+  "verification": "U-Boot fit_check_sign accepted signed configuration; rejected modified kernel payload with Bad Data Hash.",
+  "build_status": "U-Boot compiled and deployed, and signed FIT deployment artifacts were produced. PetaLinux wrapper returned nonzero on unrelated exit-139 package output tasks (packagegroup RPM during virtual/bootloader; rootfs tar during virtual/kernel). The signed FIT was independently checked from the deploy task output.",
+  "target_status": "No board programming, boot, or power-loss test performed.",
+  "claim_boundary": "Development-key host FIT proof only; no hardware-rooted secure boot or A/B recovery proof."
+}

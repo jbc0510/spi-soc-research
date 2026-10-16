@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v15.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v17.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -335,6 +335,38 @@ process.stderr.write('presentation initialized\n');
   process.stderr.write('slide 10 end\n');
 }
 
+// 11 — PetaLinux signed FIT build and tamper verification
+{
+  const s = baseSlide(p, 'PetaLinux FIT signature rejects tampering', '2g  /  Signed image verification', 11);
+  box(s, 72, 176, 1115, 30, 'U-BOOT 2025.01-XILINX  ·  PETALINUX 2025.2  ·  VALIDATED XSA + BITSTREAM MATCH', { size: 19, bold: true, color: C.muted });
+  const flow = [
+    { x: 72, title: 'Kernel + DTB\n+ initrd', sub: 'PetaLinux FIT', color: C.blue },
+    { x: 352, title: 'RSA-2048\nsignature', sub: 'sha256 · msu2-test', color: C.teal },
+    { x: 632, title: 'Required key\nin U-Boot DTB', sub: 'key-msu2-test', color: C.orange },
+    { x: 912, title: 'Verify before\nload', sub: 'fit_check_sign', color: C.green },
+  ];
+  for (const [i, item] of flow.entries()) {
+    s.shapes.add({ geometry: 'roundRect', position: { left: item.x, top: 232, width: 230, height: 126 }, fill: C.white, line: { style: 'solid', fill: item.color, width: 2 } });
+    box(s, item.x + 13, 253, 204, 54, item.title, { size: 22, bold: true, align: 'center' });
+    box(s, item.x + 13, 321, 204, 23, item.sub, { size: 16, color: C.muted, align: 'center' });
+    if (i < flow.length - 1) s.shapes.add({ geometry: 'rightArrow', position: { left: item.x + 237, top: 276, width: 38, height: 26 }, fill: C.grid, line: { style: 'solid', fill: C.grid, width: 1 } });
+  }
+  box(s, 72, 407, 515, 35, 'SIGNED BUILD  ✓', { size: 24, bold: true, color: C.green });
+  box(s, 72, 450, 515, 83, 'U-Boot fit_check_sign accepted the PetaLinux configuration; FIT SHA-256: ca498597…e37222.', { size: 20, color: C.muted });
+  box(s, 652, 407, 515, 35, 'KERNEL BYTE FLIPPED  ✕', { size: 24, bold: true, color: C.red });
+  box(s, 652, 450, 515, 83, 'Signature/hash check failed with “Bad Data Hash” before kernel load. Zero altered payload was accepted.', { size: 20, color: C.muted });
+  box(s, 72, 558, 1115, 58, 'FIT build and tamper test passed; exact validated XSA/bitstream matched. No ZCU102 boot, trusted BootROM key, A/B rollback, or power-loss test.', { size: 19, bold: true, color: C.amber });
+  setNotes(s, [
+    'Report: results/SOW_2G_PETALINUX_FIT_20261015.md. Build configuration templates: linux/appliance/verified_update/petalinux/.',
+    'Raw evidence, signed FIT, control DTB, tampered FIT, logs, metadata, and SHA-256 manifest: results/task2g_petalinux_fit_20261015/. Reproduce validation with scripts/task2g_verify_petalinux_fit.py.',
+    'PetaLinux project XSA SHA-256 exactly matches the validated 2026-09-29 XSA (e8b4626edb5949bc8adb14ae259802cdd24b16ea3f02daf0dd8fdbeb1cc0e7d7); deployed bitstream SHA-256 also matches (90f93479dd47c505b8f9e4fe6f4f18e853f8923d081f4b2037401ed3cb46994a). FIT DTB hash matches the regenerated system DTB.',
+    'U-Boot compiled and deployed. PetaLinux wrapper returned nonzero due unrelated exit-139 package tasks; relevant U-Boot, FIT, device-tree, and bitstream outputs were present and individually verified.',
+    'Signing key is disposable and remains outside the repository under the local PetaLinux build tree; it is not a production key. The valid image build is host-side evidence only and was not flashed to the target.',
+    'The embedded key node is required; signature algorithm is sha256,rsa2048. On payload modification, fit_check_sign reported “Bad hash value” and “Bad Data Hash”.',
+    'This is not hardware-rooted secure boot: BootROM/FSBL/TF-A/U-Boot authentication, protected key provisioning, persistent A/B slots and bootcount, Linux health confirmation, and target interruption testing remain open.',
+  ]);
+}
+
 await fs.mkdir(stagingDir, { recursive: true });
 await fs.mkdir(previewDir, { recursive: true });
 await fs.mkdir(path.dirname(finalPath), { recursive: true });
@@ -361,6 +393,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v15.json'),
+  receiptPath: path.join(stagingDir, 'validation_v17.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

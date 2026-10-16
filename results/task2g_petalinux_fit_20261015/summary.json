@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "fit_configuration": "conf-system-top.dtb",
+  "signature_verification": "PASS (U-Boot fit_check_sign)",
+  "tampered_kernel_payload": "REJECTED (signature/hash verification failed)",
+  "fit_sha256": "ca4985971bc9c0914e428d0db7ed04601f8669c3f5660fc424b22084c7e37222",
+  "control_dtb_sha256": "493d7a51669c9ab2e1cea9b675feeb63bade51864561b73e0191ff78f1ad75fe",
+  "required_key_node": "PASS (/signature/key-msu2-test has required property)",
+  "key_algorithm": "sha256,rsa2048",
+  "tampered_fit_sha256": "aba112127967f98411cee898a6184c964de684e6115c97b0baf8a400d1111cc8",
+  "claim_boundary": "Host verification of a PetaLinux-generated signed FIT. Does not prove this U-Boot or FIT was booted on ZCU102, BootROM/FSBL authentication, secure key provisioning, A/B slot behavior, or power-loss recovery."
+}

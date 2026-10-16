@@ -1,0 +1,29 @@
+FIT description: MSU-2 Task 2g signed FIT verification test
+Created:         Thu Oct 15 20:14:47 2026
+ Image 0 (kernel)
+  Description:  unavailable
+  Created:      Thu Oct 15 20:14:47 2026
+  Type:         Kernel Image (no loading done)
+  Compression:  uncompressed
+  Data Size:    500 Bytes = 0.49 KiB = 0.00 MiB
+  Hash algo:    sha256
+  Hash value:   e6304a473c65ecd0ccffbd2f5925a8f51c44b11f59b66cfcc055e4bb911b8fa0
+ Image 1 (fdt-1)
+  Description:  unavailable
+  Created:      Thu Oct 15 20:14:47 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    137 Bytes = 0.13 KiB = 0.00 MiB
+  Architecture: Sandbox
+  Hash algo:    sha256
+  Hash value:   6eda2f6a03a3a0214e137d20942fe9596be0fd4e32b7576609b61b40530561bf
+ Default Configuration: 'conf-1'
+ Configuration 0 (conf-1)
+  Description:  unavailable
+  Kernel:       kernel
+  FDT:          fdt-1
+  Sign algo:    sha256,rsa2048:dev
+  Sign value:   13bdb522d58e3b9343720a55508b0a6c600db5c1bed86482d8d833d12fb2c0cb0c2c1adb1528f3243309e088ac2c0e0485f3addb1441285d4212bf90e2037b7b972bdac2c0dea6322be2091ed0dd0fddd8dadec9c463c3962c903541e92d5f26170689b34cab9ab42441ebc466a13be3968bb70df4febf093d8ef952419c2d8ef094452e5d406a9e0e57cb8808127ba8f15558502eb7360d9dfe0a9924cae8356418ec088d9180817f225ac8e5a291dbf989de2a22b61d9ecdb270fb950772a7ff2baf4002d131c61fa2f0e8b3b405f587aa230fa7586696f98bdced63f95ba6cbd60e8a45c75bd88df8841c2ec87049a85b7dba0df611ed08205f3609552203
+  Timestamp:    Thu Oct 15 20:14:47 2026
+Signature written to '/home/opentitan/msu2-verify/spi-soc-research/results/task2g_uboot_fit_sandbox_20261015/signed-fit.itb', node '/configurations/conf-1/signature'
+Public key written to '/home/opentitan/msu2-verify/spi-soc-research/results/task2g_uboot_fit_sandbox_20261015/test-control.dtb', node '/signature/key-dev'

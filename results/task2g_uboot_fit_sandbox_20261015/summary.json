@@ -1,0 +1,37 @@
+{
+  "u_boot_version": "2025.01-xilinx",
+  "source_revision": "5e0d8abc7e092b62a5de17aa7aadfad7af5f0f59",
+  "configuration": {
+    "FIT_SIGNATURE": true,
+    "RSA": true,
+    "LEGACY_IMAGE_FORMAT": false
+  },
+  "tests": {
+    "signed_fit": {
+      "result": "PASS",
+      "fit_check_sign": "PASS",
+      "bootm_transferred_to_linux_handoff": true
+    },
+    "unsigned_fit": {
+      "result": "PASS",
+      "rejected_before_handoff": true
+    },
+    "tampered_fit": {
+      "result": "PASS",
+      "rejected_before_handoff": true
+    }
+  },
+  "claim_boundary": "Host U-Boot sandbox test only; it does not validate the board's BootROM, signed BOOT.BIN, eFUSE trust anchor, SD layout, or power-loss recovery.",
+  "artifacts": {
+    "fit_check_sign.log": "ffb0d894492ce69ded66e1b8282928541464d145586bf2d698907a4c7736fde6",
+    "mkimage_signed.log": "5eb75777974574434b9e806add688784ba8a1d5254e3bde9fa6c5d5403b7938a",
+    "signed-fit.itb": "caf85b4979dbc89c937d8e57b2e6d22a53c538f5badf55a8bd8c9a9329b48f64",
+    "summary.json": "8781015d6d36a2175a5f946d9b6c5e37f38cd9e4bbcce675f92206d21c06ef72",
+    "tampered-fit.itb": "385a43d6209878941e1bf17f246d741199b706aa0460ebdb2a70e6f58661ca1c",
+    "test-control.dtb": "194c0af473e4caa929db37f901cae8c9bc01d44e031cacc40de082d68d805d17",
+    "uboot_tampered.log": "1d7392e424b708a9f895f456f7382d149faf4be8fcfa80bd084f76f3c4af2707",
+    "uboot_unsigned.log": "fcdaf01b022bf3524e8432c50799cc3a9ccb6224d613ff44b6022253c6309d15",
+    "uboot_valid.log": "0bc49e2127a05e5e74016aa6f33f5f8857dbcc7534cd152b697216c90ab3d1d6",
+    "unsigned-fit.itb": "66cc25bb1d376bb113b1c587903cd74f1ab1fb89dc6ce7071cce0e685e31b61e"
+  }
+}

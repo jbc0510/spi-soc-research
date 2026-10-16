@@ -1,0 +1,8 @@
+required
+algo
+rsa,r-squared
+rsa,modulus
+rsa,exponent
+rsa,n0-inverse
+rsa,num-bits
+key-name-hint

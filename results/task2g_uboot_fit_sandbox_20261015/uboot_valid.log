@@ -1,0 +1,68 @@
+Bloblist at b000 not found (err=-2)
+Bloblist at b000 not found (err=-2)
+pinctrl_select_state_full() sandbox_serial serial: pinctrl_select_state_full: uclass_get_device_by_phandle_id: err=-19
+
+
+U-Boot 2025.01 (Oct 15 2026 - 19:36:01 -0400)
+
+Reset Status: WARM Reset Status: COLD
+Model: sandbox
+DRAM:  256 MiB
+Core:  283 devices, 100 uclasses, devicetree: board, universal payload active
+WDT:   Not starting wdt-gpio-toggle
+WDT:   Not starting wdt-gpio-level
+WDT:   Not starting wdt@0
+NAND:  4100 MiB
+MMC:   Can't map file 'mmc1.img': Invalid argument
+   sandbox_mmc_probe() mmc1: Unable to map file 'mmc1.img'
+Can't map file 'mmc1.img': Invalid argument
+   sandbox_mmc_probe() mmc1: Unable to map file 'mmc1.img'
+           mmc_probe() mmc1 - probe failed: -1
+mmc2: 2 (SD)Can't map file 'mmc1.img': Invalid argument
+   sandbox_mmc_probe() mmc1: Unable to map file 'mmc1.img'
+, mmc0: 0 (SD)
+Loading Environment from nowhere... OK
+In:    serial
+Out:   serial,vidconsole
+Err:   serial,vidconsole
+Model: sandbox
+Net:   eth0: eth@10002000, eth5: eth@10003000, eth3: sbe5, eth6: eth@10004000, eth8: phy-test-eth, eth4: dsa-test-eth, eth2: lan0, eth7: lan1
+[?25h
+2438 bytes read in 0 ms
+image_pre_load_sig_setup() INFO: no info for image pre-load sig check
+## Loading kernel from FIT Image at 00000100 ...
+   Using 'conf-1' configuration
+   Verifying Hash Integrity ... sha256,rsa2048:dev+ OK
+   Trying 'kernel' kernel subimage
+     Description:  unavailable
+     Created:      2026-10-16   0:14:47 UTC
+     Type:         Kernel Image (no loading done)
+     Compression:  uncompressed
+     Data Start:   0x000001bc
+     Data Size:    500 Bytes = 500 Bytes
+     Hash algo:    sha256
+     Hash value:   e6304a473c65ecd0ccffbd2f5925a8f51c44b11f59b66cfcc055e4bb911b8fa0
+   Verifying Hash Integrity ... sha256+ OK
+   Decrypting Data ... OK
+## Loading fdt from FIT Image at 00000100 ...
+   Using 'conf-1' configuration
+   Verifying Hash Integrity ... sha256,rsa2048:dev+ OK
+   Trying 'fdt-1' fdt subimage
+     Description:  unavailable
+     Created:      2026-10-16   0:14:47 UTC
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x00000494
+     Data Size:    137 Bytes = 137 Bytes
+     Architecture: Sandbox
+     Hash algo:    sha256
+     Hash value:   6eda2f6a03a3a0214e137d20942fe9596be0fd4e32b7576609b61b40530561bf
+   Verifying Hash Integrity ... sha256+ OK
+   Decrypting Data ... OK
+   Booting using the fdt blob at 0x000494
+Working FDT set to 494
+   XIP Kernel Image (no loading done) to 1bc
+   Loading Device Tree to 0000000018c37000, end 0000000018c3a088 ... OK
+Working FDT set to 8c36000
+## Transferring control to Linux (at address 000001c4)...
+sandbox: continuing, as we cannot run Linux

@@ -1,0 +1,55 @@
+Signature check OK
+Verifying Hash Integrity for node 'conf-1'... sha256,rsa2048:dev+ 
+Verified OK, loading images
+## Loading kernel from FIT Image at 7dca1ecdb000 ...
+   Using 'conf-1' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:dev+ 
+OK
+
+   Trying 'kernel' kernel subimage
+     Description:  unavailable
+     Created:      Thu Oct 15 20:14:47 2026
+     Type:         Kernel Image (no loading done)
+     Compression:  uncompressed
+     Data Size:    500 Bytes = 0.49 KiB = 0.00 MiB
+     Hash algo:    sha256
+     Hash value:   e6304a473c65ecd0ccffbd2f5925a8f51c44b11f59b66cfcc055e4bb911b8fa0
+   Verifying Hash Integrity ... 
+sha256+ 
+OK
+
+   Decrypting Data ... 
+OK
+
+   Loading Kernel Image (no loading done) to 0
+## Loading fdt from FIT Image at 7dca1ecdb000 ...
+   Using 'conf-1' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:dev+ 
+OK
+
+   Trying 'fdt-1' fdt subimage
+     Description:  unavailable
+     Created:      Thu Oct 15 20:14:47 2026
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Size:    137 Bytes = 0.13 KiB = 0.00 MiB
+     Architecture: Sandbox
+     Hash algo:    sha256
+     Hash value:   6eda2f6a03a3a0214e137d20942fe9596be0fd4e32b7576609b61b40530561bf
+   Verifying Hash Integrity ... 
+sha256+ 
+OK
+
+   Decrypting Data ... 
+OK
+
+   Loading Flat Device Tree to 0
+## Loading ramdisk from FIT Image at 7dca1ecdb000 ...
+   Using 'conf-1' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:dev+ 
+OK
+
+Could not find subimage node type 'ramdisk'
