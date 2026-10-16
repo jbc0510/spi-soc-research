@@ -1,6 +1,6 @@
 # Task 2e — sustained-throughput runner implementation
 
-**Disposition:** Linux and bare-metal runners for the planned 60-second sustained SPI test have been implemented. The Linux runner passes host-only mock tests, and a guarded one-second physical J55 loopback smoke completed on the ZCU102 with 15,354 verified 64-byte transfers and zero API errors or receive mismatches. The bare-metal runner builds as an AArch64 ELF against the validated September 29 XSA but has not run on the board. Task 2e remains partial; the smoke is a bring-up check, not sustained benchmark evidence.
+**Disposition:** Linux and bare-metal runners for the planned 60-second sustained SPI test have been implemented. The Linux runner completed the physical ZCU102/J55 test at all 11 shared payload sizes × three 60-second repetitions. All 33 points passed with zero API errors and receive mismatches. Median application payload rates ranged from 0.0578 MB/s at 1 byte to 1.4949 MB/s at 65,536 bytes. The bare-metal runner builds as an AArch64 ELF against the validated September 29 XSA but has not run on the board. Task 2e remains partial until the corresponding bare-metal run and paired analysis are complete.
 
 ## What the runner does
 
@@ -11,11 +11,33 @@ The wall window includes pattern preparation, SPI calls, and receive verificatio
 Example for one 60-second run at 1 KiB, repetition 1 (requested SCK is a request, not a physical measurement):
 
 ```sh
-./spi_sustainable_benchmark /dev/spidev1.0 1024 60 15623438 \
+./spi_sustainable_benchmark /dev/spidev1.0 1024 60 49995000 \
   1 > linux_1k_rep1.log 2>&1
 ```
 
 The bare-metal firmware in `bare_metal/src/spi_sustainable_benchmark_bare_axi.c` runs the shared 11 sizes for three repetitions, 60 seconds per point, and stops on its first transfer error or mismatch. Its CPU field is explicitly `busy_wait_core_occupancy`, derived from the busy-wait execution model, not a PMU measurement. Save the full UART output. Record measured SCK, PL clock, CPU operating point, kernel/BSP identity, FPGA hash, controller identity, and loopback verification independently. Do not combine these application-level rates with the fixed-ladder `payload / mean API latency` rates.
+
+## Physical Linux sustained results
+
+The Linux runner was executed on the ZCU102 through `/dev/spidev1.0` with the validated bitstream SHA-256 `c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd`. The FPGA Manager reported `operating` immediately before every point; the runner used SPI mode 0, 8-bit words, and 49,995,000 Hz requested/read-back speed. The J55 SCK measurement for this exact ratio-2 bitstream is approximately 51 MHz from the September 29 hardware validation. It was not remeasured during these sustained runs. CPU policy was last read at the `userspace` governor and 1,200,000 kHz before the run set; per-point CPU-frequency sysfs snapshots were not recorded, so frequency stability across all 33 windows is not proven.
+
+Each run lasted at least 60 seconds, byte-verified every completed transfer, and stopped on the first API error, short transfer, timeout, or receive mismatch. The 33 points completed with zero API errors and zero receive mismatches. Original UART bytes are preserved together in `linux_sustained_serial_raw.tar.gz`; the matching readable point transcripts are `linux_sustained_point_<payload>B_rep<repetition>_serial.log`. `linux_sustained_runs.csv` contains all point metrics plus `/proc/stat` deltas, and `linux_sustained_medians.csv` reports each repetition and the per-size median. `collect_task2e_linux_sustained.py` validates the transcripts and regenerates both CSVs.
+
+| Payload | Rep 1 | Rep 2 | Rep 3 | Median MB/s | Median thread CPU share |
+|---:|---:|---:|---:|---:|---:|
+| 1 B | 0.0352 | 0.0734 | 0.0578 | 0.0578 | 86.54% |
+| 8 B | 0.2665 | 0.2664 | 0.2643 | 0.2664 | 68.62% |
+| 16 B | 0.4785 | 0.4723 | 0.4726 | 0.4726 | 66.42% |
+| 64 B | 0.9824 | 0.9823 | 0.9811 | 0.9823 | 46.62% |
+| 128 B | 1.1927 | 1.1919 | 1.1916 | 1.1919 | 38.91% |
+| 256 B | 1.3350 | 1.3332 | 1.3321 | 1.3332 | 33.21% |
+| 512 B | 1.4080 | 1.4080 | 1.4080 | 1.4080 | 18.07% |
+| 1 KiB | 1.4492 | 1.4495 | 1.4492 | 1.4492 | 10.17% |
+| 4 KiB | 1.4829 | 1.4831 | 1.4834 | 1.4831 | 3.63% |
+| 16 KiB | 1.4924 | 1.4924 | 1.4922 | 1.4924 | 1.91% |
+| 64 KiB | 1.4949 | 1.4949 | 1.4949 | 1.4949 | 1.47% |
+
+Rates are verified payload bytes divided by the measured wall window; they include transaction setup and pattern/receive validation in the application loop. They describe this Linux software path and current hardware configuration, not the wire's maximum. Linux execution occurred for all three repetitions before any new bare-metal sustained run, rather than alternating backends between repetitions as the experiment plan recommends. The Linux-vs-bare-metal comparison must disclose this order effect. The 1-byte rate and CPU share varied more between repetitions than larger points; all three remain included, and the median is used without omitting the variability.
 
 The bare-metal ELF was built from the same September 29 XSA using Vitis 2025.1 and the existing build flow:
 
@@ -45,6 +67,6 @@ A live UART preflight was completed on October 16 and is preserved in `results/t
 
 The console user is `petalinux`; `/dev/spidev1.0` is `0600 root:root`. Authenticated sudo was used for a read-only preflight, a printable-escape UART upload, SHA-256 verification, and one guarded transfer smoke. The staged executable hash matched the host-built runner. The smoke was run at mode 0, 8 bits, requested/read-back 1 MHz, 64-byte payload, and a one-second measurement window. It completed 15,354 transfers / 982,656 verified payload bytes at 0.9826 application MB/s, with zero API errors and zero mismatches; maximum observed transfer call was 130.833 µs. The serial transcript is `target_smoke_attempt.log`. These numbers describe only this short run and CPU operating point; physical SCK was not measured, so they are not a sustained throughput result or an apples-to-apples comparison with the bare-metal baseline.
 
-The Linux runner was cross-compiled to AArch64 and passed the four host mock tests. The physical smoke adds target-side loopback validation but does not establish sustained behavior. A paired run manifest and bare-metal target execution still need to be completed. The Linux SPI ioctl has no userspace deadline in this runner; physical runs should be monitored because a kernel-side stall could outlast the intended window.
+The Linux runner was cross-compiled to AArch64 and passed the four host mock tests. The physical sustained set adds target-side loopback validation for all 11 sizes and three repetitions. The Linux SPI ioctl has no userspace deadline in this runner; each physical point was monitored by a host-side serial watchdog and returned within the 80-second limit. A paired run manifest and bare-metal target execution still need to be completed.
 
-The prior paired experiment definition remains in `results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md`. Task 2e closure still requires valid physical sustained runs for both backends, a paired run manifest, and measured SCK plus CPU operating-point confirmation. The one-second smoke is recorded separately and is not substituted for those runs.
+The prior paired experiment definition remains in `results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md`. Task 2e closure still requires valid physical sustained runs for both backends, a paired run manifest, and per-point CPU operating-point confirmation. The Linux half is complete; the bare-metal sustained run and paired comparison are open.

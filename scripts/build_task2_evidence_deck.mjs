@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261016_v21.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261016_v23.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -71,6 +71,7 @@ function setNotes(slide, lines) { slide.speakerNotes.text = lines.join('\n'); }
 const comparison = await readCsv('results/linux_axi_spi_bringup_20261013/linux_vs_baremetal_comparison_20261014.csv');
 const cdma = await readCsv('results/task2b_cdma_sim_20261014/cdma_simulated_sweep.csv');
 const framework = await readCsv('results/linux_axi_spi_bringup_20261013/task2e_framework_metrics_20261014.csv');
+const linuxSustained = await readCsv('results/task2e_sustainable_runner_20261016/linux_sustained_medians.csv');
 process.stderr.write('source data read\n');
 const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
 process.stderr.write('presentation initialized\n');
@@ -393,19 +394,24 @@ process.stderr.write('presentation initialized\n');
 
 // 13 — Task 2e sustained runners and target execution gate
 {
-  const s = baseSlide(p, 'Task 2e runners are built; Linux loopback smoke passes', '2e  /  Sustained benchmark', 13);
-  box(s, 72, 178, 520, 38, 'Linux runner', { size: 27, bold: true, color: C.blue });
-  box(s, 72, 232, 520, 112, 'AArch64 executable built against the target ABI. Four host tests pass, including echo, API-error, mismatch, and invalid-input cases.', { size: 21, color: C.ink });
-  box(s, 72, 365, 520, 118, 'One-second 64-byte J55 loopback: 15,354 transfers, 982,656 verified bytes, zero API errors and mismatches. 0.9826 MB/s is a smoke result, not sustained performance.', { size: 19, bold: true, color: C.teal });
-  box(s, 650, 178, 540, 38, 'Bare-metal runner', { size: 27, bold: true, color: C.teal });
-  box(s, 650, 232, 540, 112, 'Vitis 2025.1 build against the pinned 29 September XSA completed. The ELF and build manifests are preserved.', { size: 21, color: C.ink });
-  box(s, 650, 365, 540, 118, 'Not yet run on the board. No sustained-throughput or new CPU-utilization comparison is claimed.', { size: 19, bold: true, color: C.amber });
-  s.shapes.add({ geometry: 'rect', position: { left: 72, top: 520, width: 1115, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
-  box(s, 72, 548, 1110, 72, 'Next: measure physical SCK and CPU point, then execute the paired 60-second × 11-size × 3-repeat plan on Linux and bare metal.', { size: 23, bold: true });
+  const s = baseSlide(p, 'Linux sustained results; bare-metal run remains', '2e  /  Sustained benchmark', 13);
+  addLineChart(s, {
+    position: { left: 54, top: 180, width: 790, height: 390 },
+    categories: linuxSustained.map(r => `${Number(r.payload_bytes).toLocaleString('en-US')} B`),
+    series: [{ name: 'Linux median (3 × 60 s)', values: linuxSustained.map(r => Number(r.median_MBps)), line: { style: 'solid', fill: C.blue, width: 3 }, marker: { symbol: 'circle', size: 7, fill: C.blue } }],
+    hasLegend: false, xTitle: 'Payload size', yTitle: 'Verified application payload rate (MB/s)', yMin: 0, yMax: 1.6, yMajor: 0.4, yFormat: '0.0',
+  });
+  box(s, 880, 190, 310, 40, 'Linux: 33 / 33 points passed', { size: 24, bold: true, color: C.teal });
+  box(s, 880, 244, 310, 88, '11 payload sizes × three 60-second runs. Zero API errors or receive mismatches.', { size: 20, color: C.ink });
+  box(s, 880, 354, 310, 88, 'Median rate: 0.0578 MB/s (1 B) to 1.4949 MB/s (64 KiB).', { size: 21, bold: true, color: C.blue });
+  box(s, 880, 468, 310, 82, 'Bare-metal runner is built but not yet run. Paired comparison remains open.', { size: 19, bold: true, color: C.amber });
+  s.shapes.add({ geometry: 'rect', position: { left: 72, top: 584, width: 1115, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
+  box(s, 72, 606, 1110, 48, 'Next: execute the same 11-size × 3-repeat × 60-second plan on bare metal and pair the run manifests.', { size: 21, bold: true });
   setNotes(s, [
     'Task 2e runner report: results/SOW_2E_SUSTAINED_RUNNER_20261016.md.',
-    'Build artifacts, AArch64 Linux runner, live target preflight, and one-second smoke transcript: results/task2e_sustainable_runner_20261016/. SHA-256 manifest: results/task2e_sustainable_runner_20261016/SHA256SUMS.',
-    'The Linux smoke used mode 0, 8-bit words, 1 MHz requested/read-back speed, and produced 15,354 verified 64-byte transfers with no API errors or mismatches. Physical SCK was not measured; this is not sustained throughput evidence. Host mocks remain software tests only.',
+    'Linux sustained raw UART captures, point CSV, median CSV, and target metadata: results/task2e_sustainable_runner_20261016/. The Linux collector validates all 33 rows. The one-second smoke is separately retained in target_smoke_attempt.log.',
+    'Linux sustained mode 0, 8-bit words, 49.995 MHz requested/read-back speed, 60 seconds per point, and 11 payload sizes × 3 repetitions. Physical J55 SCK of approximately 51 MHz was measured on September 29 for this exact bitstream/configuration, not remeasured during the sustained set.',
+    'Bare-metal ELF is a build artifact, not a target execution result. Linux points were all collected before a new bare-metal sustained run; this order differs from the alternating-backend plan and should be disclosed in the paired analysis.',
     'Bare-metal ELF is a build artifact, not a target execution result. The plan and closure criteria are in results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md.',
   ]);
 }
@@ -431,11 +437,11 @@ const result = await finalizePresentation({
   integrityValidatorPath: path.join(skillDir, 'container_tools/inspect_presentation_package_integrity.py'),
   layoutValidatorPath: path.join(skillDir, 'container_tools/inspect_presentation_layout_geometry.py'),
   layoutArgs: ['--expected-slide-size-emu', '12192000,6858000', '--validate-heading-fit'],
-  requiredNativeChartOwnerSlides: [2, 3, 4, 7],
+  requiredNativeChartOwnerSlides: [2, 3, 4, 7, 13],
   materializeLiteralChartWorkbooks: true,
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v21.json'),
+  receiptPath: path.join(stagingDir, 'validation_v23.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
