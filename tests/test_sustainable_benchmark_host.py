@@ -47,7 +47,7 @@ class SustainableBenchmarkHostTests(unittest.TestCase):
         )
 
     def parse_record(self, result):
-        rows = [line for line in result.stdout.splitlines() if line.startswith("payload_bytes,")]
+        rows = [line for line in result.stdout.splitlines() if line.startswith("repetition,payload_bytes,")]
         self.assertEqual(len(rows), 1, result.stdout)
         index = result.stdout.splitlines().index(rows[0])
         return next(csv.DictReader(result.stdout.splitlines()[index:]))
@@ -62,6 +62,7 @@ class SustainableBenchmarkHostTests(unittest.TestCase):
         self.assertEqual(int(row["verified_bytes"]), 64 * int(row["verified_transfers"]))
         self.assertEqual(int(row["api_errors"]), 0)
         self.assertEqual(int(row["mismatches"]), 0)
+        self.assertEqual(row["cpu_metric_kind"], "thread_cpu_share")
 
     def test_api_error_stops_point_and_is_nonzero(self):
         result = self.run_mock(8, 5, "api")
@@ -76,6 +77,8 @@ class SustainableBenchmarkHostTests(unittest.TestCase):
         row = self.parse_record(result)
         self.assertEqual(int(row["attempts"]), 1)
         self.assertEqual(int(row["mismatches"]), 1)
+        self.assertEqual(int(row["verified_transfers"]), 0)
+        self.assertEqual(int(row["verified_bytes"]), 0)
 
     def test_invalid_payload_and_window_fail_before_device_access(self):
         invalid_payload = subprocess.run(

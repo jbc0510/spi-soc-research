@@ -41,11 +41,11 @@ static int parse_uint(const char *s, unsigned long min, unsigned long max,
 
 int main(int argc, char **argv)
 {
-    if (argc < 3 || argc > 5) {
-        fprintf(stderr, "usage: %s DEVICE PAYLOAD_BYTES [WINDOW_SECONDS [REQUESTED_SCK_HZ]]\n", argv[0]);
+    if (argc < 3 || argc > 6) {
+        fprintf(stderr, "usage: %s DEVICE PAYLOAD_BYTES [WINDOW_SECONDS [REQUESTED_SCK_HZ [REPETITION]]]\n", argv[0]);
         return 2;
     }
-    unsigned long payload_ul, window_s_ul = 60, speed_ul = 15623438;
+    unsigned long payload_ul, window_s_ul = 60, speed_ul = 15623438, repetition_ul = 1;
     if (parse_uint(argv[2], 1, SPI_BENCH_MAX_PAYLOAD, &payload_ul) != 0) return 2;
     int supported = 0;
     for (unsigned i = 0; i < SPI_BENCH_PAYLOAD_COUNT; ++i)
@@ -56,6 +56,7 @@ int main(int argc, char **argv)
     }
     if (argc >= 4 && parse_uint(argv[3], 1, 3600, &window_s_ul) != 0) return 2;
     if (argc >= 5 && parse_uint(argv[4], 1, UINT32_MAX, &speed_ul) != 0) return 2;
+    if (argc >= 6 && parse_uint(argv[5], 1, 3, &repetition_ul) != 0) return 2;
     unsigned payload = (unsigned)payload_ul;
     uint64_t window_ns = (uint64_t)window_s_ul * 1000000000ULL;
     uint32_t speed = (uint32_t)speed_ul;
@@ -78,7 +79,7 @@ int main(int argc, char **argv)
     }
 
     uint64_t wall_start, wall_end, cpu_start, cpu_end;
-    uint64_t successes = 0, bytes_ok = 0, errors = 0, mismatches = 0;
+    uint64_t attempts = 0, successes = 0, bytes_ok = 0, errors = 0, mismatches = 0;
     uint64_t max_ioctl_ns = 0;
     int64_t first_error = 0;
     if (clock_ns(CLOCK_MONOTONIC_RAW, &wall_start) ||
@@ -87,6 +88,7 @@ int main(int argc, char **argv)
     }
     wall_end = wall_start;
     while (wall_end - wall_start < window_ns) {
+        ++attempts;
         spi_bench_prepare(tx, rx, payload);
         struct spi_ioc_transfer tr = {
             .tx_buf = (uintptr_t)tx, .rx_buf = (uintptr_t)rx,
@@ -109,10 +111,10 @@ int main(int argc, char **argv)
         if ((unsigned)rc != payload) {
             ++errors; first_error = SPI_BENCH_SHORT_TRANSFER; break;
         }
-        ++successes;
         if (!spi_bench_verify(&(SpiBenchResult){0}, tx, rx, payload, (unsigned)successes - 1)) {
             ++mismatches; first_error = SPI_BENCH_RX_MISMATCH; break;
         }
+        ++successes;
         bytes_ok += payload;
         if (clock_ns(CLOCK_MONOTONIC_RAW, &wall_end) != 0 || wall_end < wall_start) {
             ++errors; first_error = SPI_BENCH_TIMER_ERROR; break;
@@ -132,9 +134,9 @@ int main(int argc, char **argv)
     printf("# device=%s mode=0 bits=%u speed_requested_hz=%u speed_readback_hz=%u physical_sck_hz=NOT_MEASURED\n",
            argv[1], bits_rb, speed, speed_rb);
     printf("# timer=CLOCK_MONOTONIC_RAW cpu_timer=CLOCK_THREAD_CPUTIME_ID window_target_s=%lu\n", window_s_ul);
-    puts("payload_bytes,window_s,attempts,verified_transfers,verified_bytes,application_MBps,thread_cpu_s,thread_cpu_share_pct,max_ioctl_us,api_errors,mismatches,first_error_code");
-    printf("%u,%.9f,%" PRIu64 ",%" PRIu64 ",%" PRIu64 ",%.9f,%.9f,%.6f,%.3f,%" PRIu64 ",%" PRIu64 ",%" PRId64 "\n",
-           payload, actual_s, successes + errors, successes, bytes_ok, mb_s,
-           cpu_s, cpu_share, (double)max_ioctl_ns / 1000.0, errors, mismatches, first_error);
+    puts("repetition,payload_bytes,window_s,attempts,verified_transfers,verified_bytes,application_MBps,cpu_metric_kind,cpu_metric_pct,thread_cpu_s,thread_cpu_share_pct,busy_wait_core_occupancy_pct,max_transfer_us,api_errors,mismatches,first_error_code");
+    printf("%lu,%u,%.9f,%" PRIu64 ",%" PRIu64 ",%" PRIu64 ",%.9f,thread_cpu_share,%.6f,%.9f,%.6f,-1,%.3f,%" PRIu64 ",%" PRIu64 ",%" PRId64 "\n",
+           repetition_ul, payload, actual_s, attempts, successes, bytes_ok, mb_s,
+           cpu_share, cpu_s, cpu_share, (double)max_ioctl_ns / 1000.0, errors, mismatches, first_error);
     return errors || mismatches || actual_s < (double)window_s_ul * 0.99 ? 1 : 0;
 }

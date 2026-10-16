@@ -20,7 +20,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 XSA = ROOT / "results/ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.xsa"
-SOURCE = ROOT / "bare_metal/src/spi_benchmark_bare_axi.c"
+DEFAULT_SOURCE = ROOT / "bare_metal/src/spi_benchmark_bare_axi.c"
+SOURCE = DEFAULT_SOURCE
 CONTRACT = ROOT / "common/spi_benchmark_contract.h"
 XSA_SHA256 = "e8b4626edb5949bc8adb14ae259802cdd24b16ea3f02daf0dd8fdbeb1cc0e7d7"
 BIT_SHA256 = "90f93479dd47c505b8f9e4fe6f4f18e853f8923d081f4b2037401ed3cb46994a"
@@ -40,8 +41,11 @@ def sha(path):
 
 
 def command(args, cwd=ROOT):
+    env = dict(os.environ)
+    env.setdefault("XILINX_VITIS_DATA_DIR", str(ROOT / ".build/vitis_cli_config"))
+    Path(env["XILINX_VITIS_DATA_DIR"]).mkdir(parents=True, exist_ok=True)
     return subprocess.check_output([str(x) for x in args], cwd=cwd,
-                                   text=True, stderr=subprocess.STDOUT, timeout=20)
+                                   env=env, text=True, stderr=subprocess.STDOUT, timeout=90)
 
 
 def inspect_xsa():
@@ -76,6 +80,7 @@ def replace_once(path, before, after):
 
 def worker():
     import vitis  # available only under the Vitis launcher
+    source = Path(os.environ.get("SPI_AXI_SOURCE", str(SOURCE))).resolve()
     ws = Path(os.environ["SPI_AXI_WORKSPACE"]).resolve()
     client = vitis.create_client()
     try:
@@ -119,11 +124,11 @@ def worker():
                                                  (PLATFORM + ".xpfm")),
                                     domain=DOMAIN, template="empty_application")
         src = ws / APP / "src"
-        shutil.copy2(SOURCE, src / SOURCE.name)
+        shutil.copy2(source, src / source.name)
         shutil.copy2(CONTRACT, src / CONTRACT.name)
         uc = src / "UserConfig.cmake"
         replace_once(uc, "set(USER_COMPILE_SOURCES\n)\n",
-                     f'set(USER_COMPILE_SOURCES\n"{SOURCE.name}"\n)\n')
+                     f'set(USER_COMPILE_SOURCES\n"{source.name}"\n)\n')
         replace_once(uc, "set(USER_LINK_LIBRARIES\n)", "set(USER_LINK_LIBRARIES\nm\n)")
         replace_once(uc, "set(USER_COMPILE_OPTIMIZATION_LEVEL -O0)",
                      "set(USER_COMPILE_OPTIMIZATION_LEVEL -O2)")
@@ -142,7 +147,7 @@ def worker():
         require(client.get_component(name=APP).build() is not False,
                 "Application build failed")
         files = [bsp / "bsp.yaml", bsp / "include/xparameters.h", uc, ld,
-                 src / SOURCE.name, src / CONTRACT.name]
+                 src / source.name, src / CONTRACT.name]
         files += list(spi_driver.glob("*.c")) + list(spi_driver.glob("*.h"))
         files += list(gic_driver.glob("*.c")) + list(gic_driver.glob("*.h"))
         (ws / "generated_hashes.json").write_text(json.dumps(
@@ -155,10 +160,16 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--timeout-seconds", type=int, default=180)
     parser.add_argument("--workspace-name", default="spi_axi_bm_ws")
+    parser.add_argument("--source", default=str(DEFAULT_SOURCE.relative_to(ROOT)),
+                        help="application C source relative to the repository root")
     args = parser.parse_args()
     require(1 <= args.timeout_seconds <= 300, "Build limit must be 1..300 seconds")
     require(re.fullmatch(r"spi_axi_bm_[A-Za-z0-9_]+", args.workspace_name),
             "Workspace name must start spi_axi_bm_ and contain only letters/digits/underscore")
+    global SOURCE
+    SOURCE = (ROOT / args.source).resolve()
+    require(SOURCE.is_relative_to(ROOT) and SOURCE.is_file(),
+            "Application source must be an existing repository file")
     ws = ROOT / "bare_metal/vitis" / args.workspace_name
     require(not ws.exists() and not ws.is_symlink(), "Workspace exists; refusing to overwrite it")
     params = inspect_xsa()
@@ -178,15 +189,20 @@ def main():
                 "embedded_bit_sha256": BIT_SHA256, "source_sha256": sha(SOURCE),
                 "contract_sha256": sha(CONTRACT), "build_script_sha256": sha(Path(__file__)),
                 "xsa_parameters": params,
-                "transfer_mode": "XSpi interrupt mode with bounded software deadline",
+                "transfer_mode": ("XSpi interrupt mode with bounded software deadline"
+                                  if SOURCE.name == "spi_benchmark_bare_axi.c" else
+                                  "XSpi interrupt mode with bounded deadline; stop on first sustained-point error"),
                 "transfer_timeout_ms": 2000,
-                "timeout_recovery": "XSpi_Reset then reconfigure/restart",
+                "timeout_recovery": ("XSpi_Reset then reconfigure/restart"
+                                     if SOURCE.name == "spi_benchmark_bare_axi.c" else
+                                     "Stop the sustained run without retry"),
                 "hardware_timeout_validation": "NOT_PERFORMED",
                 "timeout_seconds": args.timeout_seconds, "packaging": "NOT_IMPLEMENTED"}
     ws.mkdir(parents=True)
     (ws / "input_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     # Vitis requires a new/empty workspace; keep logs/configuration outside it.
-    env = dict(os.environ, SPI_AXI_BUILD_WORKER="1", SPI_AXI_WORKSPACE=str(ws / "workspace"),
+    env = dict(os.environ, SPI_AXI_BUILD_WORKER="1", SPI_AXI_SOURCE=str(SOURCE),
+               SPI_AXI_WORKSPACE=str(ws / "workspace"),
                XILINX_VITIS_DATA_DIR=str(ws / "vitis_config"))
     started = time.monotonic()
     with (ws / "build.log").open("w") as log:
@@ -211,9 +227,14 @@ def main():
     require(loads and min(int(line[2], 16) for line in loads) == ENTRY and
             min(int(line[3], 16) for line in loads) == ENTRY, "Unexpected ELF LOAD placement")
     symbols = command([nm, "-n", elf])
-    for name in ("main", "axi_results", "axi_done",
+    required_symbols = (("main", "axi_results", "axi_done")
+                        if SOURCE.name == "spi_benchmark_bare_axi.c" else ("main",))
+    required_symbols += (
                  "XSpi_Transfer", "XSpi_CfgInitialize", "XSpi_InterruptHandler",
-                 "XSpi_Reset", "XScuGic_Connect", "XScuGic_InterruptHandler"):
+                 "XScuGic_Connect", "XScuGic_InterruptHandler")
+    if SOURCE.name == "spi_benchmark_bare_axi.c":
+        required_symbols += ("XSpi_Reset",)
+    for name in required_symbols:
         require(re.search(r"^[0-9a-fA-F]+\s+[A-Za-z]\s+" + name + r"$", symbols, re.M),
                 f"Missing ELF symbol {name}")
     manifest.update(elf_sha256=sha(elf), elapsed_seconds=time.monotonic() - started,
