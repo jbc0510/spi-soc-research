@@ -1,3 +1,4 @@
 results/task2g_live_board_audit_20261015/serial_session.log -text -diff
 results/task2e_sustainable_runner_20261016/target_preflight.log -text -diff
 results/task2e_sustainable_runner_20261016/target_user_diag.log -text -diff
+results/task2e_sustainable_runner_20261016/baremetal_reboot_capture_20261016.raw.log -text -diff

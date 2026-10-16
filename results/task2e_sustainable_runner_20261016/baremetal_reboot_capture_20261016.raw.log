@@ -1,0 +1,253 @@
+HOST SESSION 2026-10-16T23:20:43.925344+00:00
+id
+uid=0(root) gid=0(root) groups=0(root)
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# networkctl renew end0
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# ip -brief addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+sit0@NONE        DOWN           
+can0             DOWN           
+end0             UP             fe80::7cec:9dff:feb0:629d/64 
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# uname -a
+Linux newQspi 6.12.10-xilinx-g0a0f70e531c7 #1 SMP Sat May 17 14:01:06 UTC 2025 aarch64 GNU/Linux
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# ls -lah /run/media/BOOT-mmcblk0p1
+total 243M   
+drwxrwx---    2 root     disk       32.0K Jan  1  1970 .
+drwxr-xr-x    3 root     root          60 Jan  8 18:23 ..
+-rwxrwx---    1 root     disk        1.7M Oct 13  2026 BOOT.BIN
+-rwxrwx---    1 root     disk      316.4K Sep 23  2026 BOOT_2e_hardened_cf11cd76.bin
+-rwxrwx---    1 root     disk       25.7M Oct  1  2026 BOOT_AXI_RATIO2_SDTIRQ_PASS_20260930.BIN
+-rwxrwx---    1 root     disk        1.7M Sep 27  2026 BOOT_before_axi_irq_recovery.bin
+-rwxrwx---    1 root     disk        1.7M Sep 29  2026 BOOT_before_axi_ratio2_20260929.bin
+-rwxrwx---    1 root     disk        1.7M Oct  1  2026 BOOT_linux_backup_20261013.bin
+-rwxrwx---    1 root     disk        1.7M Aug 20  2026 BOOT_linux_pre_2e_a25d6549.bin
+-rwxrwx---    1 root     disk        3.7K Aug 20  2026 boot.scr
+-rwxrwx---    1 root     disk       66.2K Sep  8  2026 fw_printenv
+-rwxrwx---    1 root     disk       52.9M Aug 20  2026 image.ub
+-rwxrwx---    1 root     disk       65.8K Sep  8  2026 libubootenv.so.0.3.5
+-rwxrwx---    1 root     disk      129.9K Sep  8  2026 libyaml.so.0.2.5
+-rwxrwx---    1 root     disk        3.3K Sep 29  2026 ratio2_j55_50mhz_baseline_20260929.log
+-rwxrwx---    1 root     disk        3.3K Sep 29  2026 ratio2_j55_57p7mhz_20260929.log
+-rwxrwx---    1 root     disk        3.3K Sep 29  2026 ratio2_j55_57p7mhz_recovery_20260929.log
+-rwxrwx---    1 root     disk        3.2K Sep 29  2026 ratio2_j55_62p5mhz_20260929.log
+-rwxrwx---    1 root     disk        3.2K Sep 29  2026 ratio2_j55_62p5mhz_repeat_20260929.log
+-rwxrwx---    1 root     disk         672 Sep 29  2026 ratio2_j55_lvcmos33_validation_20260929.txt
+-rwxrwx---    1 root     disk         779 Sep 29  2026 ratio2_j55_validation_sha256_20260929.txt
+-rwxrwx---    1 root     disk        2.2K Aug 25  2026 run_log.txt
+-rwxrwx---    1 root     disk        1.7K Aug 25  2026 spi_bench_spidev1.0_20260825_190101.csv
+-rwxrwx---    1 root     disk        1.7K Aug 27  2026 spi_bench_spidev1.0_20260827_125526.csv
+-rwxrwx---    1 root     disk        1.7K Sep  8  2026 spi_bench_spidev1.0_20260908_141830.csv
+-rwxrwx---    1 root     disk        1.7K Sep  8  2026 spi_bench_spidev1.0_20260908_142131.csv
+-rwxrwx---    1 root     disk        1.7K Sep  8  2026 spi_bench_spidev1.0_20260908_142536.csv
+-rwxrwx---    1 root     disk        1.7K Sep  8  2026 spi_bench_spidev1.0_20260908_142923.csv
+-rwxrwx---    1 root     disk      687.6K Aug 20  2026 spi_benchmark_axi
+-rwxrwx---    1 root     disk      687.5K Aug 20  2026 spi_benchmark_axi_ext
+-rwxrwx---    1 root     disk       25.3M Sep 27  2026 spi_benchmark_ila.bit.bin
+-rwxrwx---    1 root     disk       25.3M Sep 23  2026 spi_benchmark_ratio2_70b831e7.bit.bin
+-rwxrwx---    1 root     disk       92.3K Aug 25  2026 spi_benchmark_v2_aarch64
+-rwxrwx---    1 root     disk       73.0K Sep 27  2026 spi_benchmark_v3_rxverify
+-rwxrwx---    1 root     disk       25.3M Aug 20  2026 spi_benchmark_wrapper.bit.bin
+-rwxrwx---    1 root     disk       25.3M Sep 27  2026 spi_benchmark_xsa_exact_77d482a5.bit.bin
+-rwxrwx---    1 root     disk       73.1K Aug 20  2026 spi_loopback_test
+-rwxrwx---    1 root     disk       25.3M Sep 29  2026 spi_ratio2_j55_lvcmos33_20260929.bit.bin
+-rwxrwx---    1 root     disk       25.3M Oct  1  2026 spi_ratio2_j55_wrapper.bit.bin
+-rwxrwx---    1 root     disk       41.1K Aug 20  2026 system.dtb
+-rwxrwx---    1 root     disk      256.0K Sep  9  2026 uboot-redund.env
+-rwxrwx---    1 root     disk      256.0K Sep  9  2026 uboot.env
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# cat /sys/class/fpga_manager/fpga0/state
+unknown
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# ls -la /sys/class/fpga_manager/fpga0
+lrwxrwxrwx    1 root     root             0 Jan  8 18:22 /sys/class/fpga_manager/fpga0 -> ../../devices/platform/firmware:zynqmp-firmware/firmware:zynqmp-firmware:pcap/fpga_manager/fpga0
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# sha256sum /run/media/BOOT-mmcblk0p1/spi_ratio2_j55_lvcmos33_20260929.bit.bin
+c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd  /run/media/BOOT-mmcblk0p1/spi_ratio2_j55_lvcmos33_20260929.bit.bin
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# dmesg | grep -iE 'fpga|pcap|bitstream'
+[    1.042640] FPGA manager framework
+[    1.713298] fpga_manager fpga0: Xilinx ZynqMP FPGA Manager registered
+[    1.937656] of-fpga-region fpga-region: FPGA Region probed
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# ls -la /sys/class/spi_master
+total 0
+drwxr-xr-x    2 root     root             0 Jan  8 18:22 .
+drwxr-xr-x   70 root     root             0 Jan  8 18:22 ..
+lrwxrwxrwx    1 root     root             0 Jan  8 18:22 spi0 -> ../../devices/platform/axi/ff0f0000.spi/spi_master/spi0
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# ls -la /sys/bus/platform/drivers/xilinx_spi
+total 0
+drwxr-xr-x    2 root     root             0 Jan  8 18:22 .
+drwxr-xr-x  165 root     root             0 Jan  8 18:22 ..
+--w-------    1 root     root          4096 Jan  8 18:34 bind
+--w-------    1 root     root          4096 Jan  8 18:22 uevent
+--w-------    1 root     root          4096 Jan  8 18:34 unbind
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# sha256sum /run/media/BOOT-mmcblk0p1/BOOT_AXI_RATIO2_SDTIRQ_PASS_20260930.BIN
+fbfbdb3bef84037376c604183d2b7b484d073c1fb62c52cab844894ca0853cc7  /run/media/BOOT-mmcblk0p1/BOOT_AXI_RATIO2_SDTIRQ_PASS_20260930.BIN
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# sha256sum /run/media/BOOT-mmcblk0p1/BOOT.BIN /run/media/BOOT-mmcblk0p1/BOOT_linux_backup_20261013.bin /run/media/BOOT-mmcblk0p1/BOOT_AXI_RATIO2_SDTIRQ_PASS_20260930.BIN
+56db96f7530aa9cf4008d5494f1e1497d6fb6e76ece965d820b99b017e1539de  /run/media/BOOT-mmcblk0p1/BOOT.BIN
+56db96f7530aa9cf4008d5494f1e1497d6fb6e76ece965d820b99b017e1539de  /run/media/BOOT-mmcblk0p1/BOOT_linux_backup_20261013.bin
+fbfbdb3bef84037376c604183d2b7b484d073c1fb62c52cab844894ca0853cc7  /run/media/BOOT-mmcblk0p1/BOOT_AXI_RATIO2_SDTIRQ_PASS_20260930.BIN
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# cp /run/media/BOOT-mmcblk0p1/BOOT_AXI_RATIO2_SDTIRQ_PASS_20260930.BIN /run/media/BOOT-mmcblk0p1/BOOT.BIN
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# sync
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# sha256sum /run/media/BOOT-mmcblk0p1/BOOT.BIN /run/media/BOOT-mmcblk0p1/BOOT_linux_backup_20261013.bin
+fbfbdb3bef84037376c604183d2b7b484d073c1fb62c52cab844894ca0853cc7  /run/media/BOOT-mmcblk0p1/BOOT.BIN
+56db96f7530aa9cf4008d5494f1e1497d6fb6e76ece965d820b99b017e1539de  /run/media/BOOT-mmcblk0p1/BOOT_linux_backup_20261013.bin
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux# reboot
+newQspi:/home/petalinux# 
+newQspi:/home/petalinux#          Stopping [0;1;39mSession c1 of User petalinux[0m...
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/modprobe[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mMulti-User System[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mLogin Prompts[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mHost and Network Name Lookups[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mRPC Port Mapper[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSystem Time Set[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mHardware activated USB gadget[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mLoad/Save RF Kill Switch Status /dev/rfkill Watch[0m.
+         Stopping [0;1;39mKernel Logging Service[0m...
+         Stopping [0;1;39mSystem Logging Service[0m...
+         Stopping [0;1;39mGetty on tty1[0m...
+         Stopping [0;1;39mSerial Getty on ttyPS0[0m...
+         Stopping [0;1;39mLoad/Save OS Random Seed[0m...
+         Stopping [0;1;39mTarget Communication Framework agent[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mOpenSSH Key Generation[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mKernel Logging Service[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mSystem Logging Service[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mTarget Communication Framework agent[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mGetty on tty1[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mSerial Getty on ttyPS0[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mLoad/Save OS Random Seed[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mSession c1 of User petalinux[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/getty[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/serial-getty[0m.
+         Stopping [0;1;39mUser Login Management[0m...
+         Stopping [0;1;39mUser Manager for UID 1000[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mUser Login Management[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mUser Manager for UID 1000[0m.
+[  830.690299] audit: type=1334 audit(1736361404.211:14): prog-id=14 op=UNLOAD
+         Stopping [0;1;39mPermit User Sessions[0m...
+         Stopping [0;1;39mUser Runtime Directory /run/user/1000[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mRemote File Systems[0m.
+         Stopping [0;1;39mNetwork Configuration[0m...
+[[0;32m  OK  [0m] Unmounted [0;1;39m/run/user/1000[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mUser Runtime Directory /run/user/1000[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mUser Slice of UID 1000[0m.
+         Stopping [0;1;39mD-Bus System Message Bus[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mNetwork Configuration[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mD-Bus System Message Bus[0m.
+[  830.983731] audit: type=1334 audit(1736361404.503:15): prog-id=11 op=UNLOAD
+[[0;32m  OK  [0m] Stopped target [0;1;39mBasic System[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mPreparation for Network[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mPath Units[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mDispatch Password Requests to Console Directory Watch[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mForward Password Requests to Wall Directory Watch[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSlice Units[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mUser and Session Slice[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSocket Units[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mD-Bus System Message Bus Socket[0m.
+[[0;32m  OK  [0m] Closed [0;1;39msshd.socket[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mSyslog Socket[0m.
+[[0;32m  OK  [0m] Closed [0;1;39mNetwork Service Netlink Socket[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mGenerate network units from Kernel command line[0m.
+         Stopping [0;1;39mNetwork Name Resolution[0m...
+         Stopping [0;1;39mNetwork Time Synchronization[0m...
+[[0;32m  OK  [0m] Stopped [0;1;39mUpdate is Completed[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mRebuild Dynamic Linker Cache[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mRebuild Journal Catalog[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mNetwork Name Resolution[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mNetwork Time Synchronization[0m.
+[  831.243183] audit: type=1334 audit(1736361404.763:16): prog-id=12 op=UNLOAD
+[  831.250222] audit: type=1334 audit(1736361404.767:17): prog-id=13 op=UNLOAD
+[[0;32m  OK  [0m] Stopped [0;1;39mApply Kernel Variables[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mLoad Kernel Modules[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mCreate System Files and Directories[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mLocal File Systems[0m.
+         Unmounting [0;1;39m/run/media/BOOT-mmcblk0p1[0m...
+         Unmounting [0;1;39mTemporary Directory /tmp[0m...
+         Unmounting [0;1;39m/var/volatile[0m...
+[[0;32m  OK  [0m] Unmounted [0;1;39mTemporary Directory /tmp[0m.
+[[0;32m  OK  [0m] Unmounted [0;1;39m/var/volatile[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mSwaps[0m.
+[[0;32m  OK  [0m] Unmounted [0;1;39m/run/media/BOOT-mmcblk0p1[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mUnmount All Filesystems[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mFile System Check on /dev/mmcblk0p1[0m.
+[[0;32m  OK  [0m] Removed slice [0;1;39mSlice /system/systemd-fsck[0m.
+[[0;32m  OK  [0m] Stopped target [0;1;39mPreparation for Local File Systems[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mCreate Static Device Nodes in /dev[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mCreate System Users[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mRemount Root and Kernel File Systems[0m.
+[[0;32m  OK  [0m] Stopped [0;1;39mCreate Static Device Nodes in /dev gracefully[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Shutdown[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLate Shutdown Services[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mSystem Reboot[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Reboot[0m.
+[  831.576294] audit: type=1334 audit(1736361405.095:18): prog-id=10 op=UNLOAD
+[  831.583279] audit: type=1334 audit(1736361405.095:19): prog-id=9 op=UNLOAD
+[  831.593674] audit: type=1334 audit(1736361405.111:20): prog-id=16 op=UNLOAD
+[  831.600685] audit: type=1334 audit(1736361405.111:21): prog-id=15 op=UNLOAD
+[  831.607672] audit: type=1334 audit(1736361405.119:22): prog-id=5 op=UNLOAD
+[  831.614571] audit: type=1334 audit(1736361405.119:23): prog-id=4 op=UNLOAD
+[  831.634991] watchdog: watchdog0: watchdog did not stop!
+[  831.653218] systemd-shutdown[1]: Using hardware watchdog 'cdns_wdt watchdog', version 0, device /dev/watchdog0
+[  831.663260] systemd-shutdown[1]: Watchdog running with a hardware timeout of 1min.
+[  831.676228] systemd-shutdown[1]: Syncing filesystems and block devices.
+[  831.683221] systemd-shutdown[1]: Sending SIGTERM to remaining processes...
+[  831.707542] systemd-journald[225]: Received SIGTERM from PID 1 (systemd-shutdow).
+[  831.718584] systemd-shutdown[1]: Sending SIGKILL to remaining processes...
+[  831.738249] systemd-shutdown[1]: Unmounting file systems.
+[  831.745404] (sd-remount)[756]: Remounting '/' read-only with options ''.
+[  831.752786] systemd-shutdown[1]: All filesystems unmounted.
+[  831.758444] systemd-shutdown[1]: Deactivating swaps.
+[  831.763490] systemd-shutdown[1]: All swaps deactivated.
+[  831.768719] systemd-shutdown[1]: Detaching loop devices.
+[  831.776271] systemd-shutdown[1]: All loop devices detached.
+[  831.782464] systemd-shutdown[1]: Stopping MD devices.
+[  831.788179] systemd-shutdown[1]: All MD devices stopped.
+[  831.793517] systemd-shutdown[1]: Detaching DM devices.
+[  831.798940] systemd-shutdown[1]: All DM devices detached.
+[  831.804347] systemd-shutdown[1]: All filesystems, swaps, loop devices, MD devices and DM devices detached.
+[  831.814717] systemd-shutdown[1]: Syncing filesystems and block devices.
+[  831.821422] systemd-shutdown[1]: Rebooting.
+[  831.828376] reboot: Restarting system
+Zynq MP First Stage Boot Loader 
+Release 2025.1   May 14 2025  -  12:33:16
+# MSU-2 AXI standalone Phase 1; hardware_validation=NOT_PERFORMED
+# controller=axi_quad_spi_0 base=0xa0000000 driver=XSpi mode=0 bits=8 ss=0
+# topology=UNVERIFIED intended_topology=external_MOSI_to_MISO
+# clock_pair=UNRECONCILED sck_physical_hz=UNKNOWN
+# timer=XTime_GetTime frequency_source=BSP_COUNTS_PER_SECOND
+# timer_hz=99990005
+# samples=API_success_AND_RX_verified_AND_valid_timer population_stddev=1
+# timeout_handling=bounded_interrupt deadline_ms=2000 recovery=XSpi_Reset_reconfigure timeout_count=measured
+# trial_indices=zero_based invalid_timing=-1_ns
+# IOPLL_CTRL=0x00015a00 PL0_REF_CTRL=0x01010f00
+# control_readback=0x00000186
+---CSV-BEGIN---
+payload_bytes,attempt_count,timed_success_count,api_success_count,api_error_count,timeout_count,rx_mismatch_count,first_status,min_ns,avg_ns,max_ns,stddev_ns,short_return_count,timer_error_count,first_failure_kind,first_failure_trial,first_mismatch_trial,first_mismatch_offset,first_expected,first_actual
+1,1000,1000,1000,0,0,0,0,6900.690,6951.915,8220.822,40.458,0,0,none,-1,-1,-1,-1,-1
+8,1000,1000,1000,0,0,0,0,16901.689,16939.433,17001.699,11.301,0,0,none,-1,-1,-1,-1,-1
+16,1000,1000,1000,0,0,0,0,28312.830,28332.242,28372.836,11.089,0,0,none,-1,-1,-1,-1,-1
+64,1000,1000,1000,0,0,0,0,96959.691,96984.994,97049.700,14.932,0,0,none,-1,-1,-1,-1,-1
+128,1000,1000,1000,0,0,0,0,188488.839,188511.412,188568.847,13.074,0,0,none,-1,-1,-1,-1,-1
+256,1000,1000,1000,0,0,0,0,371527.134,371559.087,371647.146,15.765,0,0,none,-1,-1,-1,-1,-1
+512,1000,1000,1000,0,0,0,0,587468.717,587520.723,587588.729,9.540,0,0,none,-1,-1,-1,-1,-1
+1024,1000,1000,1000,0,0,0,0,1015951.544,1016030.542,1016101.559,18.941,0,0,none,-1,-1,-1,-1,-1
+4096,1000,1000,1000,0,0,0,0,3586588.480,3586655.896,3586748.496,29.006,0,0,none,-1,-1,-1,-1,-1
+16384,1000,1000,1000,0,0,0,0,13869376.244,13869522.779,13869726.279,53.423,0,0,none,-1,-1,-1,-1,-1
+65536,1000,1000,1000,0,0,0,0,55000297.280,55000611.471,55000957.346,101.691,0,0,none,-1,-1,-1,-1,-1
+---CSV-END---
+# sweep_complete=1 failures=0 topology=UNVERIFIED
