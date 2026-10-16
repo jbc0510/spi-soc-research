@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v19.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261016_v20.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -48,7 +48,7 @@ function baseSlide(p, title, kicker, index) {
   box(slide, 70, 38, 1120, 25, kicker.toUpperCase(), { size: 15, bold: true, color: C.teal });
   box(slide, 70, 70, 1130, 62, title, { size: 42, bold: true });
   const line = slide.shapes.add({ geometry: 'rect', position: { left: 70, top: 146, width: 1140, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
-  box(slide, 70, 680, 1120, 18, `MSU-2  ·  Task 2 evidence review  ·  15 Oct 2026                                      ${String(index).padStart(2, '0')}`, { size: 13, color: C.muted });
+  box(slide, 70, 680, 1120, 18, `MSU-2  ·  Task 2 evidence review  ·  16 Oct 2026                                      ${String(index).padStart(2, '0')}`, { size: 13, color: C.muted });
   return slide;
 }
 function addLineChart(slide, opts) {
@@ -83,7 +83,7 @@ process.stderr.write('presentation initialized\n');
   box(s, 88, 100, 1080, 34, 'MORGAN STATE UNIVERSITY  /  MSU-2', { size: 18, bold: true, color: C.teal });
   box(s, 88, 195, 1030, 146, 'Task 2: SPI performance,\ndeterminism and secure integration', { size: 54, bold: true });
   box(s, 92, 382, 970, 75, 'Evidence review: completed comparisons, simulation findings, and remaining verification work', { size: 27, color: C.muted });
-  box(s, 92, 580, 900, 32, 'ZCU102  ·  AXI Quad SPI  ·  J55 loopback  ·  Evidence through 15 October 2026', { size: 18, color: C.muted });
+  box(s, 92, 580, 900, 32, 'ZCU102  ·  AXI Quad SPI  ·  J55 loopback  ·  Evidence through 16 October 2026', { size: 18, color: C.muted });
   setNotes(s, [
     'Scope: Task 2a–2c findings and current status of remaining SOW activities.',
     'Primary source: /home/opentitan/Downloads/MSU-2_SOW_Final (1).docx, revision 2026-02-23.',
@@ -157,29 +157,30 @@ process.stderr.write('presentation initialized\n');
 
 // 5 — Remaining scope
 {
-  const s = baseSlide(p, 'Remaining Task 2 work and evidence boundary', 'Status  /  14 October 2026', 5);
+  const s = baseSlide(p, 'Task 2 status against the SOW activity list', 'Status  /  16 October 2026', 5);
   const rows = [
-    ['2d  System hardening', 'Design complete', 'Verified boot and signed update implementation remain open.'],
-    ['2e  Benchmark framework', 'Partial', 'Paired contract and CPU analysis exist; bare-metal CPU measurement and sustained-throughput test remain open.'],
-    ['2f  OS tuning', 'Partial', 'CPU-frequency axis measured; preemption-model and physical DMA driver comparisons remain open.'],
-    ['2g  Minimal appliance', 'Partial', 'A/B updater prototype passes host fault tests; U-Boot integration and target secure boot/recovery remain open.'],
+    ['2a  Performance gaps', 'Complete', '11 sizes × 1,000 on Linux and bare metal; no errors. Bounded comparison, not causal kernel-only attribution.', C.green],
+    ['2b  PIO and DMA', 'Assessment complete', 'Physical PIO; six-size CDMA simulation; ZDMA result invalid for performance. No physical DMA crossover.', C.green],
+    ['2c  Real-time suitability', 'Assessment complete', 'Best-effort latency and jitter characterized; no hard deadline or deterministic guarantee established.', C.green],
+    ['2d  System hardening', 'Design complete', 'Design documented. Verified boot, reliable updates and automatic recovery are not deployed.', C.green],
+    ['2e  Benchmark framework', 'Partial', 'Shared contract and both sustained runners built; physical sustained runs and paired manifest remain open.', C.amber],
+    ['2f  OS tuning', 'Partial', 'CPU-frequency sweep done; preemption-model and physical optimized-DMA comparison remain open.', C.amber],
+    ['2g  Minimal appliance/security', 'Partial', 'Prototypes pass defined tests; active boot is unsigned and integrated target recovery remains open.', C.amber],
   ];
-  const colors = [C.red, C.amber, C.amber, C.amber];
-  let y = 190;
-  for (let i = 0; i < rows.length; i++) {
-    const [label, state, detail] = rows[i];
-    s.shapes.add({ geometry: 'rect', position: { left: 72, top: y + 4, width: 8, height: 74 }, fill: colors[i], line: { style: 'solid', fill: 'none', width: 0 } });
-    box(s, 100, y, 340, 32, label, { size: 23, bold: true });
-    box(s, 100, y + 39, 290, 27, state, { size: 18, bold: true, color: colors[i] });
-    box(s, 445, y + 3, 735, 70, detail, { size: 20, color: C.muted });
-    y += 112;
+  let y = 174;
+  for (const [label, state, detail, color] of rows) {
+    s.shapes.add({ geometry: 'rect', position: { left: 72, top: y + 4, width: 7, height: 53 }, fill: color, line: { style: 'solid', fill: 'none', width: 0 } });
+    box(s, 94, y, 270, 27, label, { size: 19, bold: true });
+    box(s, 366, y, 178, 26, state, { size: 17, bold: true, color });
+    box(s, 548, y, 625, 51, detail, { size: 17, color: C.muted });
+    y += 66;
   }
-  box(s, 72, 638, 1120, 27, 'Status labels follow the SOW activity wording; partial evidence is not presented as criterion closure.', { size: 16, color: C.muted });
+  box(s, 72, 644, 1120, 24, 'SOW wording is authoritative; 2a–2g are internal labels. Task 1 and formal reporting deliverables are assessed separately.', { size: 15, color: C.muted });
   setNotes(s, [
-    'SOW source: /home/opentitan/Downloads/MSU-2_SOW_Final (1).docx, revision 2026-02-23.',
-    '2d/2e audit basis: results/SOW_2E_HARDENED_BOARD_VALIDATION_20260922.md and results/linux_axi_spi_bringup_20261013/SOW_2A_FINAL_COMPARISON_20261014.md.',
-    '2f source: results/SOW_2F_FREQSWEEP_20260908.md. 2g sources: results/SOW_2G_RECOVERY_20260909.md and results/SOW_2G_FWENV_20260908.md.',
-    'Historical file labels do not exactly mirror the SOW’s unlettered activity list. This slide maps 2d–2g by the SOW’s wording and sequence.',
+    'Governing source: /home/opentitan/Downloads/MSU-2_SOW_Final (1).docx, revision 2026-02-23. The seven activity names are quoted or closely abbreviated from Task 2; internal labels 2a–2g are mapped in sequence.',
+    'Evidence basis: results/MSU2_TASK2_SOW_STATUS_20261016.md and the source reports in results/ for Task 2a–2g.',
+    'Task 2a comparison is bounded and does not identify a universal causal Linux-only cost. Task 2b has simulation but no valid physical DMA sweep. Task 2c supports best-effort suitability only. Task 2d is design-only. Task 2e has no physical sustained-run data. Task 2f lacks a changed preemption configuration and valid physical optimized-DMA comparison. Task 2g lacks integrated target verified boot and persistent recovery.',
+    'The SOW also requires separate Task 1 work and formal monthly, interim, simulation/emulation, OS/appliance, and final-report deliverables; this Task 2 status slide does not certify those deliverables.',
   ]);
 }
 
@@ -389,6 +390,26 @@ process.stderr.write('presentation initialized\n');
   ]);
 }
 
+
+// 13 — Task 2e sustained runners and target execution gate
+{
+  const s = baseSlide(p, 'Task 2e runners are built; board execution remains open', '2e  /  Sustained benchmark', 13);
+  box(s, 72, 178, 520, 38, 'Linux runner', { size: 27, bold: true, color: C.blue });
+  box(s, 72, 232, 520, 112, 'AArch64 executable built against the target ABI. Four host tests pass, including echo, API-error, mismatch, and invalid-input cases.', { size: 21, color: C.ink });
+  box(s, 72, 365, 520, 118, 'Not yet run on the ZCU102. The active console account is unprivileged and /dev/spidev1.0 is root-only (0600). No SPI transfer was issued in this session.', { size: 19, bold: true, color: C.amber });
+  box(s, 650, 178, 540, 38, 'Bare-metal runner', { size: 27, bold: true, color: C.teal });
+  box(s, 650, 232, 540, 112, 'Vitis 2025.1 build against the pinned 29 September XSA completed. The ELF and build manifests are preserved.', { size: 21, color: C.ink });
+  box(s, 650, 365, 540, 118, 'Not yet run on the board. No sustained-throughput or new CPU-utilization comparison is claimed.', { size: 19, bold: true, color: C.amber });
+  s.shapes.add({ geometry: 'rect', position: { left: 72, top: 520, width: 1115, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
+  box(s, 72, 548, 1110, 72, 'Next: restore root console access → run the guarded 1-second loopback smoke test → execute the paired 60-second × 11-size × 3-repeat plan.', { size: 23, bold: true });
+  setNotes(s, [
+    'Task 2e runner report: results/SOW_2E_SUSTAINED_RUNNER_20261016.md.',
+    'Build artifacts, AArch64 Linux runner, live target preflight, and access limitations: results/task2e_sustainable_runner_20261016/. SHA-256 manifest: results/task2e_sustainable_runner_20261016/SHA256SUMS.',
+    'Host mocks validate software behavior only; they are not hardware results. The target preflight confirmed /dev/spidev1.0, the a0000000.spi platform device, and active SPI IRQ. The console user lacks permission to access the device.',
+    'Bare-metal ELF is a build artifact, not a target execution result. The plan and closure criteria are in results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md.',
+  ]);
+}
+
 await fs.mkdir(stagingDir, { recursive: true });
 await fs.mkdir(previewDir, { recursive: true });
 await fs.mkdir(path.dirname(finalPath), { recursive: true });
@@ -415,6 +436,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v19.json'),
+  receiptPath: path.join(stagingDir, 'validation_v20.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
