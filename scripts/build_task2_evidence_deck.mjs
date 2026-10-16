@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v18.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261015_v19.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -370,22 +370,22 @@ process.stderr.write('presentation initialized\n');
 // 12 — Generated boot-flow audit
 {
   const s = baseSlide(p, 'Generated boot policy can bypass FIT verification', '2g  /  Boot-chain audit', 12);
-  box(s, 72, 176, 515, 30, 'COMPILED BOOT SCRIPT', { size: 19, bold: true, color: C.blue });
-  box(s, 652, 176, 515, 30, 'COMPILED DEFAULT ENVIRONMENT', { size: 19, bold: true, color: C.blue });
-  box(s, 72, 222, 515, 68, '1  Load image.ub\n2  bootm verifies the signed FIT', { size: 21, bold: true });
-  box(s, 72, 313, 515, 71, 'If FIT boot returns: load Image + system.dtb\n3  booti hands off the raw kernel', { size: 20, color: C.red });
-  box(s, 72, 414, 515, 60, 'MMC/USB also imports uEnv.txt and runs uenvcmd.', { size: 19, color: C.red });
-  box(s, 652, 222, 515, 68, 'bootcmd = run distro_bootcmd\nboot_targets includes JTAG, MMC, QSPI, NAND, USB, SCSI, PXE, DHCP', { size: 19, bold: true });
-  box(s, 652, 313, 515, 71, 'Distro scan also checks scripts, extlinux,\nand EFI boot paths across discovered media.', { size: 20, color: C.red });
-  box(s, 652, 414, 515, 60, 'No bootlimit or upgrade_available in initial environment.', { size: 19, color: C.red });
+  box(s, 72, 176, 515, 30, 'LIVE ZCU102  /  newQspi', { size: 19, bold: true, color: C.blue });
+  box(s, 652, 176, 515, 30, 'ACTIVE U-BOOT AND SD', { size: 19, bold: true, color: C.blue });
+  box(s, 72, 222, 515, 68, 'Linux 6.12.10-xilinx\nPetaLinux 2025.1  ·  root=/dev/ram0', { size: 20, bold: true });
+  box(s, 72, 313, 515, 71, 'SD image.ub (446dd475…) fails required-key verification: no signature node. boot.scr (6c555e63…) matches audited raw-boot fallback.', { size: 19, color: C.red });
+  box(s, 72, 414, 515, 60, 'FPGA manager: operating. Loaded bitstream hash c27bb684… matches the validated Sep 29 .bit.bin.', { size: 19, color: C.green });
+  box(s, 652, 222, 515, 68, 'bootcmd = run distro_bootcmd\nboot_targets = mmc0, JTAG, QSPI, NAND, USB, SCSI, PXE, DHCP', { size: 19, bold: true });
+  box(s, 652, 313, 515, 71, 'bootdelay = 5 s. No bootlimit or upgrade_available. One SD partition; Linux root is RAM.', { size: 20, color: C.red });
+  box(s, 652, 414, 515, 60, 'Host-built signed PetaLinux 2025.2 FIT is not installed or booted.', { size: 19, color: C.red });
   s.shapes.add({ geometry: 'rect', position: { left: 72, top: 510, width: 1115, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
-  box(s, 72, 538, 1115, 76, 'Conclusion: FIT signature validation passes in isolation, but generated boot policy is not fail-closed. Restrict trusted boot paths, remove raw fallbacks and external command imports, then test persistent A/B rollback before claiming secure update.', { size: 20, bold: true, color: C.amber });
+  box(s, 72, 538, 1115, 76, 'Conclusion: the SPI bitstream is validated, but the live board still runs an unsigned FIT through generic fail-open boot policy. Task 2g remains open until a trusted FIT-only chain and A/B recovery are tested.', { size: 20, bold: true, color: C.amber });
   setNotes(s, [
-    'Audit report and raw evidence: results/task2g_bootflow_audit_20261015/README.md, boot.scr, u-boot-initial-env.txt, audit.json, and SHA256SUMS.',
-    'Generated boot.scr SHA-256: 6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608. Initial environment SHA-256: b87a9efa96343fbee9e42b4fbcbc43365a844100c6b7df76153d91a442ba628f.',
-    'The FIT path calls bootm, then MMC/USB may import uEnv.txt and run uenvcmd; raw Image/system.dtb and optional ramdisk paths call booti. QSPI/NAND/NOR branches also fall back to raw boot. Default environment is bootcmd=run distro_bootcmd with broad boot_targets including JTAG, MMC, QSPI, NAND, USB, SCSI, PXE, DHCP, and includes script/extlinux/EFI discovery.',
-    'CONFIG_BOOTCOUNT_LIMIT=y was configured, but no bootlimit or upgrade_available value exists in the captured initial environment. No slot selection, persistent health confirmation, or rollback was tested.',
-    'The audit is a lexical/configuration inspection, not U-Boot sandbox execution or ZCU102 boot. No boot media or board state was changed. Reported conclusion is limited to the generated host build artifacts.',
+    'Live target audit report and raw serial capture: results/task2g_live_board_audit_20261015/README.md and serial_session.log. Generated boot-script audit: results/task2g_bootflow_audit_20261015/.',
+    'Live SD boot.scr SHA-256 6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608 matches the captured generated script. The live image.ub SHA-256 is 446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0; required-key fit_check_sign failed because it has no signature subnode.',
+    'The kernel log reports firmware msu2_ratio2_j55_c27bb684.bit.bin loaded; its SHA-256 is c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd, matching the validated Sep 29 bit.bin artifact. The FPGA manager reports operating.',
+    'Read-only fw_printenv from the SD copy showed bootcmd=run distro_bootcmd, broad boot_targets (mmc0 jtag mmc0 mmc1 qspi0 nand0 usb0 usb1 scsi0 pxe dhcp), bootdelay=5, bootseq=0, and unset bootlimit/upgrade_available. Rootfs is ram0 and the SD card has only mmcblk0p1. fw_setenv is not present in the running rootfs.',
+    'The signed FIT built with PetaLinux 2025.2 remains host-side and was not installed or booted. The boot-chain is not trusted until the running U-Boot and earlier BootROM/FSBL chain authenticate policy and image. No board media, FPGA, or persistent environment was modified; only temporary fw_env config/symlinks were created under /tmp.',
   ]);
 }
 
@@ -415,6 +415,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v18.json'),
+  receiptPath: path.join(stagingDir, 'validation_v19.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

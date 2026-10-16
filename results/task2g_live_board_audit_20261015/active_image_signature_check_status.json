@@ -1,0 +1,13 @@
+{
+  "command": [
+    "./.build/uboot-task2g-sandbox/tools/fit_check_sign",
+    "-f",
+    "sd-images/image.ub",
+    "-k",
+    "results/task2g_petalinux_fit_20261015/u-boot-control.dtb",
+    "-c",
+    "conf-system-top.dtb"
+  ],
+  "exit_code": 1,
+  "finding": "unsigned FIT rejected by required key"
+}
