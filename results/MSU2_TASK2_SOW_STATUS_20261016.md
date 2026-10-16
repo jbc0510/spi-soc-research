@@ -28,7 +28,7 @@ The 23 February 2026 Statement of Work defines seven Task 2 activities. The repo
 
 ## Next work, in order
 
-1. Run the bare-metal sustained runner on the validated image, capture the same hardware/CPU metadata, and generate the paired Linux-versus-bare-metal comparison. Linux sustained evidence is in `results/task2e_sustainable_runner_20261016/linux_sustained_runs.csv` and `linux_sustained_medians.csv`.
+1. Physically power on/reset the ZCU102, then run the bare-metal sustained runner on the validated image, capture the same hardware/CPU metadata, and generate the paired Linux-versus-bare-metal comparison. Linux sustained evidence is in `results/task2e_sustainable_runner_20261016/linux_sustained_runs.csv` and `linux_sustained_medians.csv`.
 2. Run the sustained Linux and bare-metal measurements using the shared payload contract, preserve raw results, and generate a paired manifest. The bare-metal ELF still needs target execution.
 3. Add a valid target-board DMA test if the selected design and available hardware resources support it; keep this distinct from the existing XSim CDMA result.
 4. Decide whether to rebuild/test a different Linux preemption configuration. The existing frequency sweep alone does not satisfy that SOW axis.

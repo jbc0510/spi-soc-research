@@ -1,0 +1,21 @@
+MSU-2 Task 2e bare-metal access investigation — 2026-10-16
+
+Before the Linux shutdown, XSCT 2025.1 found Digilent JTAG-SMT2NC serial 210308A46334, the ZCU102 xczu9 TAP, the PS TAP, and four running Cortex-A53 cores.
+
+Linux was gracefully stopped using `sync; poweroff` after all Linux sustained measurements had completed. UART output ended with `reboot: Power down`.
+
+After shutdown, XSCT still identified the TAP chain but reported APU `No Power` and Cortex-A53 `FPD No Power`. The following recovery attempts did not restore an accessible Cortex-A53 target:
+
+- XSCT `rst -system` against the PSU target returned without an error, but target enumeration still showed APU/A53 `No Power`.
+- AMD's documented JTAG security-gate unlock (`mwr 0xffca0038 0x1ff`) was attempted. `rdi_xsct` segfaulted and exited before producing a target list; whether the volatile register write completed is unconfirmed.
+- The documented `rst -processor` path failed with a closed TCF channel while selecting Cortex-A53 #0.
+- The `rst -srst` attempt also ended with a closed TCF channel while selecting the PSU target.
+- A subsequent UART check detected no Linux shell prompt and sent no target commands. The saved read-only result is `target_preflight_post_halt.log`.
+- A final XSCT probe returned `channel closed` while enumerating targets.
+
+No ELF was downloaded or executed. No FPGA bitstream was reprogrammed, and no SD card, boot image, or persistent board configuration was written. The board's active Linux session is stopped; a physical board power-on/reset is needed before the bare-metal run can continue. No remotely controlled outlet or board power interface is exposed by the workstation session.
+
+AMD references consulted:
+- UG1209, Loading U-Boot Using XSCT/XSDB: https://docs.amd.com/r/2024.1-English/ug1209-embedded-design-tutorial/Loading-U-Boot-Using-XSCT/XSDB
+- UG1400, Debugging Applications on Zynq UltraScale+ MPSoC: https://docs.amd.com/r/2024.1-English/ug1400-vitis-embedded/Debugging-Applications-on-Zynq-UltraScale-MPSoC
+- UG1085, Zynq UltraScale+ Device TRM, System Test and Debug / Power-up Request and Acknowledge: https://docs.amd.com/api/khub/documents/xzMsp_c5sG9J6A3u7NkJYQ/content?Ft-Calling-App=ft
