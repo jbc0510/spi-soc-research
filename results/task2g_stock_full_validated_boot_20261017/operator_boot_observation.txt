@@ -1,7 +1,7 @@
 Date: 2026-10-17 (operator-reported; picocom at 115200 baud)
-Image: stock PetaLinux no-PL diagnostic; SHA-256 2a10ff5726003b99992f588a66246842dc40e8bd8320f63f09926568d157ffb2
-Observation after keeping picocom open and resetting the board: the fragment repeated five times in the pasted output, with a replacement/corruption character between repetitions:
+Image: stock PetaLinux boot image with validated J55 PL; SHA-256 604df48f3e98f70e849df14c26562514149359b9a2a9e5921e4fcd1428e9abea
+Observation: the operator reports "same thing" after installing this full stock image. The prior captured output with picocom open after reset was the same FSBL prefix repeating five times, with a replacement/corruption character between repetitions:
 
 Zynq MP First St�Zynq MP First St�Zynq MP First St�Zynq MP First St�Zynq MP First St
 
-Interpretation: the repeated prefix supports a reset/restart loop rather than a single static incomplete display. This is still operator-copied UART text with no timestamps and not an independent host capture; it cannot identify which boot stage initiates reset.
+Interpretation: the repeated prefix supports a reset/restart loop rather than a single static incomplete display, and the result reproduces with stock platform boot components plus the validated PL. This is still operator-copied UART text with no timestamps and not an independent host capture; it cannot identify which boot stage initiates reset. `fuser` confirms picocom PID 693168 currently owns `/dev/ttyUSB0`, so no second serial reader was opened.

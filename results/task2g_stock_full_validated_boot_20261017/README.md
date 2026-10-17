@@ -7,6 +7,6 @@ This is the PetaLinux-generated ZynqMP boot image, built from the platform's sto
 - PL partition length: `0x0065216f`; PL destination/load address: `0xffffffff`; Bootgen checksum: `0xfecfb328`
 - These PL partition fields match the previously checked corrected selector package and the bitstream is the same validated artifact by SHA-256.
 
-The image is installed as `BOOT.BIN` on the SD card and hash-verified. It restores stock platform boot components while including the known validated PL design. `image.ub` on the card remains the kernel/root filesystem input and was not modified. This test distinguishes the no-PL restart loop from a broader boot/handoff problem and the custom selector integration. The board has not yet boot-tested this installation.
+The image is installed as `BOOT.BIN` on the SD card and hash-verified. It restores stock platform boot components while including the known validated PL design. `image.ub` on the card remains the kernel/root filesystem input and was not modified. The operator reports the same repeated FSBL fragment with this image, so the restart symptom persists with the stock platform boot chain and validated PL design.
 
 The Bootgen readback copied from the platform package audit is `bootgen_read.log`. The exact source image was `/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/deploy/images/zynqmp-generic-xczu9eg/BOOT-zynqmp-generic-xczu9eg-20261017180840.bin`.
