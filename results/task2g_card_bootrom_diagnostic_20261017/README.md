@@ -100,6 +100,10 @@ Linux reports no `/sys/class/reset` directory. AMD UG1137 documents that PS-to-P
 
 The operator subsequently read the XSA-identified PS GPIO Bank 5 registers at `0xFF0A0344` (DIRM), `0xFF0A0348` (OEN), and `0xFF0A0054` (DATA); all returned `0x00000000`. The validated XSA's `psu_ps_pl_reset_config_data()` sets bit 31 of DIRM and OEN and toggles DATA bit 31 low then high. The live zeros therefore confirm that this generated PS GPIO reset sequence has not configured Bank 5 bit 31 as a driven output in the current Linux session. They do not establish the external pin voltage while the PS GPIO is an input, so `pl_resetn0`'s electrical level remains unverified. The `gpio-513` entry in the debugfs dump belongs to firmware GPIO chip 0 (the base device tree identifies this as the mode-pin GPIO); it is not sufficient evidence about the XSA's PS GPIO Bank 5 bit 31 on GPIO chip 1. No reset or GPIO value was written.
 
+## Subsequent live AXI SPI re-bring-up
+
+The later live test used the saved, hash-verified PL0, reset, and AXI SPI overlays. The validated bitstream was loaded through FPGA Manager before the AXI controller node was added. FPGA Manager reported `operating`; PL0 read back as 99.99 MHz with enable count 1; GPIO 689 (`msu2-pl-resetn0`) was `out hi`; Linux created `spi1.0`; and a byte-verifying smoke test passed with TX `0xa5`, RX `0xa5`, `ioctl_rc=1`, and `errno=0`. A preceding probe stalled after reboot when the bitstream had not been reloaded; the sequence difference makes unconfigured PL a likely explanation, but does not prove an exclusive root cause. The full report and serial evidence are in `results/linux_axi_spi_bringup_20261013/runtime_rebringup_20261017.md` and `.log`. The test was a one-byte smoke test; no new multi-payload verified benchmark was run.
+
 ## References
 
 - [AMD UG1087 — CSU_BR_ERROR register](https://docs.amd.com/r/en-US/ug1087-zynq-ultrascale-registers/CSU_BR_ERROR-PMU_GLOBAL-Register?contentId=GlaVzNfJeAhgKU8ebnisfQ)
