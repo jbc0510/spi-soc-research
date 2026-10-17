@@ -26,7 +26,7 @@ FILES = {
 }
 EXPECTED = {
     "msu2_demo.sh": "b113e2e9fd6f940f459e5631992bb8b648b74ac6da2598f543262d018cc1b59c",
-    "MSU2_DEMO_CONSOLE.md": "7ce9bc3221b0355047131c65323e09e8b2c9a74425e128d92e40e6e44c78870a",
+    "MSU2_DEMO_CONSOLE.md": "cee2fcd15108422a9475df1c20ae47e6bedc66c13d13f3cb226659a5b44fe38a",
     "pl0-clock-only.dtbo": "00d3bd63dd926a41c3e8581c8d4ee8abb3e94307ad7e4ba345e500e45bb1bffa",
     "pl-reset-release.dtbo": "6ae01a4bddea4fe225e2fdee6c5da48df70ce68df7be14328326d7066a171255",
     "axi-spi-controller.dtbo": "92416746eaba51248438fdca8be324ef2a0455ccb2caa64da74d75df96bee693",

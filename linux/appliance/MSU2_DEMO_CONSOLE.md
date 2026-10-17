@@ -40,15 +40,54 @@ spi_benchmark_v3_rxverify_aarch64
 spi_sustainable_benchmark_linux_aarch64
 ```
 
-The `dtbo` files and target executables are the hash-recorded artifacts in
-`results/linux_axi_spi_bringup_20261013/` and
-`results/task2e_sustainable_runner_20261016/`. The menu checks the validated
-bitstream source hash before programming. A user explicitly chooses hardware
+The `dtbo` files and target executables are copied from the committed,
+hash-verified release inputs under
+`results/msu2_linux_demo_bundle_20261017_v3/`. The bundle builder checks every
+input hash. The menu checks the validated bitstream source hash before
+programming. A user explicitly chooses hardware
 bring-up or a test. Hardware bring-up applies the PL0 clock, programs the full
 bitstream, releases the PL reset, registers the AXI SPI controller, and binds
 spidev in that order. It refuses unexpected overlay state and records each test
 log and a text manifest. It marks the physical SCK and live FPGA identity as
 unverified because it cannot measure SCK or read the programmed design back.
+
+## Reproduce from a fresh GitHub clone
+
+The repository contains the menu source, all runtime binaries/overlays, the
+validated bitstream, and the package builder. No Vivado, Vitis, target Python,
+or untracked workstation SD-card backup is needed to build this Linux demo
+bundle. From the LPS workstation, clone or update the feature branch and build
+a new package directory:
+
+```sh
+git clone --branch feature/ratio2-j55-rebuild \
+  https://github.com/jbc0510/spi-soc-research.git
+cd spi-soc-research
+python3 scripts/package_msu2_demo_bundle.py --out /tmp/msu2_demo
+(cd /tmp/msu2_demo && sha256sum -c SHA256SUMS)
+```
+
+The clean-clone verification was run at commit
+`6d86bcc0fcd32ddc27c8dcba76692d8ace175338`: package creation succeeded, all
+nine file hashes passed, and the POSIX shell syntax and menu self-test passed.
+The self-test does not access the ZCU102.
+
+With the board safely off and its boot SD card mounted on the workstation, copy
+the package into a new `msu2_demo` directory on the FAT boot partition. Keep
+the existing known-good Linux `BOOT.BIN` and other boot files intact. Eject the
+card cleanly, boot Linux, log in, and launch the menu command below. In the
+menu, choose hardware bring-up and then choose the requested test; the menu
+does not launch tests automatically. Choosing `q` returns to the Linux shell.
+For example, when the host mounted the FAT partition at
+`/media/$USER/BOOT`:
+
+```sh
+cp -a /tmp/msu2_demo /media/$USER/BOOT/msu2_demo
+sync
+```
+
+Use the host's actual mount path if it differs. Eject/unmount the card cleanly
+before inserting it into the board.
 
 ## Install and launch on the target
 
