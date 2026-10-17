@@ -90,7 +90,7 @@ ls /sys/class/spi_master/
 spi0
 ```
 
-`spi0` here is not evidence of the PL AXI Quad SPI controller; it is the PS SPI master in the base device tree. The image used in this A/B test contains no PL bitstream. FPGA manager state `unknown` and the absence of an AXI SPI master leave PL configuration, PL clock/reset, and AXI SPI operation untested. Restore `BOOT.BIN.stock_full_validated_pl_20261017` before any further PL test, then diagnose the full-design boot flow while preserving the verified Linux recovery image. This result is a successful OS recovery/boot comparison only, not an AXI SPI or secure-boot acceptance result.
+`spi0` here is not evidence of the PL AXI Quad SPI controller; it is the PS SPI master in the base device tree. The image used in this A/B test contains no PL bitstream. FPGA manager state `unknown` and the absence of an AXI SPI master leave PL configuration, PL clock/reset, and AXI SPI operation untested. The verified full-design boot image remains preserved on the SD card. A later discriminating test can keep this working Linux boot image and load the validated bitstream through Linux only after the PL clock/reset prerequisites are established. This result is a successful OS recovery/boot comparison only, not an AXI SPI or secure-boot acceptance result.
 
 ## Linux clock-tree and reset-framework inspection
 
