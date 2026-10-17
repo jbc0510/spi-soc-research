@@ -45,6 +45,20 @@ No Linux SPI or AXI test can run in this state; the Linux kernel and selector me
 
 No files on the card were modified during this diagnostic.
 
+## Complete pre-check card image and offline boot-file verification
+
+Before removing the card, a full raw image was created with `dd`. The first attempt was interrupted after 4,244,635,648 bytes; it was resumed at block 253 with `skip=253 seek=253 conv=notrunc,fsync` and completed with 62,534,975,488 bytes, exactly the device capacity reported by `lsblk`. The image is `/tmp/msu2_zcu102_sd_pre_fsck_20261017.img`. It is a host-side recovery copy and is not stored in this repository. Its whole-image SHA-256 check has not yet returned.
+
+`fdisk -l` on the image confirms an MBR with one bootable FAT32-LBA partition, starting at LBA 2048 and ending at LBA 122138623. The partition boot sector has signature `55 aa` and a FAT32 BPB (512 bytes/sector, 64 sectors/cluster, 64 reserved sectors, two FATs, 14912 sectors/FAT, root cluster 2, backup boot sector 6). The FAT32 root directory was read directly from the image without mounting or writing it. The boot files extracted from that image have these hashes:
+
+| File in card image | Bytes | SHA-256 | Comparison |
+|---|---:|---|---|
+| `BOOT.BIN` | 28,290,844 | `604df48f3e98f70e849df14c26562514149359b9a2a9e5921e4fcd1428e9abea` | Matches the previously verified stock platform image with the validated PL bitstream |
+| `IMAGE.UB` | 55,510,056 | `446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0` | Matches the previously recorded Linux image |
+| `BOOT.SCR` | 3,833 | `6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608` | Matches the previously recorded boot script |
+
+The card was reinserted in the ZCU102 and the operator again observed repeated `Zynq MP First St` UART fragments without Linux output. Thus the captured boot-file contents match the expected artifacts, but boot still fails before Linux; the raw-image inspection does not test FAT metadata acceptance by BootROM or prove the cause. A read-only host `fsck.fat` rerun could not proceed because `sudo` required an interactive password unavailable to this session. No repair was attempted, and the complete image preserves the pre-repair state.
+
 ## References
 
 - [AMD UG1087 — CSU_BR_ERROR register](https://docs.amd.com/r/en-US/ug1087-zynq-ultrascale-registers/CSU_BR_ERROR-PMU_GLOBAL-Register?contentId=GlaVzNfJeAhgKU8ebnisfQ)
