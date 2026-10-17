@@ -1,0 +1,17 @@
+Date: 2026-10-17
+Device: /dev/mmcblk0p1, label BOOT, 58.2 GB FAT
+Mount point: /media/opentitan/BOOT
+Operation: preserved the prior full selector image, installed the no-PL diagnostic as BOOT.BIN, and verified files by SHA-256.
+
+BOOT.BIN (installed diagnostic):
+  53f10f813fcc3b934710a5a6d05dd1f417ff3e73ae0475b8799d336f63113455
+BOOT.BIN.no_pl_diagnostic_20261017 (preserved diagnostic copy):
+  53f10f813fcc3b934710a5a6d05dd1f417ff3e73ae0475b8799d336f63113455
+BOOT.BIN.full_selector_failed_20261017 (prior corrected full candidate):
+  8662dc9f693fcec9536d479a55f96ac50b76f6fb8b3edc6b4324244408e25b25
+BOOT.BIN.pre_task2g_20261017 (original preserved boot image):
+  f64730ce205bbfb5de28bcf44c13d3511adaa6b4b47d34a284178c95fc90c39e
+image.ub (unchanged):
+  446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0
+
+Temporary BOOT.BIN.new was renamed into place after its SHA-256 matched the diagnostic artifact. No boot result is implied by this file-install record. The card was synchronized and unmounted after verification.
