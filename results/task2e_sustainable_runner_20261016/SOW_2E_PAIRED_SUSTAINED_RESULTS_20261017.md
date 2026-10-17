@@ -4,7 +4,7 @@
 
 The planned 60-second no-delay test is now complete on both Linux and bare metal. Each backend ran the same 11 payload sizes three times, for 33 points per backend and 66 points total. Every completed transfer was checked against the transmitted bytes. All 66 points passed with zero API errors, timeouts, short transfers, or receive mismatches.
 
-This completes the planned **bounded Task 2e comparative benchmark framework**. It includes the shared workload and pattern contract, validated fixed-trial latency/integrity ladder, 60-second sustained windows, raw evidence, reproducible parser, CPU-metric bases, and a clock/operating-point audit. The measurements establish the maximum rate observed under the tested 60-second workload/configuration; they do not establish an absolute hardware ceiling or isolate an OS-only performance effect. Per-window clock instrumentation and alternating backend order were not implemented, so causal and thermal claims remain out of scope.
+This completes the paired fixed-trial and **60-second sustained-comparison portion** of Task 2e. It includes the shared workload and pattern contract, validated latency/integrity ladder, raw evidence, reproducible parser, CPU-metric bases, and a clock/operating-point audit. The measurements establish rates under the tested configuration; they do not establish the reliable clock/payload operating envelope. Task 2e remains **partial** until the physical stress test is run and reported. These data also do not isolate an OS-only performance effect. Per-window clock instrumentation and alternating backend order were not implemented, so causal and thermal claims remain out of scope.
 
 ## Hardware and software identity
 
@@ -69,4 +69,4 @@ The paired setup, versions, clocks, CPU points, artifact identities, result file
 
 ## Task 2e disposition
 
-The fixed-trial integrity/latency ladder, 33 Linux sustained windows, 33 bare-metal sustained windows, CPU-metric definitions, raw capture, reproducible parser, comparison table, and clock/operating-point audit are present. **Task 2e is complete as a bounded comparative benchmark framework** under the conditions and limitations above. A separate clock/payload stress test may probe a maximum reliable operating envelope; it is a distinct follow-on experiment and is not needed to reinterpret these measured 60-second rates.
+The fixed-trial integrity/latency ladder, 33 Linux sustained windows, 33 bare-metal sustained windows, CPU-metric definitions, raw capture, reproducible parser, comparison table, and clock/operating-point audit are present. The comparative benchmark portion is complete. **Task 2e remains partial** until the clock/payload stress test measures and reports the maximum reliable operating envelope. The stress result will extend this report with the tested combinations, first failure point (if any), and repeatability evidence.

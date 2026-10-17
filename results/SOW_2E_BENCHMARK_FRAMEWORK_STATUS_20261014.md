@@ -2,7 +2,7 @@
 
 **SOW activity:** “Comparative Benchmarking Framework — Develop a unified testing harness to measure SPI performance across both software environments.” The following SOW clauses call for identical test patterns and metrics including maximum sustainable throughput, transaction latency, and CPU utilization.
 
-**Disposition as of 17 October 2026:** Task 2e is complete as a bounded comparative benchmark framework. The shared fixed-run and sustained-run workflows now provide validated latency, integrity, sustainable application payload rate, and CPU-use basis for both software environments. Bare-metal occupancy is explicitly derived from the dedicated busy-wait execution model, not a PMU counter. The evidence is not a universal hardware ceiling, per-window clock instrumentation, or causal isolation of Linux overhead.
+**Disposition as of 17 October 2026:** Task 2e remains partial. The shared fixed-run and sustained-run workflows provide validated latency, integrity, application payload rate, and CPU-use basis for both software environments. Bare-metal occupancy is explicitly derived from the dedicated busy-wait execution model, not a PMU counter. The remaining acceptance work is a physical clock/payload stress test that measures the reliable operating envelope; current evidence is not a universal hardware ceiling or causal isolation of Linux overhead.
 
 ## Framework already in place
 
@@ -18,9 +18,9 @@ The existing bare-metal firmware loops on `irq_state.terminal` while each XSpi i
 
 ## Closure work completed and scope limits
 
-The closure experiment in `results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md` operationally defined maximum observed sustainable rate as repeated 60-second continuous points across 11 payload sizes, with three repetitions, byte verification, stop-on-error behavior, raw logs, and per-size medians. The physical Linux and bare-metal sets completed all 33 points each with zero errors or mismatches. See the paired report and `results/task2e_sustainable_runner_20261016/clock_readback_20261017.md` for derived/register clock evidence and its limits.
+The paired 60-second benchmark defined maximum observed sustainable application rate as repeated continuous points across 11 payload sizes, with three repetitions, byte verification, stop-on-error behavior, raw logs, and per-size medians. The physical Linux and bare-metal sets completed all 33 points each with zero errors or mismatches. This closes the sustained comparison portion, but Task 2e remains open until a separate clock/payload stress sweep measures the reliable operating envelope. See the paired report and `results/task2e_sustainable_runner_20261016/clock_readback_20261017.md` for configuration evidence and its limits.
 
-The original execution plan proposed alternating backend order and simultaneous/per-window clock sampling. The actual runs were ordered Linux first, bare metal second. Clock register readback and matching-configuration J55 evidence support a bounded result, but no per-window instrumentation or thermal/order control is claimed. A separate maximum-reliable-envelope clock/payload stress test remains a follow-on experiment, not a prerequisite for the completed Task 2e framework criterion.
+The original execution plan proposed alternating backend order and simultaneous/per-window clock sampling. The actual runs were ordered Linux first, bare metal second. Clock register readback and matching-configuration J55 evidence support a bounded comparison, but no per-window instrumentation or thermal/order control is claimed. The maximum-reliable-envelope clock/payload stress test remains required to close Task 2e.
 
 The concrete paired closure experiment is specified in `results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md`. It defines the 60-second sustained-throughput window, three repeats, CPU-metric basis, stop conditions, and run manifest. It has not been executed because the target was unreachable from the workstation session on 2026-10-15.
 
@@ -51,4 +51,4 @@ python3 scripts/task2e_analyze_framework_metrics.py \
 - `results/linux_axi_spi_bringup_20261013/linux_vs_baremetal_comparison_20261014.csv`
 - Full method and timer caveats: `results/linux_axi_spi_bringup_20261013/SOW_2A_FINAL_COMPARISON_20261014.md`
 
-This initial status note was written before the paired 60-second sustained runs. The later physical results close Task 2e as a bounded comparative benchmark framework; see `results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md`, `paired_sustained_manifest_20261017.json`, and `clock_readback_20261017.md`. This closure reports the maximum rate observed under the defined benchmark, not an absolute hardware limit.
+This initial status note was written before the paired 60-second sustained runs. Those later physical runs close the fixed-trial and sustained-comparison portions, but Task 2e remains open pending the reliable clock/payload stress test. See `results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md`, `paired_sustained_manifest_20261017.json`, and `clock_readback_20261017.md` for completed evidence and limits.

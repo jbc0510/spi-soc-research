@@ -1,6 +1,6 @@
 {
   "experiment": "MSU-2 Task 2e paired sustained AXI Quad SPI comparison",
-  "disposition": "complete_as_bounded_comparative_benchmark_framework",
+  "disposition": "partial_until_clock_payload_reliability_stress_test",
   "target": "AMD ZCU102 / newQspi",
   "date": "2026-10-16 local workstation date; JTAG evidence collected 2026-10-17 UTC",
   "workload": {
@@ -57,7 +57,7 @@
     "baremetal_raw_uart_capture": "baremetal_sustained_uart_capture_20261016.raw.log"
   },
   "limits": [
-    "This is a maximum observed application rate under the defined 60-second windows, not a universal hardware ceiling or clock/payload stress envelope.",
+    "These are application rates observed under the defined 60-second windows; the reliable clock/payload operating envelope is not yet measured and remains required for Task 2e closure.",
     "Physical J55 SCK was not remeasured during sustained windows.",
     "CPU and clock rates were not sampled at each point; A53 register-derived rate is a post-run readback.",
     "Backend order was not alternated; order and thermal effects are uncontrolled.",

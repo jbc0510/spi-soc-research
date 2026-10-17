@@ -2,7 +2,7 @@
 
 ## Conclusion
 
-The 23 February 2026 Statement of Work defines seven Task 2 activities. The repository’s labels 2a–2g are internal shorthand mapped in order to those activities; they are not headings in the SOW itself. Evidence supports closing five activities as bounded assessments or a design deliverable. Two remain partial. No finding here closes Task 2 as a whole or the separate Task 1 requirements.
+The 23 February 2026 Statement of Work defines seven Task 2 activities. The repository’s labels 2a–2g are internal shorthand mapped in order to those activities; they are not headings in the SOW itself. Evidence supports closing four activities as bounded assessments or a design deliverable. Three remain partial. No finding here closes Task 2 as a whole or the separate Task 1 requirements.
 
 ## Activity-by-activity status
 
@@ -12,7 +12,7 @@ The 23 February 2026 Statement of Work defines seven Task 2 activities. The repo
 | Analyze Data Transfer Mechanisms — assess PIO and DMA across payload sizes | 2b | Complete as a performance-characteristics assessment | Physical PIO results cover 11 payload sizes. PL AXI CDMA simulation covers six sizes. The attempted ZDMA-to-PS-SPI measurements failed the wire-time and integrity checks and are correctly treated as invalid performance data. No physical CDMA throughput or PIO-versus-DMA crossover is claimed. |
 | Evaluate Real Time Suitability — analyze latency and jitter for deterministic execution | 2c | Complete as a bounded suitability assessment | Captured measurements characterize best-effort latency and variability. They do not establish a hard deadline, hard real-time behavior, or the cause of observed jitter. |
 | System Hardening — design a minimal environment that supports secure boot, reliable updates, and automated recovery | 2d | Design complete; implementation is separate and open | The architecture/design is documented. Existing environment-copy fallback evidence is limited to one CRC-corruption case. It does not prove verified boot, atomic image updates, or automated recovery across boot assets and root filesystem. |
-| Comparative Benchmarking Framework — unified harness, identical patterns, sustainable throughput, latency, CPU utilization | 2e | Complete as a bounded comparative framework | Both backends completed the same 11 payload sizes × 3 × 60-second windows (33/33 each) and the fixed 1,000-trial integrity/latency ladder on the validated September 29 PL image. All transfers passed byte verification with zero errors and mismatches. Linux CPU metrics and bare-metal busy-wait occupancy basis are reported; clock readback supports the 1.2 GHz A53 and 99.99 MHz PL0 setup, and the matching bitstream/configuration has a prior physical ~51 MHz J55 SCK measurement. Per-window frequency sampling, simultaneous SCK, and alternating backend order were not done, so results are bounded observations rather than a clock-instrumented causal comparison. |
+| Comparative Benchmarking Framework — unified harness, identical patterns, sustainable throughput, latency, CPU utilization | 2e | Partial — paired benchmark complete; stress envelope open | Both backends completed 33 sustained points each across 11 sizes × 3 × 60-second windows, plus the fixed 1,000-trial integrity/latency ladder, with zero errors or mismatches. Clock/CPU configuration evidence and paired rates are documented. The planned reliable clock/payload stress test has not run; therefore maximum reliable operating limits and the associated Task 2e criterion remain open. |
 | OS Optimization and Determinism Analysis — tune OS; compare kernel settings, interrupt handling, CPU-frequency scaling; compare standard driver and optimized DMA | 2f | Partial | Four CPU-frequency points were measured and interrupt handling was assessed on the tested polling path. The configured preemption model was not varied; this requires a kernel rebuild. A valid physical comparison of the standard driver and optimized DMA remains open. Frequency correlation does not establish jitter causation. |
 | Minimal Appliance Development and Security — essential filesystem, robust update, pre-execution integrity verification | 2g | Partial | Host A/B update and U-Boot signed-FIT prototypes pass their defined tests, and a separate four-case software demo ran on the target CPU. The live board audit found the active SD image unsigned and generic fail-open boot targets. There is no integrated hardware-rooted trust chain, persistent A/B update/rollback, or target power-loss/recovery validation. |
 
@@ -28,9 +28,10 @@ The 23 February 2026 Statement of Work defines seven Task 2 activities. The repo
 
 ## Next work, in order
 
-1. Add a valid target-board DMA test if the selected design and available hardware resources support it; keep this distinct from the existing XSim CDMA result.
-2. Decide whether to rebuild/test a different Linux preemption configuration. The existing frequency sweep alone does not satisfy that SOW axis.
-3. Integrate signed boot and persistent A/B recovery with the real ZynqMP boot chain, then validate valid, tampered, interrupted, failed-health, and recovery cases on a designated test image.
-4. Audit Task 1 deliverables separately before making any project-wide completion statement.
+1. Complete the Task 2e clock/payload stress test and report the measured reliable operating envelope before closing 2e.
+2. Add a valid target-board DMA test if the selected design and available hardware resources support it; keep this distinct from the existing XSim CDMA result.
+3. Decide whether to rebuild/test a different Linux preemption configuration. The existing frequency sweep alone does not satisfy that SOW axis.
+4. Integrate signed boot and persistent A/B recovery with the real ZynqMP boot chain, then validate valid, tampered, interrupted, failed-health, and recovery cases on a designated test image.
+5. Audit Task 1 deliverables separately before making any project-wide completion statement.
 
 The document due dates and final-report requirement in the SOW are separate contract deliverables. This status report evaluates technical evidence; it does not claim that monthly or interim/final administrative reports have been submitted.

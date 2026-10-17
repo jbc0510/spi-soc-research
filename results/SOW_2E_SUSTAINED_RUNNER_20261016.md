@@ -1,6 +1,6 @@
 # Task 2e — sustained-throughput runner implementation
 
-**Disposition as of 17 October:** Task 2e is complete as a bounded comparative benchmark framework. Linux and bare-metal runners completed all 11 shared payload sizes × three 60-second repetitions (33/33 points each) with zero API errors or receive mismatches. The paired rates, clock audit, evidence sources, and limitations are documented in `results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md` and `clock_readback_20261017.md`. Per-window clock sampling and alternating backend order were not performed, so the evidence does not support causal OS-only claims or an absolute hardware maximum.
+**Disposition as of 17 October:** The paired benchmark and sustained-throughput portion of Task 2e are complete, but Task 2e remains partial until the physical clock/payload stress test establishes the reliable operating envelope. Linux and bare-metal runners completed all 11 shared payload sizes × three 60-second repetitions (33/33 points each) with zero API errors or receive mismatches. The paired rates, clock audit, evidence sources, and limitations are documented in `results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md` and `clock_readback_20261017.md`. Per-window clock sampling and alternating backend order were not performed, so the evidence does not support causal OS-only claims or an absolute hardware maximum.
 
 ## What the runner does
 
@@ -69,7 +69,7 @@ The console user is `petalinux`; `/dev/spidev1.0` is `0600 root:root`. Authentic
 
 The Linux runner was cross-compiled to AArch64 and passed the four host mock tests. Its sustained points were monitored by a host-side serial watchdog. The bare-metal runner was packaged, booted from SD, and completed the matching 33 points. The raw UART capture begins after the startup banner because the host console attached after boot; its 33 point records and completion marker are present and validated.
 
-The experiment definition remains in `results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md`; the paired sustained windows and comparison satisfy its closure conditions. The experiment deviated from the proposed alternating order, and per-window physical SCK/CPU sampling was not added. These limits are disclosed in the paired report. The separate stress test will characterize the reliable clock/payload envelope and will not be presented as a prerequisite to this benchmark-framework deliverable.
+The paired sustained windows satisfy the sustained-comparison part of the experiment definition. The required stress test to measure the reliable clock/payload envelope remains open and must be reported before Task 2e is marked complete. The experiment also deviated from the proposed alternating order, and per-window physical SCK/CPU sampling was not added; these limits are disclosed in the paired report.
 
 ## Bare-metal access state
 

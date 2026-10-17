@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v26.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v27.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -166,7 +166,7 @@ process.stderr.write('presentation initialized\n');
     ['2b  PIO and DMA', 'Assessment complete', 'Physical PIO; six-size CDMA simulation; ZDMA result invalid for performance. No physical DMA crossover.', C.green],
     ['2c  Real-time suitability', 'Assessment complete', 'Best-effort latency and jitter characterized; no hard deadline or deterministic guarantee established.', C.green],
     ['2d  System hardening', 'Design complete', 'Design documented. Verified boot, reliable updates and automatic recovery are not deployed.', C.green],
-    ['2e  Benchmark framework', 'Complete', '66/66 sustained points and fixed ladder pass. Clock evidence supports a bounded comparison; per-window sampling and causal OS attribution remain out of scope.', C.green],
+    ['2e  Benchmark framework', 'Partial', '66/66 paired sustained points pass. Reliable clock/payload stress envelope remains to be measured before 2e closes.', C.amber],
     ['2f  OS tuning', 'Partial', 'CPU-frequency sweep done; preemption-model and physical optimized-DMA comparison remain open.', C.amber],
     ['2g  Minimal appliance/security', 'Partial', 'Prototypes pass defined tests; active boot is unsigned and integrated target recovery remains open.', C.amber],
   ];
@@ -182,7 +182,7 @@ process.stderr.write('presentation initialized\n');
   setNotes(s, [
     'Governing source: /home/opentitan/Downloads/MSU-2_SOW_Final (1).docx, revision 2026-02-23. The seven activity names are quoted or closely abbreviated from Task 2; internal labels 2a–2g are mapped in sequence.',
     'Evidence basis: results/MSU2_TASK2_SOW_STATUS_20261016.md and the source reports in results/ for Task 2a–2g.',
-    'Task 2a has a fixed-workload comparison revalidated on 16 October, but timer sources and CPU-point differences limit causal attribution. Task 2b has simulation but no valid physical DMA sweep. Task 2c supports best-effort suitability only. Task 2d is design-only. Task 2e is complete as a bounded benchmark framework: 33/33 sustained points per backend, fixed-trial comparison, CPU-metric bases, and clock readback are documented. The actual backend order was not alternated and clocks were not sampled per window, so no thermal control or causal OS-only claim is made. Task 2f lacks a changed preemption configuration and valid physical optimized-DMA comparison. Task 2g lacks integrated target verified boot and persistent recovery.',
+    'Task 2a has a fixed-workload comparison revalidated on 16 October, but timer sources and CPU-point differences limit causal attribution. Task 2b has simulation but no valid physical DMA sweep. Task 2c supports best-effort suitability only. Task 2d is design-only. Task 2e has a complete fixed-trial comparison and 33/33 sustained points per backend, with CPU-metric bases and clock readback documented. Task 2e remains partial because the reliable clock/payload stress envelope has not yet been measured. Task 2f lacks a changed preemption configuration and valid physical optimized-DMA comparison. Task 2g lacks integrated target verified boot and persistent recovery.',
     'The SOW also requires separate Task 1 work and formal monthly, interim, simulation/emulation, OS/appliance, and final-report deliverables; this Task 2 status slide does not certify those deliverables.',
   ]);
 }
@@ -248,7 +248,7 @@ process.stderr.write('presentation initialized\n');
   box(s, 875, 190, 320, 56, '11,000 paired transfers', { size: 25, bold: true });
   box(s, 875, 255, 320, 72, 'Zero transfer errors and RX mismatches in both recorded runs.', { size: 20, color: C.muted });
   box(s, 875, 354, 320, 83, 'Linux thread CPU share: 67.9% at 1 B → 1.5% at 64 KiB.', { size: 22, bold: true, color: C.blue });
-  box(s, 875, 456, 320, 141, 'Fixed-ladder Linux thread share is separate from sustained results. Bare metal reports 100% busy-wait core occupancy, not a PMU reading. Task 2e closes as a bounded framework; per-window clock sampling is outside the claim.', { size: 18, color: C.muted });
+  box(s, 875, 456, 320, 141, 'Fixed-ladder Linux thread share is separate from sustained results. Bare metal reports 100% busy-wait core occupancy, not a PMU reading. Task 2e still needs the reliable clock/payload stress test.', { size: 18, color: C.muted });
   setNotes(s, [
     'Source CSV: results/linux_axi_spi_bringup_20261013/task2e_framework_metrics_20261014.csv.',
     'Derived from raw Linux CLOCK_THREAD_CPUTIME_ID and CLOCK_MONOTONIC_RAW loop totals in results/linux_axi_spi_bringup_20261013/linux_benchmark_20261014.log.',
@@ -414,13 +414,13 @@ process.stderr.write('presentation initialized\n');
   box(s, 880, 326, 310, 70, 'Zero data errors. Linux was slower at 1–16 B, but had 20.4% lower latency at 64 KiB.', { size: 18, bold: true, color: C.ink });
   box(s, 880, 408, 310, 136, 'Same bitstream and 99.99 MHz PL0. Rates are derived from mean latency, not wire throughput. Linux uses CLOCK_MONOTONIC_RAW; bare metal uses XTime. Clock/CPU evidence supports a bounded comparison, not kernel-only attribution.', { size: 16, color: C.muted });
   s.shapes.add({ geometry: 'rect', position: { left: 72, top: 584, width: 1115, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
-  box(s, 72, 606, 1110, 48, 'Task 2e closes as a bounded comparison; no causal Linux-only performance claim is made.', { size: 21, bold: true });
+  box(s, 72, 606, 1110, 48, 'Task 2e remains open until the reliable clock/payload stress test is complete.', { size: 21, bold: true, color: C.amber });
   setNotes(s, [
     'Revalidation report: results/linux_axi_spi_revalidation_20261016/README.md. Fixed-trial Linux log and rows are in that directory; the paired CSV is linux_vs_baremetal_fixed_trial_20261016.csv.',
     'Bare-metal raw capture and metrics: results/task2e_sustainable_runner_20261016/baremetal_reboot_capture_20261016.raw.log and baremetal_reboot_metrics_20261016.csv. Both paths completed 11 sizes × 1,000 transfers with zero reported errors or receive mismatches.',
     'The September 29 FPGA image hash was verified from the target SD source and staged Linux firmware file. FPGA Manager reported operating; it does not expose a bitstream readback hash. Linux clock framework showed IOPLL 1.49985 GHz and PL0 99.990 MHz. The 49.995 MHz SPI speed is the Linux requested/readback value; J55 SCK was measured at about 51 MHz previously for this exact image/configuration, but was not remeasured here.',
     'The Linux benchmark uses CLOCK_MONOTONIC_RAW; bare metal uses XTime_GetTime. Post-run clock-register readback supports a derived 1.19988 GHz A53 full-rate clock and 99.990 MHz PL0. Effective payload rate is payload bytes divided by measured mean latency and is not physical wire throughput. The comparison is a same-workload board result, not causal attribution of kernel overhead.',
-    'Fixed-trial comparison report: results/linux_axi_spi_revalidation_20261016/README.md. Sustained Linux and bare-metal rates are presented on slide 14 and in results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md. Physical J55 SCK about 51 MHz was measured previously for the same bitstream/configuration, not during sustained windows. Task 2e is complete as a bounded comparison; backend ordering was not alternated and per-window clock sampling was not performed.',
+    'Fixed-trial comparison report: results/linux_axi_spi_revalidation_20261016/README.md. Sustained Linux and bare-metal rates are presented on slide 14 and in results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md. Physical J55 SCK about 51 MHz was measured previously for the same bitstream/configuration, not during sustained windows. Task 2e remains partial until the reliable clock/payload stress test is complete; backend ordering was not alternated and per-window clock sampling was not performed.',
   ]);
 }
 
@@ -440,7 +440,7 @@ process.stderr.write('presentation initialized\n');
   box(s, 878, 248, 310, 78, 'Each backend ran 11 sizes × 3 × 60 seconds. All transfers were byte-verified; zero API errors and mismatches.', { size: 18, color: C.muted });
   box(s, 878, 350, 310, 74, 'Crossover: bare metal leads at 1–16 B; Linux leads from 64 B upward.', { size: 19, bold: true });
   box(s, 878, 442, 310, 140, 'Observed at this configuration: Linux 1.495 MB/s and bare metal 1.180 MB/s at 64 KiB. These are application rates, not wire limits. Clock readbacks support 1.2 GHz A53 / 99.99 MHz PL0; prior matching-setup J55 SCK was ~51 MHz.', { size: 17, color: C.muted });
-  box(s, 72, 622, 1115, 35, 'Task 2e complete as a bounded framework result; not a per-window clock-controlled limit test.', { size: 18, bold: true, color: C.green });
+  box(s, 72, 622, 1115, 35, 'Paired benchmark complete; Task 2e still needs the reliable clock/payload stress test.', { size: 18, bold: true, color: C.amber });
   setNotes(s, [
     'Run report and interpretation: results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md.',
     'Editable chart source data: results/task2e_sustainable_runner_20261016/linux_baremetal_sustained_comparison_20261016.csv. Per-run raw-derived records: baremetal_sustained_runs_20261016.csv and linux_sustained_runs.csv.',
@@ -474,6 +474,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v26.json'),
+  receiptPath: path.join(stagingDir, 'validation_v27.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
