@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v27.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v28.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -448,6 +448,55 @@ process.stderr.write('presentation initialized\n');
   ]);
 }
 
+// 15 — proposed one-stop operator workflow
+{
+  const s = baseSlide(p, 'One-stop ZCU102 demo workflow', 'Operator experience  /  Proposed', 15);
+  box(s, 72, 170, 1110, 42,
+    'One menu selects the run, accepts its parameters, and saves the evidence.',
+    { size: 24, bold: true });
+
+  const steps = [
+    {
+      x: 72, title: '1  Choose a run',
+      body: 'Loopback check\nIntegrity and latency\nSustained throughput\nPayload stress\nLinux / bare-metal comparison',
+    },
+    {
+      x: 355, title: '2  Set parameters',
+      body: 'Payload sizes\nTrials or run time\nRepetitions\nStop on first error\nReview before starting',
+    },
+    {
+      x: 638, title: '3  Select backend',
+      body: 'Linux uses spidev\nBare metal uses XSpi\nSame validated PL image\nBackend switch requires reboot',
+    },
+    {
+      x: 921, title: '4  Keep the evidence',
+      body: 'CSV results\nRaw UART log\nRun settings and timestamps\nBitstream and software hashes',
+    },
+  ];
+  for (const step of steps) {
+    s.shapes.add({ geometry: 'rect', position: { left: step.x, top: 236, width: 260, height: 238 }, fill: C.white, line: { style: 'solid', fill: C.grid, width: 1 } });
+    box(s, step.x + 16, 253, 230, 36, step.title, { size: 21, bold: true, color: C.teal });
+    box(s, step.x + 16, 303, 228, 154, step.body, { size: 18, color: C.ink });
+  }
+  for (const x of [340, 623, 906]) {
+    s.shapes.add({ geometry: 'line', position: { left: x, top: 345, width: 13, height: 0 }, line: { style: 'solid', fill: C.orange, width: 3, endArrowhead: 'triangle' } });
+  }
+  s.shapes.add({ geometry: 'rect', position: { left: 72, top: 506, width: 1115, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
+  box(s, 72, 528, 1115, 51,
+    'Clock limit: this image has a synthesized SCK ratio of 2. A speed request cannot change the physical clock.',
+    { size: 20, bold: true, color: C.amber });
+  box(s, 72, 589, 1115, 58,
+    'Linux and bare metal need separate boot modes, but can share one SD card and the same PL image. “Normal operation” still needs a defined workload; today’s proven mode is J55 loopback.',
+    { size: 17, color: C.muted });
+  setNotes(s, [
+    'This is a proposed operator experience, not a completed implementation or board validation. The architecture and constraints are documented in docs/design/MSU2_ONE_STOP_DEMO_ARCHITECTURE.md.',
+    'The current Linux sustained runner accepts payload, window duration, requested speed, and repetition. The current bare-metal sustained application has fixed payload sizes, a 60-second window, and three repetitions: linux/src/spi_sustainable_benchmark.c and bare_metal/src/spi_sustainable_benchmark_bare_axi.c.',
+    'The September 29 validated hardware export records C_SCK_RATIO=2. The Linux xilinx_spi driver accepts but does not apply speed requests for this fixed-divider configuration. Physical SCK must be measured separately.',
+    'The Linux and bare-metal BOOT.BIN artifacts are separate today. A dual-mode SD boot menu/launcher has not been assembled; switching A53 software environments requires a reboot, while the PL image can remain the validated same image.',
+    'The current project demonstrates external J55 MOSI-to-MISO loopback. It does not yet define a separate end-product normal-operation workload.',
+  ]);
+}
+
 await fs.mkdir(stagingDir, { recursive: true });
 await fs.mkdir(previewDir, { recursive: true });
 await fs.mkdir(path.dirname(finalPath), { recursive: true });
@@ -474,6 +523,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v27.json'),
+  receiptPath: path.join(stagingDir, 'validation_v28.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
