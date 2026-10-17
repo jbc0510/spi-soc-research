@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v37.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v38.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -599,6 +599,43 @@ process.stderr.write('presentation initialized\n');
   ]);
 }
 
+// 19 — live Linux AXI SPI re-bring-up and RX smoke test
+{
+  const s = baseSlide(p, 'Linux AXI SPI re-bring-up', '2A  /  Live target smoke test', 19);
+  box(s, 72, 170, 1130, 34,
+    'The controller registered only after the validated PL image and reset were established.',
+    { size: 22, bold: true, color: C.ink });
+  const nodes = [
+    { title: 'PL0 clock', detail: '99.99 MHz\nIOPLL unchanged', color: C.teal },
+    { title: 'FPGA image', detail: 'Validated 29 Sep bitstream\nManager: operating', color: C.blue },
+    { title: 'PL reset', detail: 'EMIO95 / GPIO 689\noutput high', color: C.teal },
+    { title: 'Linux SPI', detail: 'AXI at 0xA0000000\nspidev1.0 bound', color: C.blue },
+    { title: 'RX check', detail: 'TX A5 → RX A5\nioctl result: 1', color: C.green },
+  ];
+  const nodeX = 72, nodeY = 238, nodeW = 204, nodeH = 142, nodeGap = 26;
+  for (let i = 0; i < nodes.length; i += 1) {
+    const n = nodes[i], x = nodeX + i * (nodeW + nodeGap);
+    s.shapes.add({ geometry: 'rect', position: { left: x, top: nodeY, width: nodeW, height: nodeH }, fill: C.white, line: { style: 'solid', fill: n.color, width: 2 } });
+    box(s, x + 14, nodeY + 17, nodeW - 28, 32, n.title, { size: 21, bold: true, color: n.color, align: 'center' });
+    box(s, x + 12, nodeY + 61, nodeW - 24, 65, n.detail, { size: 17, color: C.ink, align: 'center' });
+    if (i < nodes.length - 1) {
+      s.shapes.add({ geometry: 'rightArrow', position: { left: x + nodeW + 3, top: nodeY + 55, width: nodeGap - 6, height: 24 }, fill: C.muted, line: { style: 'solid', fill: C.muted, width: 1 } });
+    }
+  }
+  box(s, 72, 422, 1128, 58,
+    'Evidence: TX 0xA5, RX 0xA5, mode 0, 8 bits, 1 MHz requested/read back, ioctl_rc=1, errno=0.',
+    { size: 20, bold: true, color: C.green });
+  box(s, 72, 500, 1120, 104,
+    'A prior probe stalled after reboot when the PL bitstream had not been reloaded. After loading and hash-checking the bitstream first, the same controller overlay applied and the smoke test passed. This points to an unconfigured-PL hazard; it does not isolate the sole root cause. One byte is verified here; a new multi-payload RX-verification sweep was not run.',
+    { size: 18, color: C.amber });
+  setNotes(s, [
+    'Live result report: results/linux_axi_spi_bringup_20261013/runtime_rebringup_20261017.md.',
+    'The target smoke executable was results/linux_axi_spi_bringup_20261013/linux_spi_smoke_aarch64, SHA-256 fb01baec3d451849bd147837491f0d63b62efd0e1a1f99389314d407582b8dcd. Target output: device=/dev/spidev1.0 mode=0x0 mode_readback=0x0 bits=8 speed_requested_hz=1000000 speed_readback_hz=1000000 tx=a5 rx=a5 ioctl_rc=1 errno=0 elapsed_ns=47655.',
+    'Validated bitstream SHA-256 c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd; PL0 clock overlay SHA-256 00d3bd63dd926a41c3e8581c8d4ee8abb3e94307ad7e4ba345e500e45bb1bffa; reset overlay SHA-256 6ae01a4bddea4fe225e2fdee6c5da48df70ce68df7be14328326d7066a171255; AXI SPI overlay SHA-256 92416746eaba51248438fdca8be324ef2a0455ccb2caa64da74d75df96bee693.',
+    'The older spi_loopback_test benchmark did not compare RX bytes and emitted an obsolete SCK note. A new multi-payload RX-verifying benchmark was not staged on the target during this session. See the report for evidence scope and limits.',
+  ]);
+}
+
 await fs.mkdir(stagingDir, { recursive: true });
 await fs.mkdir(previewDir, { recursive: true });
 await fs.mkdir(path.dirname(finalPath), { recursive: true });
@@ -625,6 +662,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v37.json'),
+  receiptPath: path.join(stagingDir, 'validation_v38.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));
