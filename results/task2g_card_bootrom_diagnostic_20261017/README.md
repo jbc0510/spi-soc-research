@@ -69,7 +69,28 @@ The first reported boot after the FAT repair still stopped at the same partial `
 
 After an operator-triggered reset during a 90-second capture, the UART emitted one 17-byte event at 71.390 seconds after capture start. The exact bytes were `5a796e71204d50204669727374205374e1`, rendered as `Zynq MP First St` followed by byte `0xe1`; no further bytes arrived during the remaining capture window. A preceding 60-second capture contained two identical 17-byte fragments without event timestamps. A following 120-second capture with no reset contained zero bytes. This evidence does not show a continuous automatic reset loop; it shows a single partial output followed by silence after the controlled reset. Raw/event evidence is retained in the `uart_post_fat_repair_20261017T210501Z.bin`, `uart_post_fat_repair_20261017T210848Z.bin`, `uart_post_fat_repair_20261017T210848Z_events.csv`, and `uart_post_fat_repair_20261017T210630Z_events.csv` files.
 
-The full-card image also contains the previous Linux boot backup `BOOT_linux_backup_20261013.bin` (1,775,880 bytes; SHA-256 `56db96f7530aa9cf4008d5494f1e1497d6fb6e76ece965d820b99b017e1539de`). This hash matches the archived artifact and the October 16 Linux revalidation report, which records successful Linux boot, `/dev/spidev1.0` loopback, and 11,000 fixed-trial transfers. Its Bootgen readout has an FSBL length of `0x1ed48` and five image headers; the currently installed `BOOT.BIN` has an FSBL length of `0x1ad08` and six image headers including the PL bitstream. The old Linux boot image is therefore a useful controlled A/B recovery candidate, but installing it has not yet been done. It is a Linux recovery comparison, not a verification of the signed selector or the PL SPI path.
+The full-card image also contains the previous Linux boot backup `BOOT_linux_backup_20261013.bin` (1,775,880 bytes; SHA-256 `56db96f7530aa9cf4008d5494f1e1497d6fb6e76ece965d820b99b017e1539de`). This hash matches the archived artifact and the October 16 Linux revalidation report, which records successful Linux boot, `/dev/spidev1.0` loopback, and 11,000 fixed-trial transfers. Its Bootgen readout has an FSBL length of `0x1ed48` and five image headers; the previously active full-design `BOOT.BIN` has an FSBL length of `0x1ad08` and six image headers including the PL bitstream. Before the A/B test below, the old Linux boot image was identified as a recovery comparison candidate. It is a Linux recovery comparison, not a verification of the signed selector or the PL SPI path.
+
+## A/B boot using the archived Linux image
+
+On 2026-10-17, after a complete raw-card backup and FAT repair, the operator preserved the active full-design image as `BOOT.BIN.stock_full_validated_pl_20261017` (SHA-256 `604df48f3e98f70e849df14c26562514149359b9a2a9e5921e4fcd1428e9abea`) and replaced only `BOOT.BIN` with the verified archived Linux image. The active file and preserved image were hash-checked after the copy. The new `BOOT.BIN` SHA-256 is `56db96f7530aa9cf4008d5494f1e1497d6fb6e76ece965d820b99b017e1539de`, matching the repository artifact and the original archived copy; `image.ub` and `boot.scr` were left unchanged.
+
+The board booted this image successfully to the PetaLinux 2025.1 multi-user state and `newQspi login:` prompt. The serial transcript showed U-Boot 2025.01, FIT SHA-256 checks passing for the kernel, ramdisk, and device tree, then Linux `6.12.10-xilinx-g0a0f70e531c7` reaching systemd's multi-user target and starting the serial getty. This establishes that the SD card can boot the known-good Linux `BOOT.BIN` after the FAT repair. Compared with the previously observed stall using the full-design `BOOT.BIN`, this localizes the boot failure to a difference in boot-image contents or boot flow, but does not identify the specific cause. No signed-selector claim is established by this test.
+
+The operator then reported these read-only target checks:
+
+```text
+uname -a
+Linux newQspi 6.12.10-xilinx-g0a0f70e531c7 #1 SMP Sat May 17 14:01:06 UTC 2025 aarch64 GNU/Linux
+cat /proc/cmdline
+earlycon console=ttyPS0,115200 root=/dev/ram0 rw spidev.bufsiz=1048576
+cat /sys/class/fpga_manager/fpga0/state
+unknown
+ls /sys/class/spi_master/
+spi0
+```
+
+`spi0` here is not evidence of the PL AXI Quad SPI controller; it is the PS SPI master in the base device tree. The image used in this A/B test contains no PL bitstream. FPGA manager state `unknown` and the absence of an AXI SPI master leave PL configuration, PL clock/reset, and AXI SPI operation untested. Restore `BOOT.BIN.stock_full_validated_pl_20261017` before any further PL test, then diagnose the full-design boot flow while preserving the verified Linux recovery image. This result is a successful OS recovery/boot comparison only, not an AXI SPI or secure-boot acceptance result.
 
 ## References
 
