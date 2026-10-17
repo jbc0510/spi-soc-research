@@ -11,4 +11,6 @@ BOOT.BIN.no_pl_diagnostic_20261017 (prior custom selector no-PL image):
 image.ub (unchanged):
   446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0
 
-BOOT.BIN.new was renamed into place only after its hash matched the host diagnostic. This record establishes file installation only; the board has not yet boot-tested this candidate.
+BOOT.BIN.new was renamed into place only after its hash matched the host diagnostic. The board boot test was performed after installation; the operator-reported result is recorded below.
+
+Operator-reported boot observation (2026-10-17): the stock no-PL candidate produced the same partial UART text, "Zynq MP First St", with no U-Boot banner reported. The operator's console text is not a host-side raw UART capture. The fragment does not prove a stall at a precise instruction.
