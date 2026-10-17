@@ -33,7 +33,7 @@ Microsoft's FAT32 specification identifies byte 65 (`BS_Reserved1`) as reserved.
 
 ## Limits and next diagnostic
 
-The current agent command environment can read mounted files and sysfs metadata but cannot open `/dev/mmcblk0` or `/dev/mmcblk0p1`; `/dev` contains no block-device nodes and UDisks D-Bus access is denied. The operator's host-side `fsck.fat -n` result is now available, so do not repeat the same check. Do not repair or reformat based on this evidence alone. The next decisive diagnostic is a controlled BootROM/SD read test using a cleanly unmounted card and a fresh UART capture, with a raw image backup first if any filesystem repair is attempted.
+At the initial audit stage, the agent environment could read mounted files and sysfs metadata but could not open `/dev/mmcblk0` or `/dev/mmcblk0p1`; filesystem checks therefore required the operator's interactive host sudo. A complete raw backup was captured before the later FAT repair. The planned boot-after-repair test is documented below.
 
 After the host-side check, the card mount is no longer visible in this agent session. A repeated read-only XSCT/JTAG query returned an empty target list, so there is no live board register or UART state available at this moment. This should be treated as unavailable hardware access, not as a new board failure.
 
@@ -41,9 +41,9 @@ After the host-side check, the card mount is no longer visible in this agent ses
 
 The operator then observed the same repeated partial FSBL UART prefix. A read-only JTAG scan now sees the PS TAP, PMU, and PL targets, but reports `PS TAP (Cannot poll JTAG port: CBR not done, debug access not allowed)`. The APU/processor debug target is not exposed. The PMU target is visible, but XSCT memory reads fail with `MDM master access port not found`; no registers were changed. This establishes that CPU debug access is gated at the current boot stage. It is consistent with the earlier BootROM error, but does not independently prove which stage emitted the partial UART text or identify why SD image search failed.
 
-No Linux SPI or AXI test can run in this state; the Linux kernel and selector menu have not been reached. The next discriminating test is to boot with the SD volume's dirty flag cleared after preserving its contents, then capture the complete UART output from reset. The prior `fsck.fat -n` did not clear the dirty flag.
+No Linux SPI or AXI test can run in this state; the Linux kernel and selector menu have not been reached. At this stage, the next discriminating test was to boot with the SD volume's dirty flag cleared after preserving its contents. That test was performed later and is recorded below.
 
-No files on the card were modified during this diagnostic.
+No files on the card were modified during the initial read-only diagnostic. The later FAT metadata repair is recorded below.
 
 ## Complete pre-check card image and offline boot-file verification
 
@@ -57,13 +57,15 @@ Before removing the card, a full raw image was created with `dd`. The first atte
 | `IMAGE.UB` | 55,510,056 | `446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0` | Matches the previously recorded Linux image |
 | `BOOT.SCR` | 3,833 | `6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608` | Matches the previously recorded boot script |
 
-The card was reinserted in the ZCU102 and the operator again observed repeated `Zynq MP First St` UART fragments without Linux output. Thus the captured boot-file contents match the expected artifacts, but boot still fails before Linux; the raw-image inspection does not test FAT metadata acceptance by BootROM or prove the cause. A read-only host `fsck.fat` rerun could not proceed because `sudo` required an interactive password unavailable to this session. No repair was attempted, and the complete image preserves the pre-repair state.
+The card was reinserted in the ZCU102 and the operator again observed repeated `Zynq MP First St` UART fragments without Linux output. Thus the captured boot-file contents match the expected artifacts, but boot still fails before Linux; the raw-image inspection does not test FAT metadata acceptance by BootROM or prove the cause. At this point the complete image preserved the pre-repair state; the subsequent repair is documented below.
 
 ## FAT repair and boot-file revalidation
 
 With the SD card back in the host, the operator ran `sudo fsck.fat -a -v /dev/mmcblk0p1` while the partition was unmounted. The checker again reported the primary/backup boot-sector byte-65 difference (`0x01/0x00`), reported the dirty bit, automatically removed the dirty bit, checked the free-cluster summary, and ended with `*** Filesystem was changed ***`, `Writing changes.`, and `49 files, 13842/1907917 clusters`. No lost-file recovery or other allocation error was reported. This repair was made only after the complete raw pre-repair image was captured.
 
-The partition was then mounted for evidence collection, and the three boot-file hashes after repair still match the values extracted from the pre-repair image: `BOOT.BIN` `604df48f3e98f70e849df14c26562514149359b9a2a9e5921e4fcd1428e9abea`, `image.ub` `446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0`, and `boot.scr` `6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608`. No files were intentionally modified during this hash check, and the partition was unmounted before returning the card to the board. A second `fsck.fat -n` verification was attempted from the agent session but could not pass the host's interactive sudo prompt. The result of the next board boot is not yet known; clearing the dirty bit has not yet been shown to resolve the boot loop.
+The partition was then mounted for evidence collection, and the three boot-file hashes after repair still match the values extracted from the pre-repair image: `BOOT.BIN` `604df48f3e98f70e849df14c26562514149359b9a2a9e5921e4fcd1428e9abea`, `image.ub` `446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0`, and `boot.scr` `6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608`. No files were intentionally modified during this hash check, and the partition was unmounted before returning the card to the board. A second `fsck.fat -n` verification was attempted from the agent session but could not pass the host's interactive sudo prompt.
+
+The first reported boot after the FAT repair still stopped at the same partial `Zynq MP First St` UART prefix. Clearing the dirty flag therefore did not resolve the observed symptom. A read-only XSCT probe found PS TAP, PMU, and PL targets, but memory reads from the PMU failed with `MDM master access port not found`; no registers were changed and no fresh BootROM error code was obtained. The earlier no-PL diagnostic also produced the same reported UART prefix, so the symptom is not explained solely by PL configuration. The remaining useful next step is a host-side capture of the full UART stream across one controlled reset, followed by analysis of the exact last complete boot message and reset cadence; repeating partial console observations is not discriminating.
 
 ## References
 
