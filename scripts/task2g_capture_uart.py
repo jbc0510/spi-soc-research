@@ -48,6 +48,10 @@ def main() -> int:
             uart.rts = False
             uart.port = args.port
             uart.open()
+            print(
+                f"CAPTURE_ACTIVE port={args.port} baud={args.baud} seconds={args.seconds}",
+                flush=True,
+            )
             deadline = time.monotonic() + args.seconds
             captured = bytearray()
             while time.monotonic() < deadline:
