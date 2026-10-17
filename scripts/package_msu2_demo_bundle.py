@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a hash-pinned, no-Python PetaLinux operator-menu bundle."""
+"""Create a hash-pinned, no-Python PetaLinux operator-menu bundle from Git-tracked inputs."""
 from __future__ import annotations
 
 import argparse
@@ -14,15 +14,19 @@ ROOT = Path(__file__).resolve().parents[1]
 FILES = {
     "msu2_demo.sh": "linux/appliance/msu2_demo.sh",
     "MSU2_DEMO_CONSOLE.md": "linux/appliance/MSU2_DEMO_CONSOLE.md",
-    "pl0-clock-only.dtbo": "results/linux_axi_spi_bringup_20261013/pl0-clock-only.dtbo",
-    "pl-reset-release.dtbo": "results/linux_axi_spi_bringup_20261013/pl-reset-release.dtbo",
-    "axi-spi-controller.dtbo": "results/linux_axi_spi_bringup_20261013/axi-spi-controller.dtbo",
-    "spi_ratio2_j55_lvcmos33_20260929.bit.bin": "results/sd_card_host_backup_20261017/spi_ratio2_j55_lvcmos33_20260929.bit.bin",
-    "linux_spi_smoke_aarch64": "results/linux_axi_spi_bringup_20261013/linux_spi_smoke_aarch64",
-    "spi_benchmark_v3_rxverify_aarch64": "results/linux_axi_spi_bringup_20261013/spi_benchmark_v3_rxverify_aarch64",
-    "spi_sustainable_benchmark_linux_aarch64": "results/task2e_sustainable_runner_20261016/spi_sustainable_benchmark_linux_aarch64",
+    # Runtime assets are the immutable, hash-verified release bundle committed
+    # alongside this builder. Do not depend on local SD-card backup folders.
+    "pl0-clock-only.dtbo": "results/msu2_linux_demo_bundle_20261017_v3/pl0-clock-only.dtbo",
+    "pl-reset-release.dtbo": "results/msu2_linux_demo_bundle_20261017_v3/pl-reset-release.dtbo",
+    "axi-spi-controller.dtbo": "results/msu2_linux_demo_bundle_20261017_v3/axi-spi-controller.dtbo",
+    "spi_ratio2_j55_lvcmos33_20260929.bit.bin": "results/msu2_linux_demo_bundle_20261017_v3/spi_ratio2_j55_lvcmos33_20260929.bit.bin",
+    "linux_spi_smoke_aarch64": "results/msu2_linux_demo_bundle_20261017_v3/linux_spi_smoke_aarch64",
+    "spi_benchmark_v3_rxverify_aarch64": "results/msu2_linux_demo_bundle_20261017_v3/spi_benchmark_v3_rxverify_aarch64",
+    "spi_sustainable_benchmark_linux_aarch64": "results/msu2_linux_demo_bundle_20261017_v3/spi_sustainable_benchmark_linux_aarch64",
 }
 EXPECTED = {
+    "msu2_demo.sh": "b113e2e9fd6f940f459e5631992bb8b648b74ac6da2598f543262d018cc1b59c",
+    "MSU2_DEMO_CONSOLE.md": "7ce9bc3221b0355047131c65323e09e8b2c9a74425e128d92e40e6e44c78870a",
     "pl0-clock-only.dtbo": "00d3bd63dd926a41c3e8581c8d4ee8abb3e94307ad7e4ba345e500e45bb1bffa",
     "pl-reset-release.dtbo": "6ae01a4bddea4fe225e2fdee6c5da48df70ce68df7be14328326d7066a171255",
     "axi-spi-controller.dtbo": "92416746eaba51248438fdca8be324ef2a0455ccb2caa64da74d75df96bee693",
