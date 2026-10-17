@@ -7,8 +7,9 @@ starts a test automatically during boot. Choosing `0` or `q` returns to the
 normal Linux console for ordinary computer use. The shell application records
 one non-overwriting evidence directory per test under
 `msu2-demo-results/` beside the package on the FAT boot partition by default.
-The separate bare-metal ELF also has a UART
-menu; these applications do not yet provide a power-on OS chooser.
+The Linux menu is launched after login. A top-level Linux/bare-metal selector
+and a reboot handoff are still being integrated; the current launcher enters
+the Linux test menu directly.
 
 ## Menu actions
 
@@ -133,23 +134,32 @@ creation with a fake executable. It does not access SPI hardware.
 
 ## Current integration boundary
 
-The menu is a functional Linux operator entry point, not yet a power-on OS
-chooser. The current ZCU102 boot flow starts Linux without presenting an OS
-selection screen. A boot-time Linux-versus-bare-metal chooser requires a
-separate, signed boot-flow integration and hardware validation; do not deploy
-an unsigned U-Boot menu or use it to bypass the Task 2g verification policy.
+The Linux menu is a functional Linux operator entry point, not yet a two-mode
+selector. The requested workflow is to boot the existing Linux image, log in,
+run one command, then choose Linux or bare-metal tests. Selecting bare metal
+must reboot the A53 into the standalone application; exiting that application
+must reboot to the existing Linux default. No new BOOT.BIN is needed for the
+menu source/build work, and the current BOOT.BIN must remain unchanged. The
+one-time boot handoff and return path still need implementation and board
+validation. This menu is a development convenience and must not be described
+as secure boot. Secure boot is a separate project objective and remains
+unverified.
 
 The bare-metal sustained application presents its own UART menu when that
-standalone ELF is booted. It offers the existing full 11-payload/60-second/3
-repetition baseline, a configurable single-payload run, and a one-second
-single-payload smoke run. It requires explicit `RUN` confirmation. Build it
-without packaging or programming a board image with:
+standalone ELF is booted. Its options now match the Linux test scope: an
+11-size × 1,000-trial receive-integrity/latency sweep; sustained throughput
+with selected shared payload sizes, 1–3,600 second windows and 1–3
+repetitions; the full 11-size × 60-second × 3-repetition baseline; and a
+one-second one-byte smoke run. It requires explicit `RUN` confirmation. Build
+it without packaging or programming a board image with:
 
 ```sh
 python3 scripts/build_spi_axi_bm_ratio2_vitis.py \
   --source bare_metal/src/spi_sustainable_benchmark_bare_axi.c \
-  --workspace-name spi_axi_bm_unified_menu_20261017c
+  --workspace-name spi_axi_bm_menu_parity_20261017
 ```
 
-The build validates the ELF and pinned XSA relationship. It does not package a
-BOOT.BIN or prove the UART menu or SPI path on hardware.
+The build validates the ELF and pinned XSA relationship. The 17 October 2026
+host build produced ELF SHA-256
+`32110227aeb7d18e6bbd79e71dc0877916e76326c9625b8f3eee7ba43da4c4f5` and did
+not package a BOOT.BIN. It does not prove the UART menu or SPI path on hardware.

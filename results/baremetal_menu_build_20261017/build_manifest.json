@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-17",
+  "result": "BUILD_PASS_NOT_HARDWARE_VALIDATION",
+  "vitis_version": "2025.1",
+  "source": "bare_metal/src/spi_sustainable_benchmark_bare_axi.c",
+  "source_sha256": "e1415d59ddf6bab88b79e3c871de370e99724d926504dea783a29ae8b78d6247",
+  "elf_name": "spi_axi_bm_app.elf",
+  "elf_sha256": "32110227aeb7d18e6bbd79e71dc0877916e76326c9625b8f3eee7ba43da4c4f5",
+  "xsa_sha256": "e8b4626edb5949bc8adb14ae259802cdd24b16ea3f02daf0dd8fdbeb1cc0e7d7",
+  "hardware_pair": "September 29 2026 ratio-2 J55 LVCMOS33 validated design",
+  "boot_image_packaged": false,
+  "board_tested": false,
+  "notes": "ELF build only. No BOOT.BIN or SD-card files were produced or changed."
+}

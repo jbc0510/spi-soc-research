@@ -1,8 +1,9 @@
 /*
- * MSU-2 Task 2e sustained AXI Quad SPI loopback test.
- * Build against the existing Vitis 2025.1 SDT AXI SPI platform. This program
- * runs 3 repetitions of each shared-contract payload, 60 seconds per point.
- * The application deliberately stops on the first transfer or RX failure.
+ * MSU-2 AXI Quad SPI bare-metal operator menu.
+ * Build against the existing Vitis 2025.1 SDT AXI SPI platform. The operator
+ * chooses RX-integrity/latency, configurable sustained, baseline, or smoke
+ * mode over the shared payload contract. Long runs require explicit RUN.
+ * Sustained mode stops on the first transfer or RX failure.
  */
 #include "spi_benchmark_contract.h"
 #include "xparameters.h"
@@ -43,6 +44,7 @@ static unsigned run_payloads[SPI_BENCH_PAYLOAD_COUNT];
 static unsigned run_payload_count;
 static unsigned run_window_seconds;
 static unsigned run_repetitions;
+static int run_integrity;
 
 static void read_line(char *buffer, unsigned capacity)
 {
@@ -83,33 +85,84 @@ static unsigned prompt_uint(const char *label, unsigned minimum,
     }
 }
 
+static int add_payload(unsigned value)
+{
+    for (unsigned i = 0; i < SPI_BENCH_PAYLOAD_COUNT; ++i) {
+        if (spi_bench_payloads[i] != value) continue;
+        for (unsigned j = 0; j < run_payload_count; ++j)
+            if (run_payloads[j] == value) return 0;
+        if (run_payload_count >= SPI_BENCH_PAYLOAD_COUNT) return 0;
+        run_payloads[run_payload_count++] = value;
+        return 1;
+    }
+    return 0;
+}
+
+static int prompt_payload_list(void)
+{
+    char line[160];
+    xil_printf("Payload bytes (comma-separated shared sizes; blank=all): ");
+    read_line(line, sizeof(line));
+    char *write = line;
+    for (char *read = line; *read; ++read)
+        if (*read != ' ' && *read != '\t' && *read != '\r' && *read != '\n')
+            *write++ = *read;
+    *write = '\0';
+    if (!line[0]) {
+        for (unsigned i = 0; i < SPI_BENCH_PAYLOAD_COUNT; ++i)
+            run_payloads[run_payload_count++] = spi_bench_payloads[i];
+        return 1;
+    }
+
+    char *cursor = line;
+    while (*cursor) {
+        char *end;
+        unsigned long value = strtoul(cursor, &end, 10);
+        if (end == cursor || value > SPI_BENCH_MAX_PAYLOAD || !add_payload((unsigned)value))
+            return 0;
+        if (*end == '\0') break;
+        if (*end != ',') return 0;
+        cursor = end + 1;
+        if (!*cursor) return 0;
+    }
+    return run_payload_count > 0;
+}
+
 static int select_run(void)
 {
     xil_printf("\r\nMSU-2 AXI SPI bare-metal test menu\r\n");
-    xil_printf("  1) Full baseline: 11 payloads, 60 s each, 3 repetitions\r\n");
-    xil_printf("  2) One payload, configurable duration and repetitions\r\n");
-    xil_printf("  3) Smoke run: one payload, 1 s, 1 repetition\r\n");
+    xil_printf("  1) RX integrity and latency: 11 payloads x 1,000 trials\r\n");
+    xil_printf("  2) Sustained throughput: choose payloads, duration, repetitions\r\n");
+    xil_printf("  3) Full sustained baseline: 11 payloads, 60 s x 3 repetitions\r\n");
+    xil_printf("  4) One-byte smoke: 1 second\r\n");
     xil_printf("  q) Do not run a test\r\nSelect: ");
     char choice = inbyte();
     outbyte(choice); outbyte('\r'); outbyte('\n');
     run_payload_count = 0;
+    run_integrity = 0;
     if (choice == 'q' || choice == 'Q') return 0;
     if (choice == '1') {
+        run_integrity = 1;
+        for (unsigned i = 0; i < SPI_BENCH_PAYLOAD_COUNT; ++i)
+            run_payloads[run_payload_count++] = spi_bench_payloads[i];
+        run_window_seconds = 0;
+        run_repetitions = 1;
+    } else if (choice == '2') {
+        if (!prompt_payload_list()) {
+            xil_printf("Invalid list. Use unique shared sizes: 1,8,16,64,128,256,512,1024,4096,16384,65536.\r\n");
+            return -1;
+        }
+        run_window_seconds = prompt_uint("Seconds per payload", 1, 3600, 60);
+        run_repetitions = prompt_uint("Repetitions", 1, 3, 3);
+    } else if (choice == '3') {
         for (unsigned i = 0; i < SPI_BENCH_PAYLOAD_COUNT; ++i)
             run_payloads[run_payload_count++] = spi_bench_payloads[i];
         run_window_seconds = SPI_SUSTAIN_WINDOW_SECONDS;
         run_repetitions = SPI_SUSTAIN_REPETITIONS;
-    } else if (choice == '2' || choice == '3') {
-        unsigned index = prompt_uint("Payload index (1=1 B ... 11=65,536 B)", 1,
-                                     SPI_BENCH_PAYLOAD_COUNT, 1);
-        run_payloads[run_payload_count++] = spi_bench_payloads[index - 1U];
-        if (choice == '2') {
-            run_window_seconds = prompt_uint("Window seconds", 1, 3600, 60);
-            run_repetitions = prompt_uint("Repetitions", 1, 3, 1);
-        } else {
-            run_window_seconds = 1;
-            run_repetitions = 1;
-        }
+    } else if (choice == '4') {
+        run_payloads[run_payload_count++] = 1U;
+        run_window_seconds = 1;
+        run_repetitions = 1;
     } else {
         xil_printf("Unknown selection; returning to menu.\r\n");
         return -1;
@@ -117,8 +170,11 @@ static int select_run(void)
     xil_printf("\r\nSelected payloads:");
     for (unsigned i = 0; i < run_payload_count; ++i)
         xil_printf(" %u", run_payloads[i]);
-    xil_printf(" bytes; %u seconds per point; %u repetition(s).\r\n",
-               run_window_seconds, run_repetitions);
+    if (run_integrity)
+        xil_printf(" bytes; %u integrity trials per payload.\r\n", SPI_BENCH_ATTEMPTS);
+    else
+        xil_printf(" bytes; %u seconds per point; %u repetition(s).\r\n",
+                   run_window_seconds, run_repetitions);
     xil_printf("Type RUN to begin; any other text cancels: ");
     char confirm[16];
     read_line(confirm, sizeof(confirm));
@@ -127,6 +183,22 @@ static int select_run(void)
         return -1;
     }
     return 1;
+}
+
+static int configure_spi(void);
+
+static int recover_spi(void)
+{
+    XDisableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
+    XSpi_IntrGlobalDisable(&spi);
+    XSpi_Reset(&spi);
+    irq_state.terminal = 0U;
+    irq_state.event = 0U;
+    irq_state.bytes = 0U;
+    int s = configure_spi();
+    if (s != XST_SUCCESS) return s;
+    XEnableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
+    return XST_SUCCESS;
 }
 
 static uint64_t ticks(void)
@@ -221,17 +293,77 @@ int main(void)
         xil_printf("No benchmark selected. This standalone image has no Linux mode; reset follows the configured boot image.\r\n");
         while (1) { }
     }
-    puts("# MSU-2 AXI sustained benchmark; hardware_validation=NOT_PERFORMED");
+    puts(run_integrity ? "# MSU-2 AXI RX integrity sweep; hardware_validation=NOT_PERFORMED" :
+                         "# MSU-2 AXI sustained benchmark; hardware_validation=NOT_PERFORMED");
     puts("# controller=axi_quad_spi_0 base=0xa0000000 driver=XSpi mode=0 bits=8 chip_select=0");
     puts("# topology=UNVERIFIED intended_topology=external_MOSI_to_MISO physical_sck_hz=NOT_MEASURED");
     puts("# timer=XTime_GetTime frequency_source=BSP_COUNTS_PER_SECOND");
-    printf("# timer_hz=%lu window_target_s=%u repetitions=%u cpu_metric=bm_busy_wait_core_occupancy_not_PMU\n",
-           (unsigned long)COUNTS_PER_SECOND, run_window_seconds, run_repetitions);
-    if (COUNTS_PER_SECOND == 0 || run_window_seconds == 0 || run_repetitions == 0) return 3;
+    printf("# timer_hz=%lu integrity_trials=%u window_target_s=%u repetitions=%u cpu_metric=bm_busy_wait_core_occupancy_not_PMU\n",
+           (unsigned long)COUNTS_PER_SECOND, SPI_BENCH_ATTEMPTS,
+           run_window_seconds, run_repetitions);
+    if (COUNTS_PER_SECOND == 0 || (!run_integrity &&
+        (run_window_seconds == 0 || run_repetitions == 0))) return 3;
     printf("# IOPLL_CTRL=0x%08x PL0_REF_CTRL=0x%08x\n",
            (unsigned)Xil_In32(0xFF5E0020U), (unsigned)Xil_In32(0xFF5E00C0U));
     int status = initialize();
     if (status != XST_SUCCESS) { printf("# initialization_failed status=%d\n", status); return 4; }
+    if (run_integrity) {
+        puts("---CSV-BEGIN---");
+        spi_bench_header();
+        unsigned failures = 0;
+        for (unsigned p = 0; p < run_payload_count; ++p) {
+            unsigned n = run_payloads[p];
+            SpiBenchResult result = spi_bench_result();
+            long timeout_count = 0;
+            for (unsigned trial = 0; trial < SPI_BENCH_ATTEMPTS; ++trial) {
+                spi_bench_prepare(tx, rx, n);
+                ++result.attempts;
+                uint64_t start = 0, end = 0;
+                u32 event = 0;
+                unsigned completed_bytes = 0;
+                status = transfer_bounded(n, &start, &end, &event, &completed_bytes);
+                if (status == SPI_BENCH_TIMEOUT) {
+                    ++result.api_errors; ++timeout_count;
+                    spi_bench_failure(&result, status, "timeout", trial);
+                    if (recover_spi() != XST_SUCCESS) return 5;
+                    continue;
+                }
+                if (status != XST_SUCCESS || event != XST_SPI_TRANSFER_DONE) {
+                    ++result.api_errors;
+                    spi_bench_failure(&result, status != XST_SUCCESS ? status : (int)event,
+                                      status != XST_SUCCESS ? "driver" : "irq_event", trial);
+                    if (recover_spi() != XST_SUCCESS) return 5;
+                    continue;
+                }
+                if (completed_bytes != n) {
+                    ++result.api_errors; ++result.short_returns;
+                    spi_bench_failure(&result, SPI_BENCH_SHORT_TRANSFER, "short_transfer", trial);
+                    if (recover_spi() != XST_SUCCESS) return 5;
+                    continue;
+                }
+                ++result.api_success;
+                int valid_rx = spi_bench_verify(&result, tx, rx, n, trial);
+                if (end < start) {
+                    ++result.timer_errors;
+                    spi_bench_failure(&result, SPI_BENCH_TIMER_ERROR, "timer", trial);
+                } else if (valid_rx) {
+                    spi_bench_sample(&result, (double)(end - start) * 1e9 /
+                                      (double)COUNTS_PER_SECOND);
+                }
+            }
+            spi_bench_row(n, &result, timeout_count);
+            failures += result.api_errors + result.mismatches + result.timer_errors;
+        }
+        puts("---CSV-END---");
+        puts("# cpu_metric=busy_wait_core_occupancy (100% of one core while active)");
+        printf("# sweep_complete=1 failures=%u topology=UNVERIFIED\n", failures);
+        XSpi_IntrGlobalDisable(&spi);
+        XDisableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
+        XDisconnectInterruptCntrl(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
+        XSpi_Stop(&spi);
+        return failures ? 1 : 0;
+    }
+
     puts("repetition,payload_bytes,window_s,attempts,verified_transfers,verified_bytes,application_MBps,cpu_metric_kind,cpu_metric_pct,thread_cpu_s,thread_cpu_share_pct,busy_wait_core_occupancy_pct,max_transfer_us,api_errors,mismatches,first_error_code");
 
     uint64_t window_ticks = (uint64_t)run_window_seconds * (uint64_t)COUNTS_PER_SECOND;
