@@ -19,6 +19,7 @@ and bitstream hash are explicitly recorded as unknown because the launcher
 does not measure or infer them.
 
 Operator instructions are in `linux/appliance/MSU2_DEMO_CONSOLE.md`.
+The cumulative Task 2 evidence deck records this milestone on slide 17.
 
 ## Verification
 
