@@ -1,0 +1,4 @@
+Date: 2026-10-17 (operator-reported; workstation UART capture unavailable)
+Image: corrected full selector candidate; SHA-256 8662dc9f693fcec9536d479a55f96ac50b76f6fb8b3edc6b4324244408e25b25
+Observation: picocom at 115200 baud reached "Terminal ready" and displayed the same partial text as the prior attempts: "Zynq MP First St". No U-Boot banner or selector menu was reported.
+Interpretation: confirms only that the visible output did not advance in the operator's console session. It does not identify whether the CPU is stalled, output was truncated, or handoff/console setup failed.
