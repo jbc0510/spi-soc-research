@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 from datetime import datetime, timezone
 from pathlib import Path
 import sys
@@ -36,6 +37,7 @@ def main() -> int:
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     raw_path = args.output_dir / f"uart_post_fat_repair_{stamp}.bin"
     text_path = args.output_dir / f"uart_post_fat_repair_{stamp}.txt"
+    events_path = args.output_dir / f"uart_post_fat_repair_{stamp}_events.csv"
 
     try:
         with serial.Serial(
@@ -53,10 +55,20 @@ def main() -> int:
                 flush=True,
             )
             deadline = time.monotonic() + args.seconds
+            capture_start = time.monotonic()
             captured = bytearray()
+            events: list[tuple[float, str, int, str]] = []
             while time.monotonic() < deadline:
                 chunk = uart.read(4096)
                 if chunk:
+                    events.append(
+                        (
+                            time.monotonic() - capture_start,
+                            datetime.now(timezone.utc).isoformat(),
+                            len(chunk),
+                            chunk.hex(),
+                        )
+                    )
                     captured.extend(chunk)
     except (OSError, serial.SerialException) as exc:
         print(f"UART capture failed: {exc}", file=sys.stderr)
@@ -64,10 +76,15 @@ def main() -> int:
 
     raw_path.write_bytes(captured)
     text_path.write_text(captured.decode("utf-8", errors="backslashreplace"))
+    with events_path.open("w", newline="") as event_file:
+        writer = csv.writer(event_file)
+        writer.writerow(("elapsed_s", "utc", "byte_count", "hex"))
+        writer.writerows(events)
     print(f"port={args.port} baud={args.baud} duration_s={args.seconds}")
     print(f"bytes={len(captured)}")
     print(f"raw={raw_path}")
     print(f"text={text_path}")
+    print(f"events={events_path} event_count={len(events)}")
     print("tail_repr=" + repr(bytes(captured[-512:])))
     return 0
 
