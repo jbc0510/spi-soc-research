@@ -1,0 +1,50 @@
+{
+  "schema": "msu2-linux-demo-bundle-v1",
+  "created_utc": "2026-10-17T22:42:43.703640+00:00",
+  "target": "ZCU102 / AArch64 / PetaLinux 2025.1 minimal image",
+  "launch": "sudo sh /run/media/BOOT-mmcblk0p1/msu2_demo/msu2_demo.sh",
+  "limitations": [
+    "Linux-side operator menu; not a power-on OS chooser",
+    "source bitstream hash is checked; FPGA configuration has no readback identity proof",
+    "physical SPI SCK and loopback topology are not measured by the application",
+    "FIT signature prototype does not establish BootROM-to-U-Boot secure boot"
+  ],
+  "files": {
+    "msu2_demo.sh": {
+      "sha256": "b113e2e9fd6f940f459e5631992bb8b648b74ac6da2598f543262d018cc1b59c",
+      "size_bytes": 9150
+    },
+    "MSU2_DEMO_CONSOLE.md": {
+      "sha256": "7ce9bc3221b0355047131c65323e09e8b2c9a74425e128d92e40e6e44c78870a",
+      "size_bytes": 4983
+    },
+    "pl0-clock-only.dtbo": {
+      "sha256": "00d3bd63dd926a41c3e8581c8d4ee8abb3e94307ad7e4ba345e500e45bb1bffa",
+      "size_bytes": 558
+    },
+    "pl-reset-release.dtbo": {
+      "sha256": "6ae01a4bddea4fe225e2fdee6c5da48df70ce68df7be14328326d7066a171255",
+      "size_bytes": 337
+    },
+    "axi-spi-controller.dtbo": {
+      "sha256": "92416746eaba51248438fdca8be324ef2a0455ccb2caa64da74d75df96bee693",
+      "size_bytes": 1036
+    },
+    "spi_ratio2_j55_lvcmos33_20260929.bit.bin": {
+      "sha256": "c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd",
+      "size_bytes": 26510780
+    },
+    "linux_spi_smoke_aarch64": {
+      "sha256": "fb01baec3d451849bd147837491f0d63b62efd0e1a1f99389314d407582b8dcd",
+      "size_bytes": 74248
+    },
+    "spi_benchmark_v3_rxverify_aarch64": {
+      "sha256": "d4e0e6b747789eb44e9013397e8956703ab41d8b78800e18d5586e72e5037c85",
+      "size_bytes": 74784
+    },
+    "spi_sustainable_benchmark_linux_aarch64": {
+      "sha256": "36f60c0d6584a654aa3cf5383359a37e084cc599b678b51bf7c59438e6b31ded",
+      "size_bytes": 74680
+    }
+  }
+}

@@ -1,11 +1,14 @@
 # MSU-2 demo console (Linux)
 
-`msu2_demo.py` is the Linux-side operator menu for the ZCU102 SPI tests. It is
-started by an operator after Linux has booted; it never starts a test during
-boot. Choosing `0` or `q` returns to the normal Linux console for ordinary
-computer use. The application writes one non-overwriting evidence directory
-per run under `~/msu2-demo-results` by default. The separate bare-metal ELF now
-also has a UART menu; the two menus do not yet share a power-on OS chooser.
+`msu2_demo.sh` is the no-Python Linux-side operator menu for the minimal
+PetaLinux image. `msu2_demo.py` provides the same menu on Linux images that
+include Python 3. Both are started by an operator after Linux has booted; neither
+starts a test automatically during boot. Choosing `0` or `q` returns to the
+normal Linux console for ordinary computer use. The shell application records
+one non-overwriting evidence directory per test under
+`msu2-demo-results/` beside the package on the FAT boot partition by default.
+The separate bare-metal ELF also has a UART
+menu; these applications do not yet provide a power-on OS chooser.
 
 ## Menu actions
 
@@ -23,9 +26,43 @@ also has a UART menu; the two menus do not yet share a power-on OS chooser.
 - **Bare-metal guidance** explains that bare metal is another A53 boot mode and
   cannot execute concurrently with Linux.
 
+## Shell-menu package contents
+
+The minimal-image menu expects these files beside `msu2_demo.sh`:
+
+```text
+pl0-clock-only.dtbo
+pl-reset-release.dtbo
+axi-spi-controller.dtbo
+spi_ratio2_j55_lvcmos33_20260929.bit.bin
+linux_spi_smoke_aarch64
+spi_benchmark_v3_rxverify_aarch64
+spi_sustainable_benchmark_linux_aarch64
+```
+
+The `dtbo` files and target executables are the hash-recorded artifacts in
+`results/linux_axi_spi_bringup_20261013/` and
+`results/task2e_sustainable_runner_20261016/`. The menu checks the validated
+bitstream source hash before programming. A user explicitly chooses hardware
+bring-up or a test. Hardware bring-up applies the PL0 clock, programs the full
+bitstream, releases the PL reset, registers the AXI SPI controller, and binds
+spidev in that order. It refuses unexpected overlay state and records each test
+log and a text manifest. It marks the physical SCK and live FPGA identity as
+unverified because it cannot measure SCK or read the programmed design back.
+
 ## Install and launch on the target
 
-Copy `linux/appliance/msu2_demo.py` to the target, install the already-built
+On the minimal PetaLinux image, copy the shell menu and package files above to a
+directory on the boot partition, then launch it after login as root so it can
+read the root-owned FAT files and access `/dev/spidev1.0`:
+
+```sh
+sudo sh /run/media/BOOT-mmcblk0p1/msu2_demo/msu2_demo.sh
+```
+
+The menu uses `sudo` for FPGA, clock, reset, overlay, device binding, and SPI
+operations. It does not require Python 3. For Python-enabled Linux images, copy
+`linux/appliance/msu2_demo.py` to the target and install the already-built
 receive-verification and sustained-runner binaries at:
 
 ```text

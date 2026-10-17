@@ -1,6 +1,6 @@
 # MSU-2 one-stop board demo — initial architecture
 
-**Status:** Linux and bare-metal operator menus exist; signed two-mode FIT selection passes U-Boot sandbox. Integrated boot menu and board validation remain open.\
+**Status:** The Linux operator menu is validated on the ZCU102 after PetaLinux login. The bare-metal menu and signed two-mode FIT selection are host/sandbox work; the integrated pre-OS chooser and secure boot chain remain open.\
 **Board:** ZCU102\
 **Validated PL image:** September 29 ratio-2 J55 design, SHA-256 `c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd`
 
@@ -72,6 +72,27 @@ Each run should save a machine-readable configuration with:
 `scripts/task2g_signed_selector_sandbox_test.py` now demonstrates a single required-key FIT with two configurations: Linux and a standalone SPI-test program. U-Boot sandbox accepted the signed Linux selection, loaded the signed standalone selection with execution disabled, and rejected the standalone selection after its payload was modified. Logs and hashes are in `results/task2g_signed_selector_sandbox_20261017/`.
 
 This narrows the implementation path but does not implement the actual boot menu. The standard U-Boot boot menu reads entries from environment variables. The integrated image must bake in fixed choices and prevent saved environment, external scripts, distro boot, or raw image commands from bypassing FIT verification. The required public key must be in the authenticated U-Boot control FDT. The live SD image still has an unsigned Linux FIT and an unauthenticated bare-metal BOOT image; see `results/MSU2_ONE_STOP_SIGNED_SELECTOR_AND_SD_AUDIT_20261017.md`.
+
+## Linux menu board validation (17 October 2026)
+
+The no-Python shell menu was installed on the SD boot partition and run on the
+ZCU102. It offered explicit Linux actions for PL bring-up, one-byte loopback,
+the 11-size integrity/latency sweep, parameterized sustained throughput,
+system information, and return to the ordinary Linux shell. Bring-up checked
+the known bitstream file hash, set PL0 to 99.99 MHz, released PL reset, created
+`/dev/spidev1.0`, and the smoke returned TX `0xa5` / RX `0xa5`.
+
+The menu-driven integrity sweep passed 11,000 transfers with no API errors,
+short returns, timeout errors, or receive mismatches. A separate short sustained
+demonstration passed 55,937 transfers across 256 B, 4 KiB and 64 KiB payloads
+with zero API errors or mismatches. The operator chose all parameters and
+explicitly confirmed `RUN`; option `q` returned to the regular PetaLinux shell.
+The program labels external topology and physical SCK unverified. This validates
+the Linux-side operator workflow and transfer path; it does not validate the
+pre-OS chooser, bare-metal selection, measured pin frequency, long-run
+repeatability, or secure boot. Raw logs remain on the SD card until archived on
+the host. Full run details are in
+`results/MSU2_ONE_STOP_LINUX_DEMO_PROGRESS_20261017.md`.
 
 ## Open decisions and limits
 
