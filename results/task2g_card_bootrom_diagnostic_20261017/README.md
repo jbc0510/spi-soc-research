@@ -35,6 +35,8 @@ Microsoft's FAT32 specification identifies byte 65 (`BS_Reserved1`) as reserved.
 
 The current agent command environment can read mounted files and sysfs metadata but cannot open `/dev/mmcblk0` or `/dev/mmcblk0p1`; `/dev` contains no block-device nodes and UDisks D-Bus access is denied. The operator's host-side `fsck.fat -n` result is now available, so do not repeat the same check. Do not repair or reformat based on this evidence alone. The next decisive diagnostic is a controlled BootROM/SD read test using a cleanly unmounted card and a fresh UART capture, with a raw image backup first if any filesystem repair is attempted.
 
+After the host-side check, the card mount is no longer visible in this agent session. A repeated read-only XSCT/JTAG query returned an empty target list, so there is no live board register or UART state available at this moment. This should be treated as unavailable hardware access, not as a new board failure.
+
 No files on the card were modified during this diagnostic.
 
 ## References
