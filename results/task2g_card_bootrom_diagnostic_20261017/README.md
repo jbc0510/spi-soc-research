@@ -12,7 +12,7 @@ The host card mount `/media/opentitan/BOOT` contains the expected stock boot ima
 | `image.ub` | `446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0` | Matches previously recorded Linux image |
 | `boot.scr` | `6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608` | Generic PetaLinux U-Boot boot script |
 
-The mounted volume is a single FAT32 partition (`PARTTYPE=0x0c`, `PARTUUID=13335a4f-01`) spanning the 58.2 GB card, beginning at sector 2048. The card block device reports `RO=0`; the mount currently appears read-only in this session. The expected boot files are visible at the filesystem root.
+The mounted volume is a single FAT32 partition (`PARTTYPE=0x0c`, `PARTUUID=13335a4f-01`) spanning the 58.2 GB card, beginning at sector 2048. Sysfs reports 122,138,624 sectors for the card and 122,136,576 sectors for partition 1, so the partition begins after the standard 2,048-sector (1 MiB) alignment gap and occupies the remainder of the card. The card block device reports `RO=0`; the mount currently appears read-only in this session. The expected boot files are visible at the filesystem root.
 
 ## Filesystem evidence
 
@@ -23,9 +23,11 @@ Host kernel logs repeatedly report:
 
 This is evidence of an unclean FAT state, not proof that `BOOT.BIN` or its directory entry is corrupt. Hashes confirm the bytes of the visible files match their expected artifacts, but do not validate the FAT metadata or the card's full on-media consistency.
 
+The kernel-log search returned no matching SD-card I/O-error lines; the recorded warnings concern the FAT volume's unclean state. This does not rule out errors outside the retained/query window.
+
 ## Limits and next diagnostic
 
-The current command environment can read the mounted files and sysfs partition metadata but cannot open `/dev/mmcblk0` or `/dev/mmcblk0p1`; direct partition-table and filesystem-check commands fail because the block device is not exposed to this session. Do not run a repair or reformat based on the current evidence. Before another board boot, perform a read-only FAT check (`fsck.fat -n`) with the card unmounted on a host session that has block-device access. Save the complete checker output. Only if the checker reports errors should repair be considered, after preserving a full card image and its current contents.
+The current command environment can read the mounted files and sysfs partition metadata but cannot open `/dev/mmcblk0` or `/dev/mmcblk0p1`; `/dev` contains no block-device nodes in this session and the UDisks D-Bus connection is denied. Direct partition-table and filesystem-check commands therefore cannot run here. Do not run a repair or reformat based on the current evidence. Before another board boot, perform a read-only FAT check (`fsck.fat -n`) with the card unmounted on a host session that has block-device access. Save the complete checker output. Only if the checker reports errors should repair be considered, after preserving a full card image and its current contents.
 
 No files on the card were modified during this diagnostic.
 
