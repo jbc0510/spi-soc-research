@@ -1,0 +1,12 @@
+MSU-2 Task 2g signed selector card installation
+Date: 2026-10-17
+Device: /dev/mmcblk0p1, FAT label BOOT
+Original card BOOT.BIN SHA-256: f64730ce205bbfb5de28bcf44c13d3511adaa6b4b47d34a284178c95fc90c39e
+Original card image.ub SHA-256: 446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0
+On-card original backup: BOOT.BIN.pre_task2g_20261017
+Installed BOOT.BIN SHA-256: 8436f5ddad8143e48cae82fa9c375a831e16839172e81d3ebb9cf7e8fee6e718
+Installed FIT path: msu2-dual-mode.itb
+Installed FIT SHA-256: e6d065f82305e5216a3613e92b42d4749870f67c1df7b19bef950339d952a5ad
+On-card backup BOOT.BIN SHA-256 after install: f64730ce205bbfb5de28bcf44c13d3511adaa6b4b47d34a284178c95fc90c39e
+Card image.ub SHA-256 after install: 446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0
+Filesystem was synced, hash-checked, and unmounted through UDisks. The card has not yet been booted in the ZCU102.

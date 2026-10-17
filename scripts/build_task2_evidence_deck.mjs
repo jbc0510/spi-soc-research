@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v32.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v37.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -564,17 +564,17 @@ process.stderr.write('presentation initialized\n');
   ]);
 }
 
-// 18 — signed Linux and standalone selection prototype
+// 18 — signed dual-mode payload plus fixed-selector work in progress
 {
-  const s = baseSlide(p, 'One signed FIT can carry both operating modes', '2g + one-stop integration  /  Host prototype', 18);
+  const s = baseSlide(p, 'Signed selector package passes artifact checks', '2g + one-stop integration  /  ZCU102 package candidate', 18);
   box(s, 72, 171, 1115, 38,
-    'U-Boot sandbox selected Linux or the standalone SPI-test image from one required-key FIT.',
+    'PetaLinux built the fixed U-Boot chooser; both choices use one required-key FIT.',
     { size: 23, bold: true });
 
   const cards = [
-    { x: 72, title: 'Linux configuration', body: 'Signed kernel + FDT\n\nSandbox accepted bootm selection', color: C.blue },
-    { x: 456, title: 'Standalone SPI-test', body: 'Signed firmware entry\n\nSandbox loaded it with execution disabled', color: C.teal },
-    { x: 840, title: 'Modified payload', body: 'One byte changed\n\nSandbox rejected it before transfer', color: C.red },
+    { x: 72, title: 'Existing Linux', body: 'Kernel, FDT and initramfs extracted from the card\n\nRequired-key signature check passed', color: C.blue },
+    { x: 456, title: 'Unified SPI menu', body: 'AArch64 standalone firmware in the same FIT\n\nRequired-key signature check passed', color: C.teal },
+    { x: 840, title: 'Tamper test', body: 'One byte changed in SPI payload\n\nSignature check rejected the FIT', color: C.red },
   ];
   for (const card of cards) {
     s.shapes.add({ geometry: 'rect', position: { left: card.x, top: 246, width: 340, height: 194 }, fill: C.white, line: { style: 'solid', fill: C.grid, width: 1 } });
@@ -583,16 +583,19 @@ process.stderr.write('presentation initialized\n');
     box(s, card.x + 18, 326, 304, 92, card.body, { size: 19, color: C.ink });
   }
   box(s, 72, 468, 1115, 50,
-    'Both configurations passed required-key signature verification; the altered SPI-test payload failed closed.',
+    'The packaged system DTB contains the required key; all three FIT configurations verify, and tampering fails.',
     { size: 20, bold: true, color: C.green });
   box(s, 72, 544, 1115, 92,
-    'Still open: fixed authenticated boot menu, signed Linux console package, target boot, physical SPI test, and BootROM-rooted trust. The SD card was backed up read-only and left unchanged.',
+    'Candidate BOOT.BIN and FIT are installed; original BOOT.BIN is backed up. Board boot and J55 transfer remain untested. Bootgen reports no authenticated FSBL/U-Boot chain, so this is not hardware-rooted secure boot.',
     { size: 18, color: C.amber });
   setNotes(s, [
-    'Report: results/MSU2_ONE_STOP_SIGNED_SELECTOR_AND_SD_AUDIT_20261017.md. Reproduce with python3 scripts/task2g_signed_selector_sandbox_test.py.',
-    'U-Boot 2025.01-Xilinx sandbox used required sha256,rsa2048 configuration signatures and the control FDT embedded by mkimage. The Linux and SPI-test FIT configurations passed fit_check_sign. Sandbox accepted Linux bootm selection, loaded standalone firmware with autostart=no, and rejected the modified standalone payload before transfer.',
-    'The standalone fixture did not execute code. This does not test the interactive U-Boot bootmenu, the board BootROM/FSBL chain, the eFUSE trust anchor, A53 execution, the target Linux payload, or physical SPI.',
-    'SD audit: results/sd_card_host_backup_20261017/. The original partition was mounted read-only; the copy matched byte-for-byte. The active card BOOT.BIN matches the previous bare-metal sustained-test package; image.ub is the previously audited unsigned FIT. No card files were changed.',
+    'Report: results/MSU2_ONE_STOP_SIGNED_SELECTOR_AND_SD_AUDIT_20261017.md. FIT build: python3 scripts/task2g_build_dualmode_fit.py with the SD FIT, unified SPI ELF, signing-key directory, control DTB, and U-Boot host tools as inputs.',
+    'The candidate reuses the card image.ub payloads (Linux kernel SHA-256 023ae2aa3f608f115f466d150383ea50d40a727cb79e4c1ec7c42b4f637dcb99; DTB 852b2591a8f1d095d2392f098fb547280a0e3cb71b6556e416aea1684a3d942e; initramfs 6eba38d56d5ab4fc5a5e359e07429269b25e94a2262f0a151cc806f817ba7fe0) and the unified menu ELF SHA-256 9a1b1455a0b4255429e9c767db2f8ab7d0a54bc1bfa8b2f67bce75a85794c067.',
+    'All three FIT configurations (linux, spi-test, pl-overlay) passed U-Boot fit_check_sign using a required sha256,rsa2048 key. Modifying the standalone SPI payload caused signature verification to fail. The bare-metal application did not execute during this host check.',
+    'A U-Boot 2025.01-Xilinx sandbox build with the fixed compiled environment displayed two choices plus Quit, omitted the U-Boot-console entry, and selected the requested benign option. A sandbox-compatible signed FIT made from the exact candidate payload bytes was accepted for Linux; the SPI menu firmware loaded with autostart=no; a tampered SPI payload was rejected before firmware loading. See results/task2g_dualmode_sandbox_20261017/.',
+    'The actual PetaLinux project built U-Boot with the fixed menu and FIT verification code. The target ELF SHA-256 is 70498b6e1dfe8392d6e1ca75b8384b9a21c61f668d34ad01a11e9b2d9ba120d3. Bootgen packaged it with the validated J55 bitstream SHA-256 c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd and a required-key system DTB loaded at 0x100000.',
+    'Candidate BOOT_SIGNED_SELECTOR.bin SHA-256 is 8436f5ddad8143e48cae82fa9c375a831e16839172e81d3ebb9cf7e8fee6e718. Repeating packaging produced the same hash. The system DTB extracted from this package has required=conf; FIT checks against that extracted DTB accepted linux, spi-test, and pl-overlay, while the modified SPI FIT was rejected.',
+    'The card contains BOOT.BIN with SHA-256 8436f5ddad8143e48cae82fa9c375a831e16839172e81d3ebb9cf7e8fee6e718, the signed FIT with SHA-256 e6d065f82305e5216a3613e92b42d4749870f67c1df7b19bef950339d952a5ad, and the original BOOT.BIN backup. No target boot, A53 execution, Linux operations, or physical SPI transfer has been tested with this package. FIT verification only protects payloads after trusted U-Boot starts, and no BootROM/FSBL authentication or hardware key provisioning is established.',
   ]);
 }
 
@@ -622,6 +625,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v33.json'),
+  receiptPath: path.join(stagingDir, 'validation_v37.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

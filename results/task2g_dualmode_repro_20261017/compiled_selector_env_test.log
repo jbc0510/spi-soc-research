@@ -1,0 +1,23 @@
+Bloblist at b000 not found (err=-2)
+Bloblist at b000 not found (err=-2)
+
+
+U-Boot 2025.01 (Oct 17 2026 - 13:50:04 -0400)
+
+DRAM:  256 MiB
+Core:  28 devices, 14 uclasses, devicetree: board, universal payload active
+NAND:  0 MiB
+MMC:   
+Loading Environment from nowhere... OK
+In:    serial
+Out:   serial
+Err:   serial
+Net:         eth_initialize() No ethernet found.
+[?25h
+bootcmd=reset
+autostart=yes
+bootmenu_default=0
+bootmenu_delay=-1
+fit_addr_r=0x10000000
+bootmenu_0=Normal Linux operation=if fatload mmc 0:1 ${fit_addr_r} msu2-dual-mode.itb; then bootm ${fit_addr_r}#linux; fi; reset
+bootmenu_1=AXI SPI test menu=if fatload mmc 0:1 ${fit_addr_r} msu2-dual-mode.itb; then bootm ${fit_addr_r}#spi-test; fi; reset

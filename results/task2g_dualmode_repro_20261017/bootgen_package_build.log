@@ -1,0 +1,18 @@
+[WARNING] You have specified BIF file,it will override all your other package boot settings.
+[INFO] Generating zynqmp binary package BOOT_SIGNED_SELECTOR_rebuild.bin...
+[INFO] 
+
+****** Bootgen v2025.1-Merged
+  **** Build date : Oct 28 2025-10:32:43
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+[WARNING]: Partition spi_ratio2_j55_wrapper.bit.bin.0 range is overlapped with partition system.dtb.0 memory range
+
+[INFO]   : Bootimage generated successfully
+
+
+[INFO] Binary is ready.
+[INFO] Successfully Generated BIN File
+[WARNING] Unable to access the TFTPBOOT folder /tftpboot!!!
+[WARNING] Skip file copy to TFTPBOOT folder!!!

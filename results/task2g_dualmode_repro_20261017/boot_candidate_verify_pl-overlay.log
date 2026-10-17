@@ -1,0 +1,40 @@
+Signature check OK
+Verifying Hash Integrity for node 'pl-overlay'... sha256,rsa2048:msu2-test+ 
+Verified OK, loading images
+## Loading kernel from FIT Image at 7554e4c00000 ...
+   Using 'pl-overlay' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:msu2-test+ 
+OK
+
+Could not find subimage node type 'kernel'
+## Loading fdt from FIT Image at 7554e4c00000 ...
+   Using 'pl-overlay' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:msu2-test+ 
+OK
+
+   Trying 'fdt-pl' fdt subimage
+     Description:  Existing programmable logic overlay
+     Created:      Sat Oct 17 13:42:18 2026
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Size:    2009 Bytes = 1.96 KiB = 0.00 MiB
+     Architecture: AArch64
+     Hash algo:    sha256
+     Hash value:   2912ee463b2f60652dd64fc8009d1836e8a5c7824008eb26940a753eeb09dfcd
+   Verifying Hash Integrity ... 
+sha256+ 
+OK
+
+   Decrypting Data ... 
+OK
+
+   Loading Flat Device Tree to 0
+## Loading ramdisk from FIT Image at 7554e4c00000 ...
+   Using 'pl-overlay' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:msu2-test+ 
+OK
+
+Could not find subimage node type 'ramdisk'

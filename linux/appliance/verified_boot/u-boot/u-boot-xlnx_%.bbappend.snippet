@@ -1,0 +1,21 @@
+# Add these SRC_URI entries and task hooks to the project's existing
+# u-boot-xlnx_%.bbappend. Preserve its existing platform and FIT fragments.
+SRC_URI:append = " file://task2g-selector.cfg file://msu2-selector.env file://task2g-key-enroll.its file://task2g-key-enroll.bin"
+
+# The compiled-in environment file must be present before Kconfig runs.
+do_configure:prepend() {
+    install -D ${WORKDIR}/msu2-selector.env ${S}/board/xilinx/zynqmp/msu2-selector.env
+}
+
+# First U-Boot compile creates tools/mkimage and the control DTB. Sign a small
+# throwaway FIT to add the public key as required=conf, then rebuild U-Boot so
+# that the modified control DTB is embedded in the deployed U-Boot ELF.
+do_compile:append() {
+    keydir="${TOPDIR}/conf/msu2-dev-signing"
+    if [ ! -s "$keydir/msu2-test.key" ] || [ ! -s "$keydir/msu2-test.crt" ]; then
+        bbfatal "Missing development FIT signing key under $keydir"
+    fi
+    ${B}/tools/mkimage -f ${WORKDIR}/task2g-key-enroll.its \
+        -k "$keydir" -K ${B}/u-boot.dtb -r ${B}/task2g-key-enrollment.itb
+    oe_runmake -C ${S} O=${B} all
+}

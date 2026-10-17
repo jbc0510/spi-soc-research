@@ -1,0 +1,27 @@
+/dts-v1/;
+/ {
+    description = "MSU-2 build-time enrollment of the required FIT public key";
+    #address-cells = <1>;
+    images {
+        key-enrollment {
+            description = "Non-executable build-time key enrollment payload";
+            data = /incbin/("task2g-key-enroll.bin");
+            type = "firmware";
+            arch = "arm64";
+            os = "u-boot";
+            compression = "none";
+            hash-1 { algo = "sha256"; };
+        };
+    };
+    configurations {
+        default = "conf-key-enrollment";
+        conf-key-enrollment {
+            firmware = "key-enrollment";
+            signature-1 {
+                algo = "sha256,rsa2048";
+                key-name-hint = "msu2-test";
+                sign-images = "firmware";
+            };
+        };
+    };
+};

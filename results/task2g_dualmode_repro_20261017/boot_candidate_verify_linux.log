@@ -1,0 +1,79 @@
+Signature check OK
+Verifying Hash Integrity for node 'linux'... sha256,rsa2048:msu2-test+ 
+Verified OK, loading images
+## Loading kernel from FIT Image at 7a196c800000 ...
+   Using 'linux' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:msu2-test+ 
+OK
+
+   Trying 'kernel-1' kernel subimage
+     Description:  Existing Linux kernel
+     Created:      Sat Oct 17 13:42:18 2026
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Size:    11660781 Bytes = 11387.48 KiB = 11.12 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: 0x00200000
+     Entry Point:  0x00200000
+     Hash algo:    sha256
+     Hash value:   023ae2aa3f608f115f466d150383ea50d40a727cb79e4c1ec7c42b4f637dcb99
+   Verifying Hash Integrity ... 
+sha256+ 
+OK
+
+   Decrypting Data ... 
+OK
+
+   Uncompressing Kernel Image to 0
+Unimplemented compression type 1
+## Loading fdt from FIT Image at 7a196c800000 ...
+   Using 'linux' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:msu2-test+ 
+OK
+
+   Trying 'fdt-system-top' fdt subimage
+     Description:  Existing Linux device tree
+     Created:      Sat Oct 17 13:42:18 2026
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Size:    36067 Bytes = 35.22 KiB = 0.03 MiB
+     Architecture: AArch64
+     Hash algo:    sha256
+     Hash value:   852b2591a8f1d095d2392f098fb547280a0e3cb71b6556e416aea1684a3d942e
+   Verifying Hash Integrity ... 
+sha256+ 
+OK
+
+   Decrypting Data ... 
+OK
+
+   Loading Flat Device Tree to 0
+## Loading ramdisk from FIT Image at 7a196c800000 ...
+   Using 'linux' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:msu2-test+ 
+OK
+
+   Trying 'ramdisk-1' ramdisk subimage
+     Description:  Existing Linux root filesystem
+     Created:      Sat Oct 17 13:42:18 2026
+     Type:         RAMDisk Image
+     Compression:  uncompressed
+     Data Size:    43809071 Bytes = 42782.30 KiB = 41.78 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: unavailable
+     Entry Point:  unavailable
+     Hash algo:    sha256
+     Hash value:   6eba38d56d5ab4fc5a5e359e07429269b25e94a2262f0a151cc806f817ba7fe0
+   Verifying Hash Integrity ... 
+sha256+ 
+OK
+
+   Decrypting Data ... 
+OK
+
+   Loading RAMDisk Image to 0

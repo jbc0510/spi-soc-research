@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "source_fit_sha256": "446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0",
+  "spi_elf_sha256": "9a1b1455a0b4255429e9c767db2f8ab7d0a54bc1bfa8b2f67bce75a85794c067",
+  "signed_fit_sha256": "e6d065f82305e5216a3613e92b42d4749870f67c1df7b19bef950339d952a5ad",
+  "control_dtb_sha256": "2bc6d3375b4545fcb31ef7fa27344a4755b5ddc2c160c22dab8d4e5d7f176cd2",
+  "configuration_signatures": {
+    "linux": "PASS",
+    "spi-test": "PASS",
+    "pl-overlay": "PASS"
+  },
+  "tampered_spi_payload": "REJECTED",
+  "signing_key_path": "/home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/conf/msu2-dev-signing",
+  "security_boundary": "FIT signature verification only. It does not authenticate BootROM, FSBL, or U-Boot; the key is a development key. A matching trusted U-Boot control DTB and authenticated boot chain are required on hardware."
+}
