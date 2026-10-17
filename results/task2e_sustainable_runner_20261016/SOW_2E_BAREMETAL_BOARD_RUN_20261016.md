@@ -2,7 +2,7 @@
 
 ## Result
 
-The ZCU102 booted the existing standalone AXI SPI benchmark from its SD card. It completed all 11 payload sizes with 1,000 verified transfers per size: **11,000 transfers, zero API errors, zero timeouts, and zero receive mismatches**. This is a successful physical bare-metal regression run. It is not the newly built 60-second sustained bare-metal runner, so Task 2e remains partial.
+The ZCU102 booted the existing standalone AXI SPI benchmark from its SD card. It completed all 11 payload sizes with 1,000 verified transfers per size: **11,000 transfers, zero API errors, zero timeouts, and zero receive mismatches**. This is the fixed-ladder bare-metal regression, one part of the complete Task 2e framework evidence. The paired 60-second sustained result is recorded below and in `SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md`.
 
 The raw UART capture is `baremetal_reboot_capture_20261016.raw.log` (SHA-256 `3d573481c2e6bed1d704aaaa8c9e653be538b57701c007f2ea162820d152bebf`). The parser `scripts/parse_task2e_baremetal_capture.py` checks the complete size sequence and zero-failure counters, then emits `baremetal_reboot_metrics_20261016.csv` and `linux_baremetal_rate_comparison_20261016.csv`.
 
@@ -26,11 +26,12 @@ The rates are informative but **not an apples-to-apples performance result**: ba
 
 The application banner still says `hardware_validation=NOT_PERFORMED`, `topology=UNVERIFIED`, `clock_pair=UNRECONCILED`, and `sck_physical_hz=UNKNOWN`. Those are stale build-time metadata fields; the UART capture itself proves the benchmark executed and verified returned bytes, and the exact bitstream hash is established. The run did not measure SCK or independently record the J55 wiring during this session.
 
-The SD card's `BOOT.BIN` currently contains the standalone image. The original Linux boot image remains on the same card under the verified backup name above. The workstation does not detect the SD card as a block device, so restoring Linux requires moving the card to the workstation reader (or another writable host) and copying the backup back to `BOOT.BIN`. Do not claim the board is back on Linux until its next Linux boot is observed.
+At the time of this fixed-ladder run, the SD card's `BOOT.BIN` contained the standalone image and the original Linux boot image was preserved on the card under the verified backup name above. This report does not make a claim about the board's present boot state.
 
 ## Next work
 
-1. Restore the original Linux `BOOT.BIN` and confirm Linux boots.
-2. Run the fixed 1,000-trial Linux executable on the same bitstream to build a matched per-transfer comparison against this bare-metal sweep.
-3. Package and execute the sustainable bare-metal runner (11 sizes × 3 × 60 seconds) if Task 2e requires a sustained paired comparison.
-4. Update the SOW tracker and evidence deck after the matched run; retain the present result as a successful standalone board regression.
+The fixed-trial and sustained Linux-versus-bare-metal comparisons are now captured. This report retains the fixed-ladder run as one evidence component; the complete bounded Task 2e result and clock interpretation are in the paired report and `clock_readback_20261017.md`.
+
+## Follow-up recorded 17 October 2026
+
+The newly built 60-second bare-metal runner subsequently completed all 11 payload sizes × 3 repetitions (33 points) on the ZCU102, with zero API errors or RX mismatches. Raw and derived evidence, paired Linux rates, clock/operating-point readback, and interpretation limits are documented in `SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md`, `clock_readback_20261017.md`, and `paired_sustained_manifest_20261017.json`. Together with the Linux runs and fixed-trial results, these close Task 2e as a bounded comparative benchmark framework. Per-window clock sampling and alternating backend order were not performed.

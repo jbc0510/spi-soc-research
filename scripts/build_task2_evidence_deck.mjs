@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261016_v23.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v26.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -48,7 +48,7 @@ function baseSlide(p, title, kicker, index) {
   box(slide, 70, 38, 1120, 25, kicker.toUpperCase(), { size: 15, bold: true, color: C.teal });
   box(slide, 70, 70, 1130, 62, title, { size: 42, bold: true });
   const line = slide.shapes.add({ geometry: 'rect', position: { left: 70, top: 146, width: 1140, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
-  box(slide, 70, 680, 1120, 18, `MSU-2  ·  Task 2 evidence review  ·  16 Oct 2026                                      ${String(index).padStart(2, '0')}`, { size: 13, color: C.muted });
+  box(slide, 70, 680, 1120, 18, `MSU-2  ·  Task 2 evidence review  ·  17 Oct 2026                                      ${String(index).padStart(2, '0')}`, { size: 13, color: C.muted });
   return slide;
 }
 function addLineChart(slide, opts) {
@@ -73,6 +73,7 @@ const cdma = await readCsv('results/task2b_cdma_sim_20261014/cdma_simulated_swee
 const framework = await readCsv('results/linux_axi_spi_bringup_20261013/task2e_framework_metrics_20261014.csv');
 const baremetalReboot = await readCsv('results/task2e_sustainable_runner_20261016/baremetal_reboot_metrics_20261016.csv');
 const fixedTrialComparison = await readCsv('results/linux_axi_spi_revalidation_20261016/linux_vs_baremetal_fixed_trial_20261016.csv');
+const sustainedComparison = await readCsv('results/task2e_sustainable_runner_20261016/linux_baremetal_sustained_comparison_20261016.csv');
 process.stderr.write('source data read\n');
 const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
 process.stderr.write('presentation initialized\n');
@@ -85,7 +86,7 @@ process.stderr.write('presentation initialized\n');
   box(s, 88, 100, 1080, 34, 'MORGAN STATE UNIVERSITY  /  MSU-2', { size: 18, bold: true, color: C.teal });
   box(s, 88, 195, 1030, 146, 'Task 2: SPI performance,\ndeterminism and secure integration', { size: 54, bold: true });
   box(s, 92, 382, 970, 75, 'Evidence review: completed comparisons, simulation findings, and remaining verification work', { size: 27, color: C.muted });
-  box(s, 92, 580, 900, 32, 'ZCU102  ·  AXI Quad SPI  ·  J55 loopback  ·  Evidence through 16 October 2026', { size: 18, color: C.muted });
+  box(s, 92, 580, 900, 32, 'ZCU102  ·  AXI Quad SPI  ·  J55 loopback  ·  Evidence through 17 October 2026', { size: 18, color: C.muted });
   setNotes(s, [
     'Scope: Task 2a–2c findings and current status of remaining SOW activities.',
     'Primary source: /home/opentitan/Downloads/MSU-2_SOW_Final (1).docx, revision 2026-02-23.',
@@ -159,13 +160,13 @@ process.stderr.write('presentation initialized\n');
 
 // 5 — Remaining scope
 {
-  const s = baseSlide(p, 'Task 2 status against the SOW activity list', 'Status  /  16 October 2026', 5);
+  const s = baseSlide(p, 'Task 2 status against the SOW activity list', 'Status  /  17 October 2026', 5);
   const rows = [
     ['2a  Performance gaps', 'Complete', 'Revalidated 11 sizes × 1,000 on both paths; zero errors. Bounded comparison, not causal kernel-only attribution.', C.green],
     ['2b  PIO and DMA', 'Assessment complete', 'Physical PIO; six-size CDMA simulation; ZDMA result invalid for performance. No physical DMA crossover.', C.green],
     ['2c  Real-time suitability', 'Assessment complete', 'Best-effort latency and jitter characterized; no hard deadline or deterministic guarantee established.', C.green],
     ['2d  System hardening', 'Design complete', 'Design documented. Verified boot, reliable updates and automatic recovery are not deployed.', C.green],
-    ['2e  Benchmark framework', 'Partial', 'Fixed-trial Linux/BM comparison passes; Linux has 33 sustained points. Paired sustained BM runner remains.', C.amber],
+    ['2e  Benchmark framework', 'Complete', '66/66 sustained points and fixed ladder pass. Clock evidence supports a bounded comparison; per-window sampling and causal OS attribution remain out of scope.', C.green],
     ['2f  OS tuning', 'Partial', 'CPU-frequency sweep done; preemption-model and physical optimized-DMA comparison remain open.', C.amber],
     ['2g  Minimal appliance/security', 'Partial', 'Prototypes pass defined tests; active boot is unsigned and integrated target recovery remains open.', C.amber],
   ];
@@ -181,7 +182,7 @@ process.stderr.write('presentation initialized\n');
   setNotes(s, [
     'Governing source: /home/opentitan/Downloads/MSU-2_SOW_Final (1).docx, revision 2026-02-23. The seven activity names are quoted or closely abbreviated from Task 2; internal labels 2a–2g are mapped in sequence.',
     'Evidence basis: results/MSU2_TASK2_SOW_STATUS_20261016.md and the source reports in results/ for Task 2a–2g.',
-    'Task 2a has a fixed-workload comparison revalidated on 16 October, but timer sources and CPU operating-point evidence limit causal attribution. Task 2b has simulation but no valid physical DMA sweep. Task 2c supports best-effort suitability only. Task 2d is design-only. Task 2e has Linux 33/33 sustained points and a fixed-trial Linux/bare-metal comparison; the paired sustained bare-metal runner remains open. Task 2f lacks a changed preemption configuration and valid physical optimized-DMA comparison. Task 2g lacks integrated target verified boot and persistent recovery.',
+    'Task 2a has a fixed-workload comparison revalidated on 16 October, but timer sources and CPU-point differences limit causal attribution. Task 2b has simulation but no valid physical DMA sweep. Task 2c supports best-effort suitability only. Task 2d is design-only. Task 2e is complete as a bounded benchmark framework: 33/33 sustained points per backend, fixed-trial comparison, CPU-metric bases, and clock readback are documented. The actual backend order was not alternated and clocks were not sampled per window, so no thermal control or causal OS-only claim is made. Task 2f lacks a changed preemption configuration and valid physical optimized-DMA comparison. Task 2g lacks integrated target verified boot and persistent recovery.',
     'The SOW also requires separate Task 1 work and formal monthly, interim, simulation/emulation, OS/appliance, and final-report deliverables; this Task 2 status slide does not certify those deliverables.',
   ]);
 }
@@ -247,12 +248,13 @@ process.stderr.write('presentation initialized\n');
   box(s, 875, 190, 320, 56, '11,000 paired transfers', { size: 25, bold: true });
   box(s, 875, 255, 320, 72, 'Zero transfer errors and RX mismatches in both recorded runs.', { size: 20, color: C.muted });
   box(s, 875, 354, 320, 83, 'Linux thread CPU share: 67.9% at 1 B → 1.5% at 64 KiB.', { size: 22, bold: true, color: C.blue });
-  box(s, 875, 456, 320, 141, 'Scope: benchmark thread over the 1,000-transfer loop. Bare-metal CPU use was not instrumented, and this fixed ladder does not establish maximum sustainable throughput.', { size: 18, color: C.muted });
+  box(s, 875, 456, 320, 141, 'Fixed-ladder Linux thread share is separate from sustained results. Bare metal reports 100% busy-wait core occupancy, not a PMU reading. Task 2e closes as a bounded framework; per-window clock sampling is outside the claim.', { size: 18, color: C.muted });
   setNotes(s, [
     'Source CSV: results/linux_axi_spi_bringup_20261013/task2e_framework_metrics_20261014.csv.',
     'Derived from raw Linux CLOCK_THREAD_CPUTIME_ID and CLOCK_MONOTONIC_RAW loop totals in results/linux_axi_spi_bringup_20261013/linux_benchmark_20261014.log.',
     'Framework status and scope: results/SOW_2E_BENCHMARK_FRAMEWORK_STATUS_20261014.md. The utilization percentage is per benchmark thread normalized to one CPU core, not total system CPU utilization.',
     'Physical closure experiment and remaining metric definitions: results/SOW_2E_BENCHMARK_CLOSURE_EXPERIMENT_20261015.md.',
+    'Paired sustained observations and clock/CPU limitations: results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md and clock_readback_20261017.md.',
   ]);
 }
 
@@ -410,15 +412,39 @@ process.stderr.write('presentation initialized\n');
   box(s, 880, 190, 310, 42, `Linux: ${linuxPassed ? '11,000 / 11,000 pass' : 'review required'}`, { size: 22, bold: true, color: linuxPassed ? C.blue : C.red });
   box(s, 880, 242, 310, 74, `Bare metal: ${bmPassed ? '11,000 / 11,000 pass' : 'review required'}. Both used 11 payloads × 1,000 trials.`, { size: 19, color: bmPassed ? C.teal : C.red });
   box(s, 880, 326, 310, 70, 'Zero data errors. Linux was slower at 1–16 B, but had 20.4% lower latency at 64 KiB.', { size: 18, bold: true, color: C.ink });
-  box(s, 880, 408, 310, 136, 'Same bitstream and 99.99 MHz PL0. Rates are derived from mean latency, not wire throughput. Linux uses CLOCK_MONOTONIC_RAW; bare metal uses XTime. CPU-point evidence is incomplete, so this does not isolate kernel cost.', { size: 16, color: C.muted });
+  box(s, 880, 408, 310, 136, 'Same bitstream and 99.99 MHz PL0. Rates are derived from mean latency, not wire throughput. Linux uses CLOCK_MONOTONIC_RAW; bare metal uses XTime. Clock/CPU evidence supports a bounded comparison, not kernel-only attribution.', { size: 16, color: C.muted });
   s.shapes.add({ geometry: 'rect', position: { left: 72, top: 584, width: 1115, height: 2 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
-  box(s, 72, 606, 1110, 48, 'Next: execute the 60-second bare-metal runner for the paired sustained comparison.', { size: 21, bold: true });
+  box(s, 72, 606, 1110, 48, 'Task 2e closes as a bounded comparison; no causal Linux-only performance claim is made.', { size: 21, bold: true });
   setNotes(s, [
     'Revalidation report: results/linux_axi_spi_revalidation_20261016/README.md. Fixed-trial Linux log and rows are in that directory; the paired CSV is linux_vs_baremetal_fixed_trial_20261016.csv.',
     'Bare-metal raw capture and metrics: results/task2e_sustainable_runner_20261016/baremetal_reboot_capture_20261016.raw.log and baremetal_reboot_metrics_20261016.csv. Both paths completed 11 sizes × 1,000 transfers with zero reported errors or receive mismatches.',
     'The September 29 FPGA image hash was verified from the target SD source and staged Linux firmware file. FPGA Manager reported operating; it does not expose a bitstream readback hash. Linux clock framework showed IOPLL 1.49985 GHz and PL0 99.990 MHz. The 49.995 MHz SPI speed is the Linux requested/readback value; J55 SCK was measured at about 51 MHz previously for this exact image/configuration, but was not remeasured here.',
-    'The Linux benchmark uses CLOCK_MONOTONIC_RAW; bare metal uses XTime_GetTime. The bare-metal CPU frequency was not recorded. Effective payload rate is payload bytes divided by measured mean latency and is not physical wire throughput. The comparison is a same-workload board result, not causal attribution of kernel overhead.',
-    'Linux sustained data remain 3 × 60-second runs per size. The paired sustained bare-metal runner has not yet been executed, so Task 2e remains partial.',
+    'The Linux benchmark uses CLOCK_MONOTONIC_RAW; bare metal uses XTime_GetTime. Post-run clock-register readback supports a derived 1.19988 GHz A53 full-rate clock and 99.990 MHz PL0. Effective payload rate is payload bytes divided by measured mean latency and is not physical wire throughput. The comparison is a same-workload board result, not causal attribution of kernel overhead.',
+    'Fixed-trial comparison report: results/linux_axi_spi_revalidation_20261016/README.md. Sustained Linux and bare-metal rates are presented on slide 14 and in results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md. Physical J55 SCK about 51 MHz was measured previously for the same bitstream/configuration, not during sustained windows. Task 2e is complete as a bounded comparison; backend ordering was not alternated and per-window clock sampling was not performed.',
+  ]);
+}
+
+// 14 — paired sustained application throughput
+{
+  const s = baseSlide(p, 'Sustained application throughput by payload', '2e  /  Paired 60-second SPI windows', 14);
+  addLineChart(s, {
+    position: { left: 54, top: 178, width: 790, height: 420 },
+    categories: sustainedComparison.map(r => `${Number(r.payload_bytes).toLocaleString('en-US')} B`),
+    series: [
+      { name: 'Linux median', values: sustainedComparison.map(r => Number(r.linux_median_MBps)), line: { style: 'solid', fill: C.blue, width: 3 }, marker: { symbol: 'circle', size: 7, fill: C.blue } },
+      { name: 'Bare-metal median', values: sustainedComparison.map(r => Number(r.baremetal_median_MBps)), line: { style: 'solid', fill: C.orange, width: 3 }, marker: { symbol: 'square', size: 7, fill: C.orange } },
+    ],
+    hasLegend: true, xTitle: 'Payload size', yTitle: 'Verified application payload rate (MB/s)', yMin: 0, yMax: 1.6, yMajor: 0.4, yFormat: '0.0',
+  });
+  box(s, 878, 190, 310, 52, '66 / 66 points passed', { size: 25, bold: true, color: C.green });
+  box(s, 878, 248, 310, 78, 'Each backend ran 11 sizes × 3 × 60 seconds. All transfers were byte-verified; zero API errors and mismatches.', { size: 18, color: C.muted });
+  box(s, 878, 350, 310, 74, 'Crossover: bare metal leads at 1–16 B; Linux leads from 64 B upward.', { size: 19, bold: true });
+  box(s, 878, 442, 310, 140, 'Observed at this configuration: Linux 1.495 MB/s and bare metal 1.180 MB/s at 64 KiB. These are application rates, not wire limits. Clock readbacks support 1.2 GHz A53 / 99.99 MHz PL0; prior matching-setup J55 SCK was ~51 MHz.', { size: 17, color: C.muted });
+  box(s, 72, 622, 1115, 35, 'Task 2e complete as a bounded framework result; not a per-window clock-controlled limit test.', { size: 18, bold: true, color: C.green });
+  setNotes(s, [
+    'Run report and interpretation: results/task2e_sustainable_runner_20261016/SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md.',
+    'Editable chart source data: results/task2e_sustainable_runner_20261016/linux_baremetal_sustained_comparison_20261016.csv. Per-run raw-derived records: baremetal_sustained_runs_20261016.csv and linux_sustained_runs.csv.',
+    'Linux uses CLOCK_MONOTONIC_RAW; bare metal uses XTime_GetTime. Bare-metal occupancy is a busy-wait execution-model figure, not a PMU measure. Physical SCK (~51 MHz) was previously measured at J55 for the same bitstream/configuration but not remeasured during these windows. Clock readback detail: results/task2e_sustainable_runner_20261016/clock_readback_20261017.md. Linux ran before bare metal; order effects were not controlled.',
   ]);
 }
 
@@ -443,11 +469,11 @@ const result = await finalizePresentation({
   integrityValidatorPath: path.join(skillDir, 'container_tools/inspect_presentation_package_integrity.py'),
   layoutValidatorPath: path.join(skillDir, 'container_tools/inspect_presentation_layout_geometry.py'),
   layoutArgs: ['--expected-slide-size-emu', '12192000,6858000', '--validate-heading-fit'],
-  requiredNativeChartOwnerSlides: [2, 3, 4, 7, 13],
+  requiredNativeChartOwnerSlides: [2, 3, 4, 7, 13, 14],
   materializeLiteralChartWorkbooks: true,
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v24.json'),
+  receiptPath: path.join(stagingDir, 'validation_v26.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

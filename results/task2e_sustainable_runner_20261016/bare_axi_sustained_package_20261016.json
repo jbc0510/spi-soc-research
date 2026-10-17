@@ -1,0 +1,26 @@
+{
+  "validation": "BOOTGEN_PACKAGE_BUILD_PASS_HARDWARE_RUN_PENDING",
+  "bootgen_version": "2025.1",
+  "command": "bootgen -arch zynqmp -image bare_axi_sustained.bif -o BOOT_AXI_SUSTAINED_20261016.BIN -w",
+  "bif": {
+    "path": "bare_axi_sustained.bif",
+    "sha256": "d8db95db0f1781b10151e4fa7ab0e2ede62e2dab44846c954a77a2327f55aeb4"
+  },
+  "output": {
+    "path": "BOOT_AXI_SUSTAINED_20261016.BIN",
+    "bytes": 26898248,
+    "sha256": "f64730ce205bbfb5de28bcf44c13d3511adaa6b4b47d34a284178c95fc90c39e"
+  },
+  "partitions": {
+    "fsbl": "../../sd-images/baremetal/fsbl_good.elf",
+    "fsbl_sha256": "1a35a820ce1e5af2baee724c25bb7e5331544df144a8417fdbce88b07a0fa750",
+    "pmufw": "../../sd-images/baremetal/pmufw_good.elf",
+    "pmufw_sha256": "7ffaeeafabcbce7533bfcfae5210cc2ab543d892995cb56805edd351c501c1bc",
+    "pl_bitstream": "../ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.bit",
+    "pl_bitstream_sha256": "90f93479dd47c505b8f9e4fe6f4f18e853f8923d081f4b2037401ed3cb46994a",
+    "application": "spi_sustainable_benchmark_bare_axi.elf",
+    "application_entry": "0x00100000",
+    "application_sha256": "220f85f57df652b146906c1bccb2ad5c4ce9407c5a8c875c01e98d00864fdb95"
+  },
+  "hardware_run": "PENDING_SD_CARD_STAGE_AND_ZCU102_BOOT"
+}

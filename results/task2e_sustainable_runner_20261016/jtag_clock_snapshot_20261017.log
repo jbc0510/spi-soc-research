@@ -1,0 +1,25 @@
+Read-only XSCT/JTAG snapshot, 17 October 2026
+XSCT 2025.1, hw_server TCP:127.0.0.1:3121
+
+CONNECT_RC=0 MESSAGE=tcfchan#0
+JTAG=  1  Digilent JTAG-SMT2NC 210308A46334
+     2  xczu9 (idcode 24738093 irlen 12 fpga)
+     3  bscan-switch (idcode 04900101 irlen 1 fpga)
+        4  debug-hub (idcode 04900220 irlen 1 fpga)
+     5  arm_dap (idcode 5ba00477 irlen 4)
+APLL_CTRL_BEGIN
+FD1A0020:   00014800
+
+ACPU_CTRL_BEGIN
+FD1A0060:   03000100
+
+PL0_REF_CTRL_BEGIN
+FF5E00C0:   01010F00
+
+IOPLL_CTRL_BEGIN
+FF5E0020:   00015A00
+
+AXI_SPI_CR_BEGIN
+Memory read error at 0xA0000000. Blocked address 0xA0000000. PL AXI slave ports access is not allowed. This address has not been added to the memory map
+
+No AXI SPI register transaction was issued. The final address-map rejection is included to distinguish this clock audit from an AXI peripheral health test.

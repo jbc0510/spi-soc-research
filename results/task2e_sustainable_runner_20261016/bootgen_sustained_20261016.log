@@ -1,0 +1,11 @@
+
+
+****** Bootgen v2025.1
+  **** Build date : May 21 2025-14:51:08
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+[WARNING]: [fsbl_config] a53_x64 | a53_x32 | r5_single | r5_dual is no more supported. Use 'destination_cpu' attribute for bootloader partition
+
+[INFO]   : Bootimage generated successfully
+
