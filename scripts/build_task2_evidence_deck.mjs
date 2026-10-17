@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v30.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v32.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -546,21 +546,21 @@ process.stderr.write('presentation initialized\n');
     '0  Normal Linux operation\n\n1  Integrity and latency sweep\n    11 payload sizes × 1,000 trials\n\n2  Sustained throughput\n    Choose sizes, duration and repeats\n    Type RUN before a long test\n\n3  System and SPI interface details',
     { size: 20, color: C.ink });
   s.shapes.add({ geometry: 'rect', position: { left: 620, top: 180, width: 2, height: 340 }, fill: C.grid, line: { style: 'solid', fill: 'none', width: 0 } });
-  box(s, 666, 171, 520, 37, 'Each test leaves reviewable evidence', { size: 24, bold: true, color: C.teal });
+  box(s, 666, 171, 520, 37, 'Bare-metal has its own UART menu', { size: 24, bold: true, color: C.teal });
   box(s, 666, 228, 510, 230,
-    'Unique run directory\nConfiguration JSON\nCaptured raw output\nTimestamped manifest\nProgram and log SHA-256 hashes',
+    'Full 11-payload baseline\nSingle payload with chosen duration\nOne-second smoke run\n\nEvery mode waits for RUN\nVitis ELF build passed against pinned XSA',
     { size: 22, color: C.ink });
   box(s, 72, 540, 1115, 40,
-    'Host self-test and all four existing sustained-runner host tests passed.',
+    'Linux host self-test and all four sustained-runner tests passed; bare-metal ELF build passed.',
     { size: 19, bold: true, color: C.green });
   box(s, 72, 592, 1115, 56,
-    'Boundary: this menu starts after Linux boots. A power-on OS chooser and selectable bare-metal path are not integrated; the live boot chain must retain Task 2g signature enforcement.',
+    'Boundary: each menu is built, but there is no power-on OS chooser or shared boot image yet. The bare-metal menu has not run on board; boot integration must retain Task 2g signature enforcement.',
     { size: 17, color: C.amber });
   setNotes(s, [
-    'Implementation: linux/appliance/msu2_demo.py. Operator instructions: linux/appliance/MSU2_DEMO_CONSOLE.md. Progress report: results/MSU2_ONE_STOP_DEMO_PROGRESS_20261017.md.',
+    'Linux implementation: linux/appliance/msu2_demo.py. Bare-metal implementation: bare_metal/src/spi_sustainable_benchmark_bare_axi.c. Operator instructions: linux/appliance/MSU2_DEMO_CONSOLE.md. Progress report: results/MSU2_ONE_STOP_DEMO_PROGRESS_20261017.md.',
     'The menu runs the existing Linux receive-verification/latency sweep and sustained runner. Each test invocation gets config.json, raw_output.log and manifest.json in a unique evidence folder. It records unknown for physical SCK, PL0 rate and bitstream hash because those values are not measured by the menu.',
-    'Verification: python3 linux/appliance/msu2_demo.py --self-test passed; choosing option 0 returned to the shell without executing a test; python3 -m py_compile passed; tests.test_sustainable_benchmark_host passed all four tests.',
-    'This implementation does not alter or install a board boot image and has not been run on the ZCU102. Linux currently starts without a power-on OS chooser. A Linux/bare-metal selector remains unimplemented and must not weaken the Task 2g signed-boot policy.',
+    'Linux verification: python3 linux/appliance/msu2_demo.py --self-test passed; choosing option 0 returned to the shell without executing a test; python3 -m py_compile passed; tests.test_sustainable_benchmark_host passed all four tests. Bare-metal verification: Vitis 2025.1 built an ELF with SHA-256 9a1b1455a0b4255429e9c767db2f8ab7d0a54bc1bfa8b2f67bce75a85794c067 against the pinned XSA.',
+    'The Vitis build is ELF-only. No BOOT.BIN packaging, board programming, UART menu test or SPI transfer was performed. Linux currently starts without a power-on OS chooser. A Linux/bare-metal selector remains unimplemented and must not weaken the Task 2g signed-boot policy.',
   ]);
 }
 
@@ -590,6 +590,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v30.json'),
+  receiptPath: path.join(stagingDir, 'validation_v32.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

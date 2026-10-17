@@ -12,7 +12,10 @@
 #include "xiltimer.h"
 #include "xtimer_config.h"
 #include "xil_io.h"
+#include "xil_printf.h"
 #include <inttypes.h>
+#include <stdlib.h>
+#include <string.h>
 
 #ifndef SDT
 #error "This application requires the validated Vitis SDT platform"
@@ -36,6 +39,95 @@ static XSpi spi;
 static uint8_t tx[SPI_BENCH_MAX_PAYLOAD], rx[SPI_BENCH_MAX_PAYLOAD];
 typedef struct { volatile unsigned terminal; volatile u32 event; volatile unsigned bytes; } SpiIrqState;
 static SpiIrqState irq_state;
+static unsigned run_payloads[SPI_BENCH_PAYLOAD_COUNT];
+static unsigned run_payload_count;
+static unsigned run_window_seconds;
+static unsigned run_repetitions;
+
+static void read_line(char *buffer, unsigned capacity)
+{
+    unsigned used = 0;
+    while (used + 1U < capacity) {
+        char c = inbyte();
+        if (c == '\r' || c == '\n') {
+            outbyte('\r');
+            outbyte('\n');
+            break;
+        }
+        if (c == '\b' || c == 0x7f) {
+            if (used) {
+                --used;
+                outbyte('\b'); outbyte(' '); outbyte('\b');
+            }
+            continue;
+        }
+        buffer[used++] = c;
+        outbyte(c);
+    }
+    buffer[used] = '\0';
+}
+
+static unsigned prompt_uint(const char *label, unsigned minimum,
+                            unsigned maximum, unsigned default_value)
+{
+    char line[32];
+    char *end;
+    while (1) {
+        xil_printf("%s [%u..%u, default %u]: ", label, minimum, maximum, default_value);
+        read_line(line, sizeof(line));
+        if (!line[0]) return default_value;
+        unsigned long value = strtoul(line, &end, 10);
+        if (end != line && *end == '\0' && value >= minimum && value <= maximum)
+            return (unsigned)value;
+        xil_printf("Invalid value. Enter a decimal number in range.\r\n");
+    }
+}
+
+static int select_run(void)
+{
+    xil_printf("\r\nMSU-2 AXI SPI bare-metal test menu\r\n");
+    xil_printf("  1) Full baseline: 11 payloads, 60 s each, 3 repetitions\r\n");
+    xil_printf("  2) One payload, configurable duration and repetitions\r\n");
+    xil_printf("  3) Smoke run: one payload, 1 s, 1 repetition\r\n");
+    xil_printf("  q) Do not run a test\r\nSelect: ");
+    char choice = inbyte();
+    outbyte(choice); outbyte('\r'); outbyte('\n');
+    run_payload_count = 0;
+    if (choice == 'q' || choice == 'Q') return 0;
+    if (choice == '1') {
+        for (unsigned i = 0; i < SPI_BENCH_PAYLOAD_COUNT; ++i)
+            run_payloads[run_payload_count++] = spi_bench_payloads[i];
+        run_window_seconds = SPI_SUSTAIN_WINDOW_SECONDS;
+        run_repetitions = SPI_SUSTAIN_REPETITIONS;
+    } else if (choice == '2' || choice == '3') {
+        unsigned index = prompt_uint("Payload index (1=1 B ... 11=65,536 B)", 1,
+                                     SPI_BENCH_PAYLOAD_COUNT, 1);
+        run_payloads[run_payload_count++] = spi_bench_payloads[index - 1U];
+        if (choice == '2') {
+            run_window_seconds = prompt_uint("Window seconds", 1, 3600, 60);
+            run_repetitions = prompt_uint("Repetitions", 1, 3, 1);
+        } else {
+            run_window_seconds = 1;
+            run_repetitions = 1;
+        }
+    } else {
+        xil_printf("Unknown selection; returning to menu.\r\n");
+        return -1;
+    }
+    xil_printf("\r\nSelected payloads:");
+    for (unsigned i = 0; i < run_payload_count; ++i)
+        xil_printf(" %u", run_payloads[i]);
+    xil_printf(" bytes; %u seconds per point; %u repetition(s).\r\n",
+               run_window_seconds, run_repetitions);
+    xil_printf("Type RUN to begin; any other text cancels: ");
+    char confirm[16];
+    read_line(confirm, sizeof(confirm));
+    if (strcmp(confirm, "RUN") != 0) {
+        xil_printf("Cancelled; no transfers started.\r\n");
+        return -1;
+    }
+    return 1;
+}
 
 static uint64_t ticks(void)
 {
@@ -121,23 +213,31 @@ static void output_record(unsigned repetition, unsigned payload, uint64_t start,
 
 int main(void)
 {
+    int selected;
+    do {
+        selected = select_run();
+    } while (selected < 0);
+    if (selected == 0) {
+        xil_printf("No benchmark selected. This standalone image has no Linux mode; reset follows the configured boot image.\r\n");
+        while (1) { }
+    }
     puts("# MSU-2 AXI sustained benchmark; hardware_validation=NOT_PERFORMED");
     puts("# controller=axi_quad_spi_0 base=0xa0000000 driver=XSpi mode=0 bits=8 chip_select=0");
     puts("# topology=UNVERIFIED intended_topology=external_MOSI_to_MISO physical_sck_hz=NOT_MEASURED");
     puts("# timer=XTime_GetTime frequency_source=BSP_COUNTS_PER_SECOND");
     printf("# timer_hz=%lu window_target_s=%u repetitions=%u cpu_metric=bm_busy_wait_core_occupancy_not_PMU\n",
-           (unsigned long)COUNTS_PER_SECOND, SPI_SUSTAIN_WINDOW_SECONDS, SPI_SUSTAIN_REPETITIONS);
-    if (COUNTS_PER_SECOND == 0 || SPI_SUSTAIN_WINDOW_SECONDS == 0 || SPI_SUSTAIN_REPETITIONS == 0) return 3;
+           (unsigned long)COUNTS_PER_SECOND, run_window_seconds, run_repetitions);
+    if (COUNTS_PER_SECOND == 0 || run_window_seconds == 0 || run_repetitions == 0) return 3;
     printf("# IOPLL_CTRL=0x%08x PL0_REF_CTRL=0x%08x\n",
            (unsigned)Xil_In32(0xFF5E0020U), (unsigned)Xil_In32(0xFF5E00C0U));
     int status = initialize();
     if (status != XST_SUCCESS) { printf("# initialization_failed status=%d\n", status); return 4; }
     puts("repetition,payload_bytes,window_s,attempts,verified_transfers,verified_bytes,application_MBps,cpu_metric_kind,cpu_metric_pct,thread_cpu_s,thread_cpu_share_pct,busy_wait_core_occupancy_pct,max_transfer_us,api_errors,mismatches,first_error_code");
 
-    uint64_t window_ticks = (uint64_t)SPI_SUSTAIN_WINDOW_SECONDS * (uint64_t)COUNTS_PER_SECOND;
-    for (unsigned repetition = 1; repetition <= SPI_SUSTAIN_REPETITIONS; ++repetition) {
-        for (unsigned p = 0; p < SPI_BENCH_PAYLOAD_COUNT; ++p) {
-            unsigned n = spi_bench_payloads[p];
+    uint64_t window_ticks = (uint64_t)run_window_seconds * (uint64_t)COUNTS_PER_SECOND;
+    for (unsigned repetition = 1; repetition <= run_repetitions; ++repetition) {
+        for (unsigned p = 0; p < run_payload_count; ++p) {
+            unsigned n = run_payloads[p];
             uint64_t start = ticks(), end = start, attempts = 0, verified = 0;
             uint64_t errors = 0, mismatches = 0, max_transfer_ticks = 0;
             int64_t first_error = 0;
@@ -163,7 +263,7 @@ int main(void)
             if (end < start) { end = start; ++errors; first_error = SPI_BENCH_TIMER_ERROR; }
             output_record(repetition, n, start, end, attempts, verified, errors,
                           mismatches, first_error, max_transfer_ticks);
-            if (errors || mismatches || (double)(end-start)/(double)COUNTS_PER_SECOND < (double)SPI_SUSTAIN_WINDOW_SECONDS * 0.99) {
+            if (errors || mismatches || (double)(end-start)/(double)COUNTS_PER_SECOND < (double)run_window_seconds * 0.99) {
                 printf("# point_failed repetition=%u payload_bytes=%u; stopping without retry\n", repetition, n);
                 XSpi_IntrGlobalDisable(&spi);
                 XDisableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);

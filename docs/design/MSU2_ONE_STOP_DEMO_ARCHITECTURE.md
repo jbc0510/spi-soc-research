@@ -22,7 +22,11 @@ The current separate boot images explain why replacing the SD-card `BOOT.BIN` ap
 
 ## Proposed operator experience
 
-Use one SD card and a single verified boot chain. Linux is the default mode; a boot menu or Linux launcher can select the bare-metal ELF from the same SD card. Both modes load/use the same validated PL bitstream. Do not overwrite the current Linux or bare-metal backups while assembling this image.
+Use one SD card and a single verified boot chain. Power-on must present an operator choice between normal Linux and the SPI test environment; neither long tests nor bare-metal may auto-start. Both modes load/use the same validated PL bitstream. Do not overwrite the current Linux or bare-metal backups while assembling this image.
+
+The chooser and every selectable payload are part of the security boundary. Do not implement the chooser as an unsigned `boot.scr`, and do not load a bare-metal ELF from a mutable FAT file without authenticating it. The Linux chooser and tests must be inside the FIT-protected filesystem or otherwise authenticated. The bare-metal image must be selected through an authenticated U-Boot FIT or Bootgen partition path. Tampering with either menu or payload must fail before the menu is displayed or the program is entered.
+
+FIT verification by U-Boot is not sufficient by itself: the earlier chain must authenticate U-Boot and its required-key control DTB. On ZynqMP that trust chain begins with BootROM authenticating FSBL using the configured device root of trust. The existing project has a signed-FIT host prototype, but no evidence that the live U-Boot/FSBL chain is hardware-rooted. Do not call the menu secure or deploy it as a secure-boot solution until the complete chain is validated. Keep development FIT-signing keys separate from production keys, and do not program eFUSE/BBRAM trust material as part of this software-only prototype.
 
 The Linux launcher should offer:
 
@@ -58,10 +62,10 @@ Each run should save a machine-readable configuration with:
 
 - Keep Linux as the default boot and operator shell.
 - Keep both Linux and bare-metal payloads on the same SD card with immutable names and recorded hashes.
-- Use a small boot selector/one-shot mode marker to choose Linux or bare-metal, then return to Linux after a bare-metal leg. Verify this flow in a non-deployed image before changing the working card.
-- Store run configuration, raw console output, CSV, start/end timestamps, software/image hashes, and clock/CPU context under a unique run ID. Do not silently overwrite previous results.
+- Use a signed boot selector/one-shot mode marker to choose Linux or bare-metal, then return to Linux after a bare-metal leg. Verify the valid path and signature-rejection paths in a non-deployed image before changing the working card.
+- Store run configuration, raw console output, CSV, start/end timestamps, software/image hashes, and clock/CPU context under a unique run ID. The Linux menu can write this to storage; bare-metal evidence is currently captured from UART and needs a matching host collector. Do not silently overwrite previous results.
 - For the physical demo, capture both UART output and the evidence directory. A run should be resumable or visibly cancellable; it should never silently begin a 33-minute run on boot.
-- Preserve the Task 2g signed-boot policy. The selector must not add an unsigned fallback or weaken required-key enforcement; audit its boot path as part of integration.
+- Preserve the Task 2g signed-boot policy. The selector must not add an unsigned fallback or weaken required-key enforcement; authenticate the menu itself, require signatures for every option, and audit the full BootROM-to-application chain as part of integration.
 
 ## Open decisions and limits
 

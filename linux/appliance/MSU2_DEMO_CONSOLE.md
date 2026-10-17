@@ -4,7 +4,8 @@
 started by an operator after Linux has booted; it never starts a test during
 boot. Choosing `0` or `q` returns to the normal Linux console for ordinary
 computer use. The application writes one non-overwriting evidence directory
-per run under `~/msu2-demo-results` by default.
+per run under `~/msu2-demo-results` by default. The separate bare-metal ELF now
+also has a UART menu; the two menus do not yet share a power-on OS chooser.
 
 ## Menu actions
 
@@ -61,3 +62,18 @@ chooser. The current ZCU102 boot flow starts Linux without presenting an OS
 selection screen. A boot-time Linux-versus-bare-metal chooser requires a
 separate, signed boot-flow integration and hardware validation; do not deploy
 an unsigned U-Boot menu or use it to bypass the Task 2g verification policy.
+
+The bare-metal sustained application presents its own UART menu when that
+standalone ELF is booted. It offers the existing full 11-payload/60-second/3
+repetition baseline, a configurable single-payload run, and a one-second
+single-payload smoke run. It requires explicit `RUN` confirmation. Build it
+without packaging or programming a board image with:
+
+```sh
+python3 scripts/build_spi_axi_bm_ratio2_vitis.py \
+  --source bare_metal/src/spi_sustainable_benchmark_bare_axi.c \
+  --workspace-name spi_axi_bm_unified_menu_20261017c
+```
+
+The build validates the ELF and pinned XSA relationship. It does not package a
+BOOT.BIN or prove the UART menu or SPI path on hardware.
