@@ -59,6 +59,12 @@ Before removing the card, a full raw image was created with `dd`. The first atte
 
 The card was reinserted in the ZCU102 and the operator again observed repeated `Zynq MP First St` UART fragments without Linux output. Thus the captured boot-file contents match the expected artifacts, but boot still fails before Linux; the raw-image inspection does not test FAT metadata acceptance by BootROM or prove the cause. A read-only host `fsck.fat` rerun could not proceed because `sudo` required an interactive password unavailable to this session. No repair was attempted, and the complete image preserves the pre-repair state.
 
+## FAT repair and boot-file revalidation
+
+With the SD card back in the host, the operator ran `sudo fsck.fat -a -v /dev/mmcblk0p1` while the partition was unmounted. The checker again reported the primary/backup boot-sector byte-65 difference (`0x01/0x00`), reported the dirty bit, automatically removed the dirty bit, checked the free-cluster summary, and ended with `*** Filesystem was changed ***`, `Writing changes.`, and `49 files, 13842/1907917 clusters`. No lost-file recovery or other allocation error was reported. This repair was made only after the complete raw pre-repair image was captured.
+
+The partition was then mounted for evidence collection, and the three boot-file hashes after repair still match the values extracted from the pre-repair image: `BOOT.BIN` `604df48f3e98f70e849df14c26562514149359b9a2a9e5921e4fcd1428e9abea`, `image.ub` `446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0`, and `boot.scr` `6c555e630e15ae1c7446f606cb99cfe5c52a0fde4e9deb2fa4e418c5d598b608`. No files were intentionally modified during this hash check, and the partition was unmounted before returning the card to the board. A second `fsck.fat -n` verification was attempted from the agent session but could not pass the host's interactive sudo prompt. The result of the next board boot is not yet known; clearing the dirty bit has not yet been shown to resolve the boot loop.
+
 ## References
 
 - [AMD UG1087 — CSU_BR_ERROR register](https://docs.amd.com/r/en-US/ug1087-zynq-ultrascale-registers/CSU_BR_ERROR-PMU_GLOBAL-Register?contentId=GlaVzNfJeAhgKU8ebnisfQ)
