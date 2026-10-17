@@ -1,0 +1,8 @@
+the_ROM_image:
+{
+  [bootloader, destination_cpu=a53-0] /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/deploy/images/zynqmp-generic-xczu9eg/boot.bin-extracted/fsbl.elf
+  [destination_cpu=pmu] /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/deploy/images/zynqmp-generic-xczu9eg/boot.bin-extracted/pmufw.elf
+  [destination_cpu=a53-0, exception_level=el-3, trustzone] /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/deploy/images/zynqmp-generic-xczu9eg/boot.bin-extracted/arm-trusted-firmware.elf
+  [destination_cpu=a53-0, load=0x100000] /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/deploy/images/zynqmp-generic-xczu9eg/boot.bin-extracted/system-top.dtb
+  [destination_cpu=a53-0, exception_level=el-2] /home/opentitan/zcu102_spi_benchmark/spi_benchmark_linux/build/tmp/deploy/images/zynqmp-generic-xczu9eg/boot.bin-extracted/u-boot.elf
+}

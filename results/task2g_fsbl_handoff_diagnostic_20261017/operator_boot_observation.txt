@@ -2,3 +2,8 @@ Date: 2026-10-17 (operator-reported; workstation UART capture unavailable)
 Image: corrected full selector candidate; SHA-256 8662dc9f693fcec9536d479a55f96ac50b76f6fb8b3edc6b4324244408e25b25
 Observation: picocom at 115200 baud reached "Terminal ready" and displayed the same partial text as the prior attempts: "Zynq MP First St". No U-Boot banner or selector menu was reported.
 Interpretation: confirms only that the visible output did not advance in the operator's console session. It does not identify whether the CPU is stalled, output was truncated, or handoff/console setup failed.
+
+Second controlled observation (2026-10-17; operator-reported):
+Image: BOOT.BIN no-PL diagnostic; SHA-256 53f10f813fcc3b934710a5a6d05dd1f417ff3e73ae0475b8799d336f63113455
+Observation: picocom at 115200 baud again displayed "Zynq MP First St" and no U-Boot banner/menu.
+Interpretation: removing the PL partition did not change the reported symptom, so PL configuration is not required to reproduce it. This does not prove the FSBL itself is the failing stage because serial output could be incomplete and no host-side UART capture or execution-state evidence is available.
