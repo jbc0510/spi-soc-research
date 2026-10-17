@@ -25,9 +25,15 @@ This is evidence of an unclean FAT state, not proof that `BOOT.BIN` or its direc
 
 The kernel-log search returned no matching SD-card I/O-error lines; the recorded warnings concern the FAT volume's unclean state. This does not rule out errors outside the retained/query window.
 
+## Read-only FAT check from the host terminal
+
+The operator ran `sudo fsck.fat -n /dev/mmcblk0p1`. It reported a primary/backup boot-sector difference only at byte offset 65 (`0x01` vs `0x00`), reported the dirty bit, and ended with `Leaving filesystem unchanged.` The final count was `49 files, 13842/1907917 clusters`; no further file-allocation errors were printed. Because `-n` was used, the dirty bit remains set and the command made no changes. The operator did not include whether the partition had been unmounted before the scan, so treat the result as preliminary if it was mounted.
+
+Microsoft's FAT32 specification identifies byte 65 (`BS_Reserved1`) as reserved. That supports treating this single-byte difference as likely non-functional, consistent with `fsck.fat` calling the differences mostly harmless; it does not prove the BootROM accepts the card's complete on-media layout. The scan lowers the likelihood of general FAT allocation damage, but it does not explain the BootROM's `0x4B00` report.
+
 ## Limits and next diagnostic
 
-The current command environment can read the mounted files and sysfs partition metadata but cannot open `/dev/mmcblk0` or `/dev/mmcblk0p1`; `/dev` contains no block-device nodes in this session and the UDisks D-Bus connection is denied. Direct partition-table and filesystem-check commands therefore cannot run here. Do not run a repair or reformat based on the current evidence. Before another board boot, perform a read-only FAT check (`fsck.fat -n`) with the card unmounted on a host session that has block-device access. Save the complete checker output. Only if the checker reports errors should repair be considered, after preserving a full card image and its current contents.
+The current agent command environment can read mounted files and sysfs metadata but cannot open `/dev/mmcblk0` or `/dev/mmcblk0p1`; `/dev` contains no block-device nodes and UDisks D-Bus access is denied. The operator's host-side `fsck.fat -n` result is now available, so do not repeat the same check. Do not repair or reformat based on this evidence alone. The next decisive diagnostic is a controlled BootROM/SD read test using a cleanly unmounted card and a fresh UART capture, with a raw image backup first if any filesystem repair is attempted.
 
 No files on the card were modified during this diagnostic.
 
@@ -36,3 +42,4 @@ No files on the card were modified during this diagnostic.
 - [AMD UG1087 — CSU_BR_ERROR register](https://docs.amd.com/r/en-US/ug1087-zynq-ultrascale-registers/CSU_BR_ERROR-PMU_GLOBAL-Register?contentId=GlaVzNfJeAhgKU8ebnisfQ)
 - [AMD UG1267 — SD1 boot mode pin value](https://docs.amd.com/api/khub/documents/g76en4BfB6qIp2gHDRkQxg/content)
 - [AMD support article 000035536 — BootROM code 0x4B](https://adaptivesupport.amd.com/s/article/000035536?language=en_US)
+- [Microsoft FAT32 specification (PDF mirror), Extended BPB field at offset 65](https://www.scs.stanford.edu/~zyedidia/docs/_other/fat.pdf)
