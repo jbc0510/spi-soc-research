@@ -37,6 +37,12 @@ The current agent command environment can read mounted files and sysfs metadata 
 
 After the host-side check, the card mount is no longer visible in this agent session. A repeated read-only XSCT/JTAG query returned an empty target list, so there is no live board register or UART state available at this moment. This should be treated as unavailable hardware access, not as a new board failure.
 
+## Live board probe after the operator reconnected the SD card
+
+The operator then observed the same repeated partial FSBL UART prefix. A read-only JTAG scan now sees the PS TAP, PMU, and PL targets, but reports `PS TAP (Cannot poll JTAG port: CBR not done, debug access not allowed)`. The APU/processor debug target is not exposed. The PMU target is visible, but XSCT memory reads fail with `MDM master access port not found`; no registers were changed. This establishes that CPU debug access is gated at the current boot stage. It is consistent with the earlier BootROM error, but does not independently prove which stage emitted the partial UART text or identify why SD image search failed.
+
+No Linux SPI or AXI test can run in this state; the Linux kernel and selector menu have not been reached. The next discriminating test is to boot with the SD volume's dirty flag cleared after preserving its contents, then capture the complete UART output from reset. The prior `fsck.fat -n` did not clear the dirty flag.
+
 No files on the card were modified during this diagnostic.
 
 ## References
