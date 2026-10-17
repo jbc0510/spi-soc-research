@@ -1,6 +1,6 @@
 # MSU-2 one-stop board demo — initial architecture
 
-**Status:** design proposal, not yet implemented or board-validated\
+**Status:** Linux and bare-metal operator menus exist; signed two-mode FIT selection passes U-Boot sandbox. Integrated boot menu and board validation remain open.\
 **Board:** ZCU102\
 **Validated PL image:** September 29 ratio-2 J55 design, SHA-256 `c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd`
 
@@ -67,6 +67,12 @@ Each run should save a machine-readable configuration with:
 - For the physical demo, capture both UART output and the evidence directory. A run should be resumable or visibly cancellable; it should never silently begin a 33-minute run on boot.
 - Preserve the Task 2g signed-boot policy. The selector must not add an unsigned fallback or weaken required-key enforcement; authenticate the menu itself, require signatures for every option, and audit the full BootROM-to-application chain as part of integration.
 
+## Host-side integration result (17 October 2026)
+
+`scripts/task2g_signed_selector_sandbox_test.py` now demonstrates a single required-key FIT with two configurations: Linux and a standalone SPI-test program. U-Boot sandbox accepted the signed Linux selection, loaded the signed standalone selection with execution disabled, and rejected the standalone selection after its payload was modified. Logs and hashes are in `results/task2g_signed_selector_sandbox_20261017/`.
+
+This narrows the implementation path but does not implement the actual boot menu. The standard U-Boot boot menu reads entries from environment variables. The integrated image must bake in fixed choices and prevent saved environment, external scripts, distro boot, or raw image commands from bypassing FIT verification. The required public key must be in the authenticated U-Boot control FDT. The live SD image still has an unsigned Linux FIT and an unauthenticated bare-metal BOOT image; see `results/MSU2_ONE_STOP_SIGNED_SELECTOR_AND_SD_AUDIT_20261017.md`.
+
 ## Open decisions and limits
 
 - “Normal operation” needs a concrete SPI workload from the project owner. Until then, the defensible demo label is “J55 loopback / SPI transfer,” not a claimed end-product operating mode.
@@ -77,10 +83,10 @@ Each run should save a machine-readable configuration with:
 
 ## Implementation sequence
 
-1. Finish and capture the currently running bare-metal benchmark; do not reset the board to prototype the launcher during that run.
-2. Make the bare-metal runner parameterized and menu-driven; host-test its parsing and bounds.
-3. Add a Linux launcher that exposes the same test/configuration vocabulary and writes one run manifest format.
-4. Build a separate dual-mode SD image/boot menu while preserving verified images; audit the boot chain and Task 2g signing policy.
-5. Validate each mode, cancellation, reboot/return, file/log persistence, and identical PL bitstream on a non-production card before the live demo.
+1. Keep the read-only card backup `results/sd_card_host_backup_20261017/` unchanged; its contents match the source partition byte-for-byte.
+2. Integrate a fixed Linux/SPI-test chooser into authenticated U-Boot and place the Linux menu and tests within the signed Linux FIT payload.
+3. Package the menu-driven bare-metal ELF as the second signed FIT configuration and add valid, unsigned, modified, and alternate-configuration negative tests.
+4. Confirm the BootROM-to-FSBL-to-TF-A-to-U-Boot chain and hardware root-of-trust policy before describing the chooser as secure. The currently audited images do not establish this chain.
+5. Prepare a separate candidate SD image, then validate each mode, cancellation, reboot/return, file/log persistence, and identical PL bitstream on the ZCU102.
 
 This proposal makes the operator workflow one-stop while keeping the Linux-versus-bare-metal distinction explicit and preserving the same FPGA design across both modes.

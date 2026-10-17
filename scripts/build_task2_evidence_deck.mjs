@@ -564,6 +564,38 @@ process.stderr.write('presentation initialized\n');
   ]);
 }
 
+// 18 — signed Linux and standalone selection prototype
+{
+  const s = baseSlide(p, 'One signed FIT can carry both operating modes', '2g + one-stop integration  /  Host prototype', 18);
+  box(s, 72, 171, 1115, 38,
+    'U-Boot sandbox selected Linux or the standalone SPI-test image from one required-key FIT.',
+    { size: 23, bold: true });
+
+  const cards = [
+    { x: 72, title: 'Linux configuration', body: 'Signed kernel + FDT\n\nSandbox accepted bootm selection', color: C.blue },
+    { x: 456, title: 'Standalone SPI-test', body: 'Signed firmware entry\n\nSandbox loaded it with execution disabled', color: C.teal },
+    { x: 840, title: 'Modified payload', body: 'One byte changed\n\nSandbox rejected it before transfer', color: C.red },
+  ];
+  for (const card of cards) {
+    s.shapes.add({ geometry: 'rect', position: { left: card.x, top: 246, width: 340, height: 194 }, fill: C.white, line: { style: 'solid', fill: C.grid, width: 1 } });
+    s.shapes.add({ geometry: 'rect', position: { left: card.x, top: 246, width: 340, height: 8 }, fill: card.color, line: { style: 'solid', fill: 'none', width: 0 } });
+    box(s, card.x + 18, 274, 304, 36, card.title, { size: 22, bold: true, color: card.color });
+    box(s, card.x + 18, 326, 304, 92, card.body, { size: 19, color: C.ink });
+  }
+  box(s, 72, 468, 1115, 50,
+    'Both configurations passed required-key signature verification; the altered SPI-test payload failed closed.',
+    { size: 20, bold: true, color: C.green });
+  box(s, 72, 544, 1115, 92,
+    'Still open: fixed authenticated boot menu, signed Linux console package, target boot, physical SPI test, and BootROM-rooted trust. The SD card was backed up read-only and left unchanged.',
+    { size: 18, color: C.amber });
+  setNotes(s, [
+    'Report: results/MSU2_ONE_STOP_SIGNED_SELECTOR_AND_SD_AUDIT_20261017.md. Reproduce with python3 scripts/task2g_signed_selector_sandbox_test.py.',
+    'U-Boot 2025.01-Xilinx sandbox used required sha256,rsa2048 configuration signatures and the control FDT embedded by mkimage. The Linux and SPI-test FIT configurations passed fit_check_sign. Sandbox accepted Linux bootm selection, loaded standalone firmware with autostart=no, and rejected the modified standalone payload before transfer.',
+    'The standalone fixture did not execute code. This does not test the interactive U-Boot bootmenu, the board BootROM/FSBL chain, the eFUSE trust anchor, A53 execution, the target Linux payload, or physical SPI.',
+    'SD audit: results/sd_card_host_backup_20261017/. The original partition was mounted read-only; the copy matched byte-for-byte. The active card BOOT.BIN matches the previous bare-metal sustained-test package; image.ub is the previously audited unsigned FIT. No card files were changed.',
+  ]);
+}
+
 await fs.mkdir(stagingDir, { recursive: true });
 await fs.mkdir(previewDir, { recursive: true });
 await fs.mkdir(path.dirname(finalPath), { recursive: true });
@@ -590,6 +622,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v32.json'),
+  receiptPath: path.join(stagingDir, 'validation_v33.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

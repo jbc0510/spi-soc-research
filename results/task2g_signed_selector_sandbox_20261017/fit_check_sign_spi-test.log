@@ -1,0 +1,42 @@
+Signature check OK
+Verifying Hash Integrity for node 'spi-test'... sha256,rsa2048:dev+ 
+Verified OK, loading images
+## Loading kernel from FIT Image at 7a568a2de000 ...
+   Using 'spi-test' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:dev+ 
+OK
+
+   Trying 'spi-test' kernel subimage
+     Description:  unavailable
+     Created:      Sat Oct 17 13:32:11 2026
+     Type:         Firmware
+     Compression:  uncompressed
+     Data Size:    1000 Bytes = 0.98 KiB = 0.00 MiB
+     Architecture: Sandbox
+     OS:           U-Boot
+     Load Address: 0x00100000
+     Hash algo:    sha256
+     Hash value:   e07cec0a388910f3d310585f80f8f8ea00081a76f6a167b4be755fac510fda33
+   Verifying Hash Integrity ... 
+sha256+ 
+OK
+
+   Decrypting Data ... 
+OK
+
+   Loading Firmware to 0
+## Loading fdt from FIT Image at 7a568a2de000 ...
+   Using 'spi-test' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:dev+ 
+OK
+
+Could not find subimage node type 'fdt'
+## Loading ramdisk from FIT Image at 7a568a2de000 ...
+   Using 'spi-test' configuration
+   Verifying Hash Integrity ... 
+sha256,rsa2048:dev+ 
+OK
+
+Could not find subimage node type 'ramdisk'

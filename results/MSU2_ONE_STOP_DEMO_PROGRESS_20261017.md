@@ -58,6 +58,23 @@ describes authenticating FSBL and establishing the hardware root of trust.
 The current live chain has not passed that authentication test. No SD-card
 file, boot image, U-Boot environment, eFUSE, or board state was changed here.
 
+## Signed two-mode selection and SD-card audit update
+
+After the card was moved to the workstation on 17 October, the complete BOOT
+partition was copied read-only to `results/sd_card_host_backup_20261017/` and
+verified byte-for-byte against the mounted source. The active `BOOT.BIN` hash
+matches the previously tested sustained-run image; the card's Linux `image.ub`
+matches the previously audited unsigned FIT. No card contents were changed.
+
+`scripts/task2g_signed_selector_sandbox_test.py` now creates one signed FIT
+with Linux and standalone SPI-test configurations. Required-key verification
+passed for both. U-Boot sandbox accepted the signed Linux selection, loaded the
+standalone selection with execution disabled, and rejected a modified
+standalone payload before transfer. Captures and hashes are in
+`results/task2g_signed_selector_sandbox_20261017/`. This is host-side bootm
+integration evidence only; the actual U-Boot menu, target A53 execution,
+hardware-rooted trust chain, and physical SPI paths are still untested.
+
 ## Remaining work before calling the one-stop deliverable complete
 
 1. Define a signed boot flow that offers normal Linux and signed SPI-test

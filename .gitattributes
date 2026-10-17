@@ -3,3 +3,4 @@ results/task2e_sustainable_runner_20261016/target_preflight.log -text -diff
 results/task2e_sustainable_runner_20261016/target_user_diag.log -text -diff
 results/task2e_sustainable_runner_20261016/baremetal_reboot_capture_20261016.raw.log -text -diff
 results/linux_axi_spi_revalidation_20261016/target_console_20261016.raw.log -text -diff
+results/task2g_signed_selector_sandbox_20261017/*.log -text -diff
