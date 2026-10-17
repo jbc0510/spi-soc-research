@@ -1,0 +1,11 @@
+{
+  "bit_file": "results/ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.bit",
+  "bit_sha256": "90f93479dd47c505b8f9e4fe6f4f18e853f8923d081f4b2037401ed3cb46994a",
+  "payload_bytes": 26510780,
+  "payload_sha256": "7ad29b8c4234e88de28c585d845ed1aa450f2501655aa55b82e081565bc5efa4",
+  "bit_bin_file": "results/ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.bit.bin",
+  "bit_bin_bytes": 26510780,
+  "bit_bin_sha256": "c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd",
+  "word_bytes_reversed_payload_matches_bit_bin": true,
+  "claim_boundary": "Compares two local artifact encodings; target identity is supported separately by the captured board dmesg filename and firmware-file hash."
+}

@@ -1,0 +1,21 @@
+Date: 2026-10-17
+Device: /dev/mmcblk0p1 (FAT volume label BOOT)
+Operation: install corrected signed-selector BOOT.BIN and FIT; preserve prior images
+
+Before writing, the SD-card BOOT.BIN hash was verified as
+8436f5ddad8143e48cae82fa9c375a831e16839172e81d3ebb9cf7e8fee6e718 (failed
+candidate with PL load address 0x00000000). The original image was verified as
+f64730ce205bbfb5de28bcf44c13d3511adaa6b4b47d34a284178c95fc90c39e.
+
+The failed candidate was preserved on-card as
+BOOT.BIN.selector_load0_failed_20261017. The corrected candidate from
+BOOT_SIGNED_SELECTOR.bin was copied to BOOT.BIN. msu2-dual-mode.itb was
+re-copied unchanged. The card was synced and cleanly unmounted.
+
+Post-write SHA-256:
+8662dc9f693fcec9536d479a55f96ac50b76f6fb8b3edc6b4324244408e25b25  BOOT.BIN
+8436f5ddad8143e48cae82fa9c375a831e16839172e81d3ebb9cf7e8fee6e718  BOOT.BIN.selector_load0_failed_20261017
+f64730ce205bbfb5de28bcf44c13d3511adaa6b4b47d34a284178c95fc90c39e  BOOT.BIN.pre_task2g_20261017
+e6d065f82305e5216a3613e92b42d4749870f67c1df7b19bef950339d952a5ad  msu2-dual-mode.itb
+
+Board boot test: pending. The candidate has not yet been booted after installation.

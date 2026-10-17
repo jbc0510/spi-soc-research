@@ -1,0 +1,15 @@
+{
+  "candidate": "/home/opentitan/msu2-verify/spi-soc-research/results/task2g_dualmode_package_script_20261017/BOOT_SIGNED_SELECTOR.bin",
+  "candidate_sha256": "8662dc9f693fcec9536d479a55f96ac50b76f6fb8b3edc6b4324244408e25b25",
+  "bif": "/home/opentitan/msu2-verify/spi-soc-research/results/task2g_dualmode_package_script_20261017/bootgen-signed-selector.bif",
+  "bit_source": "/home/opentitan/msu2-verify/spi-soc-research/results/ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.bit",
+  "bit_sha256": "90f93479dd47c505b8f9e4fe6f4f18e853f8923d081f4b2037401ed3cb46994a",
+  "bit_size_bytes": 26511001,
+  "pl_partition_load_address": "0xffffffff",
+  "pl_partition_length_words": "0x0065216f",
+  "bootgen_overlap_warning": false,
+  "pmufw_bif_form": "destination_cpu=pmu",
+  "bit_bin_reference": "/home/opentitan/msu2-verify/spi-soc-research/results/ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.bit.bin",
+  "bit_bin_reference_sha256": "c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd",
+  "word_byte_swapped_payload_match": true
+}

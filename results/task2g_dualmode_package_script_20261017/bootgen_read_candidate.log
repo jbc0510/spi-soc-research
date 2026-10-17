@@ -1,0 +1,254 @@
+
+
+****** Bootgen v2025.1
+  **** Build date : May 21 2025-14:51:08
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+--------------------------------------------------------------------------------
+   BOOT HEADER
+--------------------------------------------------------------------------------
+        boot_vectors (0x00) : 0x1400000014000000140000001400000014000000140000001400000014000000
+     width_detection (0x20) : 0xaa995566
+            image_id (0x24) : 0x584c4e58
+ encryption_keystore (0x28) : 0x00000000
+   fsbl_exec_address (0x2c) : 0xfffc0000
+   fsbl_sourceoffset (0x30) : 0x00002800
+        pmufw_length (0x34) : 0x00000000
+  pmufw_total_length (0x38) : 0x00000000
+         fsbl_length (0x3c) : 0x0001dd08
+   fsbl_total_length (0x40) : 0x0001dd08
+          attributes (0x44) : 0x00000800
+            checksum (0x48) : 0xfd1a7231
+      grey/black_key (0x4c) : 0x000000000000000000000000000000000000000000000000
+                              0000000000000000
+         puf_shutter (0x6c) : 0x01000020
+          iht_offset (0x98) : 0x000008c0
+          pht_offset (0x9c) : 0x00001100
+     fsbl_sec_hdr_iv (0xa0) : 0x000000000000000000000000
+       grey/black_iv (0xac) : 0x000000000000000000000000
+ attribute list - 
+               auth_only [false]      puf_hd_source [efuse]        
+                checksum [none]                core [disabled]     
+                 bh_auth [disabled]        puf_mode [disabled]     
+--------------------------------------------------------------------------------
+   IMAGE HEADER TABLE
+--------------------------------------------------------------------------------
+             version (0x00) : 0x01020000        total_images (0x04) : 0x00000009
+          pht_offset (0x08) : 0x00001100           ih_offset (0x0c) : 0x00000900
+       hdr_ac_offset (0x10) : 0x00000000         boot_device (0x14) : [same-dev]
+            checksum (0x3c) : 0xfefdf976
+--------------------------------------------------------------------------------
+   IMAGE HEADER (zynqmp_fsbl.elf)
+--------------------------------------------------------------------------------
+          next_ih(W) (0x00) : 0x00000250
+         next_pht(W) (0x04) : 0x00000440
+    total_partitions (0x0c) : 0x00000001
+                name (0x10) : zynqmp_fsbl.elf
+--------------------------------------------------------------------------------
+   IMAGE HEADER (pmufw.elf)
+--------------------------------------------------------------------------------
+          next_ih(W) (0x00) : 0x00000260
+         next_pht(W) (0x04) : 0x00000450
+    total_partitions (0x0c) : 0x00000003
+                name (0x10) : pmufw.elf
+--------------------------------------------------------------------------------
+   IMAGE HEADER (spi_ratio2_j55_wrapper.bit)
+--------------------------------------------------------------------------------
+          next_ih(W) (0x00) : 0x00000270
+         next_pht(W) (0x04) : 0x00000480
+    total_partitions (0x0c) : 0x00000001
+                name (0x10) : spi_ratio2_j55_wrapper.bit
+--------------------------------------------------------------------------------
+   IMAGE HEADER (bl31.elf)
+--------------------------------------------------------------------------------
+          next_ih(W) (0x00) : 0x00000280
+         next_pht(W) (0x04) : 0x00000490
+    total_partitions (0x0c) : 0x00000002
+                name (0x10) : bl31.elf
+--------------------------------------------------------------------------------
+   IMAGE HEADER (system.dtb)
+--------------------------------------------------------------------------------
+          next_ih(W) (0x00) : 0x00000290
+         next_pht(W) (0x04) : 0x000004b0
+    total_partitions (0x0c) : 0x00000001
+                name (0x10) : system.dtb
+--------------------------------------------------------------------------------
+   IMAGE HEADER (u-boot.elf)
+--------------------------------------------------------------------------------
+          next_ih(W) (0x00) : 0x00000000
+         next_pht(W) (0x04) : 0x000004c0
+    total_partitions (0x0c) : 0x00000001
+                name (0x10) : u-boot.elf
+--------------------------------------------------------------------------------
+   PARTITION HEADER TABLE (zynqmp_fsbl.elf.0)
+--------------------------------------------------------------------------------
+    encrypted_length (0x00) : 0x00007742  unencrypted_length (0x04) : 0x00007742
+        total_length (0x08) : 0x00007742         next_pht(W) (0x0c) : 0x00000450
+        exec_addr_lo (0x10) : 0xfffc0000        exec_addr_hi (0x14) : 0x00000000
+        load_addr_lo (0x18) : 0xfffc0000        load_addr_hi (0x1c) : 0x00000000
+    partition_offset (0x20) : 0x00000a00          attributes (0x24) : 0x00000116
+       section_count (0x28) : 0x00000001     checksum_offset (0x2c) : 0x00000000
+          iht_offset (0x30) : 0x00000240           ac_offset (0x34) : 0x00000000
+       partition_num (0x38) : 0x00000000            checksum (0x3c) : 0x00068892
+ attribute list -
+               trustzone [non-secure]            el [el-3]         
+              exec_state [aarch-64]     dest_device [PS]           
+              encryption [no]                  core [a53-0]        
+                checksum [none]      authentication [none]         
+                   owner [efsbl]         endianness [little-endian]
+           early_handoff [none]         auth_blocks [none]         
+                  hi-vec [false]     
+--------------------------------------------------------------------------------
+   PARTITION HEADER TABLE (pmufw.elf.0)
+--------------------------------------------------------------------------------
+    encrypted_length (0x00) : 0x00005cce  unencrypted_length (0x04) : 0x00005cce
+        total_length (0x08) : 0x00005cce         next_pht(W) (0x0c) : 0x00000460
+        exec_addr_lo (0x10) : 0xffdd15d4        exec_addr_hi (0x14) : 0x00000000
+        load_addr_lo (0x18) : 0xffdc0000        load_addr_hi (0x1c) : 0x00000000
+    partition_offset (0x20) : 0x00008150          attributes (0x24) : 0x00000836
+       section_count (0x28) : 0x00000003     checksum_offset (0x2c) : 0x00000000
+          iht_offset (0x30) : 0x00000250           ac_offset (0x34) : 0x00000000
+       partition_num (0x38) : 0x00000001            checksum (0x3c) : 0x00454387
+ attribute list -
+               trustzone [non-secure]            el [el-3]         
+              exec_state [aarch-64]     dest_device [invalid]      
+              encryption [no]                  core [pmu]          
+                checksum [none]      authentication [none]         
+                   owner [efsbl]         endianness [little-endian]
+           early_handoff [none]         auth_blocks [none]         
+                  hi-vec [false]     
+--------------------------------------------------------------------------------
+   PARTITION HEADER TABLE (pmufw.elf.1)
+--------------------------------------------------------------------------------
+    encrypted_length (0x00) : 0x00000247  unencrypted_length (0x04) : 0x00000247
+        total_length (0x08) : 0x00000247         next_pht(W) (0x0c) : 0x00000470
+        exec_addr_lo (0x10) : 0x00000000        exec_addr_hi (0x14) : 0x00000000
+        load_addr_lo (0x18) : 0xffddb07c        load_addr_hi (0x1c) : 0x00000000
+    partition_offset (0x20) : 0x0000de20          attributes (0x24) : 0x00000836
+       section_count (0x28) : 0x00000000     checksum_offset (0x2c) : 0x00000000
+          iht_offset (0x30) : 0x00000250           ac_offset (0x34) : 0x00000000
+       partition_num (0x38) : 0x00000002            checksum (0x3c) : 0x00215b96
+ attribute list -
+               trustzone [non-secure]            el [el-3]         
+              exec_state [aarch-64]     dest_device [invalid]      
+              encryption [no]                  core [pmu]          
+                checksum [none]      authentication [none]         
+                   owner [efsbl]         endianness [little-endian]
+           early_handoff [none]         auth_blocks [none]         
+                  hi-vec [false]     
+--------------------------------------------------------------------------------
+   PARTITION HEADER TABLE (pmufw.elf.2)
+--------------------------------------------------------------------------------
+    encrypted_length (0x00) : 0x00000100  unencrypted_length (0x04) : 0x00000100
+        total_length (0x08) : 0x00000100         next_pht(W) (0x0c) : 0x00000480
+        exec_addr_lo (0x10) : 0x00000000        exec_addr_hi (0x14) : 0x00000000
+        load_addr_lo (0x18) : 0xffddf6e0        load_addr_hi (0x1c) : 0x00000000
+    partition_offset (0x20) : 0x0000e070          attributes (0x24) : 0x00000836
+       section_count (0x28) : 0x00000000     checksum_offset (0x2c) : 0x00000000
+          iht_offset (0x30) : 0x00000250           ac_offset (0x34) : 0x00000000
+       partition_num (0x38) : 0x00000003            checksum (0x3c) : 0x002116a6
+ attribute list -
+               trustzone [non-secure]            el [el-3]         
+              exec_state [aarch-64]     dest_device [invalid]      
+              encryption [no]                  core [pmu]          
+                checksum [none]      authentication [none]         
+                   owner [efsbl]         endianness [little-endian]
+           early_handoff [none]         auth_blocks [none]         
+                  hi-vec [false]     
+--------------------------------------------------------------------------------
+   PARTITION HEADER TABLE (spi_ratio2_j55_wrapper.bit.0)
+--------------------------------------------------------------------------------
+    encrypted_length (0x00) : 0x0065216f  unencrypted_length (0x04) : 0x0065216f
+        total_length (0x08) : 0x0065216f         next_pht(W) (0x0c) : 0x00000490
+        exec_addr_lo (0x10) : 0x00000000        exec_addr_hi (0x14) : 0x00000000
+        load_addr_lo (0x18) : 0xffffffff        load_addr_hi (0x1c) : 0x00000000
+    partition_offset (0x20) : 0x0000e170          attributes (0x24) : 0x00000026
+       section_count (0x28) : 0x00000001     checksum_offset (0x2c) : 0x00000000
+          iht_offset (0x30) : 0x00000260           ac_offset (0x34) : 0x00000000
+       partition_num (0x38) : 0x00000004            checksum (0x3c) : 0xfecfb328
+ attribute list -
+               trustzone [non-secure]            el [el-3]         
+              exec_state [aarch-64]     dest_device [PL]           
+              encryption [no]                  core [none]         
+                checksum [none]      authentication [none]         
+                   owner [efsbl]         endianness [little-endian]
+           early_handoff [none]         auth_blocks [none]         
+                  hi-vec [false]     
+--------------------------------------------------------------------------------
+   PARTITION HEADER TABLE (bl31.elf.0)
+--------------------------------------------------------------------------------
+    encrypted_length (0x00) : 0x00002400  unencrypted_length (0x04) : 0x00002400
+        total_length (0x08) : 0x00002400         next_pht(W) (0x0c) : 0x000004a0
+        exec_addr_lo (0x10) : 0xfffea000        exec_addr_hi (0x14) : 0x00000000
+        load_addr_lo (0x18) : 0xfffea000        load_addr_hi (0x1c) : 0x00000000
+    partition_offset (0x20) : 0x006602e0          attributes (0x24) : 0x00000117
+       section_count (0x28) : 0x00000002     checksum_offset (0x2c) : 0x00000000
+          iht_offset (0x30) : 0x00000270           ac_offset (0x34) : 0x00000000
+       partition_num (0x38) : 0x00000005            checksum (0x3c) : 0xff9c48f1
+ attribute list -
+               trustzone [secure]                el [el-3]         
+              exec_state [aarch-64]     dest_device [PS]           
+              encryption [no]                  core [a53-0]        
+                checksum [none]      authentication [none]         
+                   owner [efsbl]         endianness [little-endian]
+           early_handoff [none]         auth_blocks [none]         
+                  hi-vec [false]     
+--------------------------------------------------------------------------------
+   PARTITION HEADER TABLE (bl31.elf.1)
+--------------------------------------------------------------------------------
+    encrypted_length (0x00) : 0x00000d39  unencrypted_length (0x04) : 0x00000d39
+        total_length (0x08) : 0x00000d39         next_pht(W) (0x0c) : 0x000004b0
+        exec_addr_lo (0x10) : 0x00000000        exec_addr_hi (0x14) : 0x00000000
+        load_addr_lo (0x18) : 0xffff3000        load_addr_hi (0x1c) : 0x00000000
+    partition_offset (0x20) : 0x006626e0          attributes (0x24) : 0x00000117
+       section_count (0x28) : 0x00000000     checksum_offset (0x2c) : 0x00000000
+          iht_offset (0x30) : 0x00000270           ac_offset (0x34) : 0x00000000
+       partition_num (0x38) : 0x00000006            checksum (0x3c) : 0xff9a7937
+ attribute list -
+               trustzone [secure]                el [el-3]         
+              exec_state [aarch-64]     dest_device [PS]           
+              encryption [no]                  core [a53-0]        
+                checksum [none]      authentication [none]         
+                   owner [efsbl]         endianness [little-endian]
+           early_handoff [none]         auth_blocks [none]         
+                  hi-vec [false]     
+--------------------------------------------------------------------------------
+   PARTITION HEADER TABLE (system.dtb.0)
+--------------------------------------------------------------------------------
+    encrypted_length (0x00) : 0x00002931  unencrypted_length (0x04) : 0x00002931
+        total_length (0x08) : 0x00002931         next_pht(W) (0x0c) : 0x000004c0
+        exec_addr_lo (0x10) : 0x00000000        exec_addr_hi (0x14) : 0x00000000
+        load_addr_lo (0x18) : 0x00100000        load_addr_hi (0x1c) : 0x00000000
+    partition_offset (0x20) : 0x00663420          attributes (0x24) : 0x00000116
+       section_count (0x28) : 0x00000001     checksum_offset (0x2c) : 0x00000000
+          iht_offset (0x30) : 0x00000280           ac_offset (0x34) : 0x00000000
+       partition_num (0x38) : 0x00000007            checksum (0x3c) : 0xff8947ee
+ attribute list -
+               trustzone [non-secure]            el [el-3]         
+              exec_state [aarch-64]     dest_device [PS]           
+              encryption [no]                  core [a53-0]        
+                checksum [none]      authentication [none]         
+                   owner [efsbl]         endianness [little-endian]
+           early_handoff [none]         auth_blocks [none]         
+                  hi-vec [false]     
+--------------------------------------------------------------------------------
+   PARTITION HEADER TABLE (u-boot.elf.0)
+--------------------------------------------------------------------------------
+    encrypted_length (0x00) : 0x00056736  unencrypted_length (0x04) : 0x00056736
+        total_length (0x08) : 0x00056736         next_pht(W) (0x0c) : 0x00000000
+        exec_addr_lo (0x10) : 0x08000000        exec_addr_hi (0x14) : 0x00000000
+        load_addr_lo (0x18) : 0x08000000        load_addr_hi (0x1c) : 0x00000000
+    partition_offset (0x20) : 0x00665d60          attributes (0x24) : 0x00000114
+       section_count (0x28) : 0x00000001     checksum_offset (0x2c) : 0x00000000
+          iht_offset (0x30) : 0x00000290           ac_offset (0x34) : 0x00000000
+       partition_num (0x38) : 0x00000008            checksum (0x3c) : 0xef896950
+ attribute list -
+               trustzone [non-secure]            el [el-2]         
+              exec_state [aarch-64]     dest_device [PS]           
+              encryption [no]                  core [a53-0]        
+                checksum [none]      authentication [none]         
+                   owner [efsbl]         endianness [little-endian]
+           early_handoff [none]         auth_blocks [none]         
+                  hi-vec [false]     
+--------------------------------------------------------------------------------
