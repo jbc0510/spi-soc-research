@@ -1,0 +1,16 @@
+Date: 2026-10-17
+Device: /dev/mmcblk0p1, label BOOT, 58.2 GB FAT
+Operation: preserved the installed stock no-PL diagnostic; installed stock PetaLinux BOOT.BIN containing the validated J55 PL bitstream; verified hashes; synced and unmounted.
+
+BOOT.BIN (installed stock platform image):
+  604df48f3e98f70e849df14c26562514149359b9a2a9e5921e4fcd1428e9abea
+BOOT.BIN.stock_full_validated_pl_20261017 (preserved copy of installed image):
+  604df48f3e98f70e849df14c26562514149359b9a2a9e5921e4fcd1428e9abea
+BOOT.BIN.pre_validated_pl_stock_20261017 (prior stock no-PL image):
+  2a10ff5726003b99992f588a66246842dc40e8bd8320f63f09926568d157ffb2
+BOOT.BIN.no_pl_diagnostic_20261017 (prior custom no-PL image):
+  53f10f813fcc3b934710a5a6d05dd1f417ff3e73ae0475b8799d336f63113455
+image.ub (unchanged):
+  446dd4756b4be2c29d513594e42adf45f0c90a362d2714dcc56f9ddbd5292bf0
+
+BOOT.BIN.new was renamed into place only after its SHA-256 matched the host artifact. The full image's PL payload was validated against the September 29 bitstream and its Bootgen partition metadata was checked before install. This record documents file installation only; the board has not yet boot-tested this candidate.
