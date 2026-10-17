@@ -98,6 +98,8 @@ With the recovery Linux image running, the operator verified the bitstream on th
 
 Linux reports no `/sys/class/reset` directory. AMD UG1137 documents that PS-to-PL `pl_resetn` outputs are implemented using PS GPIOs and that generated `psu_ps_pl_reset_config_data` releases them after bitstream configuration. Therefore the earlier presence of a GPIO register path in generated initialization is not enough to establish the live reset state. The GPIO line state still needs read-only inspection through Linux's GPIO debug interface before deciding how reset should be managed. No FPGA programming, clock change, reset change, or AXI transaction has been performed in this recovery session.
 
+The operator subsequently read the XSA-identified PS GPIO Bank 5 registers at `0xFF0A0344` (DIRM), `0xFF0A0348` (OEN), and `0xFF0A0054` (DATA); all returned `0x00000000`. The validated XSA's `psu_ps_pl_reset_config_data()` sets bit 31 of DIRM and OEN and toggles DATA bit 31 low then high. The live zeros therefore confirm that this generated PS GPIO reset sequence has not configured Bank 5 bit 31 as a driven output in the current Linux session. They do not establish the external pin voltage while the PS GPIO is an input, so `pl_resetn0`'s electrical level remains unverified. The `gpio-513` entry in the debugfs dump belongs to firmware GPIO chip 0 (the base device tree identifies this as the mode-pin GPIO); it is not sufficient evidence about the XSA's PS GPIO Bank 5 bit 31 on GPIO chip 1. No reset or GPIO value was written.
+
 ## References
 
 - [AMD UG1087 — CSU_BR_ERROR register](https://docs.amd.com/r/en-US/ug1087-zynq-ultrascale-registers/CSU_BR_ERROR-PMU_GLOBAL-Register?contentId=GlaVzNfJeAhgKU8ebnisfQ)
