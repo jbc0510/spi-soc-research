@@ -12,7 +12,7 @@ process.stderr.write('artifact tool imported\n');
 const buildDir = path.join(root, '.build/msu2_task2_pptx');
 const stagingDir = path.join(buildDir, 'staging');
 const previewDir = path.join(buildDir, 'previews');
-const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v28.pptx'));
+const finalPath = path.resolve(process.env.MSU2_TASK2_DECK_OUTPUT ?? path.join(root, 'deliverables/MSU2_Task2_Evidence_Review_20261017_v29.pptx'));
 const font = 'Liberation Sans';
 const { applyPresentationChartFont } = await import(pathToFileURL(path.join(skillDir, 'container_tools/artifact_tool_utils.mjs')).href);
 process.stderr.write('presentation helpers imported\n');
@@ -74,6 +74,8 @@ const framework = await readCsv('results/linux_axi_spi_bringup_20261013/task2e_f
 const baremetalReboot = await readCsv('results/task2e_sustainable_runner_20261016/baremetal_reboot_metrics_20261016.csv');
 const fixedTrialComparison = await readCsv('results/linux_axi_spi_revalidation_20261016/linux_vs_baremetal_fixed_trial_20261016.csv');
 const sustainedComparison = await readCsv('results/task2e_sustainable_runner_20261016/linux_baremetal_sustained_comparison_20261016.csv');
+const baremetalRepeat = await readCsv('results/task2e_stress_envelope_20261017/baremetal_sustained_runs_20261017.csv');
+const baremetalRepeatPrior = await readCsv('results/task2e_sustainable_runner_20261016/baremetal_sustained_medians_20261016.csv');
 process.stderr.write('source data read\n');
 const p = Presentation.create({ slideSize: { width: 1280, height: 720 } });
 process.stderr.write('presentation initialized\n');
@@ -497,6 +499,45 @@ process.stderr.write('presentation initialized\n');
   ]);
 }
 
+// 16 — repeatability check for the bare-metal sustained workload
+{
+  const s = baseSlide(p, 'Bare-metal sustained-run repeatability', '2e  /  Additional 33-point run', 16);
+  const oldBySize = new Map(baremetalRepeatPrior.map(row => [Number(row.payload_bytes), Number(row.median_MBps)]));
+  const repeatMedianBySize = new Map();
+  for (const row of baremetalRepeat) {
+    const size = Number(row.payload_bytes);
+    const list = repeatMedianBySize.get(size) ?? [];
+    list.push(Number(row.application_MBps));
+    repeatMedianBySize.set(size, list);
+  }
+  const repeatSizes = [...repeatMedianBySize.keys()].sort((a, b) => a - b);
+  const repeatChangePct = repeatSizes.map(size => {
+    const rates = repeatMedianBySize.get(size).sort((a, b) => a - b);
+    const median = rates[1];
+    return 100 * (median / oldBySize.get(size) - 1);
+  });
+  addLineChart(s, {
+    position: { left: 54, top: 180, width: 790, height: 400 },
+    categories: repeatSizes.map(size => `${Number(size).toLocaleString('en-US')} B`),
+    series: [
+      { name: 'Median rate change', values: repeatChangePct, line: { style: 'solid', fill: C.blue, width: 3 }, marker: { symbol: 'circle', size: 8, fill: C.blue } },
+    ],
+    hasLegend: false, xTitle: 'Payload size', yTitle: 'Change from prior median (%)', yMin: -0.2, yMax: 1.1, yMajor: 0.2, yFormat: '0.0',
+  });
+  box(s, 875, 189, 315, 43, '33 / 33 points passed', { size: 24, bold: true, color: C.green });
+  box(s, 875, 244, 315, 79, '46.24 million byte-verified transfers and 1.543 billion verified payload bytes. Zero API errors or receive mismatches.', { size: 18, color: C.muted });
+  box(s, 875, 346, 315, 84, 'Median rates stayed within −0.004% to +0.924% of the earlier bare-metal set across all 11 payloads.', { size: 19, bold: true, color: C.ink });
+  box(s, 875, 449, 315, 108, 'Repeatability is supported through 64 KiB. This did not test larger payloads or a clock limit. The runner marked topology unverified; physical SCK was not measured.', { size: 17, color: C.muted });
+  box(s, 72, 622, 1115, 35, 'Task 2e remains partial until the reliable payload/clock operating envelope is tested.', { size: 18, bold: true, color: C.amber });
+  setNotes(s, [
+    'Report and interpretation: results/task2e_stress_envelope_20261017/BAREMETAL_SUSTAINED_REPEAT_REPORT_20261017.md.',
+    'The chart plots the percentage change between the new 17 Oct bare-metal 3-run median and the earlier 16 Oct median, by payload size. Raw operator-provided transcript: results/task2e_stress_envelope_20261017/baremetal_sustained_uart_capture_20261017.raw.log. Derived rows: results/task2e_stress_envelope_20261017/baremetal_sustained_runs_20261017.csv.',
+    'The new transcript reported 33 points, 46,240,175 verified transfers, 1,542,507,195 verified bytes, zero API errors, and zero mismatches. It reported timer_hz=99,990,005, IOPLL_CTRL=0x00015a00, and PL0_REF_CTRL=0x01010f00.',
+    'No target image or executable hash was reported in the live transcript. The benchmark itself reports topology=UNVERIFIED and physical_sck_hz=NOT_MEASURED. Prior SCK near 51 MHz was measured on 29 Sep for the matching design, not during this repeat.',
+    'The repeat uses the existing ladder through 65,536 bytes and does not test a stress boundary. The ratio-2 hardware divider is fixed; speed-request arguments cannot sweep physical SCK. Task 2e remains partial pending the larger payload/reliability experiment and physical SCK measurement.',
+  ]);
+}
+
 await fs.mkdir(stagingDir, { recursive: true });
 await fs.mkdir(previewDir, { recursive: true });
 await fs.mkdir(path.dirname(finalPath), { recursive: true });
@@ -523,6 +564,6 @@ const result = await finalizePresentation({
   nativeChartTargetApplication: 'powerpoint',
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(stagingDir, 'validation_v28.json'),
+  receiptPath: path.join(stagingDir, 'validation_v29.json'),
 });
 console.log(JSON.stringify({ finalPath, slides: p.slides.items.length, result }, null, 2));

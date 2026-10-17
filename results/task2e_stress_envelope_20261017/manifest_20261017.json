@@ -1,0 +1,50 @@
+{
+  "experiment": "MSU-2 Task 2e bare-metal sustained-run repeat",
+  "disposition": "supporting_repeatability_evidence; task2e_stress_envelope_open",
+  "board": "AMD ZCU102",
+  "capture_source": "operator-provided picocom transcript",
+  "capture_received_utc": "2026-10-17T17:07:40Z",
+  "capture_start_timestamp": null,
+  "target_image_sha256_attested": false,
+  "runner_image_identity": "not reported by the live transcript",
+  "configuration": {
+    "controller": "AXI Quad SPI at 0xA0000000",
+    "driver": "Vitis 2025.1 standalone XSpi on A53",
+    "mode": 0,
+    "bits_per_word": 8,
+    "payload_bytes": [1, 8, 16, 64, 128, 256, 512, 1024, 4096, 16384, 65536],
+    "window_seconds": 60,
+    "repetitions": 3,
+    "timer": "XTime_GetTime",
+    "timer_hz": 99990005,
+    "iopll_ctrl_readback": "0x00015a00",
+    "pl0_ref_ctrl_readback": "0x01010f00",
+    "derived_pl0_hz": 99990000,
+    "physical_sck_hz": null,
+    "topology": "UNVERIFIED",
+    "synthesized_c_sck_ratio": 2
+  },
+  "results": {
+    "points": 33,
+    "verified_transfers": 46240175,
+    "verified_payload_bytes": 1542507195,
+    "api_errors": 0,
+    "receive_mismatches": 0,
+    "busy_wait_core_occupancy_pct": 100.0,
+    "busy_wait_metric_is_pmu": false,
+    "highest_tested_payload_bytes": 65536
+  },
+  "limitations": [
+    "Only the existing payload ladder through 65536 bytes was run; larger payload boundaries were not tested.",
+    "No physical SCK measurement was reported during this run.",
+    "The application marked the loopback topology unverified.",
+    "The transcript did not contain a live target image or executable hash.",
+    "The synthesized SCK ratio is fixed; software speed requests do not provide a clock sweep."
+  ],
+  "artifacts": {
+    "raw_uart_transcript": "baremetal_sustained_uart_capture_20261017.raw.log",
+    "derived_csv": "baremetal_sustained_runs_20261017.csv",
+    "report": "BAREMETAL_SUSTAINED_REPEAT_REPORT_20261017.md",
+    "sha256_manifest": "SHA256SUMS_20261017"
+  }
+}

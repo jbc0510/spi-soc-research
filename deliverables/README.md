@@ -1,13 +1,13 @@
 # MSU-2 Task 2 evidence deck
 
-`MSU2_Task2_Evidence_Review_20261017_v28.pptx` is the current cumulative Task 2 deck. It covers the Task 2a performance comparison, Task 2b PIO/DMA assessment, Task 2c real-time suitability finding, Task 2d hardening design, Task 2e benchmark and stress-test status, Task 2g A/B updater prototype, the Vivado Enterprise license diagnostic, the Linux-versus-bare-metal comparison, and a proposed one-stop ZCU102 demo workflow. The workflow slide is clearly marked as proposed; its boot selector and parameterized menu have not been implemented or validated. The deck identifies remaining boot-chain integration and verification gaps. Charts and diagrams are editable PowerPoint objects, and slide notes cite the source reports and data.
+`MSU2_Task2_Evidence_Review_20261017_v29.pptx` is the current cumulative Task 2 deck. It covers the Task 2a performance comparison, Task 2b PIO/DMA assessment, Task 2c real-time suitability finding, Task 2d hardening design, Task 2e benchmark and stress-test status, Task 2g A/B updater prototype, the Vivado Enterprise license diagnostic, the Linux-versus-bare-metal comparison, and a proposed one-stop ZCU102 demo workflow. Slides 15–16 describe the proposed demo and a new bare-metal repeat run; the menu/boot selector is not implemented, and Task 2e remains partial pending the payload/clock envelope test. The deck identifies remaining boot-chain integration and verification gaps. Charts and diagrams are editable PowerPoint objects, and slide notes cite the source reports and data.
 
 ## Rebuild
 
 From the repository root on the Morgan workstation, use the installed Codex presentation runtime:
 
 ```sh
-  MSU2_TASK2_DECK_OUTPUT=deliverables/MSU2_Task2_Evidence_Review_20261017_v28_rebuild.pptx \
+  MSU2_TASK2_DECK_OUTPUT=deliverables/MSU2_Task2_Evidence_Review_20261017_v29_rebuild.pptx \
   /home/opentitan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node \
   scripts/build_task2_evidence_deck.mjs
 ```
@@ -31,3 +31,4 @@ The builder reads the committed comparison CSV and CDMA simulation CSV, exports 
 13. Matched fixed-trial Linux and bare-metal comparison on the same validated PL image.
 14. Paired 60-second sustained Linux and bare-metal application throughput; Task 2e remains partial pending payload/clock stress testing.
 15. Proposed one-stop ZCU102 demo workflow; shared SD card and PL image, distinct Linux and bare-metal modes, configurable runs, and saved evidence. Not implemented or board-validated.
+16. Bare-metal sustained-run repeatability; all 33 existing-size points passed, with median rates within 0.93% of the previous run. The payload/clock limit remains untested.
