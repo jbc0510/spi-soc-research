@@ -1,0 +1,10 @@
+
+newQspi:~$ stty echo
+newQspi:~$ stty -echo
+newQspi:~$ __MSU2_PASSWORD_PROMPT__
+
+__AUTH_RC=0__
+newQspi:~$ root@newQspi:~# uid=0(root) gid=0(root) groups=0(root)
+
+__ROOT_READY__
+root@newQspi:~# root@newQspi:~# 

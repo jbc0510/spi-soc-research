@@ -1,0 +1,336 @@
+# Canonical transcript; raw UART capture: target_linux_shutdown.raw.gz
+
+
+newQspi:~$ stty echo
+
+newQspi:~$ stty -echo
+
+newQspi:~$ HOST_COMMAND=sudo -k -S -p '__SUDO_PASSWORD__' /bin/sh -c 'sync; echo __HALT_COMMAND_RUNNING__; poweroff'
+__SUDO_PASSWORD__
+
+__HALT_COMMAND_RUNNING__
+
+newQspi:~$          Stopping Session c7 of User petalinux...
+
+
+[  OK  ] Removed slice Slice /system/modprobe.
+
+
+[  OK  ] Stopped target Multi-User System.
+
+
+[  OK  ] Stopped target Login Prompts.
+
+
+[  OK  ] Stopped target Host and Network Name Lookups.
+
+
+[  OK  ] Stopped target RPC Port Mapper.
+
+
+[  OK  ] Stopped target System Time Set.
+
+
+[  OK  ] Stopped target Timer Units.
+
+
+[  OK  ] Stopped Daily Cleanup of Temporary Directories.
+
+
+[  OK  ] Stopped target Hardware activated USB gadget.
+
+
+[  OK  ] Closed Load/Save RF Kill Switch Status /dev/rfkill Watch.
+
+
+         Stopping Kernel Logging Service...
+
+
+         Stopping System Logging Service...
+
+
+         Stopping Getty on tty1...
+
+
+         Stopping Serial Getty on ttyPS0...
+
+
+         Stopping Load/Save OS Random Seed...
+
+
+         Stopping Target Communication Framework agent...
+
+
+[  OK  ] Stopped OpenSSH Key Generation.
+
+
+[  OK  ] Stopped Kernel Logging Service.
+
+
+[  OK  ] Stopped System Logging Service.
+
+
+[  OK  ] Stopped Getty on tty1.
+
+
+[  OK  ] Stopped Target Communication Framework agent.
+
+
+[  OK  ] Stopped Serial Getty on ttyPS0.
+
+
+[  OK  ] Stopped Load/Save OS Random Seed.
+
+
+[  OK  ] Stopped Session c7 of User petalinux.
+
+
+[  OK  ] Removed slice Slice /system/getty.
+
+
+[  OK  ] Removed slice Slice /system/serial-getty.
+
+
+         Stopping User Login Management...
+
+
+         Stopping User Manager for UID 1000...
+
+
+[  OK  ] Stopped User Login Management.
+
+
+[  OK  ] Stopped User Manager for UID 1000.
+
+
+[280852.555248] audit: type=1334 audit(1736641426.056:24): prog-id=14 op=UNLOAD
+
+         Stopping Permit User Sessions...
+
+
+         Stopping User Runtime Directory /run/user/1000...
+
+
+[  OK  ] Stopped Permit User Sessions.
+
+
+[  OK  ] Unmounted /run/user/1000.
+
+
+[  OK  ] Stopped User Runtime Directory /run/user/1000.
+
+
+[  OK  ] Removed slice User Slice of UID 1000.
+
+
+[  OK  ] Stopped target Network.
+
+
+[  OK  ] Stopped target Remote File Systems.
+
+
+         Stopping D-Bus System Message Bus...
+
+
+         Stopping Network Configuration...
+
+
+[  OK  ] Stopped D-Bus System Message Bus.
+
+
+[  OK  ] Stopped target Basic System.
+
+
+[  OK  ] Stopped target Path Units.
+
+
+[  OK  ] Stopped Dispatch Password Requests to Console Directory Watch.
+
+
+[  OK  ] Stopped Forward Password Requests to Wall Directory Watch.
+
+
+[  OK  ] Stopped target Slice Units.
+
+
+[  OK  ] Removed slice User and Session Slice.
+
+
+[  OK  ] Stopped target Socket Units.
+
+
+[  OK  ] Closed D-Bus System Message Bus Socket.
+
+
+[  OK  ] Closed sshd.socket.
+
+
+[  OK  ] Stopped target System Initialization.
+
+
+[  OK  ] Closed Syslog Socket.
+
+
+         Stopping Network Name Resolution...
+
+
+         Stopping Network Time Synchronization...
+
+
+[  OK  ] Stopped Update is Completed.
+
+
+[  OK  ] Stopped Rebuild Dynamic Linker Cache.
+
+
+[  OK  ] Stopped Rebuild Journal Catalog.
+
+
+         Stopping Record System Boot/Shutdown in UTMP...
+
+
+[  OK  ] Stopped Network Configuration.
+
+
+[  OK  ] Stopped Network Name Resolution.
+
+
+[  OK  ] Stopped Network Time Synchronization.
+
+
+[280853.156539] audit: type=1334 audit(1736641426.656:25): prog-id=12 op=UNLOAD
+
+[280853.163634] audit: type=1334 audit(1736641426.656:26): prog-id=11 op=UNLOAD
+
+[280853.170723] audit: type=1334 audit(1736641426.656:27): prog-id=13 op=UNLOAD
+
+[  OK  ] Stopped target Preparation for Network.
+
+
+[  OK  ] Closed Network Service Netlink Socket.
+
+
+[  OK  ] Stopped Generate network units from Kernel command line.
+
+
+[  OK  ] Stopped Apply Kernel Variables.
+
+
+[  OK  ] Stopped Load Kernel Modules.
+
+
+[  OK  ] Stopped Record System Boot/Shutdown in UTMP.
+
+
+[  OK  ] Stopped Create System Files and Directories.
+
+
+[  OK  ] Stopped target Local File Systems.
+
+
+         Unmounting /run/media/BOOT-mmcblk0p1...
+
+
+         Unmounting Temporary Directory /tmp...
+
+
+         Unmounting /var/volatile...
+
+
+[  OK  ] Unmounted Temporary Directory /tmp.
+
+
+[  OK  ] Unmounted /run/media/BOOT-mmcblk0p1.
+
+
+[  OK  ] Unmounted /var/volatile.
+
+
+[  OK  ] Stopped target Swaps.
+
+
+[  OK  ] Reached target Unmount All Filesystems.
+
+
+[  OK  ] Stopped File System Check on /dev/mmcblk0p1.
+
+
+[  OK  ] Removed slice Slice /system/systemd-fsck.
+
+
+[  OK  ] Stopped target Preparation for Local File Systems.
+
+
+[  OK  ] Stopped Create Static Device Nodes in /dev.
+
+
+[  OK  ] Stopped Create System Users.
+
+
+[  OK  ] Stopped Remount Root and Kernel File Systems.
+
+
+[  OK  ] Stopped Create Static Device Nodes in /dev gracefully.
+
+
+[  OK  ] Reached target System Shutdown.
+
+
+[  OK  ] Reached target Late Shutdown Services.
+
+
+[  OK  ] Finished System Power Off.
+
+
+[  OK  ] Reached target System Power Off.
+
+
+[280853.561588] audit: type=1334 audit(1736641427.060:28): prog-id=5 op=UNLOAD
+
+[280853.568588] audit: type=1334 audit(1736641427.060:29): prog-id=4 op=UNLOAD
+
+[280853.575578] audit: type=1334 audit(1736641427.060:30): prog-id=3 op=UNLOAD
+
+[280853.582558] audit: type=1334 audit(1736641427.068:31): prog-id=16 op=UNLOAD
+
+[280853.589627] audit: type=1334 audit(1736641427.068:32): prog-id=15 op=UNLOAD
+
+[280853.596684] audit: type=1334 audit(1736641427.072:33): prog-id=10 op=UNLOAD
+
+[280853.637829] systemd-shutdown[1]: Syncing filesystems and block devices.
+
+[280853.644717] systemd-shutdown[1]: Sending SIGTERM to remaining processes...
+
+[280853.669017] systemd-journald[228]: Received SIGTERM from PID 1 (systemd-shutdow).
+
+[280853.686356] systemd-shutdown[1]: Sending SIGKILL to remaining processes...
+
+[280853.706116] systemd-shutdown[1]: Unmounting file systems.
+
+[280853.714036] (sd-remount)[12056]: Remounting '/' read-only with options ''.
+
+[280853.721694] systemd-shutdown[1]: All filesystems unmounted.
+
+[280853.727440] systemd-shutdown[1]: Deactivating swaps.
+
+[280853.732558] systemd-shutdown[1]: All swaps deactivated.
+
+[280853.737876] systemd-shutdown[1]: Detaching loop devices.
+
+[280853.745487] systemd-shutdown[1]: All loop devices detached.
+
+[280853.751158] systemd-shutdown[1]: Stopping MD devices.
+
+[280853.756605] systemd-shutdown[1]: All MD devices stopped.
+
+[280853.762014] systemd-shutdown[1]: Detaching DM devices.
+
+[280853.768220] systemd-shutdown[1]: All DM devices detached.
+
+[280853.773745] systemd-shutdown[1]: All filesystems, swaps, loop devices, MD devices and DM devices detached.
+
+[280853.784271] systemd-shutdown[1]: Syncing filesystems and block devices.
+
+[280853.791030] systemd-shutdown[1]: Powering off.
+
+[280853.798309] reboot: Power down

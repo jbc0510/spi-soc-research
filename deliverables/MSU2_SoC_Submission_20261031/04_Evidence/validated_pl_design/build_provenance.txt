@@ -1,0 +1,23 @@
+VIVADO_VERSION=2026.1
+PART=xczu9eg-ffvb1156-2-e
+BD_TCL=C:/Users/Jerry/spi-soc-research/hardware/spi_bm_bd_2025p1.tcl
+XDC=C:/Users/Jerry/spi-soc-research/hardware/zcu102_spi_benchmark.xdc
+C_SCK_RATIO=2
+PL0_DESIGN_TARGET_MHZ=100
+EXPECTED_SCK_MHZ=50.0
+IMPL_STATUS=write_bitstream Complete!
+IMPL_PROGRESS=100%
+RAW_BIT=C:/Users/Jerry/spi_ratio2_j55_build_20260928/output/spi_ratio2_j55_wrapper.bit
+XSA=C:/Users/Jerry/spi_ratio2_j55_build_20260928/output/spi_ratio2_j55_wrapper.xsa
+CFGMEM=C:/Users/Jerry/spi_ratio2_j55_build_20260928/output/spi_ratio2_j55_wrapper.bit.bin
+LTX=C:/Users/Jerry/spi_ratio2_j55_build_20260928/output/spi_ratio2_j55_wrapper.ltx
+ROUTE_STATUS=C:/Users/Jerry/spi_ratio2_j55_build_20260928/output/route_status_impl.txt
+FINAL_WNS_NS=5.359
+J55_MOSI_D12=A20
+J55_MISO_E10=B21
+J55_SCK_F11=C21
+J55_SS0_D11=A21
+GIT_HEAD=0484f04ccd40c12fb9475c55e168d866f8da3781
+GIT_STATUS_BEGIN
+
+GIT_STATUS_END

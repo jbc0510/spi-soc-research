@@ -1,0 +1,39 @@
+# MSU-2 Linux RX verification Phase 1; hardware_validation=NOT_PERFORMED
+# kernel=6.12.10-xilinx-g0a0f70e531c7 version=#1 SMP Sat May 17 14:01:06 UTC 2025
+# device=/dev/spidev1.0 controller_identity=UNVERIFIED uid=0
+# mode_requested=0x0 mode_readback=0x0 bits_readback=8
+# speed_requested_hz=49995000 speed_readback_hz=49995000 physical_sck_hz=UNKNOWN
+# topology=UNVERIFIED intended_topology=external_MOSI_to_MISO spi_loop_requested=0
+# timer=CLOCK_MONOTONIC_RAW unit=ns frequency_conversion=POSIX_timespec
+# samples=API_full_length_success_AND_RX_verified_AND_valid_timer population_stddev=1
+# trial_indices=zero_based invalid_timing=-1_ns timeout_handling=kernel_dependent_no_userspace_deadline
+# cpu_scope=whole_trial_loop_including_poison_verification_accounting excludes_IRQ_cost
+# scheduling=unchanged affinity=unchanged memory_lock=not_requested
+# spidev_bufsiz=1048576
+---CSV-BEGIN---
+payload_bytes,attempt_count,timed_success_count,api_success_count,api_error_count,timeout_count,rx_mismatch_count,first_status,min_ns,avg_ns,max_ns,stddev_ns,short_return_count,timer_error_count,first_failure_kind,first_failure_trial,first_mismatch_trial,first_mismatch_offset,first_expected,first_actual
+1,1000,1000,1000,0,0,0,0,24642.000,28031.200,87539.000,3724.357,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=1 cpu_ns=19181660 wall_ns=28260004 nvcsw=1000 nivcsw=0
+8,1000,1000,1000,0,0,0,0,25532.000,30372.853,58826.000,2650.161,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=8 cpu_ns=20927164 wall_ns=30685256 nvcsw=1000 nivcsw=0
+16,1000,1000,1000,0,0,0,0,23782.000,33492.134,50045.000,1376.946,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=16 cpu_ns=22590952 wall_ns=33873945 nvcsw=998 nivcsw=0
+64,1000,1000,1000,0,0,0,0,62306.000,64576.652,75828.000,1102.465,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=64 cpu_ns=30594637 wall_ns=65361081 nvcsw=1000 nivcsw=0
+128,1000,1000,1000,0,0,0,0,103810.000,106333.481,117982.000,1296.544,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=128 cpu_ns=41534030 wall_ns=107665107 nvcsw=1000 nivcsw=0
+256,1000,1000,1000,0,0,0,0,186998.000,189645.884,204061.000,1451.962,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=256 cpu_ns=63145139 wall_ns=192046338 nvcsw=1000 nivcsw=0
+512,1000,1000,1000,0,0,0,0,356196.000,358919.448,370538.000,1123.663,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=512 cpu_ns=65615535 wall_ns=363502311 nvcsw=1000 nivcsw=0
+1024,1000,1000,1000,0,0,0,0,694419.000,697381.811,711081.000,1394.153,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=1024 cpu_ns=70643010 wall_ns=706291130 nvcsw=1000 nivcsw=0
+4096,1000,1000,1000,0,0,0,0,2722742.000,2726423.350,2842625.000,4144.429,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=4096 cpu_ns=98758698 wall_ns=2761190341 nvcsw=1000 nivcsw=0
+16384,1000,1000,1000,0,0,0,0,10837243.000,10839519.563,10854865.000,2153.027,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=16384 cpu_ns=209913778 wall_ns=10978700451 nvcsw=1000 nivcsw=0
+65536,1000,1000,1000,0,0,0,0,43282765.000,43287229.564,43341690.000,3325.403,0,0,none,-1,-1,-1,-1,-1
+# loop_metrics payload_bytes=65536 cpu_ns=646230941 wall_ns=43841198090 nvcsw=1000 nivcsw=0
+---CSV-END---
+# timeout_count=reported_ETIMEDOUT_subset_of_api_error_count_not_a_deadline_guarantee
+# sweep_complete=1 failures=0 topology=UNVERIFIED

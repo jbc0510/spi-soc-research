@@ -1,0 +1,7 @@
+payload_bytes,cdma_btt_axi_bytes,simulated_completion_ns,effective_simulated_MB_per_s,rx_bytes_verified,rx_mismatches,pass
+1,4,2890,0.346021,1,0,true
+8,32,11620,0.688468,8,0,true
+16,64,21760,0.735294,16,0,true
+64,256,83380,0.767570,64,0,true
+128,512,165060,0.775476,128,0,true
+256,1024,328900,0.778352,256,0,true

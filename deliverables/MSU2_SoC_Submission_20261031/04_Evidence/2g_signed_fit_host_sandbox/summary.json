@@ -1,0 +1,30 @@
+{
+  "u_boot_version": "2025.01-xilinx",
+  "fit_policy": "required sha256,rsa2048 configuration signatures; legacy image format disabled",
+  "tests": {
+    "linux_config_signature": "PASS",
+    "standalone_spi_config_signature": "PASS",
+    "signed_linux_selection": "PASS",
+    "signed_standalone_selection": "PASS (loaded with autostart disabled; no host code execution)",
+    "tampered_standalone_selection": "PASS (rejected before transfer)",
+    "configuration_verification": {
+      "linux": true,
+      "spi-test": true
+    }
+  },
+  "claim_boundary": "Host U-Boot sandbox only; no ZCU102 BootROM, BOOT.BIN, eFUSE, menu-display, or physical SPI validation.",
+  "artifacts": {
+    "cert.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "dtc.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fit_check_sign_linux.log": "bb1507bb54e4ffe7c295939d2b53c4f360085b4bd963c511c2be4d8b8fe22648",
+    "fit_check_sign_spi-test.log": "757fe3b8bb0edbd88b758b238a665f6af1085abf5f0ce09e9a3f55abd4835e8a",
+    "keygen.log": "9ab17fce3a567dce14d7784031c001f7e29d9ec18fb41cc8b04fac7773e63bff",
+    "mkimage.log": "1edbcb7871a9b6e45ee5a5eb23f8c3652d87697bbedcec0db0c5343ee9f31540",
+    "selector-control.dtb": "1c0f039d3cddae19d7e573bcc4dfafeaf951de296d716e8b7701bef7293d1c31",
+    "signed-dual-mode.itb": "c05259459ec16450b1aad9ef370d3ec3fb51641da864ba5e5d3966332f91ebb2",
+    "tampered-standalone.itb": "e0796a3a1020fd501472fd2eb316aa1728c69d3618cbf25f09efb47e6371f803",
+    "uboot_linux_valid.log": "7173ca3848dc45fdad6e7006c845474b587778756dd2299f39ebdf7c716d4aab",
+    "uboot_spi_test_tampered.log": "b05249ca6f76249ee3aefcd4ee6f38e2f0cabb317fc75384048daa1420f8578d",
+    "uboot_spi_test_valid.log": "835cb85f69d0777d18ab683ffbe5c76be428988f0b34a2732c58f97c120d2672"
+  }
+}

@@ -1,0 +1,24 @@
+/dts-v1/;
+/plugin/;
+
+/* Stage 1 only. Requires operator approval before application.
+ * No FPGA programming, reset manipulation, or PL MMIO consumer.
+ * Live IOPLL=1499850000 Hz; total divisor 15 gives 99990000 Hz.
+ * Live pl0_ref_div1 lacks CLK_SET_RATE_PARENT, stopping propagation
+ * before the shared IOPLL. Recheck flags/rates before application.
+ */
+/ {
+    fragment@0 {
+        target = <&amba>;
+        __overlay__ {
+            msu2_pl0_clock {
+                compatible = "xlnx,fclk";
+                clocks = <&zynqmp_clk 71>;
+                assigned-clocks = <&zynqmp_clk 71>;
+                assigned-clock-rates = <99990000>;
+                clock-output-names = "msu2_pl0";
+                #clock-cells = <0>;
+            };
+        };
+    };
+};

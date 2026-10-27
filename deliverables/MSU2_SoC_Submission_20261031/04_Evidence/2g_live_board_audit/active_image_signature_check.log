@@ -1,0 +1,4 @@
+Signature check bad (error 1)
+Verifying Hash Integrity for node 'conf-system-top.dtb'...  error!
+No 'signature' subnode found for '(null)' hash node in 'conf-system-top.dtb' config node
+Failed to verify required signature 'key-msu2-test'

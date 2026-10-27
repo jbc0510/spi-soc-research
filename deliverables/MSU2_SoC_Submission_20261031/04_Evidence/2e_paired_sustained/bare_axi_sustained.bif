@@ -1,0 +1,8 @@
+the_ROM_image:
+{
+  [fsbl_config] a53_x64
+  [bootloader, destination_cpu=a53-0] ../../sd-images/baremetal/fsbl_good.elf
+  [pmufw_image] ../../sd-images/baremetal/pmufw_good.elf
+  [destination_device=pl] ../ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.bit
+  [destination_cpu=a53-0, exception_level=el-3] spi_sustainable_benchmark_bare_axi.elf
+}

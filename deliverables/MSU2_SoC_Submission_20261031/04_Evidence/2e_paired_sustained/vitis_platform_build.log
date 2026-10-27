@@ -1,0 +1,71 @@
+17:44:22 INFO  : updated workspace path: /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace
+17:44:22 INFO  : Platform spi_axi_bm_plat creation started.
+17:44:24 INFO  : Using sdt generation script from /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vitis/vitis-server/scripts/platformutil.tcl
+17:44:24 INFO  : bash, -c, sdtgen /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vitis/vitis-server/scripts/platformutil.tcl /home/opentitan/msu2-verify/spi-soc-research/results/ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.xsa /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/hw/sdt
+17:44:47 INFO  : -xsa /home/opentitan/msu2-verify/spi-soc-research/results/ratio2_j55_lvcmos33_20260929/spi_ratio2_j55_wrapper.xsa
+17:44:47 INFO  : -dir /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/hw/sdt
+17:44:47 INFO  : -board_dts 
+17:44:47 INFO  : -include_dts 
+17:44:47 INFO  : -repo /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/data/system-device-tree-xlnx
+17:44:47 INFO  : -zocl disable
+17:44:47 INFO  : INFO: [Hsi 55-2053] elapsed time for repository (/home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vitis/data/embeddedsw) loading 3 seconds
+17:44:47 INFO  : hsi::open_hw_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:10 . Memory (MB): peak = 540.520 ; gain = 156.227 ; free physical = 418 ; free virtual = 22905
+17:44:47 INFO  : SDT generated successfully
+17:44:47 INFO  : Lopper command for cpu List generation: lopper --enhanced --werror -f -O /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/.rigel_lopper -i lop-cpu-oslist.dts /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/hw/sdt/system-top.dts
+17:44:47 INFO  : bash, -c, lopper --enhanced --werror -f -O /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/.rigel_lopper -i lop-cpu-oslist.dts /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/hw/sdt/system-top.dts
+17:44:50 INFO  : CPU List generated successfully
+17:44:51 INFO  : SDT generated successfully.
+17:44:51 INFO  : created .gitignore file for the project /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat
+17:44:51 INFO  : ZYNQMP: Using the QEMU args from install at  : /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vitis/data/emulation/platforms/zynqmp/sw/a53_linux/qemu/qemu_args.txt
+17:44:51 INFO  : ZYNQMP: Using the PMUQEMU args from install at  : /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vitis/data/emulation/platforms/zynqmp/sw/a53_linux/qemu/pmu_args.txt
+17:44:51 INFO  : ZYNQMP: Using the QEMU args from install at  : /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vitis/data/emulation/platforms/zynqmp/sw/a53_standalone/qemu/qemu_args.txt
+17:44:51 INFO  : ZYNQMP: Using the PMUQEMU args from install at  : /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vitis/data/emulation/platforms/zynqmp/sw/a53_standalone/qemu/pmu_args.txt
+17:44:51 INFO  : bash, -c, empyro repo -st   /home/opentitan/Documents/AMD/Vivado_2025.1_Enterprise/2025.1/Vitis/data/embeddedsw
+17:44:54 INFO  : [INFO]: Initializing repositories
+17:44:54 INFO  : [INFO]: Successfully set the EmbeddedSW path, refer .repo.yaml for more details.
+17:44:54 INFO  : Successfully created repository data at /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/_ide/.wsdata
+17:44:54 INFO  : lopper command to generate BSP :empyro create_bsp -w /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp -p psu_cortexa53_0 -o standalone -s /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/hw/sdt/system-top.dts -t empty_application -r /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/_ide/.wsdata/.repo.yaml
+17:44:54 INFO  : bash, -c, empyro create_bsp -w /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp -p psu_cortexa53_0 -o standalone -s /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/hw/sdt/system-top.dts -t empty_application -r /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/_ide/.wsdata/.repo.yaml
+17:45:22 INFO  : [INFO]: Validating inputs
+17:45:22 INFO  : [INFO]: Starting domain creation
+17:45:22 INFO  : [INFO]: Generating Domain-specific DTS for psu_cortexa53_0
+17:45:22 INFO  : [INFO]: Generating required metadata from domain specific DT
+17:45:22 INFO  : [INFO]: Successfully created Domain at /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp
+17:45:22 INFO  : Successfully Generated Domain /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp
+17:45:22 INFO  : Domain standalone_psu_cortexa53_0 added successfully.
+17:45:22 INFO  : Platform creation finished successfully.
+17:45:22 INFO  : Platform Quick Build initiated.
+17:45:22 INFO  : Generating Export directory
+17:45:22 INFO  : Generated platform metadata for creating application(s) based on platform spi_axi_bm_plat.
+17:45:22 INFO  : BSP build will be initiated for Domain standalone_psu_cortexa53_0
+17:45:22 INFO  : Generating BSP for the domain /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp
+17:45:22 INFO  : lopper command to reconfigure BSP :empyro reconfig_bsp -d /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp
+17:45:22 INFO  : bash, -c, empyro reconfig_bsp -d /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp
+17:45:23 INFO  : Domain reconfigured successfully
+17:45:23 INFO  : Generating BSP for the domain /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp
+17:45:23 INFO  : lopper command to build BSP :empyro build_bsp -d /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp
+17:45:23 INFO  : bash, -c, empyro build_bsp -d /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp
+17:45:26 INFO  : Domain build successfully
+17:45:26 INFO  : Generating Boot ELFs
+17:45:26 INFO  : Generating Export directory
+17:45:26 INFO  : Platform Build Finished successfully.
+17:45:27 INFO  : lopper command to create baremetal application :empyro create_app --src_dir /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/src -t empty_application -d /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/export/spi_axi_bm_plat/sw/standalone_psu_cortexa53_0 -n spi_axi_bm_app -r /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/_ide/.wsdata/.repo.yaml
+17:45:27 INFO  : bash, -c, empyro validate_bsp -t empty_application -d /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/export/spi_axi_bm_plat/sw/standalone_psu_cortexa53_0 -r /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/_ide/.wsdata/.repo.yaml
+17:45:27 INFO  : Successfully validated template empty_application
+17:45:27 INFO  : bash, -c, empyro create_app --src_dir /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/src -t empty_application -d /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/export/spi_axi_bm_plat/sw/standalone_psu_cortexa53_0 -n spi_axi_bm_app -r /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/_ide/.wsdata/.repo.yaml
+17:45:29 INFO  : [INFO]: Validating inputs
+17:45:29 INFO  : [INFO]: Generating Linker script for empty_application
+17:45:29 INFO  : [INFO]: Successfully Created Application sources at /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/src
+17:45:29 INFO  : Successfully created Application /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/src
+17:45:29 INFO  : created .gitignore file for the project /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app
+17:45:29 INFO  : The hardware specification used by project '/home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app' is out of sync with the platform. Resource files extracted from the hardware specification will be updated.
+17:45:29 INFO  : The updated bitstream files are copied from platform to folder '/home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/_ide/bitstream' in project '/home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app'.
+17:45:30 INFO  : The updated ps init files are copied from platform to folder '/home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/_ide/psinit' in project '/home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app'.
+17:45:30 INFO  : lopper command to retarget baremetal application :empyro retarget_app -s /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/src -d /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/export/spi_axi_bm_plat/sw/standalone_psu_cortexa53_0 -b /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/build
+17:45:30 INFO  : bash, -c, empyro retarget_app -s /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/src -d /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_plat/export/spi_axi_bm_plat/sw/standalone_psu_cortexa53_0 -b /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/build
+17:45:30 INFO  : [INFO]: Retargeting app
+17:45:30 INFO  : [INFO]: Updating link libraries based on new domain
+17:45:30 INFO  : Successfully retargeted Application /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/src
+17:45:30 INFO  : bash, -c, empyro build_app -s /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/src -b /home/opentitan/msu2-verify/spi-soc-research/bare_metal/vitis/spi_axi_bm_task2e_sustain_20261016b/workspace/spi_axi_bm_app/build
+17:45:31 INFO  : connection terminated
+17:45:31 INFO  : scheduling shutdown timer for 60 seconds ...

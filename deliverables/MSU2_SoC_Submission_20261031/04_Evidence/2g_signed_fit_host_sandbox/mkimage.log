@@ -1,0 +1,46 @@
+FIT description: MSU-2 signed dual-mode selector integration test
+Created:         Sat Oct 17 13:32:11 2026
+ Image 0 (linux-kernel)
+  Description:  unavailable
+  Created:      Sat Oct 17 13:32:11 2026
+  Type:         Kernel Image (no loading done)
+  Compression:  uncompressed
+  Data Size:    500 Bytes = 0.49 KiB = 0.00 MiB
+  Hash algo:    sha256
+  Hash value:   d4ba6a31bef960e9ac62a051d1f150547c926aad0b488e989553f1dd17dc081a
+ Image 1 (linux-fdt)
+  Description:  unavailable
+  Created:      Sat Oct 17 13:32:11 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    149 Bytes = 0.15 KiB = 0.00 MiB
+  Architecture: Sandbox
+  Hash algo:    sha256
+  Hash value:   3af8a2e6247b17a585e4e99281ca6b85316a56d5de34584273e703b037bae30a
+ Image 2 (spi-test)
+  Description:  unavailable
+  Created:      Sat Oct 17 13:32:11 2026
+  Type:         Firmware
+  Compression:  uncompressed
+  Data Size:    1000 Bytes = 0.98 KiB = 0.00 MiB
+  Architecture: Sandbox
+  OS:           U-Boot
+  Load Address: 0x00100000
+  Hash algo:    sha256
+  Hash value:   e07cec0a388910f3d310585f80f8f8ea00081a76f6a167b4be755fac510fda33
+ Default Configuration: 'linux'
+ Configuration 0 (linux)
+  Description:  unavailable
+  Kernel:       linux-kernel
+  FDT:          linux-fdt
+  Sign algo:    sha256,rsa2048:dev
+  Sign value:   93369fbe09eec22227a16c0c672063678a5715309aa6f31614f62224358fa39033159fc2db6b99394e167fbb0a7e29cd608cf155d9b3b0ebde0ac26d29540997afcf1514c65cdc6a22579ea29b844225244a9d2d49bd99e3038f19c28c60552526bdf716337f22288ddb77c1ff7b5af6328d2371b1c96aba059e8d515d7958ed0edaecdae2feaf27b5c73d603ca15f84e34ad1191ae5ffd2108f1a930fc4c633cfc896b7169828a554079749a0dc0a28cda68159dce493fa0df10717a8f9e8f56abb071695f4d1e2d9b8ae249d6b30c13aeb880b611b0d48fa5df2abeee32d661826afe37a40c46108b5fe1c4b065215e7ba305f3fe42e3aa51fc2bf656a728a
+  Timestamp:    Sat Oct 17 13:32:11 2026
+ Configuration 1 (spi-test)
+  Description:  unavailable
+  Kernel:       spi-test
+  Sign algo:    sha256,rsa2048:dev
+  Sign value:   0fdf50bc59cc80ec93e1f5b30015509f35da0a7a41eda8850fb35953c5e17f182b8259f911f866266b09cf018a9cef854d5b500b57c110d2e8db144c129cf9dae91cf69dad8aa75a7086dc1960e3d185d536a974925e470ed2f881a13daf0d4d48f3948dc4a944f948bf69ab60d49c806c638640f59c6882e2aaa29c1294e56081e1312a94c0048f1fb67376770aca4c75c6bfee43b83e5f2fcd2b19cdf89d82169516a72ab309bbdacdb44cdb8ca26d6ad64f0266318c89ffa5cabaa941de15d20eba3ffa85f7cce8c9f0f4c4bce60f2dc004351d8447e6264e8ffcfa7318a6882a647f7d513805b4fa4ab8930442fc24d4f365c26a8b20e56a6a61f160ed4f
+  Timestamp:    Sat Oct 17 13:32:11 2026
+Signature written to '/home/opentitan/msu2-verify/spi-soc-research/results/task2g_signed_selector_sandbox_20261017/signed-dual-mode.itb', node '/configurations/spi-test/signature'
+Public key written to '/home/opentitan/msu2-verify/spi-soc-research/results/task2g_signed_selector_sandbox_20261017/selector-control.dtb', node '/signature/key-dev'

@@ -1,0 +1,20 @@
+/dts-v1/;
+/plugin/;
+/* Approval required: release validated pl_resetn0 via EMIO95.
+ * zynqmp_gpio offset 173 = 78 MIO + 95 EMIO = Bank5 bit31.
+ * Flags 0: physical high, releasing the active-low fabric reset.
+ * No SPI controller or AXI register access.
+ */
+/ {
+    fragment@0 {
+        target = <&gpio>;
+        __overlay__ {
+            msu2_pl_reset_release {
+                gpio-hog;
+                gpios = <173 0>;
+                output-high;
+                line-name = "msu2-pl-resetn0";
+            };
+        };
+    };
+};

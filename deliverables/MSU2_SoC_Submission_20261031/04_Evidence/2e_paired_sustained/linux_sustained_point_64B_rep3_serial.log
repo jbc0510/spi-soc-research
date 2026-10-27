@@ -1,0 +1,77 @@
+# Canonical transcript; original UART bytes are in linux_sustained_serial_raw.tar.gz member linux_sustained_point_64B_rep3_serial.log
+
+
+newQspi:~$ stty echo
+
+newQspi:~$ stty -echo
+
+newQspi:~$ HOST_COMMAND=sudo -k -S -p '__SUDO_PASSWORD__' /bin/sh -c 'test "$(cat /sys/class/fpga_manager/fpga0/state)" = operating || exit 90; sha256sum /lib/firmware/msu2_ratio2_j55_c27bb684.bit.bin | grep -q c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd || exit 91; echo __STAT_BEFORE__; cat /proc/stat; echo __RUN_BEGIN__; /home/petalinux/spi_sustainable_benchmark_linux_aarch64_task2e_20261016 /dev/spidev1.0 64 60 49995000 3; rc=$?; echo __RUN_RC:$rc; echo __STAT_AFTER__; cat /proc/stat; echo __DONE__'
+__SUDO_PASSWORD__
+
+__STAT_BEFORE__
+
+cpu  12482 29 64232 111674736 6 0 1 0 0 0
+
+cpu0 2739 21 21003 27861048 0 0 0 0 0 0
+
+cpu1 3037 2 10856 27944874 0 0 0 0 0 0
+
+cpu2 3382 4 21984 27928029 1 0 0 0 0 0
+
+cpu3 3322 0 10388 27940784 3 0 0 0 0 0
+
+intr 108011198 0 13973 19041027 0 0 0 0 0 0 0 0 60198823 0 0 0 0 0 0 0 0 0 0 0 0 65461 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4469 0 0 0 0 0 0 0 0 2329 28685116 0 0 0
+
+ctxt 78255098
+
+btime 1736360573
+
+processes 11884
+
+procs_running 1
+
+procs_blocked 0
+
+softirq 76052840 0 38123985 0 8939 0 0 1 37478569 0 441346
+
+__RUN_BEGIN__
+
+# device=/dev/spidev1.0 mode=0 bits=8 speed_requested_hz=49995000 speed_readback_hz=49995000 physical_sck_hz=NOT_MEASURED
+
+# timer=CLOCK_MONOTONIC_RAW cpu_timer=CLOCK_THREAD_CPUTIME_ID window_target_s=60
+
+repetition,payload_bytes,window_s,attempts,verified_transfers,verified_bytes,application_MBps,cpu_metric_kind,cpu_metric_pct,thread_cpu_s,thread_cpu_share_pct,busy_wait_core_occupancy_pct,max_transfer_us,api_errors,mismatches,first_error_code
+
+3,64,60.000017224,919817,919817,58868288,0.981137852,thread_cpu_share,46.615318,27.969198624,46.615318,-1,299.910,0,0,0
+
+__RUN_RC:0
+
+__STAT_AFTER__
+
+cpu  12574 29 65717 111693111 6 0 1 0 0 0
+
+cpu0 2740 21 21005 27864785 0 0 0 0 0 0
+
+cpu1 3038 2 10856 27950872 0 0 0 0 0 0
+
+cpu2 3384 4 21985 27934025 1 0 0 0 0 0
+
+cpu3 3411 0 11869 27943428 3 0 0 0 0 0
+
+intr 109870254 0 13978 19966315 0 0 0 0 0 0 0 0 60212759 0 0 0 0 0 0 0 0 0 0 0 0 65470 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4470 0 0 0 0 0 0 0 0 2329 29604933 0 0 0
+
+ctxt 80102489
+
+btime 1736360573
+
+processes 11888
+
+procs_running 1
+
+procs_blocked 0
+
+softirq 76069538 0 38128633 0 8941 0 0 1 37490493 0 441470
+
+__DONE__
+
+newQspi:~$ newQspi:~$

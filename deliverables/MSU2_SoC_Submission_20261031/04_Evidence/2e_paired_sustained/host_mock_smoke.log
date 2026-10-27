@@ -1,0 +1,4 @@
+# device=/tmp/msu2-mock-spidev mode=0 bits=8 speed_requested_hz=15623438 speed_readback_hz=15623438 physical_sck_hz=NOT_MEASURED
+# timer=CLOCK_MONOTONIC_RAW cpu_timer=CLOCK_THREAD_CPUTIME_ID window_target_s=1
+repetition,payload_bytes,window_s,attempts,verified_transfers,verified_bytes,application_MBps,cpu_metric_kind,cpu_metric_pct,thread_cpu_s,thread_cpu_share_pct,busy_wait_core_occupancy_pct,max_transfer_us,api_errors,mismatches,first_error_code
+1,64,1.000000610,6672245,6672245,427023680,427.023419516,thread_cpu_share,99.996661,0.999967222,99.996661,-1,35.948,0,0,0

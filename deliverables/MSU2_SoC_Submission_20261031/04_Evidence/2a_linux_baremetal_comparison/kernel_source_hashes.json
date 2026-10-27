@@ -1,0 +1,27 @@
+{
+  "commit": "0a0f70e531c7",
+  "repository": "https://github.com/Xilinx/linux-xlnx",
+  "files": {
+    "msu2-xilinx-afi.c": {
+      "sha256": "137dab480ac20b6db73dc6425ce4852a7068845e9539110321dda2321b35239f"
+    },
+    "msu2-xilinx_fclk.c": {
+      "sha256": "ab4a4e2d7e7644759dc063bdf1d00280fd8ddd49156fc07025d2bc1c81b825c2"
+    },
+    "msu2-spi-xilinx.c": {
+      "sha256": "2c6553b45c136677663a7fed78c6972a3586a07f25aa542e12ddb79ba626893f"
+    },
+    "msu2-reset-zynqmp.c": {
+      "sha256": "13b4b2eacabdb482fdebd58e4df38bcfa24b95182f091a386bd7d4b20331b87d"
+    },
+    "msu2-divider.c": {
+      "sha256": "57d2ae8e756d18a547405b2299839df7724b2bc591d5150e09b78252a435bf14"
+    },
+    "msu2-zynqmp-debug.c": {
+      "sha256": "dd99fa000b1afcb7765c60a2495cdb5560fcbec912f105c062309f79d7134b9f"
+    },
+    "msu2-of-fpga-region.c": {
+      "sha256": "f7704c9c689faad3f032b717575ea3b7a8149085b66eea4cea6ae18d673888d3"
+    }
+  }
+}

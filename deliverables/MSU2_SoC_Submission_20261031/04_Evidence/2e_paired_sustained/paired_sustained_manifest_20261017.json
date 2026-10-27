@@ -1,0 +1,74 @@
+{
+  "experiment": "MSU-2 Task 2e paired sustained AXI Quad SPI comparison",
+  "disposition": "partial_until_clock_payload_reliability_stress_test",
+  "target": "AMD ZCU102 / newQspi",
+  "date": "2026-10-16 local workstation date; JTAG evidence collected 2026-10-17 UTC",
+  "workload": {
+    "payload_bytes": [1, 8, 16, 64, 128, 256, 512, 1024, 4096, 16384, 65536],
+    "window_seconds": 60,
+    "repetitions_per_payload_per_backend": 3,
+    "linux_points_passed": 33,
+    "baremetal_points_passed": 33,
+    "api_errors": 0,
+    "timeouts": 0,
+    "short_transfers": 0,
+    "receive_mismatches": 0,
+    "integrity": "every completed transfer compared byte-for-byte with deterministic transmitted pattern",
+    "metric": "verified payload bytes / measured application window; application payload rate, not wire throughput",
+    "backend_order": "all Linux windows preceded all bare-metal windows; backend order was not alternated"
+  },
+  "hardware": {
+    "board": "ZCU102",
+    "controller": "AXI Quad SPI at 0xA0000000; Linux /dev/spidev1.0",
+    "topology": "external J55 MOSI-to-MISO loopback",
+    "xsa_sha256": "e8b4626edb5949bc8adb14ae259802cdd24b16ea3f02daf0dd8fdbeb1cc0e7d7",
+    "embedded_bitstream_sha256": "90f93479dd47c505b8f9e4fe6f4f18e853f8923d081f4b2037401ed3cb46994a",
+    "linux_firmware_image_sha256": "c27bb684ca843e173585aed50096f95692530444b808ec948006dbb0d67f56fd",
+    "baremetal_runner_boot_image_sha256": "f64730ce205bbfb5de28bcf44c13d3511adaa6b4b47d34a284178c95fc90c39e",
+    "spi_mode": 0,
+    "bits_per_word": 8,
+    "serial_sck_hz": {
+      "linux_requested_and_controller_readback": 49995000,
+      "physical_j55_measurement": "approximately 51000000 Hz, measured 2026-09-29 for the same bitstream and ratio-2 setting; not simultaneous with sustained windows"
+    },
+    "pl0_hz": {
+      "derived_from_readback": 99990000,
+      "register_readback": "PL0_REF_CTRL 0x01010F00; IOPLL_CTRL 0x00015A00 (FBDIV 90, DIV2 enabled)"
+    },
+    "a53_hz": {
+      "derived_from_readback": 1199880000,
+      "register_readback": "APLL_CTRL 0x00014800 (FBDIV 72, DIV2 enabled); ACPU_CTRL 0x03000100",
+      "sampling_scope": "read-only JTAG snapshot after bare-metal run; not sampled during each point"
+    }
+  },
+  "software": {
+    "linux": "PetaLinux 2025.1; Linux 6.12.10-xilinx-g0a0f70e531c7; CLOCK_MONOTONIC_RAW; benchmark-thread CLOCK_THREAD_CPUTIME_ID",
+    "linux_cpu_point": "userspace governor, 1200000 kHz, captured before the sustained set; not sampled per point",
+    "baremetal": "Vitis 2025.1 standalone A53; XSpi interrupt driver with busy-wait completion loop; XTime_GetTime",
+    "baremetal_cpu_metric": "100% dedicated-core busy-wait occupancy inferred from execution model; not a PMU measurement",
+    "baremetal_elf_sha256": "220f85f57df652b146906c1bccb2ad5c4ce9407c5a8c875c01e98d00864fdb95"
+  },
+  "results": {
+    "linux_median_64KiB_MBps": 1.494882,
+    "baremetal_median_64KiB_MBps": 1.179696,
+    "crossover": "bare metal faster at 1-16 bytes; Linux faster at 64 bytes and larger",
+    "comparison_csv": "linux_baremetal_sustained_comparison_20261016.csv",
+    "linux_raw_serial_archive": "linux_sustained_serial_raw.tar.gz",
+    "baremetal_raw_uart_capture": "baremetal_sustained_uart_capture_20261016.raw.log"
+  },
+  "limits": [
+    "These are application rates observed under the defined 60-second windows; the reliable clock/payload operating envelope is not yet measured and remains required for Task 2e closure.",
+    "Physical J55 SCK was not remeasured during sustained windows.",
+    "CPU and clock rates were not sampled at each point; A53 register-derived rate is a post-run readback.",
+    "Backend order was not alternated; order and thermal effects are uncontrolled.",
+    "Different API/timer execution models prevent causal attribution of rate differences to Linux kernel overhead alone.",
+    "Bare-metal busy-wait occupancy must not be interpreted as a PMU CPU-utilization reading."
+  ],
+  "evidence": {
+    "paired_report": "SOW_2E_PAIRED_SUSTAINED_RESULTS_20261017.md",
+    "clock_interpretation": "clock_readback_20261017.md",
+    "raw_jtag_snapshot": "jtag_clock_snapshot_20261017.log",
+    "validation_command": "python3 scripts/parse_task2e_baremetal_sustained.py results/task2e_sustainable_runner_20261016/baremetal_sustained_uart_capture_20261016.raw.log results/task2e_sustainable_runner_20261016/linux_sustained_medians.csv results/task2e_sustainable_runner_20261016",
+    "validation_result": "33 bare-metal points; 11 payload sizes; 3 repetitions; zero errors or mismatches"
+  }
+}
