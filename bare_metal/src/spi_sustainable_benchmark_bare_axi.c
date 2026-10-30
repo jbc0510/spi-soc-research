@@ -36,6 +36,80 @@
 #endif
 #define SPI_AXI_TRANSFER_TIMEOUT_MS 2000U
 
+/*
+ * One-shot Linux->bare-metal handoff entry. U-Boot launches this ELF with
+ * `go <entry>`, which performs the complete EL2->EL1 switch (clean SCTLR_EL1,
+ * migrated SP, VBAR, FP enabled) with the dcache disabled. We then install our
+ * OWN flat identity MMU and jump straight to _startup, deliberately bypassing
+ * the Xilinx boot.S / _boot MMU bring-up: that translation table only maps
+ * correctly in the EL3 FSBL regime and faults the instant the MMU is enabled
+ * at EL1 under U-Boot (validated on ZCU102 2026-10-29: enabling SCTLR_EL1.M
+ * wedges the core before even the EL1 exception vector can fetch).
+ *
+ * Identity map, 4KB granule, 1GB L1 block descriptors (32-bit VA / TTBR0 only):
+ *   0x00000000-0x7FFFFFFF  DDR            Normal write-back cacheable, AF, RW
+ *   0x80000000-0xFFFFFFFF  PS/PL MMIO     Device-nGnRnE, AF, RW
+ * (AXI Quad SPI @0xA0000000 and PS UART0 @0xFF000000 both fall in Device.)
+ */
+unsigned long long msu2_mmu_table[4]
+    __attribute__((aligned(4096), used)) = {
+    0x0000000000000705ULL, /* 0x00000000  DDR    Normal WB */
+    0x0000000040000705ULL, /* 0x40000000  DDR    Normal WB */
+    0x0000000080000401ULL, /* 0x80000000  Device */
+    0x00000000C0000401ULL, /* 0xC0000000  Device */
+};
+
+__attribute__((naked, used, noreturn, section(".boot")))
+void msu2_el2_entry(void)
+{
+    __asm__ volatile(
+        /* `go` already dropped us to EL1; tolerate an EL2 entry just in case. */
+        "mrs x0, CurrentEL\n"
+        "and x0, x0, #0xc\n"
+        "cmp x0, #0x8\n"
+        "b.ne 1f\n"
+        "mrs x0, hcr_el2\n"
+        "orr x0, x0, #(1 << 31)\n"      /* HCR_EL2.RW: EL1 is AArch64 */
+        "msr hcr_el2, x0\n"
+        "mov x0, #0x3c5\n"              /* SPSR: EL1h, DAIF masked */
+        "msr spsr_el2, x0\n"
+        "adr x0, 1f\n"
+        "msr elr_el2, x0\n"
+        "isb\n"
+        "eret\n"
+        "1:\n"
+        /* ---- at EL1, MMU off; set up our own identity translation ---- */
+        "adrp x0, __el1_stack\n"
+        "add  x0, x0, #:lo12:__el1_stack\n"
+        "mov  sp, x0\n"
+        "mov  x0, #0xff00\n"            /* MAIR: idx0 Device, idx1 Normal WB */
+        "msr  mair_el1, x0\n"
+        "movz x0, #0x3520\n"           /* TCR_EL1 = 0x0000000200803520 */
+        "movk x0, #0x0080, lsl #16\n"  /*  T0SZ=32, WB/WA, inner-shareable, */
+        "movk x0, #0x0002, lsl #32\n"  /*  4KB granule, EPD1, IPS=40-bit */
+        "msr  tcr_el1, x0\n"
+        "adrp x0, msu2_mmu_table\n"
+        "add  x0, x0, #:lo12:msu2_mmu_table\n"
+        "msr  ttbr0_el1, x0\n"
+        "isb\n"
+        "tlbi vmalle1\n"
+        "ic   iallu\n"
+        "dsb  sy\n"
+        "isb\n"
+        "adrp x0, _vector_table\n"
+        "add  x0, x0, #:lo12:_vector_table\n"
+        "msr  vbar_el1, x0\n"
+        "mov  x0, #(3 << 20)\n"         /* CPACR_EL1.FPEN=11: FP/SIMD at EL1 */
+        "msr  cpacr_el1, x0\n"
+        "isb\n"
+        "mrs  x0, sctlr_el1\n"          /* keep go's clean base + RES1 bits */
+        "movz x1, #0x1005\n"            /* add SCTLR.M | C | I */
+        "orr  x0, x0, x1\n"
+        "msr  sctlr_el1, x0\n"
+        "isb\n"
+        "b    _startup\n");             /* BSS clear, libc init, PMCR, main */
+}
+
 static XSpi spi;
 static uint8_t tx[SPI_BENCH_MAX_PAYLOAD], rx[SPI_BENCH_MAX_PAYLOAD];
 typedef struct { volatile unsigned terminal; volatile u32 event; volatile unsigned bytes; } SpiIrqState;
@@ -189,16 +263,13 @@ static int configure_spi(void);
 
 static int recover_spi(void)
 {
-    XDisableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
+    /* Polled mode (EL1 launch): no GIC interrupt id to disable/enable. */
     XSpi_IntrGlobalDisable(&spi);
     XSpi_Reset(&spi);
     irq_state.terminal = 0U;
     irq_state.event = 0U;
     irq_state.bytes = 0U;
-    int s = configure_spi();
-    if (s != XST_SUCCESS) return s;
-    XEnableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
-    return XST_SUCCESS;
+    return configure_spi();
 }
 
 static uint64_t ticks(void)
@@ -238,35 +309,63 @@ static int initialize(void)
         return XST_FAILURE;
     int s = XSpi_CfgInitialize(&spi, cfg, cfg->BaseAddress);
     if (s != XST_SUCCESS) return s;
+    xil_printf("# init: selftest\r\n");
     s = XSpi_SelfTest(&spi);
     if (s != XST_SUCCESS) return s;
-    s = XSetupInterruptSystem(&spi, &XSpi_InterruptHandler,
-                              cfg->IntrId, cfg->IntrParent,
-                              XINTERRUPT_DEFAULT_PRIORITY);
-    if (s != XST_SUCCESS) return s;
+    /* Launched at EL1 non-secure from U-Boot: do NOT attach to the GIC.
+     * transfer_bounded()/polled_transfer() drive the controller directly from
+     * its status register, so no CPU interrupt is needed. XSetupInterruptSystem()
+     * hangs at EL1 (the app cannot own the secure GIC, and unmasking storms on
+     * Linux's leftover interrupts), so it is intentionally omitted here. */
+    xil_printf("# init: polled mode (GIC attach skipped)\r\n");
     irq_state.terminal = 0U;
     irq_state.event = 0U;
     irq_state.bytes = 0U;
     return configure_spi();
 }
 
+/* Deterministic register-level polled full-duplex master transfer.
+ * Launched from U-Boot we run at EL1 non-secure and cannot own the GIC, so the
+ * interrupt-driven XSpi_Transfer path is unusable. This drives the AXI Quad SPI
+ * directly: load TX FIFO, release the transaction, then drain the RX FIFO as
+ * bytes arrive. CR bit0 (internal LOOPBACK) is left clear so RX is exercised
+ * through the EXTERNAL physical MOSI->MISO loopback (hardware proof intact). */
+static int polled_transfer(const uint8_t *txb, uint8_t *rxb, unsigned n)
+{
+    const u32 base = XPAR_XSPI_0_BASEADDR;
+    const u32 cr_idle = XSP_CR_ENABLE_MASK | XSP_CR_MASTER_MODE_MASK |
+                        XSP_CR_MANUAL_SS_MASK | XSP_CR_TRANS_INHIBIT_MASK;
+    /* Inhibit transaction, reset both FIFOs, master/manual-SS, mode 0, no loopback. */
+    XSpi_WriteReg(base, XSP_CR_OFFSET,
+                  cr_idle | XSP_CR_TXFIFO_RESET_MASK | XSP_CR_RXFIFO_RESET_MASK);
+    XSpi_WriteReg(base, XSP_SSR_OFFSET, 0xFFFFFFFFU);        /* deassert all SS */
+    for (unsigned i = 0; i < n; ++i)
+        XSpi_WriteReg(base, XSP_DTR_OFFSET, txb[i]);
+    XSpi_WriteReg(base, XSP_SSR_OFFSET, ~0x1U);             /* select slave 0 (active low) */
+    XSpi_WriteReg(base, XSP_CR_OFFSET, cr_idle & ~XSP_CR_TRANS_INHIBIT_MASK); /* run */
+    const uint64_t limit = ((uint64_t)COUNTS_PER_SECOND * SPI_AXI_TRANSFER_TIMEOUT_MS) / 1000U;
+    uint64_t t0 = ticks();
+    unsigned r = 0;
+    while (r < n) {
+        if (!(XSpi_ReadReg(base, XSP_SR_OFFSET) & XSP_SR_RX_EMPTY_MASK))
+            rxb[r++] = (uint8_t)XSpi_ReadReg(base, XSP_DRR_OFFSET);
+        else if (ticks() - t0 >= limit)
+            break;
+    }
+    XSpi_WriteReg(base, XSP_CR_OFFSET, cr_idle);            /* inhibit again */
+    XSpi_WriteReg(base, XSP_SSR_OFFSET, 0xFFFFFFFFU);       /* deassert SS */
+    return (r == n) ? (int)r : -1;
+}
+
 static int transfer_bounded(unsigned n, uint64_t *start, uint64_t *end,
                             u32 *event, unsigned *bytes)
 {
-    irq_state.terminal = 0U;
-    irq_state.event = 0U;
-    irq_state.bytes = 0U;
     *start = ticks();
-    int s = XSpi_Transfer(&spi, tx, rx, n);
-    if (s != XST_SUCCESS) { *end = ticks(); return s; }
-    const uint64_t limit = ((uint64_t)COUNTS_PER_SECOND * SPI_AXI_TRANSFER_TIMEOUT_MS) / 1000U;
-    while (!irq_state.terminal) {
-        uint64_t now = ticks();
-        if (now - *start >= limit) { *end = now; return SPI_BENCH_TIMEOUT; }
-    }
+    int r = polled_transfer(tx, rx, n);
     *end = ticks();
-    *event = irq_state.event;
-    *bytes = irq_state.bytes;
+    if (r < 0) { *bytes = 0; return SPI_BENCH_TIMEOUT; }
+    *event = XST_SPI_TRANSFER_DONE;
+    *bytes = (unsigned)r;
     return XST_SUCCESS;
 }
 
@@ -283,16 +382,11 @@ static void output_record(unsigned repetition, unsigned payload, uint64_t start,
            rate, max_us, errors, mismatches, first_error);
 }
 
-int main(void)
+/* Run one operator-selected test, then return so main() redisplays the menu.
+ * The machine-readable "# ..."/CSV lines are kept as evidence; a plain
+ * human-readable summary is printed after each so the console is legible. */
+static void run_test(void)
 {
-    int selected;
-    do {
-        selected = select_run();
-    } while (selected < 0);
-    if (selected == 0) {
-        xil_printf("No benchmark selected. This standalone image has no Linux mode; reset follows the configured boot image.\r\n");
-        while (1) { }
-    }
     puts(run_integrity ? "# MSU-2 AXI RX integrity sweep; hardware_validation=NOT_PERFORMED" :
                          "# MSU-2 AXI sustained benchmark; hardware_validation=NOT_PERFORMED");
     puts("# controller=axi_quad_spi_0 base=0xa0000000 driver=XSpi mode=0 bits=8 chip_select=0");
@@ -302,11 +396,15 @@ int main(void)
            (unsigned long)COUNTS_PER_SECOND, SPI_BENCH_ATTEMPTS,
            run_window_seconds, run_repetitions);
     if (COUNTS_PER_SECOND == 0 || (!run_integrity &&
-        (run_window_seconds == 0 || run_repetitions == 0))) return 3;
+        (run_window_seconds == 0 || run_repetitions == 0))) return;
     printf("# IOPLL_CTRL=0x%08x PL0_REF_CTRL=0x%08x\n",
            (unsigned)Xil_In32(0xFF5E0020U), (unsigned)Xil_In32(0xFF5E00C0U));
     int status = initialize();
-    if (status != XST_SUCCESS) { printf("# initialization_failed status=%d\n", status); return 4; }
+    if (status != XST_SUCCESS) {
+        printf("# initialization_failed status=%d\n", status);
+        xil_printf("SPI initialization failed (status %d).\r\n", status);
+        return;
+    }
     if (run_integrity) {
         puts("---CSV-BEGIN---");
         spi_bench_header();
@@ -325,20 +423,20 @@ int main(void)
                 if (status == SPI_BENCH_TIMEOUT) {
                     ++result.api_errors; ++timeout_count;
                     spi_bench_failure(&result, status, "timeout", trial);
-                    if (recover_spi() != XST_SUCCESS) return 5;
+                    if (recover_spi() != XST_SUCCESS) { xil_printf("SPI recovery failed.\r\n"); return; }
                     continue;
                 }
                 if (status != XST_SUCCESS || event != XST_SPI_TRANSFER_DONE) {
                     ++result.api_errors;
                     spi_bench_failure(&result, status != XST_SUCCESS ? status : (int)event,
                                       status != XST_SUCCESS ? "driver" : "irq_event", trial);
-                    if (recover_spi() != XST_SUCCESS) return 5;
+                    if (recover_spi() != XST_SUCCESS) { xil_printf("SPI recovery failed.\r\n"); return; }
                     continue;
                 }
                 if (completed_bytes != n) {
                     ++result.api_errors; ++result.short_returns;
                     spi_bench_failure(&result, SPI_BENCH_SHORT_TRANSFER, "short_transfer", trial);
-                    if (recover_spi() != XST_SUCCESS) return 5;
+                    if (recover_spi() != XST_SUCCESS) { xil_printf("SPI recovery failed.\r\n"); return; }
                     continue;
                 }
                 ++result.api_success;
@@ -358,10 +456,10 @@ int main(void)
         puts("# cpu_metric=busy_wait_core_occupancy (100% of one core while active)");
         printf("# sweep_complete=1 failures=%u topology=UNVERIFIED\n", failures);
         XSpi_IntrGlobalDisable(&spi);
-        XDisableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
-        XDisconnectInterruptCntrl(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
         XSpi_Stop(&spi);
-        return failures ? 1 : 0;
+        xil_printf("\r\nIntegrity sweep complete: %u failure(s) across %u payload(s).\r\n",
+                   failures, run_payload_count);
+        return;
     }
 
     puts("repetition,payload_bytes,window_s,attempts,verified_transfers,verified_bytes,application_MBps,cpu_metric_kind,cpu_metric_pct,thread_cpu_s,thread_cpu_share_pct,busy_wait_core_occupancy_pct,max_transfer_us,api_errors,mismatches,first_error_code");
@@ -395,19 +493,44 @@ int main(void)
             if (end < start) { end = start; ++errors; first_error = SPI_BENCH_TIMER_ERROR; }
             output_record(repetition, n, start, end, attempts, verified, errors,
                           mismatches, first_error, max_transfer_ticks);
+            double secs = end >= start ? (double)(end - start) / (double)COUNTS_PER_SECOND : 0.0;
+            double rate = secs > 0.0 ? (double)(verified * n) / secs / 1e6 : 0.0;
+            double max_us = (double)max_transfer_ticks * 1e6 / (double)COUNTS_PER_SECOND;
+            printf("  rep %u, %u-byte payload: %" PRIu64 " transfers in %.3f s | %" PRIu64 " errors, %" PRIu64 " mismatches | %.3f MB/s | max %.3f us\r\n",
+                   repetition, n, verified, secs, errors, mismatches, rate, max_us);
             if (errors || mismatches || (double)(end-start)/(double)COUNTS_PER_SECOND < (double)run_window_seconds * 0.99) {
                 printf("# point_failed repetition=%u payload_bytes=%u; stopping without retry\n", repetition, n);
+                xil_printf("  -> point FAILED; stopping this run.\r\n");
                 XSpi_IntrGlobalDisable(&spi);
-                XDisableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
                 XSpi_Stop(&spi);
-                return 1;
+                return;
             }
         }
     }
     XSpi_IntrGlobalDisable(&spi);
-    XDisableIntrId(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
-    XDisconnectInterruptCntrl(XPAR_XSPI_0_INTERRUPTS, XPAR_XSPI_0_INTERRUPT_PARENT);
     XSpi_Stop(&spi);
     puts("# sustained_sweep_complete=1 topology=UNVERIFIED");
-    return 0;
+    xil_printf("\r\nSustained benchmark complete: no errors.\r\n");
+}
+
+int main(void)
+{
+    for (;;) {
+        int selected;
+        do {
+            selected = select_run();
+        } while (selected < 0);
+        if (selected == 0) {
+            xil_printf("Returning to the Linux default with PSCI SYSTEM_RESET.\r\n");
+            __asm__ volatile(
+                "movz x0, #0x0009\n"
+                "movk x0, #0x8400, lsl #16\n"
+                "smc #0\n"
+                "1: wfe\n"
+                "b 1b\n" ::: "x0", "memory");
+        }
+        run_test();
+        xil_printf("\r\n-- test complete; press Enter for the menu --\r\n");
+        (void)inbyte();
+    }
 }
