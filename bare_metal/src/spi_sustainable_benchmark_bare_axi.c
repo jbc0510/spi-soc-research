@@ -339,19 +339,28 @@ static int polled_transfer(const uint8_t *txb, uint8_t *rxb, unsigned n)
     XSpi_WriteReg(base, XSP_CR_OFFSET,
                   cr_idle | XSP_CR_TXFIFO_RESET_MASK | XSP_CR_RXFIFO_RESET_MASK);
     XSpi_WriteReg(base, XSP_SSR_OFFSET, 0xFFFFFFFFU);        /* deassert all SS */
-    for (unsigned i = 0; i < n; ++i)
-        XSpi_WriteReg(base, XSP_DTR_OFFSET, txb[i]);
+    /* Complete FIFO reset before loading data. Never enqueue beyond the
+     * validated 256-byte FIFO; refill only after draining a complete batch. */
+    XSpi_WriteReg(base, XSP_CR_OFFSET, cr_idle);
     XSpi_WriteReg(base, XSP_SSR_OFFSET, ~0x1U);             /* select slave 0 (active low) */
-    XSpi_WriteReg(base, XSP_CR_OFFSET, cr_idle & ~XSP_CR_TRANS_INHIBIT_MASK); /* run */
     const uint64_t limit = ((uint64_t)COUNTS_PER_SECOND * SPI_AXI_TRANSFER_TIMEOUT_MS) / 1000U;
     uint64_t t0 = ticks();
     unsigned r = 0;
     while (r < n) {
-        if (!(XSpi_ReadReg(base, XSP_SR_OFFSET) & XSP_SR_RX_EMPTY_MASK))
-            rxb[r++] = (uint8_t)XSpi_ReadReg(base, XSP_DRR_OFFSET);
-        else if (ticks() - t0 >= limit)
-            break;
+        unsigned batch = n - r;
+        if (batch > 256U) batch = 256U;
+        unsigned target = r + batch;
+        for (unsigned i = r; i < target; ++i)
+            XSpi_WriteReg(base, XSP_DTR_OFFSET, txb[i]);
+        XSpi_WriteReg(base, XSP_CR_OFFSET, cr_idle & ~XSP_CR_TRANS_INHIBIT_MASK);
+        while (r < target) {
+            if (ticks() - t0 >= limit) goto done;
+            if (!(XSpi_ReadReg(base, XSP_SR_OFFSET) & XSP_SR_RX_EMPTY_MASK))
+                rxb[r++] = (uint8_t)XSpi_ReadReg(base, XSP_DRR_OFFSET);
+        }
+        XSpi_WriteReg(base, XSP_CR_OFFSET, cr_idle);
     }
+done:
     XSpi_WriteReg(base, XSP_CR_OFFSET, cr_idle);            /* inhibit again */
     XSpi_WriteReg(base, XSP_SSR_OFFSET, 0xFFFFFFFFU);       /* deassert SS */
     return (r == n) ? (int)r : -1;
@@ -420,11 +429,23 @@ static void run_test(void)
                 u32 event = 0;
                 unsigned completed_bytes = 0;
                 status = transfer_bounded(n, &start, &end, &event, &completed_bytes);
+                if (n == 8U && trial == 0U) {
+                    printf("# first_transfer payload=8 status=%d completed=%u tx=", status, completed_bytes);
+                    for (unsigned i = 0; i < n; ++i) printf("%02x", tx[i]);
+                    printf(" rx=");
+                    for (unsigned i = 0; i < n; ++i) printf("%02x", rx[i]);
+                    printf(" cr=0x%08x sr=0x%08x\n",
+                           (unsigned)XSpi_ReadReg(XPAR_XSPI_0_BASEADDR, XSP_CR_OFFSET),
+                           (unsigned)XSpi_ReadReg(XPAR_XSPI_0_BASEADDR, XSP_SR_OFFSET));
+                }
                 if (status == SPI_BENCH_TIMEOUT) {
                     ++result.api_errors; ++timeout_count;
                     spi_bench_failure(&result, status, "timeout", trial);
-                    if (recover_spi() != XST_SUCCESS) { xil_printf("SPI recovery failed.\r\n"); return; }
-                    continue;
+                    spi_bench_row(n, &result, timeout_count);
+                    XSpi_IntrGlobalDisable(&spi);
+                    XSpi_Stop(&spi);
+                    xil_printf("Integrity sweep FAILED: transfer timeout; returning to menu.\r\n");
+                    return;
                 }
                 if (status != XST_SUCCESS || event != XST_SPI_TRANSFER_DONE) {
                     ++result.api_errors;
