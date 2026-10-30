@@ -1,5 +1,13 @@
 # 2026-10-30 operator investigation
 
+DEPLOYMENT CANDIDATE: fifo_candidate_v3 supersedes v2. After fetching remote
+commits through 6caa48b, the original October 29 BSP became available. V3 uses
+that preserved BSP and linker script, with the same application changes as v2.
+Entry verified 0x00100940. ELF SHA-256:
+3d8004b4aab0cab57f4a39ab5c809042a0200106af61f7690e824951f692691e.
+V3 is BUILD ONLY, NOT HARDWARE VALIDATED. The v2 discussion below records the
+initial local build and is not the deployment recommendation.
+
 Hardware evidence supplied by operator in this session:
 
 - Linux integrity: all 11 shared payloads, 1,000 trials each, zero API errors

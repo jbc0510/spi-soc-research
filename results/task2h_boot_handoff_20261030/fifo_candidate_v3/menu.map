@@ -1,0 +1,1786 @@
+Archive member included to satisfy reference by file (symbol)
+
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+                              /tmp/ccapV4Yf.o (xil_printf)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+                              /tmp/ccapV4Yf.o (_startup)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(asm_vectors.S.obj)
+                              /tmp/ccapV4Yf.o (_vector_table)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj) (Xil_SetTlbAttributes)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(asm_vectors.S.obj) (FIQInterrupt)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj) (XExc_VectorTable)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(asm_vectors.S.obj) (_boot)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(translation_table.S.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj) (MMUTableL0)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj) (Xil_DCacheFlush)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj) (XARMv8_ConfigTable)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+                              /tmp/ccapV4Yf.o (XTime_GetTime)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+                              /tmp/ccapV4Yf.o (XSpi_LookupConfig)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+                              /tmp/ccapV4Yf.o (XSpi_SelfTest)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+                              /tmp/ccapV4Yf.o (XSpi_SetOptions)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj) (XSpi_ConfigTable)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+                              /tmp/ccapV4Yf.o (XSpi_Start)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+                              /tmp/ccapV4Yf.o (outbyte)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-exit.o)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj) (exit)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strtoul.o)
+                              /tmp/ccapV4Yf.o (strtoul)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-ctype_.o)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj) (_ctype_)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-findfp.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-exit.o) (__stdio_exit_handler)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fwalk.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-findfp.o) (_fwalk_sglue)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-printf.o)
+                              /tmp/ccapV4Yf.o (printf)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-puts.o)
+                              /tmp/ccapV4Yf.o (puts)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-stdio.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-findfp.o) (__sread)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-closer.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-stdio.o) (_close_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-reent.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-closer.o) (errno)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-impure.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strtoul.o) (_impure_ptr)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-lseekr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-stdio.o) (_lseek_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-readr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-stdio.o) (_read_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-writer.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-stdio.o) (_write_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-init.o)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj) (__libc_init_array)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fini.o)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj) (__libc_fini_array)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-findfp.o) (memset)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strlen.o)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj) (strlen)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-__call_atexit.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-exit.o) (__call_exitprocs)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-freer.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-reent.o) (_free_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mallocr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-findfp.o) (_malloc_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mlock.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-freer.o) (__malloc_lock)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-printf.o) (_vfprintf_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-sprint_r.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (__sprint_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fclose.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-findfp.o) (_fclose_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fflush.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fclose.o) (__sflush_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fvwrite.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-puts.o) (__sfvwrite_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-wsetup.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (__swsetup_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strncpy.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (strncpy)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-localeconv.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (_localeconv_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-sbrkr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-freer.o) (_sbrk_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memchr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (memchr)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcpy.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fvwrite.o) (memmove)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libm_a-frexpl.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (frexpl)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (_ldtoa_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gdtoa.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o) (__gdtoa)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-dmisc.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gdtoa.o) (__rv_alloc_D2A)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gmisc.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gdtoa.o) (__rshift_D2A)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mprec.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gdtoa.o) (_Balloc)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-reallocr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fvwrite.o) (_realloc_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-makebuf.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-wsetup.o) (__smakebuf_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-locale.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-localeconv.o) (__global_locale)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fstatr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-makebuf.o) (_fstat_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-isattyr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-makebuf.o) (_isatty_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strcmp.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-locale.o) (strcmp)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-assert.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-dmisc.o) (__assert_func)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-callocr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mprec.o) (_calloc_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mbtowc_r.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-locale.o) (__ascii_mbtowc)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-wctomb_r.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-locale.o) (__ascii_wctomb)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fiprintf.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-assert.o) (fiprintf)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfiprintf.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fiprintf.o) (_vfiprintf_r)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-errno.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-callocr.o) (__errno)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-abort.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-assert.o) (abort)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signal.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-abort.o) (raise)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signalr.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signal.o) (_kill_r)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj) (Xil_Assert)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj) (Xil_WaitForEvent)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-readr.o) (_read)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-isattyr.o) (_isatty)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-sbrkr.o) (_sbrk)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-exit.o) (_exit)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-closer.o) (_close)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-writer.o) (_write)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signalr.o) (_getpid)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fstatr.o) (_fstat)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signalr.o) (_kill)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-lseekr.o) (_lseek)
+/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj) (usleep)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(eqtf2.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (__eqtf2)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(getf2.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o) (__getf2)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(letf2.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o) (__letf2)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(multf3.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (__multf3)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(subtf3.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (__subtf3)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(unordtf2.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o) (__unordtf2)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(fixtfsi.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (__fixtfsi)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(floatsitf.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (__floatsitf)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(extenddftf2.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o) (__extenddftf2)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(sfp-exceptions.o)
+                              /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(eqtf2.o) (__sfp_handle_exceptions)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strncat.o)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj) (strncat)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcmp.o)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj) (memcmp)
+/tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strnlen.o)
+                              /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj) (strnlen)
+
+Merging program properties
+
+Removed property 0xc0000000 to merge /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o) (0x3) and /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crti.o (not found)
+Removed property 0xc0000000 to merge /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o) (not found) and /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strlen.o) (0x3)
+Removed property 0xc0000000 to merge /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o) (not found) and /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memchr.o) (0x3)
+Removed property 0xc0000000 to merge /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o) (not found) and /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcpy.o) (0x3)
+Removed property 0xc0000000 to merge /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o) (not found) and /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strcmp.o) (0x3)
+Removed property 0xc0000000 to merge /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o) (not found) and /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcmp.o) (0x3)
+Removed property 0xc0000000 to merge /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o) (not found) and /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strnlen.o) (0x3)
+
+Discarded input sections
+
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .group         0x0000000000000000        0xc /tmp/ccapV4Yf.o
+ .note.gnu.property
+                0x0000000000000000       0x20 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strlen.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memchr.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcpy.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strcmp.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcmp.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strnlen.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+psu_ddr_1_memory_1 0x0000000800000000 0x0000000080000000
+psu_ddr_0_memory_0 0x0000000000100000 0x000000007fe00000
+psu_qspi_linear_0_memory_0 0x00000000c0000000 0x0000000020000000
+psu_ocm_ram_0_memory_0 0x00000000fffc0000 0x0000000000040000
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crti.o
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+LOAD /tmp/ccapV4Yf.o
+                0x0000000000002000                _STACK_SIZE = DEFINED (_STACK_SIZE)?_STACK_SIZE:0x2000
+                0x0000000000002000                _HEAP_SIZE = DEFINED (_HEAP_SIZE)?_HEAP_SIZE:0x2000
+                0x0000000000000400                _EL0_STACK_SIZE = DEFINED (_EL0_STACK_SIZE)?_EL0_STACK_SIZE:0x400
+                0x0000000000000800                _EL1_STACK_SIZE = DEFINED (_EL1_STACK_SIZE)?_EL1_STACK_SIZE:0x800
+                0x0000000000000400                _EL2_STACK_SIZE = DEFINED (_EL2_STACK_SIZE)?_EL2_STACK_SIZE:0x400
+
+.text           0x0000000000100000    0x133cc
+ *(.vectors)
+ .vectors       0x0000000000100000      0x940 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(asm_vectors.S.obj)
+                0x0000000000100000                _vector_table
+                0x0000000000100918                FPUStatus
+ *(.boot)
+ .boot          0x0000000000100940       0xa8 /tmp/ccapV4Yf.o
+                0x0000000000100940                msu2_el2_entry
+ .boot          0x00000000001009e8      0x1f0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+                0x00000000001009e8                _boot
+                0x00000000001009e8                _prestart
+ *(.text)
+ .text          0x0000000000100bd8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crti.o
+ *fill*         0x0000000000100bd8        0x8 
+ .text          0x0000000000100be0       0x78 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+ *fill*         0x0000000000100c58        0x8 
+ .text          0x0000000000100c60     0x10d4 /tmp/ccapV4Yf.o
+ *fill*         0x0000000000101d34        0xc 
+ .text          0x0000000000101d40      0x9cc /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+                0x0000000000102060                xil_vprintf
+                0x00000000001026a0                xil_printf
+ *fill*         0x000000000010270c        0x4 
+ .text          0x0000000000102710       0xb8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+                0x0000000000102730                _startup
+ .text          0x00000000001027c8        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(asm_vectors.S.obj)
+ *fill*         0x00000000001027c8        0x8 
+ .text          0x00000000001027d0      0x174 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+                0x00000000001027d0                Xil_SetTlbAttributes
+                0x0000000000102834                Xil_MemMap
+ *fill*         0x0000000000102944        0xc 
+ .text          0x0000000000102950       0x58 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+                0x0000000000102950                FIQInterrupt
+                0x0000000000102964                IRQInterrupt
+                0x0000000000102980                SynchronousInterrupt
+                0x0000000000102994                SErrorInterrupt
+ *fill*         0x00000000001029a8        0x8 
+ .text          0x00000000001029b0       0x88 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+                0x00000000001029c4                Xil_ExceptionInit
+                0x00000000001029d0                Xil_ExceptionRegisterHandler
+                0x00000000001029f0                Xil_GetExceptionRegisterHandler
+                0x0000000000102a14                Xil_ExceptionRemoveHandler
+ .text          0x0000000000102a38        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+ .text          0x0000000000102a38        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(translation_table.S.obj)
+ *fill*         0x0000000000102a38        0x8 
+ .text          0x0000000000102a40      0x584 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+                0x0000000000102a40                Xil_DCacheDisable
+                0x0000000000102b70                Xil_DCacheInvalidate
+                0x0000000000102c90                Xil_DCacheEnable
+                0x0000000000102cc0                Xil_DCacheInvalidateLine
+                0x0000000000102d00                Xil_DCacheInvalidateRange
+                0x0000000000102d40                Xil_DCacheFlush
+                0x0000000000102e60                Xil_DCacheFlushLine
+                0x0000000000102ea0                Xil_ICacheEnable
+                0x0000000000102ee0                Xil_ICacheDisable
+                0x0000000000102f14                Xil_ICacheInvalidate
+                0x0000000000102f40                Xil_ICacheInvalidateLine
+                0x0000000000102f70                Xil_ICacheInvalidateRange
+                0x0000000000102fc0                Xil_ConfigureL1Prefetch
+ .text          0x0000000000102fc4        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ *fill*         0x0000000000102fc4        0xc 
+ .text          0x0000000000102fd0       0x88 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+                0x0000000000103010                XilSleepTimer_Init
+                0x0000000000103030                XTime_GetTime
+                0x0000000000103040                XilTickTimer_Init
+ *fill*         0x0000000000103058        0x8 
+ .text          0x0000000000103060      0x108 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+                0x0000000000103060                XSpi_LookupConfig
+                0x00000000001030c4                XSpi_Initialize
+ *fill*         0x0000000000103168        0x8 
+ .text          0x0000000000103170      0x2d8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+                0x0000000000103170                XSpi_SelfTest
+ *fill*         0x0000000000103448        0x8 
+ .text          0x0000000000103450      0x19c /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+                0x0000000000103450                XSpi_SetOptions
+                0x0000000000103540                XSpi_GetOptions
+ .text          0x00000000001035ec        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ *fill*         0x00000000001035ec        0x4 
+ .text          0x00000000001035f0      0xd38 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+                0x0000000000103620                XSpi_Start
+                0x0000000000103710                XSpi_Stop
+                0x00000000001037c0                XSpi_Transfer
+                0x0000000000103b60                XSpi_SetSlaveSelect
+                0x0000000000103c30                XSpi_GetSlaveSelect
+                0x0000000000103cc0                XSpi_SetStatusHandler
+                0x0000000000103d50                XSpi_Abort
+                0x0000000000103dd4                XSpi_Reset
+                0x0000000000103e70                XSpi_CfgInitialize
+                0x0000000000103ff4                XSpi_InterruptHandler
+ *fill*         0x0000000000104328        0x8 
+ .text          0x0000000000104330      0x108 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+                0x0000000000104330                XUartPs_SendByte
+                0x0000000000104350                XUartPs_RecvByte
+                0x0000000000104370                XUartPs_ResetHw
+                0x00000000001043e0                XUartPs_WaitTransmitDone
+                0x0000000000104400                outbyte
+                0x0000000000104420                inbyte
+ *fill*         0x0000000000104438        0x8 
+ .text          0x0000000000104440       0x34 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-exit.o)
+                0x0000000000104440                exit
+ *fill*         0x0000000000104474        0xc 
+ .text          0x0000000000104480      0x204 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strtoul.o)
+                0x0000000000104620                _strtoul_r
+                0x0000000000104630                strtoul_l
+                0x0000000000104660                strtoul
+ .text          0x0000000000104684        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-ctype_.o)
+ *fill*         0x0000000000104684        0xc 
+ .text          0x0000000000104690      0x38c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-findfp.o)
+                0x0000000000104870                __sfp
+                0x0000000000104990                __sinit
+                0x00000000001049c0                __sfp_lock_acquire
+                0x00000000001049d0                __sfp_lock_release
+                0x00000000001049e0                __fp_lock_all
+                0x0000000000104a00                __fp_unlock_all
+ *fill*         0x0000000000104a1c        0x4 
+ .text          0x0000000000104a20       0xa4 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fwalk.o)
+                0x0000000000104a20                _fwalk_sglue
+ *fill*         0x0000000000104ac4        0xc 
+ .text          0x0000000000104ad0      0x108 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-printf.o)
+                0x0000000000104ad0                _printf_r
+                0x0000000000104b50                printf
+ *fill*         0x0000000000104bd8        0x8 
+ .text          0x0000000000104be0       0xd4 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-puts.o)
+                0x0000000000104be0                _puts_r
+                0x0000000000104ca0                puts
+ *fill*         0x0000000000104cb4        0xc 
+ .text          0x0000000000104cc0      0x15c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-stdio.o)
+                0x0000000000104cc0                __sread
+                0x0000000000104d20                __seofread
+                0x0000000000104d30                __swrite
+                0x0000000000104db0                __sseek
+                0x0000000000104e10                __sclose
+ *fill*         0x0000000000104e1c        0x4 
+ .text          0x0000000000104e20       0x58 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-closer.o)
+                0x0000000000104e20                _close_r
+ *fill*         0x0000000000104e78        0x8 
+ .text          0x0000000000104e80       0xdc /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-reent.o)
+                0x0000000000104e80                _reclaim_reent
+ .text          0x0000000000104f5c        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-impure.o)
+ *fill*         0x0000000000104f5c        0x4 
+ .text          0x0000000000104f60       0x60 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-lseekr.o)
+                0x0000000000104f60                _lseek_r
+ .text          0x0000000000104fc0       0x64 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-readr.o)
+                0x0000000000104fc0                _read_r
+ *fill*         0x0000000000105024        0xc 
+ .text          0x0000000000105030       0x64 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-writer.o)
+                0x0000000000105030                _write_r
+ *fill*         0x0000000000105094        0xc 
+ .text          0x00000000001050a0       0x98 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-init.o)
+                0x00000000001050a0                __libc_init_array
+ *fill*         0x0000000000105138        0x8 
+ .text          0x0000000000105140       0x50 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fini.o)
+                0x0000000000105140                __libc_fini_array
+ *fill*         0x0000000000105190       0x30 
+ .text          0x00000000001051c0      0x104 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o)
+                0x00000000001051c0                memset
+ *fill*         0x00000000001052c4       0x3c 
+ .text          0x0000000000105300      0x130 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strlen.o)
+                0x0000000000105300                strlen
+ .text          0x0000000000105430      0x134 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-__call_atexit.o)
+                0x0000000000105430                __call_exitprocs
+ *fill*         0x0000000000105564        0xc 
+ .text          0x0000000000105570      0x420 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-freer.o)
+                0x0000000000105570                _malloc_trim_r
+                0x00000000001056a0                _free_r
+ .text          0x0000000000105990      0x7f4 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mallocr.o)
+                0x0000000000105990                _malloc_r
+ *fill*         0x0000000000106184        0xc 
+ .text          0x0000000000106190       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mlock.o)
+                0x0000000000106190                __malloc_lock
+                0x00000000001061a0                __malloc_unlock
+ *fill*         0x00000000001061a8        0x8 
+ .text          0x00000000001061b0     0x3168 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o)
+                0x00000000001061b0                _vfprintf_r
+                0x0000000000109210                vfprintf
+ *fill*         0x0000000000109318        0x8 
+ .text          0x0000000000109320       0x50 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-sprint_r.o)
+                0x0000000000109320                __sprint_r
+ .text          0x0000000000109370      0x114 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fclose.o)
+                0x0000000000109370                _fclose_r
+                0x0000000000109470                fclose
+ *fill*         0x0000000000109484        0xc 
+ .text          0x0000000000109490      0x2fc /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fflush.o)
+                0x0000000000109490                __sflush_r
+                0x00000000001096a0                _fflush_r
+                0x0000000000109700                fflush
+ *fill*         0x000000000010978c        0x4 
+ .text          0x0000000000109790      0x4e0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fvwrite.o)
+                0x0000000000109790                __sfvwrite_r
+ .text          0x0000000000109c70      0x138 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-wsetup.o)
+                0x0000000000109c70                __swsetup_r
+ *fill*         0x0000000000109da8        0x8 
+ .text          0x0000000000109db0       0x90 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strncpy.o)
+                0x0000000000109db0                strncpy
+ .text          0x0000000000109e40       0x30 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-localeconv.o)
+                0x0000000000109e40                __localeconv_l
+                0x0000000000109e50                _localeconv_r
+                0x0000000000109e60                localeconv
+ .text          0x0000000000109e70       0x58 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-sbrkr.o)
+                0x0000000000109e70                _sbrk_r
+ *fill*         0x0000000000109ec8       0x38 
+ .text          0x0000000000109f00       0xdc /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memchr.o)
+                0x0000000000109f00                memchr
+ *fill*         0x0000000000109fdc       0x24 
+ .text          0x000000000010a000      0x22c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcpy.o)
+                0x000000000010a000                memmove
+                0x000000000010a000                memcpy
+ *fill*         0x000000000010a22c        0x4 
+ .text          0x000000000010a230       0xbc /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libm_a-frexpl.o)
+                0x000000000010a230                frexpl
+ *fill*         0x000000000010a2ec        0x4 
+ .text          0x000000000010a2f0      0x260 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o)
+                0x000000000010a2f0                _ldtoa_r
+                0x000000000010a4c0                _ldcheck
+ .text          0x000000000010a550     0x1698 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gdtoa.o)
+                0x000000000010a550                __gdtoa
+ *fill*         0x000000000010bbe8        0x8 
+ .text          0x000000000010bbf0      0x340 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-dmisc.o)
+                0x000000000010bc20                __rv_alloc_D2A
+                0x000000000010bca0                __nrv_alloc_D2A
+                0x000000000010bd60                __freedtoa
+                0x000000000010bd80                __quorem_D2A
+ .text          0x000000000010bf30      0x190 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gmisc.o)
+                0x000000000010bf30                __rshift_D2A
+                0x000000000010c050                __trailz_D2A
+ .text          0x000000000010c0c0     0x1110 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mprec.o)
+                0x000000000010c0c0                _Balloc
+                0x000000000010c160                _Bfree
+                0x000000000010c180                __multadd
+                0x000000000010c2a0                __s2b
+                0x000000000010c3e0                __hi0bits
+                0x000000000010c470                __lo0bits
+                0x000000000010c520                __i2b
+                0x000000000010c5e0                __multiply
+                0x000000000010c7d0                __pow5mult
+                0x000000000010c900                __lshift
+                0x000000000010ca80                __mcmp
+                0x000000000010cae0                __mdiff
+                0x000000000010ccf0                __ulp
+                0x000000000010cd80                __b2d
+                0x000000000010cec0                __d2b
+                0x000000000010d010                __ratio
+                0x000000000010d0b0                _mprec_log10
+                0x000000000010d0f0                __copybits
+                0x000000000010d160                __any_on
+ .text          0x000000000010d1d0      0x548 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-reallocr.o)
+                0x000000000010d1d0                _realloc_r
+ *fill*         0x000000000010d718        0x8 
+ .text          0x000000000010d720      0x200 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-makebuf.o)
+                0x000000000010d720                __smakebuf_r
+                0x000000000010d880                __swhatbuf_r
+ .text          0x000000000010d920      0x110 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-locale.o)
+                0x000000000010d920                _setlocale_r
+                0x000000000010d9a0                __locale_mb_cur_max
+                0x000000000010d9b0                setlocale
+ .text          0x000000000010da30       0x5c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fstatr.o)
+                0x000000000010da30                _fstat_r
+ *fill*         0x000000000010da8c        0x4 
+ .text          0x000000000010da90       0x58 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-isattyr.o)
+                0x000000000010da90                _isatty_r
+ *fill*         0x000000000010dae8       0x18 
+ .text          0x000000000010db00      0x134 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strcmp.o)
+                0x000000000010db00                strcmp
+ *fill*         0x000000000010dc34        0xc 
+ .text          0x000000000010dc40       0x78 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-assert.o)
+                0x000000000010dc40                __assert_func
+                0x000000000010dca0                __assert
+ *fill*         0x000000000010dcb8        0x8 
+ .text          0x000000000010dcc0       0xcc /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-callocr.o)
+                0x000000000010dcc0                _calloc_r
+ *fill*         0x000000000010dd8c        0x4 
+ .text          0x000000000010dd90       0x6c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mbtowc_r.o)
+                0x000000000010dd90                _mbtowc_r
+                0x000000000010ddb0                __ascii_mbtowc
+ *fill*         0x000000000010ddfc        0x4 
+ .text          0x000000000010de00       0x58 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-wctomb_r.o)
+                0x000000000010de00                _wctomb_r
+                0x000000000010de20                __ascii_wctomb
+ *fill*         0x000000000010de58        0x8 
+ .text          0x000000000010de60       0xf4 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fiprintf.o)
+                0x000000000010de60                _fiprintf_r
+                0x000000000010ded0                fiprintf
+ *fill*         0x000000000010df54        0xc 
+ .text          0x000000000010df60     0x17f8 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfiprintf.o)
+                0x000000000010df60                _vfiprintf_r
+                0x000000000010f650                vfiprintf
+ *fill*         0x000000000010f758        0x8 
+ .text          0x000000000010f760       0x10 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-errno.o)
+                0x000000000010f760                __errno
+ .text          0x000000000010f770       0x1c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-abort.o)
+                0x000000000010f770                abort
+ *fill*         0x000000000010f78c        0x4 
+ .text          0x000000000010f790      0x510 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signal.o)
+                0x000000000010f790                _init_signal_r
+                0x000000000010f800                _signal_r
+                0x000000000010f880                _raise_r
+                0x000000000010f940                __sigtramp_r
+                0x000000000010fa10                raise
+                0x000000000010fad0                signal
+                0x000000000010fb60                _init_signal
+                0x000000000010fbd0                __sigtramp
+ .text          0x000000000010fca0       0x68 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signalr.o)
+                0x000000000010fca0                _kill_r
+                0x000000000010fd00                _getpid_r
+ *fill*         0x000000000010fd08        0x8 
+ .text          0x000000000010fd10       0x54 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+                0x000000000010fd10                Xil_Assert
+                0x000000000010fd54                Xil_AssertSetCallback
+                0x000000000010fd60                XNullHandler
+ *fill*         0x000000000010fd64        0xc 
+ .text          0x000000000010fd70      0xba8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+                0x000000000010fd70                Xil_ConvertCharToNibble
+                0x000000000010fdd4                Xil_ConvertStringToHex
+                0x000000000010fee0                Xil_WaitForEvent
+                0x000000000010ff60                Xil_WaitForEvents
+                0x000000000010ffe4                Xil_WaitForEventSet
+                0x00000000001100c0                Xil_UtilRMW32
+                0x00000000001100e0                Xil_SecureMemCpy
+                0x0000000000110140                Xil_SecureZeroize
+                0x00000000001101d0                Xil_SMemCmp
+                0x0000000000110230                Xil_SMemCmp_CT
+                0x0000000000110350                Xil_SMemCpy
+                0x00000000001103e0                Xil_SMemSet
+                0x0000000000110420                Xil_SStrCat
+                0x00000000001104d0                Xil_SStrCmp
+                0x0000000000110580                Xil_SStrCmp_CT
+                0x0000000000110640                Xil_SStrCpy
+                0x00000000001106d0                Xil_SMemMove
+                0x0000000000110730                Xil_SecureRMW32
+                0x0000000000110760                Xil_SChangeEndiannessAndCpy
+                0x0000000000110814                Xil_SReverseData
+                0x00000000001108e4                Xil_MemCpy64
+ *fill*         0x0000000000110918        0x8 
+ .text          0x0000000000110920       0xfc /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+                0x0000000000110920                read
+                0x00000000001109a0                _read
+ *fill*         0x0000000000110a1c        0x4 
+ .text          0x0000000000110a20       0x18 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+                0x0000000000110a20                isatty
+                0x0000000000110a30                _isatty
+ *fill*         0x0000000000110a38        0x8 
+ .text          0x0000000000110a40       0x48 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+                0x0000000000110a40                _sbrk
+ *fill*         0x0000000000110a88        0x8 
+ .text          0x0000000000110a90        0x4 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+                0x0000000000110a90                _exit
+ *fill*         0x0000000000110a94        0xc 
+ .text          0x0000000000110aa0        0x8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+                0x0000000000110aa0                _close
+ *fill*         0x0000000000110aa8        0x8 
+ .text          0x0000000000110ab0       0xe8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+                0x0000000000110ab0                write
+                0x0000000000110b24                _write
+ *fill*         0x0000000000110b98        0x8 
+ .text          0x0000000000110ba0       0x18 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+                0x0000000000110ba0                getpid
+                0x0000000000110bb0                _getpid
+ *fill*         0x0000000000110bb8        0x8 
+ .text          0x0000000000110bc0       0x10 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+                0x0000000000110bc0                _fstat
+ .text          0x0000000000110bd0       0x40 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+                0x0000000000110bd0                kill
+                0x0000000000110bf0                _kill
+ .text          0x0000000000110c10       0x48 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+                0x0000000000110c10                lseek
+                0x0000000000110c34                _lseek
+ *fill*         0x0000000000110c58        0x8 
+ .text          0x0000000000110c60      0x120 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+                0x0000000000110c60                sleep
+                0x0000000000110c84                msleep
+                0x0000000000110cb0                usleep
+                0x0000000000110ce0                XilTimer_Sleep
+                0x0000000000110d10                XTimer_SetHandler
+                0x0000000000110d40                XTimer_SetInterval
+                0x0000000000110d64                XTimer_ClearTickInterrupt
+ .text          0x0000000000110d80      0x10c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(eqtf2.o)
+                0x0000000000110d80                __eqtf2
+                0x0000000000110d80                __netf2
+ *fill*         0x0000000000110e8c        0x4 
+ .text          0x0000000000110e90      0x160 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(getf2.o)
+                0x0000000000110e90                __getf2
+                0x0000000000110e90                __gttf2
+ .text          0x0000000000110ff0      0x15c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(letf2.o)
+                0x0000000000110ff0                __letf2
+                0x0000000000110ff0                __lttf2
+ *fill*         0x000000000011114c        0x4 
+ .text          0x0000000000111150      0x790 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(multf3.o)
+                0x0000000000111150                __multf3
+ .text          0x00000000001118e0      0xea4 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(subtf3.o)
+                0x00000000001118e0                __subtf3
+ *fill*         0x0000000000112784        0xc 
+ .text          0x0000000000112790       0xdc /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(unordtf2.o)
+                0x0000000000112790                __unordtf2
+ *fill*         0x000000000011286c        0x4 
+ .text          0x0000000000112870      0x10c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(fixtfsi.o)
+                0x0000000000112870                __fixtfsi
+ *fill*         0x000000000011297c        0x4 
+ .text          0x0000000000112980       0x7c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(floatsitf.o)
+                0x0000000000112980                __floatsitf
+ *fill*         0x00000000001129fc        0x4 
+ .text          0x0000000000112a00      0x164 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(extenddftf2.o)
+                0x0000000000112a00                __extenddftf2
+ *fill*         0x0000000000112b64        0xc 
+ .text          0x0000000000112b70       0x74 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(sfp-exceptions.o)
+                0x0000000000112b70                __sfp_handle_exceptions
+ *fill*         0x0000000000112be4        0xc 
+ .text          0x0000000000112bf0       0x80 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strncat.o)
+                0x0000000000112bf0                strncat
+ *fill*         0x0000000000112c70       0x10 
+ .text          0x0000000000112c80      0x1c8 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcmp.o)
+                0x0000000000112c80                memcmp
+ *fill*         0x0000000000112e48       0x38 
+ .text          0x0000000000112e80       0xb8 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strnlen.o)
+                0x0000000000112e80                strnlen
+ .text          0x0000000000112f38        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtend.o
+ .text          0x0000000000112f38        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtn.o
+ *(.text.*)
+ *fill*         0x0000000000112f38        0x8 
+ .text.startup  0x0000000000112f40      0x45c /tmp/ccapV4Yf.o
+                0x0000000000112f40                main
+ *fill*         0x000000000011339c        0x4 
+ .text.startup  0x00000000001133a0       0x2c /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+                0x00000000001133a0                xtimerinit
+ *(.gnu.linkonce.t.*)
+ *(.plt)
+ *(.gnu_warning)
+ *(.gcc_execpt_table)
+ *(.glue_7)
+ *(.glue_7t)
+ *(.ARM.extab)
+ *(.gnu.linkonce.armextab.*)
+
+.iplt           0x00000000001133cc        0x0
+ .iplt          0x00000000001133cc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+
+.note.gnu.build-id
+                0x00000000001133cc       0x24
+ *(.note.gnu.build-id)
+ .note.gnu.build-id
+                0x00000000001133cc       0x24 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crti.o
+
+.init           0x0000000000113400       0x34
+ *(.init)
+ .init          0x0000000000113400       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crti.o
+                0x0000000000113400                _init
+ .init          0x0000000000113418       0x1c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtn.o
+
+.fini           0x0000000000113440       0x34
+ *(.fini)
+ .fini          0x0000000000113440       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crti.o
+                0x0000000000113440                _fini
+ .fini          0x0000000000113458       0x1c /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtn.o
+
+.interp
+ *(.interp)
+
+.note-ABI-tag
+ *(.note-ABI-tag)
+
+.rodata         0x0000000000113480     0x16d0
+                0x0000000000113480                . = ALIGN (0x40)
+                0x0000000000113480                __rodata_start = .
+ *(.rodata)
+ .rodata        0x0000000000113480       0x2c /tmp/ccapV4Yf.o
+ .rodata        0x00000000001134ac       0x54 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .rodata        0x0000000000113500       0x28 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ *fill*         0x0000000000113528        0x8 
+ .rodata        0x0000000000113530      0x101 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-ctype_.o)
+                0x0000000000113530                _ctype_
+ *fill*         0x0000000000113631        0xf 
+ .rodata        0x0000000000113640       0xe0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o)
+ .rodata        0x0000000000113720       0x14 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o)
+ *fill*         0x0000000000113734        0xc 
+ .rodata        0x0000000000113740      0x138 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mprec.o)
+                0x0000000000113750                __mprec_tens
+                0x0000000000113820                __mprec_tinytens
+                0x0000000000113850                __mprec_bigtens
+ *fill*         0x0000000000113878        0x8 
+ .rodata        0x0000000000113880       0xe0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfiprintf.o)
+ *(.rodata.*)
+ .rodata.str1.8
+                0x0000000000113960     0x114f /tmp/ccapV4Yf.o
+                                        0xcb2 (size before relaxing)
+ *fill*         0x0000000000114aaf        0x1 
+ .rodata.cst8   0x0000000000114ab0       0x38 /tmp/ccapV4Yf.o
+                                         0x10 (size before relaxing)
+ .rodata.str1.8
+                0x0000000000114ae8       0x11 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .rodata.str1.8
+                0x0000000000114ae8       0xc0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .rodata.str1.8
+                0x0000000000114ae8       0xc3 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .rodata.str1.8
+                0x0000000000114ae8       0xc2 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .rodata.str1.8
+                0x0000000000114ae8       0x16 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .rodata.str1.8
+                0x0000000000114ae8       0xba /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .rodata.str1.8
+                0x0000000000114ae8        0x2 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-puts.o)
+ .rodata.str1.8
+                0x0000000000114ae8       0x5a /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o)
+ *fill*         0x0000000000114ae8        0x8 
+ .rodata.cst16  0x0000000000114af0       0x60 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o)
+                                         0x30 (size before relaxing)
+ .rodata.cst16  0x0000000000114b50       0x10 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libm_a-frexpl.o)
+ .rodata.cst16  0x0000000000114b50       0x20 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o)
+ .rodata.str1.8
+                0x0000000000114b50       0x1a /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gdtoa.o)
+ .rodata.cst8   0x0000000000114b50       0x28 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gdtoa.o)
+ .rodata.str1.8
+                0x0000000000114b50       0x59 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-dmisc.o)
+ .rodata.str1.8
+                0x0000000000114b50       0x53 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mprec.o)
+ .rodata.str1.8
+                0x0000000000114b50       0x1a /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-locale.o)
+ .rodata.str1.8
+                0x0000000000114b50       0x47 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-assert.o)
+ .rodata.str1.8
+                0x0000000000114b50       0x37 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfiprintf.o)
+ *(.gnu.linkonce.r.*)
+                0x0000000000114b50                __rodata_end = .
+
+.rodata1        0x0000000000114b50       0x30
+                0x0000000000114b80                . = ALIGN (0x40)
+ *fill*         0x0000000000114b50       0x30 
+                0x0000000000114b80                __rodata1_start = .
+ *(.rodata1)
+ *(.rodata1.*)
+                0x0000000000114b80                __rodata1_end = .
+
+.sdata2         0x0000000000114b80        0x0
+                0x0000000000114b80                . = ALIGN (0x40)
+                0x0000000000114b80                __sdata2_start = .
+ *(.sdata2)
+ *(.sdata2.*)
+ *(.gnu.linkonce.s2.*)
+                0x0000000000114b80                __sdata2_end = .
+
+.sbss2          0x0000000000114b80        0x0
+                0x0000000000114b80                . = ALIGN (0x40)
+                0x0000000000114b80                __sbss2_start = .
+ *(.sbss2)
+ *(.sbss2.*)
+ *(.gnu.linkonce.sb2.*)
+                0x0000000000114b80                __sbss2_end = .
+
+.data           0x0000000000115000     0x1c30
+                0x0000000000115000                . = ALIGN (0x40)
+                0x0000000000115000                __data_start = .
+ *(.data)
+ .data          0x0000000000115000        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crti.o
+ .data          0x0000000000115000        0x8 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+                0x0000000000115000                __dso_handle
+ *fill*         0x0000000000115008      0xff8 
+ .data          0x0000000000116000       0x20 /tmp/ccapV4Yf.o
+                0x0000000000116000                msu2_mmu_table
+ .data          0x0000000000116020        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .data          0x0000000000116020        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+ .data          0x0000000000116020        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(asm_vectors.S.obj)
+ .data          0x0000000000116020        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .data          0x0000000000116020        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .data          0x0000000000116020       0x60 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+                0x0000000000116020                XExc_VectorTable
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(translation_table.S.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .data          0x0000000000116080        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .data          0x0000000000116080        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-exit.o)
+ .data          0x0000000000116080        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strtoul.o)
+ .data          0x0000000000116080        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-ctype_.o)
+ .data          0x0000000000116080       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-findfp.o)
+                0x0000000000116080                __sglue
+ .data          0x0000000000116098        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fwalk.o)
+ .data          0x0000000000116098        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-printf.o)
+ .data          0x0000000000116098        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-puts.o)
+ .data          0x0000000000116098        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-stdio.o)
+ .data          0x0000000000116098        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-closer.o)
+ .data          0x0000000000116098        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-reent.o)
+ .data          0x0000000000116098      0x160 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-impure.o)
+                0x0000000000116098                _impure_ptr
+                0x00000000001160a0                _impure_data
+ .data          0x00000000001161f8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-lseekr.o)
+ .data          0x00000000001161f8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-readr.o)
+ .data          0x00000000001161f8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-writer.o)
+ .data          0x00000000001161f8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-init.o)
+ .data          0x00000000001161f8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fini.o)
+ .data          0x00000000001161f8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o)
+ .data          0x00000000001161f8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strlen.o)
+ .data          0x00000000001161f8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-__call_atexit.o)
+ .data          0x00000000001161f8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-freer.o)
+ *fill*         0x00000000001161f8        0x8 
+ .data          0x0000000000116200      0x820 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mallocr.o)
+                0x0000000000116200                __malloc_av_
+                0x0000000000116a10                __malloc_sbrk_base
+                0x0000000000116a18                __malloc_trim_threshold
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mlock.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-sprint_r.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fclose.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fflush.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fvwrite.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-wsetup.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strncpy.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-localeconv.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-sbrkr.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memchr.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcpy.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libm_a-frexpl.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gdtoa.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-dmisc.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gmisc.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mprec.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-reallocr.o)
+ .data          0x0000000000116a20        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-makebuf.o)
+ .data          0x0000000000116a20      0x1a8 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-locale.o)
+                0x0000000000116a20                __global_locale
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fstatr.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-isattyr.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strcmp.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-assert.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-callocr.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mbtowc_r.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-wctomb_r.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fiprintf.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfiprintf.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-errno.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-abort.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signal.o)
+ .data          0x0000000000116bc8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signalr.o)
+ .data          0x0000000000116bc8        0x4 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+                0x0000000000116bc8                Xil_AssertWait
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .data          0x0000000000116bcc        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(eqtf2.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(getf2.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(letf2.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(multf3.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(subtf3.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(unordtf2.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(fixtfsi.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(floatsitf.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(extenddftf2.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(sfp-exceptions.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strncat.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcmp.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strnlen.o)
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtend.o
+ .data          0x0000000000116bcc        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtn.o
+ *(.data.*)
+ *(.gnu.linkonce.d.*)
+ *(.jcr)
+ *(.got)
+ *fill*         0x0000000000116bcc        0x4 
+ .got           0x0000000000116bd0       0x48 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+                0x0000000000116bd0                _GLOBAL_OFFSET_TABLE_
+ *(.got.plt)
+ .got.plt       0x0000000000116c18       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+                0x0000000000116c30                __data_end = .
+
+.igot.plt       0x0000000000116c30        0x0
+ .igot.plt      0x0000000000116c30        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+
+.data1          0x0000000000116c30       0x10
+                0x0000000000116c40                . = ALIGN (0x40)
+ *fill*         0x0000000000116c30       0x10 
+                0x0000000000116c40                __data1_start = .
+ *(.data1)
+ *(.data1.*)
+                0x0000000000116c40                __data1_end = .
+
+.got
+ *(.got)
+
+.got1
+ *(.got1)
+
+.got2           0x0000000000116c40        0x0
+ *(.got2)
+ .got2          0x0000000000116c40        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+
+.ctors          0x0000000000116c40        0x0
+                0x0000000000116c40                . = ALIGN (0x40)
+                0x0000000000116c40                __CTOR_LIST__ = .
+                0x0000000000116c40                ___CTORS_LIST___ = .
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+                0x0000000000116c40                __CTOR_END__ = .
+                0x0000000000116c40                ___CTORS_END___ = .
+
+.dtors          0x0000000000116c40        0x0
+                0x0000000000116c40                . = ALIGN (0x40)
+                0x0000000000116c40                __DTOR_LIST__ = .
+                0x0000000000116c40                ___DTORS_LIST___ = .
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+                0x0000000000116c40                __DTOR_END__ = .
+                0x0000000000116c40                ___DTORS_END___ = .
+
+.fixup          0x0000000000116c40        0x0
+                0x0000000000116c40                __fixup_start = .
+ *(.fixup)
+                0x0000000000116c40                __fixup_end = .
+
+.eh_frame       0x0000000000116c40       0xb8
+ *(.eh_frame)
+ .eh_frame      0x0000000000116c40        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+ .eh_frame      0x0000000000116c40       0x28 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o)
+ .eh_frame      0x0000000000116c68       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strlen.o)
+                                         0x28 (size before relaxing)
+ .eh_frame      0x0000000000116c80       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memchr.o)
+                                         0x28 (size before relaxing)
+ .eh_frame      0x0000000000116c98       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcpy.o)
+                                         0x28 (size before relaxing)
+ .eh_frame      0x0000000000116cb0       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strcmp.o)
+                                         0x28 (size before relaxing)
+ .eh_frame      0x0000000000116cc8       0x18 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcmp.o)
+                                         0x28 (size before relaxing)
+ .eh_frame      0x0000000000116ce0       0x14 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strnlen.o)
+                                         0x28 (size before relaxing)
+ .eh_frame      0x0000000000116cf4        0x4 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtend.o
+
+.eh_framehdr    0x0000000000116cf8        0x0
+                0x0000000000116cf8                __eh_framehdr_start = .
+ *(.eh_framehdr)
+                0x0000000000116cf8                __eh_framehdr_end = .
+
+.gcc_except_table
+ *(.gcc_except_table)
+
+.mmu_tbl0       0x0000000000117000       0x10
+                0x0000000000117000                __mmu_tbl0_start = .
+ *(.mmu_tbl0)
+ .mmu_tbl0      0x0000000000117000       0x10 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(translation_table.S.obj)
+                0x0000000000117000                MMUTableL0
+                0x0000000000117010                __mmu_tbl0_end = .
+
+.mmu_tbl1       0x0000000000118000     0x2000
+                0x0000000000118000                __mmu_tbl1_start = .
+ *(.mmu_tbl1)
+ .mmu_tbl1      0x0000000000118000     0x2000 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(translation_table.S.obj)
+                0x0000000000118000                MMUTableL1
+                0x000000000011a000                __mmu_tbl1_end = .
+
+.mmu_tbl2       0x000000000011a000     0x4000
+                0x000000000011a000                __mmu_tbl2_start = .
+ *(.mmu_tbl2)
+ .mmu_tbl2      0x000000000011a000     0x4000 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(translation_table.S.obj)
+                0x000000000011a000                MMUTableL2
+                0x000000000011e000                __mmu_tbl2_end = .
+
+.rela.dyn       0x000000000011e000        0x0
+ .rela.iplt     0x000000000011e000        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+ .rela.got      0x000000000011e000        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+ .rela.boot     0x000000000011e000        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+ .rela.text     0x000000000011e000        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+
+.ARM.exidx      0x000000000011e000        0x0
+                0x000000000011e000                __exidx_start = .
+ *(.ARM.exidx*)
+ *(.gnu.linkonce.armexidix.*.*)
+                0x000000000011e000                __exidx_end = .
+
+.preinit_array  0x000000000011e000        0x0
+                0x000000000011e000                . = ALIGN (0x40)
+                0x000000000011e000                __preinit_array_start = .
+ *(SORT_BY_NAME(.preinit_array.*))
+ *(.preinit_array)
+                0x000000000011e000                __preinit_array_end = .
+
+.init_array     0x000000000011e000       0x10
+                0x000000000011e000                . = ALIGN (0x40)
+                0x000000000011e000                __init_array_start = .
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array)
+ .init_array    0x000000000011e000        0x8 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+ .init_array    0x000000000011e008        0x8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+                0x000000000011e010                __init_array_end = .
+
+.fini_array     0x000000000011e010       0x38
+                0x000000000011e040                . = ALIGN (0x40)
+ *fill*         0x000000000011e010       0x30 
+                0x000000000011e040                __fini_array_start = .
+ *(SORT_BY_NAME(.fini_array.*))
+ *(.fini_array)
+ .fini_array    0x000000000011e040        0x8 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+                0x000000000011e048                __fini_array_end = .
+
+.drvcfg_sec     0x000000000011e048       0x70
+                0x000000000011e048                . = ALIGN (0x8)
+                0x000000000011e048                __drvcfgsecdata_start = .
+ *(.drvcfg_sec)
+ .drvcfg_sec    0x000000000011e048        0xc /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+                0x000000000011e048                XARMv8_ConfigTable
+ *fill*         0x000000000011e054        0x4 
+ .drvcfg_sec    0x000000000011e058       0x60 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+                0x000000000011e058                XSpi_ConfigTable
+                0x000000000011e0b8                __drvcfgsecdata_end = .
+                0x000000000011e0b8                __drvcfgsecdata_size = (__drvcfgsecdata_end - __drvcfgsecdata_start)
+
+.ARM.attributes
+                0x000000000011e0b8        0x0
+                0x000000000011e0b8                __ARM.attributes_start = .
+ *(.ARM.attributes)
+                0x000000000011e0b8                __ARM.attributes_end = .
+
+.sdata          0x000000000011e0b8        0x8
+                0x000000000011e0c0                . = ALIGN (0x40)
+ *fill*         0x000000000011e0b8        0x8 
+                0x000000000011e0c0                __sdata_start = .
+ *(.sdata)
+ *(.sdata.*)
+ *(.gnu.linkonce.s.*)
+                0x000000000011e0c0                __sdata_end = .
+
+.sbss           0x000000000011e0c0        0x0
+                0x000000000011e0c0                . = ALIGN (0x40)
+                0x000000000011e0c0                __sbss_start = .
+ *(.sbss)
+ *(.sbss.*)
+ *(.gnu.linkonce.sb.*)
+                0x000000000011e0c0                . = ALIGN (0x40)
+                0x000000000011e0c0                __sbss_end = .
+
+.tdata          0x000000000011e0c0        0x0
+                0x000000000011e0c0                . = ALIGN (0x40)
+                0x000000000011e0c0                __tdata_start = .
+ *(.tdata)
+ *(.tdata.*)
+ *(.gnu.linkonce.td.*)
+                0x000000000011e0c0                __tdata_end = .
+
+.tbss           0x000000000011e0c0        0x0
+                0x000000000011e0c0                . = ALIGN (0x40)
+                0x000000000011e0c0                __tbss_start = .
+ *(.tbss)
+ *(.tbss.*)
+ *(.gnu.linkonce.tb.*)
+                0x000000000011e0c0                __tbss_end = .
+
+.bss            0x000000000011e0c0    0x20400
+                0x000000000011e0c0                . = ALIGN (0x40)
+                0x000000000011e0c0                __bss_start__ = .
+ *(.bss)
+ .bss           0x000000000011e0c0        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crti.o
+ .bss           0x000000000011e0c0       0x38 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+ *fill*         0x000000000011e0f8        0x8 
+ .bss           0x000000000011e100    0x200d0 /tmp/ccapV4Yf.o
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(asm_vectors.S.obj)
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(translation_table.S.obj)
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .bss           0x000000000013e1d0        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ .bss           0x000000000013e1d0        0x1 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .bss           0x000000000013e1d1        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .bss           0x000000000013e1d1        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .bss           0x000000000013e1d1        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .bss           0x000000000013e1d1        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .bss           0x000000000013e1d1        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .bss           0x000000000013e1d1        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .bss           0x000000000013e1d1        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-exit.o)
+ .bss           0x000000000013e1d1        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strtoul.o)
+ .bss           0x000000000013e1d1        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-ctype_.o)
+ *fill*         0x000000000013e1d1        0x7 
+ .bss           0x000000000013e1d8      0x218 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-findfp.o)
+                0x000000000013e1d8                __sf
+                0x000000000013e3e8                __stdio_exit_handler
+ .bss           0x000000000013e3f0        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fwalk.o)
+ .bss           0x000000000013e3f0        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-printf.o)
+ .bss           0x000000000013e3f0        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-puts.o)
+ .bss           0x000000000013e3f0        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-stdio.o)
+ .bss           0x000000000013e3f0        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-closer.o)
+ .bss           0x000000000013e3f0        0x4 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-reent.o)
+                0x000000000013e3f0                errno
+ .bss           0x000000000013e3f4        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-impure.o)
+ .bss           0x000000000013e3f4        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-lseekr.o)
+ .bss           0x000000000013e3f4        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-readr.o)
+ .bss           0x000000000013e3f4        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-writer.o)
+ .bss           0x000000000013e3f4        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-init.o)
+ .bss           0x000000000013e3f4        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fini.o)
+ .bss           0x000000000013e3f4        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memset.o)
+ .bss           0x000000000013e3f4        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strlen.o)
+ *fill*         0x000000000013e3f4        0x4 
+ .bss           0x000000000013e3f8        0x8 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-__call_atexit.o)
+                0x000000000013e3f8                __atexit
+ .bss           0x000000000013e400        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-freer.o)
+ .bss           0x000000000013e400       0x40 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mallocr.o)
+                0x000000000013e400                __malloc_top_pad
+                0x000000000013e408                __malloc_current_mallinfo
+                0x000000000013e430                __malloc_max_sbrked_mem
+                0x000000000013e438                __malloc_max_total_mem
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mlock.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfprintf.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-sprint_r.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fclose.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fflush.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fvwrite.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-wsetup.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strncpy.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-localeconv.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-sbrkr.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memchr.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcpy.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libm_a-frexpl.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-ldtoa.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gdtoa.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-dmisc.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-gdtoa-gmisc.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mprec.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-reallocr.o)
+ .bss           0x000000000013e440        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-makebuf.o)
+ .bss           0x000000000013e440        0x8 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-locale.o)
+                0x000000000013e440                _PathLocale
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fstatr.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-isattyr.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strcmp.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-assert.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-callocr.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-mbtowc_r.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-wctomb_r.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-fiprintf.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-vfiprintf.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-errno.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-abort.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signal.o)
+ .bss           0x000000000013e448        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-signalr.o)
+ .bss           0x000000000013e448        0xc /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+                0x000000000013e450                Xil_AssertStatus
+ *fill*         0x000000000013e454        0x4 
+ .bss           0x000000000013e458        0x8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+                0x000000000013e458                fptr
+ .bss           0x000000000013e460        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .bss           0x000000000013e460        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .bss           0x000000000013e460        0x8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .bss           0x000000000013e468        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .bss           0x000000000013e468        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .bss           0x000000000013e468        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .bss           0x000000000013e468        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .bss           0x000000000013e468        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .bss           0x000000000013e468        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .bss           0x000000000013e468        0x0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .bss           0x000000000013e468       0x40 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+                0x000000000013e468                TimerInst
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(eqtf2.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(getf2.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(letf2.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(multf3.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(subtf3.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(unordtf2.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(fixtfsi.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(floatsitf.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(extenddftf2.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a(sfp-exceptions.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strncat.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-memcmp.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a(libc_a-strnlen.o)
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtend.o
+ .bss           0x000000000013e4a8        0x0 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtn.o
+ *(.bss.*)
+ *(.gnu.linkonce.b.*)
+ *(COMMON)
+                0x000000000013e4c0                . = ALIGN (0x40)
+ *fill*         0x000000000013e4a8       0x18 
+                0x000000000013e4c0                __bss_end__ = .
+                0x000000000011e0c0                _SDA_BASE_ = (__sdata_start + ((__sbss_end - __sdata_start) / 0x2))
+                0x0000000000114b80                _SDA2_BASE_ = (__sdata2_start + ((__sbss2_end - __sdata2_start) / 0x2))
+
+.heap           0x000000000013e4c0     0x2000
+                0x000000000013e4c0                . = ALIGN (0x40)
+                0x000000000013e4c0                _heap = .
+                0x000000000013e4c0                HeapBase = .
+                0x000000000013e4c0                _heap_start = .
+                0x00000000001404c0                . = (. + _HEAP_SIZE)
+ *fill*         0x000000000013e4c0     0x2000 
+                0x00000000001404c0                _heap_end = .
+                0x00000000001404c0                HeapLimit = .
+
+.stack          0x00000000001404c0     0x3000
+                0x00000000001404c0                . = ALIGN (0x40)
+                0x00000000001404c0                _el3_stack_end = .
+                0x00000000001424c0                . = (. + _STACK_SIZE)
+ *fill*         0x00000000001404c0     0x2000 
+                0x00000000001424c0                __el3_stack = .
+                0x00000000001424c0                _el2_stack_end = .
+                0x00000000001428c0                . = (. + _EL2_STACK_SIZE)
+ *fill*         0x00000000001424c0      0x400 
+                0x00000000001428c0                . = ALIGN (0x40)
+                0x00000000001428c0                __el2_stack = .
+                0x00000000001428c0                _el1_stack_end = .
+                0x00000000001430c0                . = (. + _EL1_STACK_SIZE)
+ *fill*         0x00000000001428c0      0x800 
+                0x00000000001430c0                . = ALIGN (0x40)
+                0x00000000001430c0                __el1_stack = .
+                0x00000000001430c0                _el0_stack_end = .
+                0x00000000001434c0                . = (. + _EL0_STACK_SIZE)
+ *fill*         0x00000000001430c0      0x400 
+                0x00000000001434c0                . = ALIGN (0x40)
+                0x00000000001434c0                __el0_stack = .
+                0x00000000001434c0                _end = .
+START GROUP
+LOAD /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a
+LOAD /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a
+LOAD /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libm.a
+END GROUP
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libg.a
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/libc.a
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/libgcc.a
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtend.o
+LOAD /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtn.o
+OUTPUT(/home/jconway/spi-soc-research/results/task2h_boot_handoff_20261030/fifo_candidate_v3/spi_axi_bm_menu_aarch64.elf elf64-littleaarch64)
+LOAD linker stubs
+
+.comment        0x0000000000000000       0x12
+ .comment       0x0000000000000000       0x12 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtbegin.o
+                                         0x13 (size before relaxing)
+ .comment       0x0000000000000012       0x13 /tmp/ccapV4Yf.o
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .comment       0x0000000000000012       0x13 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+ .comment       0x0000000000000012       0x13 /tools/Xilinx/2025.1/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0/crtend.o
+
+.debug_info     0x0000000000000000     0xba18
+ .debug_info    0x0000000000000000     0x2e82 /tmp/ccapV4Yf.o
+ .debug_info    0x0000000000002e82      0xc31 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .debug_info    0x0000000000003ab3       0x29 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+ .debug_info    0x0000000000003adc      0x2dd /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .debug_info    0x0000000000003db9      0x145 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .debug_info    0x0000000000003efe      0x317 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .debug_info    0x0000000000004215       0x29 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+ .debug_info    0x000000000000423e      0xb52 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .debug_info    0x0000000000004d90       0xed /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ .debug_info    0x0000000000004e7d      0x45a /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .debug_info    0x00000000000052d7      0x56f /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .debug_info    0x0000000000005846      0xa4c /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .debug_info    0x0000000000006292      0x5be /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .debug_info    0x0000000000006850      0x1f9 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .debug_info    0x0000000000006a49     0x1c1e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .debug_info    0x0000000000008667      0x7ed /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .debug_info    0x0000000000008e54      0x1f9 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+ .debug_info    0x000000000000904d     0x15f6 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .debug_info    0x000000000000a643      0x1b0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .debug_info    0x000000000000a7f3       0xe4 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .debug_info    0x000000000000a8d7      0x173 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .debug_info    0x000000000000aa4a       0xb7 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .debug_info    0x000000000000ab01       0xd2 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .debug_info    0x000000000000abd3      0x1bf /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .debug_info    0x000000000000ad92       0xca /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .debug_info    0x000000000000ae5c      0x2e7 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .debug_info    0x000000000000b143      0x160 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .debug_info    0x000000000000b2a3      0x170 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .debug_info    0x000000000000b413      0x605 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+
+.debug_abbrev   0x0000000000000000     0x2bc9
+ .debug_abbrev  0x0000000000000000      0x575 /tmp/ccapV4Yf.o
+ .debug_abbrev  0x0000000000000575      0x374 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .debug_abbrev  0x00000000000008e9       0x14 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+ .debug_abbrev  0x00000000000008fd      0x15b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .debug_abbrev  0x0000000000000a58       0xb5 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .debug_abbrev  0x0000000000000b0d      0x1e0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .debug_abbrev  0x0000000000000ced       0x14 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+ .debug_abbrev  0x0000000000000d01      0x1c2 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .debug_abbrev  0x0000000000000ec3       0x8b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ .debug_abbrev  0x0000000000000f4e      0x1da /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .debug_abbrev  0x0000000000001128      0x1bb /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .debug_abbrev  0x00000000000012e3      0x235 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .debug_abbrev  0x0000000000001518      0x1fa /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .debug_abbrev  0x0000000000001712       0xa3 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .debug_abbrev  0x00000000000017b5      0x314 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .debug_abbrev  0x0000000000001ac9      0x1d6 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .debug_abbrev  0x0000000000001c9f      0x115 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+ .debug_abbrev  0x0000000000001db4      0x449 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .debug_abbrev  0x00000000000021fd      0x131 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .debug_abbrev  0x000000000000232e       0x90 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .debug_abbrev  0x00000000000023be       0xdd /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .debug_abbrev  0x000000000000249b       0x69 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .debug_abbrev  0x0000000000002504       0x77 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .debug_abbrev  0x000000000000257b      0x149 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .debug_abbrev  0x00000000000026c4       0x76 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .debug_abbrev  0x000000000000273a       0xc8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .debug_abbrev  0x0000000000002802       0xd0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .debug_abbrev  0x00000000000028d2       0xe9 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .debug_abbrev  0x00000000000029bb      0x20e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+
+.debug_loclists
+                0x0000000000000000     0x775c
+ .debug_loclists
+                0x0000000000000000     0x24b6 /tmp/ccapV4Yf.o
+ .debug_loclists
+                0x00000000000024b6      0xec2 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .debug_loclists
+                0x0000000000003378      0x253 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .debug_loclists
+                0x00000000000035cb       0x78 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .debug_loclists
+                0x0000000000003643      0x943 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .debug_loclists
+                0x0000000000003f86       0xa6 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .debug_loclists
+                0x000000000000402c       0xfd /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .debug_loclists
+                0x0000000000004129      0x422 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .debug_loclists
+                0x000000000000454b      0x209 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .debug_loclists
+                0x0000000000004754     0x1236 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .debug_loclists
+                0x000000000000598a      0x27b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .debug_loclists
+                0x0000000000005c05       0x48 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+ .debug_loclists
+                0x0000000000005c4d     0x15c9 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .debug_loclists
+                0x0000000000007216      0x13e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .debug_loclists
+                0x0000000000007354       0x1e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .debug_loclists
+                0x0000000000007372       0x46 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .debug_loclists
+                0x00000000000073b8       0x14 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .debug_loclists
+                0x00000000000073cc       0x1e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .debug_loclists
+                0x00000000000073ea       0xc0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .debug_loclists
+                0x00000000000074aa       0x1e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .debug_loclists
+                0x00000000000074c8       0x41 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .debug_loclists
+                0x0000000000007509       0x42 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .debug_loclists
+                0x000000000000754b      0x211 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+
+.debug_aranges  0x0000000000000000      0x580
+ .debug_aranges
+                0x0000000000000000       0x50 /tmp/ccapV4Yf.o
+ .debug_aranges
+                0x0000000000000050       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .debug_aranges
+                0x0000000000000080       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+ .debug_aranges
+                0x00000000000000b0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .debug_aranges
+                0x00000000000000e0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .debug_aranges
+                0x0000000000000110       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .debug_aranges
+                0x0000000000000140       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+ .debug_aranges
+                0x0000000000000170       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .debug_aranges
+                0x00000000000001a0       0x20 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ .debug_aranges
+                0x00000000000001c0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .debug_aranges
+                0x00000000000001f0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .debug_aranges
+                0x0000000000000220       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .debug_aranges
+                0x0000000000000250       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .debug_aranges
+                0x0000000000000280       0x20 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .debug_aranges
+                0x00000000000002a0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .debug_aranges
+                0x00000000000002d0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .debug_aranges
+                0x0000000000000300       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+ .debug_aranges
+                0x0000000000000330       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .debug_aranges
+                0x0000000000000360       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .debug_aranges
+                0x0000000000000390       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .debug_aranges
+                0x00000000000003c0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .debug_aranges
+                0x00000000000003f0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .debug_aranges
+                0x0000000000000420       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .debug_aranges
+                0x0000000000000450       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .debug_aranges
+                0x0000000000000480       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .debug_aranges
+                0x00000000000004b0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .debug_aranges
+                0x00000000000004e0       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .debug_aranges
+                0x0000000000000510       0x30 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .debug_aranges
+                0x0000000000000540       0x40 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+
+.debug_rnglists
+                0x0000000000000000      0xa43
+ .debug_rnglists
+                0x0000000000000000      0x662 /tmp/ccapV4Yf.o
+ .debug_rnglists
+                0x0000000000000662       0x81 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .debug_rnglists
+                0x00000000000006e3       0x1c /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .debug_rnglists
+                0x00000000000006ff       0x66 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .debug_rnglists
+                0x0000000000000765       0x1c /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .debug_rnglists
+                0x0000000000000781       0x93 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .debug_rnglists
+                0x0000000000000814       0x29 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .debug_rnglists
+                0x000000000000083d       0xea /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .debug_rnglists
+                0x0000000000000927       0x7d /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .debug_rnglists
+                0x00000000000009a4       0x4d /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .debug_rnglists
+                0x00000000000009f1       0x52 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+
+.debug_macro    0x0000000000000000     0x5d13
+ .debug_macro   0x0000000000000000      0x316 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000000316      0xa6c /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000000d82       0x22 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000000da4       0x60 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000000e04       0x29 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000000e2d       0x94 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000000ec1       0x42 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000000f03       0x34 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000000f37      0x190 /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000010c7       0x57 /tmp/ccapV4Yf.o
+ .debug_macro   0x000000000000111e      0x370 /tmp/ccapV4Yf.o
+ .debug_macro   0x000000000000148e       0x16 /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000014a4       0x4a /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000014ee       0x10 /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000014fe       0x26 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001524       0x10 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001534       0x52 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001586      0x1de /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001764      0x19b /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000018ff       0xfd /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000019fc       0x6a /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001a66      0x1df /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001c45       0x1c /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001c61       0x3c /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001c9d       0x10 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001cad       0x1c /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001cc9       0x16 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001cdf      0x170 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001e4f       0x2e /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000001e7d     0x2024 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000003ea1       0x3a /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000003edb      0x77a /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000004655       0x3a /tmp/ccapV4Yf.o
+ .debug_macro   0x000000000000468f       0x51 /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000046e0       0x16 /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000046f6       0x36 /tmp/ccapV4Yf.o
+ .debug_macro   0x000000000000472c      0x41a /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000004b46      0x11f /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000004c65       0x4c /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000004cb1      0x2b5 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000004f66       0xd3 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000005039       0x54 /tmp/ccapV4Yf.o
+ .debug_macro   0x000000000000508d      0x1df /tmp/ccapV4Yf.o
+ .debug_macro   0x000000000000526c       0xa5 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000005311       0x10 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000005321       0x71 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000005392      0x2cd /tmp/ccapV4Yf.o
+ .debug_macro   0x000000000000565f       0x2e /tmp/ccapV4Yf.o
+ .debug_macro   0x000000000000568d       0x3c /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000056c9       0xa0 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000005769       0x22 /tmp/ccapV4Yf.o
+ .debug_macro   0x000000000000578b       0x31 /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000057bc       0x16 /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000057d2       0x10 /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000057e2       0x10 /tmp/ccapV4Yf.o
+ .debug_macro   0x00000000000057f2      0x4cc /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000005cbe       0x16 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000005cd4       0x16 /tmp/ccapV4Yf.o
+ .debug_macro   0x0000000000005cea       0x29 /tmp/ccapV4Yf.o
+
+.debug_line     0x0000000000000000     0x68e1
+ .debug_line    0x0000000000000000     0x180b /tmp/ccapV4Yf.o
+ .debug_line    0x000000000000180b      0xaa1 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .debug_line    0x00000000000022ac       0x7d /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+ .debug_line    0x0000000000002329      0x1ec /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .debug_line    0x0000000000002515       0x70 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .debug_line    0x0000000000002585      0x107 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .debug_line    0x000000000000268c       0xc8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+ .debug_line    0x0000000000002754      0x76d /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .debug_line    0x0000000000002ec1       0x5a /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ .debug_line    0x0000000000002f1b      0x136 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .debug_line    0x0000000000003051      0x1fb /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .debug_line    0x000000000000324c      0x64e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .debug_line    0x000000000000389a      0x29d /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .debug_line    0x0000000000003b37       0x5a /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .debug_line    0x0000000000003b91     0x1493 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .debug_line    0x0000000000005024      0x3c0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .debug_line    0x00000000000053e4       0xe6 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+ .debug_line    0x00000000000054ca      0xc3f /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .debug_line    0x0000000000006109       0xd4 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .debug_line    0x00000000000061dd       0x6e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .debug_line    0x000000000000624b       0xc5 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .debug_line    0x0000000000006310       0x6b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .debug_line    0x000000000000637b       0x73 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .debug_line    0x00000000000063ee       0xfa /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .debug_line    0x00000000000064e8       0x74 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .debug_line    0x000000000000655c       0x99 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .debug_line    0x00000000000065f5       0xa4 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .debug_line    0x0000000000006699       0xa5 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .debug_line    0x000000000000673e      0x1a3 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+
+.debug_str      0x0000000000000000    0x1e620
+ .debug_str     0x0000000000000000    0x1e620 /tmp/ccapV4Yf.o
+                                      0x1d898 (size before relaxing)
+ .debug_str     0x000000000001e620      0x2fb /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .debug_str     0x000000000001e620       0xda /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+ .debug_str     0x000000000001e620      0x1fc /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .debug_str     0x000000000001e620      0x199 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .debug_str     0x000000000001e620      0x239 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .debug_str     0x000000000001e620      0x1a4 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+ .debug_str     0x000000000001e620      0x2f5 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .debug_str     0x000000000001e620      0x14b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ .debug_str     0x000000000001e620      0x350 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .debug_str     0x000000000001e620      0x3c5 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .debug_str     0x000000000001e620      0x3a3 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .debug_str     0x000000000001e620      0x39e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .debug_str     0x000000000001e620      0x21a /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .debug_str     0x000000000001e620      0x526 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .debug_str     0x000000000001e620      0x1f5 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .debug_str     0x000000000001e620      0x1d8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+ .debug_str     0x000000000001e620      0x5a1 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .debug_str     0x000000000001e620      0x154 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .debug_str     0x000000000001e620      0x110 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .debug_str     0x000000000001e620      0x168 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .debug_str     0x000000000001e620      0x10e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .debug_str     0x000000000001e620      0x113 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .debug_str     0x000000000001e620      0x155 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .debug_str     0x000000000001e620      0x11b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .debug_str     0x000000000001e620      0x266 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .debug_str     0x000000000001e620      0x12b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .debug_str     0x000000000001e620      0x15b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .debug_str     0x000000000001e620      0x314 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+
+.debug_line_str
+                0x0000000000000000     0x2551
+ .debug_line_str
+                0x0000000000000000     0x2551 /tmp/ccapV4Yf.o
+                                        0x580 (size before relaxing)
+ .debug_line_str
+                0x0000000000002551      0x5b6 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x1a5 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil-crt0.S.obj)
+ .debug_line_str
+                0x0000000000002551      0x5e8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x33a /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x53c /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x196 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(boot.S.obj)
+ .debug_line_str
+                0x0000000000002551      0x52a /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x510 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xarmv8_g.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x568 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x513 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x525 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x522 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x4fa /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_g.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x516 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x50e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x45f /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x5af /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x526 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x48b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x524 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x488 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x51c /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x529 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x51f /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x54b /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x53c /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x535 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .debug_line_str
+                0x0000000000002551      0x50e /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
+
+.debug_frame    0x0000000000000000     0x1490
+ .debug_frame   0x0000000000000000      0x2c8 /tmp/ccapV4Yf.o
+ .debug_frame   0x00000000000002c8      0x110 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_printf.c.obj)
+ .debug_frame   0x00000000000003d8       0x90 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_mmu.c.obj)
+ .debug_frame   0x0000000000000468       0x70 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(vectors.c.obj)
+ .debug_frame   0x00000000000004d8       0xb8 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_exception.c.obj)
+ .debug_frame   0x0000000000000590      0x158 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_cache.c.obj)
+ .debug_frame   0x00000000000006e8       0x70 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(globaltimer_sleep.c.obj)
+ .debug_frame   0x0000000000000758       0x50 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_sinit.c.obj)
+ .debug_frame   0x00000000000007a8       0x68 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_selftest.c.obj)
+ .debug_frame   0x0000000000000810       0x90 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi_options.c.obj)
+ .debug_frame   0x00000000000008a0      0x300 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xspi.c.obj)
+ .debug_frame   0x0000000000000ba0       0xa0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxil.a(xuartps_hw.c.obj)
+ .debug_frame   0x0000000000000c40       0x68 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_assert.c.obj)
+ .debug_frame   0x0000000000000ca8      0x428 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(xil_sutil.c.obj)
+ .debug_frame   0x00000000000010d0       0x90 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(read.c.obj)
+ .debug_frame   0x0000000000001160       0x40 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(isatty.c.obj)
+ .debug_frame   0x00000000000011a0       0x28 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_sbrk.c.obj)
+ .debug_frame   0x00000000000011c8       0x28 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(_exit.c.obj)
+ .debug_frame   0x00000000000011f0       0x28 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(close.c.obj)
+ .debug_frame   0x0000000000001218       0x80 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(write.c.obj)
+ .debug_frame   0x0000000000001298       0x40 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(getpid.c.obj)
+ .debug_frame   0x00000000000012d8       0x28 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(fstat.c.obj)
+ .debug_frame   0x0000000000001300       0x50 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(kill.c.obj)
+ .debug_frame   0x0000000000001350       0x60 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxilstandalone.a(lseek.c.obj)
+ .debug_frame   0x00000000000013b0       0xe0 /home/jconway/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib/libxiltimer.a(xiltimer.c.obj)
