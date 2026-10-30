@@ -15,6 +15,7 @@ DTBO_SPI="$APP_DIR/axi-spi-controller.dtbo"
 SMOKE="$APP_DIR/linux_spi_smoke_aarch64"
 INTEGRITY="$APP_DIR/spi_benchmark_v3_rxverify_aarch64"
 SUSTAINED="$APP_DIR/spi_sustainable_benchmark_linux_aarch64"
+BM_REQUEST="$APP_DIR/baremetal.once"
 
 die() { echo "ERROR: $*" >&2; return 1; }
 need_file() { sudo test -r "$1" || die "Missing or unreadable package file: $1"; }
@@ -208,6 +209,7 @@ if [ "${1:-}" = --self-test ]; then
     exit 0
 fi
 
+linux_menu() {
 while :; do
     cat <<'MENU'
 
@@ -234,5 +236,63 @@ MENU
         4) hardware_ready && sustained_menu ;;
         5) info ;;
         *) echo 'Choose 0, 1, 2, 3, 4, 5, or q.' ;;
+    esac
+done
+}
+
+request_baremetal() {
+    scope=
+    for candidate in \
+        /sys/devices/platform/firmware:zynqmp-firmware/shutdown_scope \
+        /sys/firmware/zynqmp/shutdown_scope; do
+        if [ -e "$candidate" ]; then scope=$candidate; break; fi
+    done
+    if [ -z "$scope" ]; then
+        scope=$(find /sys -type f -name shutdown_scope -print 2>/dev/null | head -n 1)
+    fi
+    [ -n "$scope" ] && [ -e "$scope" ] || {
+        die 'PS-only reset control is unavailable (checked ZynqMP firmware sysfs paths)'
+        return 1
+    }
+    echo "ZynqMP reboot scope control: $scope"
+    echo "This will reboot the A53 into the bare-metal test menu and preserve the PL image."
+    printf 'Type REBOOT to continue: '
+    IFS= read -r confirm || return 1
+    [ "$confirm" = REBOOT ] || { echo 'Cancelled'; return 0; }
+    hardware_ready || return 1
+    sudo touch "$BM_REQUEST" || return 1
+    sudo sync
+    if ! sudo sh -c 'echo ps_only > "$1"' sh "$scope"; then
+        sudo rm -f "$BM_REQUEST"
+        die 'Could not select the ZynqMP PS-only reset scope'
+        return 1
+    fi
+    echo 'One-shot bare-metal request armed; rebooting now.'
+    sudo reboot
+    sudo sh -c 'echo system > "$1"' sh "$scope" 2>/dev/null || true
+    sudo rm -f "$BM_REQUEST"
+    die 'Reboot command returned; cleared the one-shot request'
+    return 1
+}
+
+while :; do
+    cat <<'TOP_MENU'
+
+MSU-2 ZCU102 operator mode
+  1) Linux SPI test menu
+  2) Reboot into bare-metal SPI test menu
+  q) Return to the normal Linux shell
+TOP_MENU
+    printf 'Select mode: '
+    IFS= read -r mode || exit 0
+    case "$mode" in
+        1) linux_menu ;;
+        2) request_baremetal ;;
+        q|Q)
+            echo 'Returning to the normal Linux shell.'
+            if [ "$(id -u)" -eq 0 ] && id petalinux >/dev/null 2>&1; then exec su - petalinux; fi
+            exit 0
+            ;;
+        *) echo 'Choose 1, 2, or q.' ;;
     esac
 done
