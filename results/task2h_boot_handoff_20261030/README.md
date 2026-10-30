@@ -1,5 +1,10 @@
 # 2026-10-30 operator investigation
 
+Current board observations are recorded in OPERATOR_VALIDATION.md. V4 options
+1,2,4 have passed on the board; option 3 is partially observed and q remains
+pending. Earlier "pending validation" text below records the candidate's
+state when built; consult the validation record for current status.
+
 LATEST DEPLOYMENT CANDIDATE: clock_candidate_v4 supersedes v3. Hardware
 validation of v4 is pending. It restores PL0 DIVISOR0 to 15, preserving other
 fields, after XSpi_CfgInitialize resets the controller and before starting SPI.
