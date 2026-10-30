@@ -1,5 +1,26 @@
 # 2026-10-30 operator investigation
 
+LATEST DEPLOYMENT CANDIDATE: clock_candidate_v4 supersedes v3. Hardware
+validation of v4 is pending. It restores PL0 DIVISOR0 to 15, preserving other
+fields, after XSpi_CfgInitialize resets the controller and before starting SPI.
+The write is read back; initialization fails if it does not match.
+
+Operator v3 evidence: all 11 sizes completed without timeouts and returned to
+menu; 10,000 mismatches. First eight-byte TX=0001020304050607,
+RX=0000810182028303, a one-bit right shift across the byte stream.
+q caused a reboot to U-Boot; operator then booted Linux with run bootcmd.
+Linux smoke again passed tx=a5 rx=a5 (20261030T175908Z_smoke).
+Read-only Linux register reads: IOPLL_CTRL=0x00015a00,
+PL0_REF_CTRL=0x01010f00, idle SPI CR=0x84. V3 bare-metal before initialization:
+IOPLL_CTRL=0x00015a00, PL0_REF_CTRL=0x01010600. This establishes a divider
+difference (15 versus 6), making the handoff clock a timing suspect. It does
+not yet establish that v4 fixes the RX error.
+
+V4 entry verified 0x00100940. ELF SHA-256:
+53c9e5f07946c6f97bf6dec79068cef3d70aafe3967604f248363391230f3ab0.
+Build inputs and SHA256SUMS are alongside the ELF. BOOT.BIN and boot.scr are
+unchanged. SPI remains mode 0, 8 bits, MSB first, external loopback.
+
 DEPLOYMENT CANDIDATE: fifo_candidate_v3 supersedes v2. After fetching remote
 commits through 6caa48b, the original October 29 BSP became available. V3 uses
 that preserved BSP and linker script, with the same application changes as v2.

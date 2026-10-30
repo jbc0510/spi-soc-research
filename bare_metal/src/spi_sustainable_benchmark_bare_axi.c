@@ -309,6 +309,20 @@ static int initialize(void)
         return XST_FAILURE;
     int s = XSpi_CfgInitialize(&spi, cfg, cfg->BaseAddress);
     if (s != XST_SUCCESS) return s;
+    /* Reboot restores the FSBL PL0 divider to 6 (250 MHz). The passing
+     * Linux external-loopback setup uses divider 15 (99.99 MHz), observed
+     * with the same IOPLL=0x00015a00 on 2026-10-30. Restore that divider with
+     * the SPI controller reset/inhibited; retain source, gate and DIVISOR1.
+     * This does not change SPI mode or enable internal loopback. */
+    const u32 pl0_ref = 0xFF5E00C0U;
+    u32 clock_before = Xil_In32(pl0_ref);
+    u32 clock_target = (clock_before & ~0x00003F00U) | 0x00000F00U;
+    Xil_Out32(pl0_ref, clock_target);
+    __asm__ volatile("dsb sy\n isb" ::: "memory");
+    u32 clock_after = Xil_In32(pl0_ref);
+    printf("# PL0 divider restore before=0x%08x target=0x%08x readback=0x%08x\n",
+           (unsigned)clock_before, (unsigned)clock_target, (unsigned)clock_after);
+    if (clock_after != clock_target) return XST_FAILURE;
     xil_printf("# init: selftest\r\n");
     s = XSpi_SelfTest(&spi);
     if (s != XST_SUCCESS) return s;
