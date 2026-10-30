@@ -54,13 +54,13 @@ The script prints the exact compiler/linker invocation and rejects a changed
 entry. Expected warnings: GCC ignores the naked attribute and reports the
 noreturn function returning; these were present in the recovered build.
 
-A different clone path changes DWARF debug paths (`-g3`), so the full ELF hash
+A different clone path changes DWARF debug paths (`-g3`) and the GNU build ID, so the full ELF hash
 can differ. Use the packaged final ELF above for the exact October 29 bytes.
-Compare loadable content for a relocated build with:
+Compare loadable content excluding the path-dependent GNU build ID for a relocated build with:
 
 ```sh
-"${CROSS}objcopy" -O binary results/task2h_release_20261029/final/spi_axi_bm_menu_aarch64.elf /tmp/msu2-reference.bin
-"${CROSS}objcopy" -O binary /tmp/msu2-final/spi_axi_bm_menu_aarch64.elf /tmp/msu2-rebuilt.bin
+"${CROSS}objcopy" -O binary --remove-section=.note.gnu.build-id results/task2h_release_20261029/final/spi_axi_bm_menu_aarch64.elf /tmp/msu2-reference.bin
+"${CROSS}objcopy" -O binary --remove-section=.note.gnu.build-id /tmp/msu2-final/spi_axi_bm_menu_aarch64.elf /tmp/msu2-rebuilt.bin
 cmp /tmp/msu2-reference.bin /tmp/msu2-rebuilt.bin
 ```
 
@@ -84,7 +84,7 @@ not portable instructions to execute verbatim.
   libxiltimer.a; exact hashes match the original build_inputs.json.
 - `../task2h_boot_handoff_20261029/rebuilt/Xilinx.spec`, `lscript.ld`:
   compiler startup specification and linker placement/entry.
-- `recovered_scratchpad/`: all 29 October scratch files, including fix through
+- `recovered_scratchpad/`: all 30 October 29 scratch files, including fix through
   fix5 ELFs, both boot script variants, assembly probes, objects, scripts,
   linker map, disassembly and UART log. Diagnostic/staging scripts are
   historical board-control tools; they are not the deployment procedure below.
