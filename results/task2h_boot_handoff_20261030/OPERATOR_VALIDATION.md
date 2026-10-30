@@ -1,6 +1,6 @@
 # Operator validation of clock_candidate_v4
 
-Status: IN PROGRESS. Source/build commit: 32a2da9.
+Status: ALL FIVE MENU CHOICES OPERATOR VALIDATED. Source/build commit: 32a2da9.
 ELF SHA-256: 53c9e5f07946c6f97bf6dec79068cef3d70aafe3967604f248363391230f3ab0.
 This document summarizes UART output pasted by the operator in the Codex
 session on 2026-10-30. It is not a raw UART capture or an independent agent
@@ -15,7 +15,7 @@ test topology; internal loopback remains disabled in the firmware.
 | 2 custom sustained | PASS: sizes 1,8,16,256,512,65536; 1 second each, 1 repetition. Zero errors/mismatches at every point; completion marker and return to menu observed. |
 | 4 one-byte smoke | PASS: 452,444 verified transfers in 1.000000830 seconds; zero errors/mismatches; completion marker and return to menu observed. TX byte is zero under the shared contract; nonzero/multi-byte integrity is established by option 1. |
 | 3 full baseline | PASS: all 33 points, 11 shared sizes x 60 seconds x 3 repetitions. All attempts verified, zero API errors, zero mismatches, first_error_code=0 throughout. Completion marker and post-test Enter prompt observed. |
-| q return to Linux | PENDING on v4. Earlier v3 q reset reached U-Boot and operator resumed boot manually; that does not establish unattended return to Linux on v4. |
+| q return to Linux | PASS on v4: after the requested q test, operator supplied Linux boot output through PetaLinux 2025.1 newQspi ttyPS0 and newQspi login:. SD FAT mount and Multi-User System reached. No additional U-Boot command was reported for this test. |
 
 ## Clock and RX evidence
 
@@ -54,10 +54,29 @@ complete: no errors." and the post-test Enter prompt. Selected CSV fields
 are preserved in baseline_observed.csv; these are extracted from operator
 output, not a direct serial-port capture. Physical SCK remains unmeasured.
 
-## Remaining acceptance
+## Return-to-Linux observation and acceptance
 
-Select q and observe an unattended Linux login prompt, without stopping
-U-Boot autoboot. Preserve the tested ELF and card backups; BOOT.BIN and
+After the completed baseline, the operator was instructed to press Enter,
+select q without Enter, and leave U-Boot autoboot uninterrupted. The operator
+then supplied Linux kernel and systemd output ending in:
+
+```
+PetaLinux 2025.1+release-S05180137 newQspi ttyPS0
+newQspi login:
+```
+
+The supplied excerpt shows the resulting Linux boot, not the q keystroke or
+PSCI instruction itself. It includes FIT SHA-256 verification, kernel startup,
+Multi-User System, and SD FAT mount at /run/media/BOOT-mmcblk0p1. No manual
+boot command was reported for this final test.
+
+All five requested menu options have now been individually exercised by the
+operator on the identified ELF. All observed transfer tests completed without
+hangs, and integrity/custom sustained/full baseline had zero RX mismatches.
+This establishes the requested menu acceptance on this setup; it is not an
+exhaustive fault-injection proof for every possible hardware or input fault.
+
+Preserve the tested ELF and card backups; BOOT.BIN and
 boot.scr were not changed by these candidates. The firmware's generic
 NOT_PERFORMED/UNVERIFIED banners are conservative build-time labels; this
 document records the actual operator observations for the identified ELF.

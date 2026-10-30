@@ -1,8 +1,7 @@
 # 2026-10-30 operator investigation
 
 Current board observations are recorded in OPERATOR_VALIDATION.md. V4 options
-1,2,3,4 have passed on the board; q remains
-pending. Earlier "pending validation" text below records the candidate's
+1,2,3,4 and q have passed on the board. Earlier "pending validation" text below records the candidate's
 state when built; consult the validation record for current status.
 
 LATEST DEPLOYMENT CANDIDATE: clock_candidate_v4 supersedes v3. Hardware
