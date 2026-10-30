@@ -1,0 +1,36 @@
+{
+  "inputs": {
+    "bare_metal/vitis/spi_axi_bm_handoff4_20261017/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libxil.a": "8db9d04cf3b29b0f3e083c5785e1c8bad1adcd7209270d75b778ca311378296b",
+    "bare_metal/vitis/spi_axi_bm_handoff4_20261017/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libsrc/standalone/src/libxilstandalone.a": "c0dd025cbe31f4887f8b23baeb873d49cc51b3a9fa449637e61f534dd92b5b3b",
+    "bare_metal/vitis/spi_axi_bm_handoff4_20261017/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/build_configs/gen_bsp/libsrc/xiltimer/src/libxiltimer.a": "51df91aaefd4b00ee32f5ef7c5cb851defb366e28c708f47cf9c8a4b7fe834bc",
+    "bare_metal/vitis/spi_axi_bm_handoff4_20261017/workspace/spi_axi_bm_plat/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/Xilinx.spec": "b9273e64cea0f2f99dbd79e2cfcfb5b8357b446a6f1e1f1b8da27faf4036d81d",
+    "bare_metal/vitis/spi_axi_bm_handoff4_20261017/workspace/spi_axi_bm_app/src/lscript.ld": "715ad5b821d3b05520dc5132037d1528847e54768063bc784a98e0203bc17b57",
+    "bare_metal/src/spi_sustainable_benchmark_bare_axi.c": "4f8b6007d0c48c439f02efd73899d96a37e2afac26091d1868c30d2f4518a15e",
+    "common/spi_benchmark_contract.h": "aa5af323605598d89f813be6477a229c6da3a3197c93171877cfcf627bcb5a07"
+  },
+  "command": [
+    "/home/opentitan/petalinux/2025.1/components/xsct/gnu/aarch64/lin/aarch64-none/bin/aarch64-none-elf-gcc",
+    "-DSDT",
+    "-O2",
+    "-g3",
+    "-Wall",
+    "-Wextra",
+    "-specs=/home/opentitan/msu2-verify/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/Xilinx.spec",
+    "-I/home/opentitan/msu2-verify/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/include",
+    "/home/opentitan/msu2-verify/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/spi_sustainable_benchmark_bare_axi.c",
+    "-Wl,-T,/home/opentitan/msu2-verify/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lscript.ld",
+    "-L/home/opentitan/msu2-verify/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/lib",
+    "-Wl,--start-group",
+    "-lxilstandalone",
+    "-lxiltimer",
+    "-lxil",
+    "-lgcc",
+    "-lc",
+    "-lm",
+    "-Wl,--end-group",
+    "-Wl,-Map,/home/opentitan/msu2-verify/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/app.map",
+    "-o",
+    "/home/opentitan/msu2-verify/spi-soc-research/results/task2h_boot_handoff_20261029/rebuilt/spi_axi_bm_menu_aarch64.elf"
+  ],
+  "returncode": 0
+}

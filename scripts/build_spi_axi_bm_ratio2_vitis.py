@@ -28,7 +28,7 @@ BIT_SHA256 = "90f93479dd47c505b8f9e4fe6f4f18e853f8923d081f4b2037401ed3cb46994a"
 PLATFORM = "spi_axi_bm_plat"
 APP = "spi_axi_bm_app"
 DOMAIN = "standalone_psu_cortexa53_0"
-ENTRY = 0x100000
+LOAD_BASE = 0x100000
 
 
 def require(condition, message):
@@ -89,9 +89,47 @@ def worker():
                                         os="standalone", cpu="psu_cortexa53_0",
                                         domain_name=DOMAIN, no_boot_bsp=True,
                                         generate_dtb=True)
-        require(client.get_component(name=PLATFORM).build() is not False,
+        platform_component = client.get_component(name=PLATFORM)
+        domain = platform_component.get_domain(name=DOMAIN)
+        domain.set_config(option="os", param="standalone_hypervisor_guest",
+                          value="true")
+        require(platform_component.build() is not False,
                 "Platform build failed")
         bsp = ws / PLATFORM / "psu_cortexa53_0" / DOMAIN / "bsp"
+        # This image is entered directly by U-Boot, without Xen. Vitis' EL1
+        # guest profile emits Xen virtual GIC addresses and a Xen PV console;
+        # neither exists in this handoff. Restore the XSA's physical GIC
+        # distributor address and the UART console before rebuilding the BSP.
+        xp = bsp / "include/xparameters.h"
+        xdata = xp.read_text()
+        gic_macro = "#define XPAR_XSCUGIC_0_BASEADDR 0x3001000"
+        require(xdata.count(gic_macro) == 1,
+                "Unexpected guest GIC base; refusing direct-boot adaptation")
+        xp.write_text(xdata.replace(gic_macro,
+                                    "#define XPAR_XSCUGIC_0_BASEADDR 0xF9010000", 1))
+        build_ninja = bsp / "libsrc/build_configs/gen_bsp/build.ninja"
+        ninja_data = build_ninja.read_text()
+        require("-DXEN_USE_PV_CONSOLE=1" in ninja_data,
+                "Expected Xen PV console flags in guest BSP")
+        build_ninja.write_text(ninja_data.replace(" -DXEN_USE_PV_CONSOLE=1", ""))
+        command(["ninja", "-C", str(build_ninja.parent)], cwd=ws)
+        # Ninja rebuilds the component archives under gen_bsp, but does not
+        # refresh the platform export used by application compile/link. Copy
+        # both headers and the actual rebuilt archives, not stale bsp/lib
+        # component archives, before creating the application.
+        export = ws / PLATFORM / "export" / PLATFORM / "sw" / DOMAIN
+        shutil.copytree(bsp / "include", export / "include", dirs_exist_ok=True)
+        rebuilt = {
+            "libxil.a": build_ninja.parent / "libxil.a",
+            "libxilstandalone.a": build_ninja.parent / "libsrc/standalone/src/libxilstandalone.a",
+            "libxiltimer.a": build_ninja.parent / "libsrc/xiltimer/src/libxiltimer.a",
+        }
+        for name, archive in rebuilt.items():
+            require(archive.is_file(), f"Missing rebuilt archive: {archive}")
+            shutil.copy2(archive, bsp / "lib" / name)
+            shutil.copy2(archive, export / "lib" / name)
+            require(sha(archive) == sha(export / "lib" / name),
+                    f"Exported BSP archive mismatch: {name}")
         meta = (bsp / "bsp.yaml").read_text()
         require(re.search(r"axi_quad_spi_0:\s+driver: spi\s", meta) is not None,
                 "Generated BSP does not bind axi_quad_spi_0 to spi")
@@ -134,15 +172,18 @@ def worker():
                      "set(USER_COMPILE_OPTIMIZATION_LEVEL -O2)")
         ld = src / "lscript.ld"
         data = ld.read_text()
+        require(data.count("ENTRY(_vector_table)") == 1,
+                "Generated linker entry mismatch")
+        data = data.replace("ENTRY(_vector_table)", "ENTRY(msu2_el2_entry)", 1)
         pattern = r"(psu_ddr_0_memory_0\s*:\s*ORIGIN\s*=\s*)(0x[0-9a-fA-F]+)(\s*,\s*LENGTH\s*=\s*)(0x[0-9a-fA-F]+)"
         matches = list(re.finditer(pattern, data))
         require(len(matches) == 1, "Expected one DDR linker region")
         match = matches[0]
-        require(int(match[2], 16) == 0 and int(match[4], 16) > ENTRY,
+        require(int(match[2], 16) == 0 and int(match[4], 16) > LOAD_BASE,
                 "Unexpected generated DDR range")
         # Move origin while preserving the original region's upper bound.
-        data = re.sub(pattern, lambda m: m[1] + hex(ENTRY) + m[3] +
-                      hex(int(m[4], 16) - ENTRY), data)
+        data = re.sub(pattern, lambda m: m[1] + hex(LOAD_BASE) + m[3] +
+                      hex(int(m[4], 16) - LOAD_BASE), data)
         ld.write_text(data)
         require(client.get_component(name=APP).build() is not False,
                 "Application build failed")
@@ -220,13 +261,20 @@ def main():
     require(elf.is_file(), f"Missing application ELF; inspect {ws / 'build.log'} (launcher can return 0 on failure)")
     header = command([readelf, "-h", elf])
     entry = re.search(r"Entry point address:\s*(0x[0-9a-fA-F]+)", header)
-    require(entry is not None and int(entry[1], 16) == ENTRY, "Unexpected ELF entry")
+    entry_symbol = re.search(r"^([0-9a-fA-F]+)\s+[A-Za-z]\s+msu2_el2_entry$",
+                             command([nm, "-n", elf]), re.M)
+    require(entry_symbol is not None, "Missing EL2 entry shim symbol")
+    expected_entry = int(entry_symbol[1], 16)
+    require(entry is not None and int(entry[1], 16) == expected_entry,
+            "ELF entry does not point to the EL2 handoff shim")
     require("AArch64" in header, "Expected AArch64 ELF")
     loads = [line.split() for line in command([readelf, "-W", "-l", elf]).splitlines()
              if line.strip().startswith("LOAD ")]
-    require(loads and min(int(line[2], 16) for line in loads) == ENTRY and
-            min(int(line[3], 16) for line in loads) == ENTRY, "Unexpected ELF LOAD placement")
+    require(loads and min(int(line[2], 16) for line in loads) == LOAD_BASE and
+            min(int(line[3], 16) for line in loads) == LOAD_BASE, "Unexpected ELF LOAD placement")
     symbols = command([nm, "-n", elf])
+    require(not re.search(r"\b(?:XPVXenConsole_\w+|HYPERVISOR_\w+)\b", symbols),
+            "Direct-boot ELF still contains Xen console/hypervisor code")
     required_symbols = (("main", "axi_results", "axi_done")
                         if SOURCE.name == "spi_benchmark_bare_axi.c" else ("main",))
     required_symbols += (

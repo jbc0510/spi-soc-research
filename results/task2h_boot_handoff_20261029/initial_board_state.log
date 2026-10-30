@@ -1,0 +1,13 @@
+uname -a; id; uptime; find /run/media /boot -maxdepth 3 -name baremetal.once -o -name spi_axi_bm_menu_aarch64.elf -o -name BOOT.BIN -o -name boot.scr; cat /sys/devices/platform/firmware:zynqmp-ffirmware/shutdown_scope; ip -4 addr; printf '\n__INSPECT_DONE__\n'
+Linux newQspi 6.12.10-xilinx-g0a0f70e531c7 #1 SMP Sat May 17 14:01:06 UTC 2025 aarch64 GNU/Linux
+uid=1000(petalinux) gid=1000(petalinux) groups=19(input),29(audio),44(video),990(aie),1000(petalinux)
+ 18:42:55 up 20 min,  load average: 0.00, 0.00, 0.00
+find: /run/media/BOOT-mmcblk0p1: Permission denied
+/boot/boot.scr
+subsystem ps_only [system] 
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+
+__INSPECT_DONE__
+newQspi:~$ 

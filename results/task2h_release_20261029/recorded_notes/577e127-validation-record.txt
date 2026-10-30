@@ -1,0 +1,33 @@
+commit 577e1278d8341ac4a6500361802bf37c265d9819
+Author:     CAPC <jecon1@morgan.edu>
+AuthorDate: Thu Oct 29 20:30:11 2026 -0400
+Commit:     CAPC <jecon1@morgan.edu>
+CommitDate: Thu Oct 29 20:30:11 2026 -0400
+
+    Fix Linux->bare-metal handoff launch and SPI test at EL1
+    
+    The msu2 one-shot handoff aborted because Xilinx standalone boot.S enables
+    its own MMU, whose translation table only maps correctly in the EL3 FSBL
+    regime and faults the instant SCTLR_EL1.M is set under U-Boot (validated on
+    ZCU102). Launch now goes through U-Boot `go` (full EL2->EL1 switch) and the
+    ELF entry installs its own flat identity MMU (0-2GB DDR cacheable, 2-4GB
+    device) before jumping to _startup.
+    
+    The bare-metal SPI test also could not run at EL1 non-secure: it attached to
+    the GIC (XSetupInterruptSystem) and used interrupt-driven XSpi_Transfer, which
+    hang when the app cannot own the secure GIC. Replaced with a deterministic
+    register-level polled master transfer (external loopback preserved; CR
+    internal-loopback left clear). The operator menu is now a loop so every option
+    returns to the menu after success or failure (only q exits via PSCI reset),
+    with human-readable summaries alongside the CSV evidence lines.
+    
+    build_msu2_handoff_boot_scr.py emits `setenv autostart no; bootelf -p; go
+    <entry>` and reads e_entry from the ELF (--elf).
+    
+    Validated end-to-end on hardware: Linux menu -> go -> bare-metal menu ->
+    polled SPI benchmark (1-byte, 1.1M transfers/s, 0 errors) -> q -> Linux.
+    Known open item: multi-byte RX over the external loopback reads zero at EL1
+    (identical across two independent RX drains -> physical/PL MISO path or
+    bare-metal AXI-SPI config, not the firmware drain); under investigation.
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
