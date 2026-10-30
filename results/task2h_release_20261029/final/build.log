@@ -1,0 +1,7 @@
+/home/opentitan/msu2-verify/spi-soc-research/bare_metal/src/spi_sustainable_benchmark_bare_axi.c:64:1: warning: 'naked' attribute directive ignored [-Wattributes]
+   64 | {
+      | ^
+/home/opentitan/msu2-verify/spi-soc-research/bare_metal/src/spi_sustainable_benchmark_bare_axi.c: In function 'msu2_el2_entry':
+/home/opentitan/msu2-verify/spi-soc-research/bare_metal/src/spi_sustainable_benchmark_bare_axi.c:111:1: warning: 'noreturn' function does return
+  111 | }
+      | ^
