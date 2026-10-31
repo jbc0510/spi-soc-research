@@ -1,13 +1,17 @@
 # 2026-10-30 operator investigation
 
-Current board observations are recorded in OPERATOR_VALIDATION.md. V4 options
-1,2,3,4 and q have passed on the board. Earlier "pending validation" text below records the candidate's
-state when built; consult the validation record for current status.
+Final board status is in OPERATOR_VALIDATION.md (authoritative): on
+clock_candidate_v4, menu options 1, 2, 3, 4 and q ALL PASSED on hardware -
+zero RX mismatches, no hangs, and return to the Linux login confirmed. The
+historical "pending"/"candidate" notes further below record each candidate's
+state when it was built, in investigation order; they are superseded by the
+validation record.
 
-LATEST DEPLOYMENT CANDIDATE: clock_candidate_v4 supersedes v3. Hardware
-validation of v4 is pending. It restores PL0 DIVISOR0 to 15, preserving other
-fields, after XSpi_CfgInitialize resets the controller and before starting SPI.
-The write is read back; initialization fails if it does not match.
+FINAL VALIDATED DEPLOYMENT: clock_candidate_v4 (supersedes v3). It restores PL0
+DIVISOR0 to 15, preserving other fields, after XSpi_CfgInitialize resets the
+controller and before starting SPI. The write is read back; initialization
+fails if it does not match. This is the fix that resolved the multi-byte RX
+error (root cause and evidence below).
 
 Operator v3 evidence: all 11 sizes completed without timeouts and returned to
 menu; 10,000 mismatches. First eight-byte TX=0001020304050607,
@@ -16,9 +20,11 @@ q caused a reboot to U-Boot; operator then booted Linux with run bootcmd.
 Linux smoke again passed tx=a5 rx=a5 (20261030T175908Z_smoke).
 Read-only Linux register reads: IOPLL_CTRL=0x00015a00,
 PL0_REF_CTRL=0x01010f00, idle SPI CR=0x84. V3 bare-metal before initialization:
-IOPLL_CTRL=0x00015a00, PL0_REF_CTRL=0x01010600. This establishes a divider
-difference (15 versus 6), making the handoff clock a timing suspect. It does
-not yet establish that v4 fixes the RX error.
+IOPLL_CTRL=0x00015a00, PL0_REF_CTRL=0x01010600. This established a divider
+difference (15 versus 6), making the handoff clock the timing cause. Restoring
+divider 15 in v4 fixed it: the first eight-byte transfer then read
+RX=0001020304050607 (equal to TX), and options 1/2/3 completed with zero
+mismatches on hardware (see OPERATOR_VALIDATION.md).
 
 V4 entry verified 0x00100940. ELF SHA-256:
 53c9e5f07946c6f97bf6dec79068cef3d70aafe3967604f248363391230f3ab0.
@@ -61,6 +67,7 @@ objdump confirms entry 0x00100940. Compiler warns that the existing naked
 attribute is ignored and noreturn function returns; entry assembly is unchanged.
 BOOT.BIN and boot.scr are not modified.
 
-Next operator check: option 1, capture first_transfer diagnostic and eight-byte
-row, then exercise options 2,3,4,q after RX is clean. No menu option on this
-candidate has yet been confirmed on hardware.
+Outcome: the fifo_candidate* directories are the build-only investigation
+trail that led to the divider fix. clock_candidate_v4 superseded them and was
+confirmed on hardware for all menu options (OPERATOR_VALIDATION.md); it is the
+deliverable.
